@@ -3,7 +3,7 @@ name: Feature request
 about: 구현 예정인 기능을 작성해주세요.
 title: "[Feature] "
 labels: "✨ feature"
-assignees: Yangseungchan
+assignees: ''
 
 ---
 
