@@ -1,10 +1,9 @@
 ---
 name: Bug report
 about: 버그에 대한 이슈 템플릿입니다.
-title: "[Bug] "
+title: '[Bug] '
 labels: "\U0001F41E bug"
 assignees: ''
-
 ---
 
 ## 버그 상세 설명

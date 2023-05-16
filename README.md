@@ -4,6 +4,8 @@
 # 개발환경
 - Next.js 13
 - react 18
+- yarn `3.5.x`
+- node `18.16.0`
 - tailwind
 - zustand
 - react query
