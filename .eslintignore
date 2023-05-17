@@ -13,3 +13,4 @@ Dockerfile
 .nvmrc
 .pnp.cjs
 .pnp.loader.mjs
+*.config.js
