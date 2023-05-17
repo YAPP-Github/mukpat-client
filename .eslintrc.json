@@ -4,7 +4,15 @@
 		"es2021": true,
 		"node": true
 	},
-	"extends": ["plugin:@typescript-eslint/recommended", "plugin:react/recommended", "next/core-web-vitals", "prettier"],
+	"extends": [
+		"plugin:@typescript-eslint/recommended",
+		"plugin:react/recommended",
+		"next/core-web-vitals",
+		"airbnb",
+		"airbnb/hooks",
+		"airbnb-typescript",
+		"prettier"
+	],
 	"overrides": [],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
@@ -13,5 +21,8 @@
 		"project": "./tsconfig.json"
 	},
 	"plugins": ["@typescript-eslint", "prettier", "react", "react-hooks", "simple-import-sort"],
-	"rules": {}
+	"rules": {
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-props-no-spreading": "off"
+	}
 }
