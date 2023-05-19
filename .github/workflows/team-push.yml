@@ -1,7 +1,7 @@
 name: git push into 22nd-Web-Team-1-Web to deploy to vercel
 
 on:
-  push:
+  pull_request:
     branches: [master]
 
 jobs:
@@ -16,15 +16,15 @@ jobs:
         run: sh ./build.sh
       - name: Pushes to another repository
         id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
+        uses: cpina/github-action-push-to-another-repository@master
         env:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_GIT_TOKEN }}
         with:
           source-directory: 'output'
-          destination-github-username: zzieun22
+          destination-github-username: jieunpark247
           destination-repository-name: yapp-web1
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
-          target-branch: main
+          target-branch: master
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
