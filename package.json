@@ -20,8 +20,11 @@
 	"dependencies": {
 		"@tanstack/react-query": "^4.29.7",
 		"@vanilla-extract/css": "^1.11.0",
+		"@vanilla-extract/next-plugin": "^2.1.2",
+		"@vanilla-extract/recipes": "^0.4.0",
 		"autoprefixer": "^10.4.14",
 		"babel-jest": "^29.5.0",
+		"classnames": "^2.3.2",
 		"ky": "^0.33.3",
 		"next": "13.4.1",
 		"postcss": "^8.4.23",

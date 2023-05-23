@@ -1,4 +1,12 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin')
 
-module.exports = nextConfig
+const withVanillaExtract = createVanillaExtractPlugin()
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+}
+
+module.exports = withVanillaExtract(nextConfig)
