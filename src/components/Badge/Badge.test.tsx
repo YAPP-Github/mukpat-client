@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { screen, render } from '@/tests/test-utils';
 import { Badge } from '@/components';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 
+// 컴포넌트 테스트 예시 코드
 describe('Badge Component testing', () => {
 	test('Badge component rendering', () => {
 		render(<Badge color="primary">Badge</Badge>);
