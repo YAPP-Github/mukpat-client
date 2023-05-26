@@ -16,7 +16,7 @@ export const AllProviders = ({ children }: { children: ReactNode }) => {
 				},
 			}}
 		>
-			<Suspense>{children}</Suspense>;
+			<Suspense>{children}</Suspense>
 		</QueryProvider>
 	);
 };
