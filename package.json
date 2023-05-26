@@ -67,6 +67,7 @@
 		"eslint-plugin-testing-library": "^5.11.0",
 		"husky": "^8.0.0",
 		"jsdom": "^22.0.0",
+		"json-server": "^0.17.3",
 		"lint-staged": "^13.2.2",
 		"msw": "^1.2.1",
 		"prettier": "^2.8.8",
