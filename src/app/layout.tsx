@@ -1,8 +1,12 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
 import Provider from '@/providers/react-query';
+import localFont from 'next/font/local';
 
-const inter = Inter({ subsets: ['latin'] });
+const pretendardFont = localFont({
+	src: '../../public/PretendardVariable.woff2',
+	display: 'swap',
+});
+
 export const metadata = {
 	title: '먹팟',
 	description: '점심 랜덤 모임',
@@ -10,7 +14,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en" className={inter.className}>
+		<html lang="en" className={pretendardFont.className}>
 			<body>
 				<Provider>{children}</Provider>
 			</body>
