@@ -2,19 +2,19 @@ import { createGlobalTheme, createGlobalThemeContract, createTheme, createThemeC
 
 export const themeTokens = createGlobalTheme(':root', {
 	space: {
-		'3xs': '0.125rem',
-		'2xs': '0.25rem',
-		xs: '0.375rem',
-		sm: '0.5rem',
-		md: '0.75rem',
-		lg: '1rem',
-		xl: '1.25rem',
-		'2xl': '1.5rem',
-		'3xl': '2rem',
-		'4xl': '2.5rem',
-		'5xl': '3rem',
-		'6xl': '4rem',
-		'7xl': '5rem',
+		'3xs': '0.125rem', //2px
+		'2xs': '0.25rem', //4px
+		xs: '0.375rem', //6px
+		sm: '0.5rem', //8px
+		md: '0.75rem', //12px
+		lg: '1rem', //16px
+		xl: '1.25rem', //20px
+		'2xl': '1.5rem', //24px
+		'3xl': '2rem', //32px
+		'4xl': '2.5rem', //40px
+		'5xl': '3rem', //48px
+		'6xl': '4rem', //64px
+		'7xl': '5rem', //80px
 		none: '0px',
 	},
 	borderRadius: {
@@ -28,21 +28,21 @@ export const themeTokens = createGlobalTheme(':root', {
 		circle: '50%',
 	},
 	fontSize: {
-		'3xs': '0.688rem',
-		'2xs': '0.75rem',
-		xs: '0.813rem',
-		sm: '0.875rem',
-		md: '1rem',
-		lg: '1.125rem',
-		xl: '1.25rem',
-		'2xl': '1.375rem',
-		'3xl': '1.5rem',
-		'4xl': '1.75rem',
-		'5xl': '2rem',
-		'6xl': '2.25rem',
-		'7xl': '2.5rem',
-		'8xl': '2.875rem',
-		'9xl': '3.25rem',
+		'3xs': '0.688rem', //11px
+		'2xs': '0.75rem', //12px
+		xs: '0.813rem', //13px
+		sm: '0.875rem', //14px
+		md: '1rem', //16px
+		lg: '1.125rem', //18px
+		xl: '1.25rem', //20px
+		'2xl': '1.375rem', //22px
+		'3xl': '1.5rem', //24px
+		'4xl': '1.75rem', //28px
+		'5xl': '2rem', //32px
+		'6xl': '2.25rem', //36px
+		'7xl': '2.5rem', //40px
+		'8xl': '2.875rem', //46px
+		'9xl': '3.25rem', //52px
 	},
 	fontWeight: {
 		sm: '400',
@@ -122,18 +122,18 @@ export const themeTokens = createGlobalTheme(':root', {
 		tooltip: '1800',
 	},
 	lineHeights: {
-		'3xs': '0.875rem',
-		'2xs': '1rem',
-		xs: '1.125rem',
-		sm: '1.250rem',
-		md: '1.5rem',
-		lg: '1.75rem',
-		xl: '1.875rem',
-		'2xl': '2.25rem',
-		'3xl': '2.625rem',
-		'4xl': '2.875rem',
-		'5xl': '3.25rem',
-		'6xl': '3.75rem',
-		'7xl': '4rem',
+		'3xs': '0.875rem', //14px
+		'2xs': '1rem', //16px
+		xs: '1.125rem', //18px
+		sm: '1.250rem', //20px
+		md: '1.5rem', //22px
+		lg: '1.75rem', //24px
+		xl: '1.875rem', //28px
+		'2xl': '2.25rem', //30px
+		'3xl': '2.625rem', //36px
+		'4xl': '2.875rem', //42px
+		'5xl': '3.25rem', //46px
+		'6xl': '3.75rem', //52px
+		'7xl': '4rem', //60px
 	},
 });
