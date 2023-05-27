@@ -1,4 +1,4 @@
-import './globals.css';
+import '@/styles/globals.css';
 import Provider from '@/providers/react-query';
 import localFont from 'next/font/local';
 
