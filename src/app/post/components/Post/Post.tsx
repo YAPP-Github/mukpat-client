@@ -1,4 +1,4 @@
-import { usePostQuery } from '@/hooks';
+import { usePostQuery } from '@/app/post/hooks';
 
 const PostClientComponent = () => {
 	const { data: post } = usePostQuery();
