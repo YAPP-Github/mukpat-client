@@ -9048,13 +9048,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supports-color@npm:*":
-  version: 9.3.1
-  resolution: "supports-color@npm:9.3.1"
-  checksum: 00c4d1082a7ba0ee21cba1d4e4a466642635412e40476777b530aa5110d035e99a420cd048e1fb6811f2254c0946095fbb87a1eccf1af1d1ca45ab0a4535db93
-  languageName: node
-  linkType: hard
-
 "supports-color@npm:^5.3.0":
   version: 5.5.0
   resolution: "supports-color@npm:5.5.0"
@@ -9575,7 +9568,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:*, vite@npm:^3.0.0 || ^4.0.0, vite@npm:^4.1.4":
+"vite@npm:^3.0.0 || ^4.0.0, vite@npm:^4.1.4":
   version: 4.3.8
   resolution: "vite@npm:4.3.8"
   dependencies:
@@ -9609,6 +9602,43 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 454a7c0c1bd1fd5611c9df28c62e3adbe75f48e87fc787179c5af60c4ab9a87aa0eda44be446d898851a135766d36f65f8e7d56317556aa807d30e561de369c4
+  languageName: node
+  linkType: hard
+
+"vite@npm:^4.3.9":
+  version: 4.3.9
+  resolution: "vite@npm:4.3.9"
+  dependencies:
+    esbuild: ^0.17.5
+    fsevents: ~2.3.2
+    postcss: ^8.4.23
+    rollup: ^3.21.0
+  peerDependencies:
+    "@types/node": ">= 14"
+    less: "*"
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 8c45a516278d1e0425fac00c0877336790f71484a851a318346a70e0d2aef9f3b9651deb2f9f002c791ceb920eda7d6a3cda753bdefd657321c99f448b02dd25
   languageName: node
   linkType: hard
 
@@ -10009,6 +10039,7 @@ __metadata:
     react-dom: 18.2.0
     react-hook-form: ^7.43.9
     typescript: ^5.0.4
+    vite: ^4.3.9
     vitest: ^0.31.1
     zod: ^3.21.4
     zustand: ^4.3.8
