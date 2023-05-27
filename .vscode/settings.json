@@ -14,5 +14,6 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true,
 		"source.fixAll.format": true
-	}
+	},
+	"vitest.commandLine": "yarn test:watch",
 }
