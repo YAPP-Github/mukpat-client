@@ -4,6 +4,9 @@ import { globalStyle } from '@vanilla-extract/css';
 globalStyle(':root', {
 	maxWidth: '1100px',
 	borderRadius: '12px',
+});
+
+globalStyle('html, body', {
 	fontFamily: [
 		'Pretendard Variable',
 		'Pretendard',
@@ -21,10 +24,6 @@ globalStyle(':root', {
 		'Segoe UI Symbol',
 		'sans-serif',
 	],
-});
-
-globalStyle('html, body', {
-	fontFamily: 'Spartan, sans-serif',
 	fontWeight: 700,
 	maxWidth: '100vw',
 	overflowX: 'hidden',
