@@ -1,4 +1,4 @@
-import { createGlobalTheme, createGlobalThemeContract, createTheme, createThemeContract } from '@vanilla-extract/css';
+import { createGlobalTheme } from '@vanilla-extract/css';
 
 export const themeTokens = createGlobalTheme(':root', {
 	space: {
@@ -45,66 +45,74 @@ export const themeTokens = createGlobalTheme(':root', {
 		'9xl': '3.25rem', //52px
 	},
 	fontWeight: {
-		sm: '400',
-		md: '700',
+		regular: '400',
+		semibold: '500',
+		bold: '700',
 	},
 	color: {
-		brand: {
-			50: '#EEF2FF',
-			100: '#E0E7FF',
-			200: '#C7D2FE',
-			300: '#A5B4FC',
-			400: '#818CF8',
-			500: '#5568F9',
-			600: '#2B50DC',
-			700: '#0039BF',
-			800: '#0024A3',
-			900: '#001288',
-		},
-		grey: {
-			50: '#FAFAFB',
-			100: '#F1F5F9',
-			200: '#E2E8F0',
-			250: '#D1D6DC',
-			300: '#CBD5E1',
-			400: '#94A3B8',
-			500: '#64748B',
-			600: '#475569',
-			700: '#334155',
-			800: '#1E293B',
-		},
-		blue: {
-			200: '#C2EAFF',
-			500: '#22B1FF',
-			800: '#007EC2',
-		},
-		purple: {
-			200: '#DFBEFF',
-			500: '#D25ED0',
-			800: '#FF5DA0',
-		},
-		pink: {
-			200: '#FF5DA0',
-			500: '#D25ED0',
-			800: '#FF5DA0',
-		},
-		yellow: {
-			200: '#FFDE9E',
-			500: '#FFC658',
-			800: '#E79800',
-		},
-		orange: {
-			200: '#FFB9A7',
-			500: '#FF8D70',
-			800: '#D44926',
-		},
-		red: {
-			200: '#FF5353',
-			500: '#EE3A3A',
-			800: '#CD1D1D',
-		},
+		// primary
+		primary50: '#EEF2FF',
+		primary100: '#E0E7FF',
+		primary200: '#C7D2FE',
+		primary300: '#A5B4FC',
+		primary400: '#818CF8',
+		primary500: '#5568F9',
+		primary600: '#2B50DC',
+		primary700: '#0039BF',
+		primary800: '#0024A3',
+		primary900: '#001288',
+		navy: '#1C1A42',
+
+		// gray scale
 		white: '#1E293B',
 		black: '#0F172A',
+		grey50: '#F8FAFC',
+		grey100: '#F1F5F9',
+		grey200: '#E2E8F0',
+		grey250: '#D1D6DC',
+		grey300: '#CBD5E1',
+		grey400: '#94A3B8',
+		grey500: '#64748B',
+		grey600: '#475569',
+		grey700: '#334155',
+		grey800: '#1E293B',
+
+		// skyblue
+		skyblue200: '#C2EAFF',
+		skyblue500: '#22B1FF',
+		skyblue800: '#007EC2',
+
+		// purple
+		purple200: '#DFBEFF',
+		purple500: '#D25ED0',
+		purple800: '#FF5DA0',
+
+		// pink
+		pink200: '#FFCAE0',
+		pink500: '#FE8BBA',
+		pink800: '#BD004E',
+
+		// yellow
+		yellow200: '#FFDE9E',
+		yellow500: '#FFC658',
+		yellow800: '#E79800',
+
+		// orange
+		orange200: '#FFB9A7',
+		orange500: '#FF8D70',
+		orange800: '#D44926',
+
+		// red
+		red200: '#FF5353',
+		red500: '#EE3A3A',
+		red800: '#CD1D1D',
+
+		// text color
+		disable: '#D1D6DC',
+		hint: '#94A3B8',
+		sub: '#6A737E',
+		secondary: '#333D4B',
+		primary: '#191F28',
 	},
 	zIndices: {
 		hide: '-1',
@@ -122,18 +130,19 @@ export const themeTokens = createGlobalTheme(':root', {
 		tooltip: '1800',
 	},
 	lineHeights: {
-		'3xs': '0.875rem', //14px
-		'2xs': '1rem', //16px
-		xs: '1.125rem', //18px
-		sm: '1.250rem', //20px
-		md: '1.5rem', //22px
-		lg: '1.75rem', //24px
-		xl: '1.875rem', //28px
-		'2xl': '2.25rem', //30px
-		'3xl': '2.625rem', //36px
-		'4xl': '2.875rem', //42px
-		'5xl': '3.25rem', //46px
-		'6xl': '3.75rem', //52px
-		'7xl': '4rem', //60px
+		'4xs': '0.875rem', //14px
+		'3xs': '1rem', //16px
+		'2xs': '1.125rem', //18px
+		xs: '1.250rem', //20px
+		sm: '1.375rem', // 22px
+		md: '1.5rem', //24px
+		lg: '1.75rem', //28px
+		xl: '1.875rem', //30px
+		'2xl': '2.25rem', //36px
+		'3xl': '2.625rem', //42px
+		'4xl': '2.875rem', //46px
+		'5xl': '3.25rem', //52px
+		'6xl': '3.75rem', //60px
+		'7xl': '4rem', //64px
 	},
 });
