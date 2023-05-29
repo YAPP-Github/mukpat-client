@@ -97,6 +97,7 @@ export const fontVariant = {
 	},
 	label2: {
 		fontSize: fontSize['md'],
+		fontWeight: fontWeight['semibold'],
 		lineHeight: lineHeights['sm'],
 	},
 	label3: {
