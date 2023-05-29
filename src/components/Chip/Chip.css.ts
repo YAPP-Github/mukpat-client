@@ -29,7 +29,7 @@ export const wrapper = recipe({
 				backgroundColor: color.grey200,
 				color: color.sub,
 			},
-			blue: {
+			primary: {
 				backgroundColor: color.primary100,
 				color: color.primary500,
 			},
