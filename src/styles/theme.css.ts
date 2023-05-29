@@ -79,13 +79,13 @@ export const themeTokens = createGlobalTheme(':root', {
 
 		// skyblue
 		skyblue200: '#C2EAFF',
-		skyblue500: '#22B1FF',
-		skyblue800: '#007EC2',
+		skyblue500: '#84D3FF',
+		skyblue800: '#0070AD',
 
 		// purple
 		purple200: '#DFBEFF',
-		purple500: '#D25ED0',
-		purple800: '#FF5DA0',
+		purple500: '#C084FC',
+		purple800: '#6A00D4',
 
 		// pink
 		pink200: '#FFCAE0',
@@ -95,17 +95,17 @@ export const themeTokens = createGlobalTheme(':root', {
 		// yellow
 		yellow200: '#FFDE9E',
 		yellow500: '#FFC658',
-		yellow800: '#E79800',
+		yellow800: '#A66A00',
 
 		// orange
 		orange200: '#FFB9A7',
 		orange500: '#FF8D70',
-		orange800: '#D44926',
+		orange800: '#B92500',
 
 		// red
-		red200: '#FF5353',
-		red500: '#EE3A3A',
-		red800: '#CD1D1D',
+		red500: '#FF5353',
+		red600: '#EE3A3A',
+		red700: '#CD1D1D',
 
 		// text color
 		disable: '#D1D6DC',
