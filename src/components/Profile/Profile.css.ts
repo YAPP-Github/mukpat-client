@@ -1,4 +1,4 @@
-import { themeTokens } from './../../styles/theme.css';
+import { themeTokens } from '@/styles/theme.css';
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
 
 const { fontSize, fontWeight, lineHeights, borderRadius, color } = themeTokens;
