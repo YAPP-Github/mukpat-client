@@ -1,6 +1,7 @@
 import cx from 'classnames';
 
 import { ProfileColor, ProfileSize, colorVariant, wrapper } from './Profile.css';
+import { typedKeys } from '@/utils/typedKeys';
 
 /**
  * 프로필 공통 컴포넌트
@@ -17,7 +18,6 @@ type ProfileProps = {
 };
 
 const Profile = ({ uid, nickname, color, size, ...rest }: ProfileProps) => {
-	const typedKeys = Object.keys as <T>(obj: T) => Array<keyof T>;
 	const colors = typedKeys(colorVariant);
 	color = color ? color : colors[uid % colors.length];
 	return (
