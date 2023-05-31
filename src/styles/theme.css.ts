@@ -64,7 +64,7 @@ export const themeTokens = createGlobalTheme(':root', {
 		navy: '#1C1A42',
 
 		// gray scale
-		white: '#1E293B',
+		white: '#ffffff',
 		black: '#0F172A',
 		grey50: '#F8FAFC',
 		grey100: '#F1F5F9',
