@@ -44,6 +44,17 @@ export const menu = recipe({
 		zIndex: zIndices.dropdown,
 		maxHeight: '300px',
 		overflow: 'auto',
+		selectors: {
+			'&::-webkit-scrollbar': {
+				width: '12px',
+			},
+			'&::-webkit-scrollbar-thumb': {
+				borderRadius: borderRadius.pill,
+				border: `4px solid rgba(0,0,0,0)`,
+				backgroundClip: 'padding-box',
+				backgroundColor: color.grey300,
+			},
+		},
 	},
 	variants: {
 		xplacement: {
