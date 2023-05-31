@@ -6,7 +6,7 @@ import { useDropdownContext } from './contexts/DropdownContext';
 type Props = ButtonHTMLAttributes<HTMLButtonElement>;
 
 const DropdownToggle = ({ children, onClick, ...rest }: Props) => {
-	const { toggleRef, toggleDropdown } = useDropdownContext();
+	const { toggleDropdown } = useDropdownContext();
 
 	const handleClickButton = (e: MouseEvent<HTMLButtonElement>) => {
 		toggleDropdown();
@@ -14,7 +14,7 @@ const DropdownToggle = ({ children, onClick, ...rest }: Props) => {
 	};
 
 	return (
-		<button type="button" onClick={handleClickButton} ref={toggleRef} {...rest}>
+		<button type="button" onClick={handleClickButton} {...rest}>
 			{children}
 		</button>
 	);

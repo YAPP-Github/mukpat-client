@@ -1,6 +1,6 @@
 'use client';
 
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, useMemo } from 'react';
 import clsx from 'classnames';
 import { menu, MenuVariant } from './Dropdown.css';
 import { useDropdownContext } from './contexts/DropdownContext';
@@ -17,14 +17,17 @@ const DropdownMenu = ({
 	xplacement = 'left',
 	...rest
 }: Props) => {
-	const {
-		openState: { isOpen, yplacement },
-	} = useDropdownContext();
+	const { isOpen, yplacement, menuRef } = useDropdownContext();
+
+	const contextValue = useMemo(
+		() => ({ selectable, selectedKeys, onSelectChange }),
+		[selectable, selectedKeys, onSelectChange],
+	);
 
 	return (
-		<DropdownMenuContextProvider value={{ selectable, selectedKeys, onSelectChange }}>
+		<DropdownMenuContextProvider value={contextValue}>
 			{isOpen && (
-				<ul className={clsx(menu({ xplacement, yplacement }), className)} {...rest}>
+				<ul className={clsx(menu({ xplacement, yplacement }), className)} ref={menuRef} {...rest}>
 					{children}
 				</ul>
 			)}
