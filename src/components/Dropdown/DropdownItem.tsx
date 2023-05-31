@@ -1,6 +1,6 @@
 'use client';
 
-import { LiHTMLAttributes, MouseEvent } from 'react';
+import { LiHTMLAttributes, MouseEvent, useEffect, useRef } from 'react';
 import { item, checkedIconColor } from './Dropdown.css';
 import { useDropdownContext } from './contexts/DropdownContext';
 
@@ -16,6 +16,7 @@ const DropdownItem = ({ children, className, onClick, label, ...rest }: Props) =
 	const { closeDropdown } = useDropdownContext();
 	const { selectable, selectedKeys, onSelectChange } = useDropdownMenuContext();
 	const selectedKeysSet = new Set(selectedKeys);
+	const itemRef = useRef<HTMLLIElement>(null);
 
 	const handleClickItem = (label: string) => (e: MouseEvent<HTMLLIElement>) => {
 		if (selectable) onSelectChange(selectedKeysSet.has(label) ? [] : [label]);
@@ -25,8 +26,18 @@ const DropdownItem = ({ children, className, onClick, label, ...rest }: Props) =
 
 	const isSelected = selectable && selectedKeysSet.has(label);
 
+	useEffect(() => {
+		if (!isSelected || !itemRef.current) return;
+		itemRef.current.scrollIntoView({ block: 'center' });
+	}, [isSelected]);
+
 	return (
-		<li className={clsx(item({ selected: isSelected }), className)} onClick={handleClickItem(label)} {...rest}>
+		<li
+			className={clsx(item({ selected: isSelected }), className)}
+			onClick={handleClickItem(label)}
+			ref={itemRef}
+			{...rest}
+		>
 			{children}
 			{isSelected && <span className={checkedIconColor}>{'✓'}</span>}
 		</li>

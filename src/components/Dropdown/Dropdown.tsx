@@ -19,12 +19,12 @@ import DropdownWrapper from './DropdownWrapper';
 // [x] 리스트 요소를 클릭하면 드랍다운이 닫힌다
 // [x] 버튼을 누르면 열고닫힘이 토글된다
 // [x] TODO : 선택된 아이템은 아이콘으로 표시 및 색상을 변경 된다
-// [x] TODO : 여러 요소를 선택할 수 있다.
 // [x] 너비 조절 가능 옵션 추가 -> css 만들어서 적용 가능
 // [x] 리스트 렌더링 위치 조절
 // [x] 변수명 변경(DropdownList -> DropdownMenu, DropdownMenuItem -> DropdownItem)
 // [x] dropup, dropdown 포지션 자동 조절 (bottomRef)의 간격이 부족하면 위로 보내기
-// [ ] Menu 스크롤바 스타일 적용
+// [x] Menu 스크롤바 스타일 적용
+// [] 선택된 요소가 있을때 scrollintoview 적용
 // [ ] 아이콘 사용 개편
 // [ ] control 가능하게 할때 굳이 state가 string[] 타입이어야 하는가? (string | null) 타입으로도 충분해보인다...ㅅㅂ
 // [ ] 접근성 챙기기

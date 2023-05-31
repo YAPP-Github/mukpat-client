@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@/tests/test-utils';
 import Dropdown from './Dropdown';
 import DropdownMenu from './DropdownMenu';
@@ -32,6 +33,11 @@ const DropdownComponent = ({ disabled = false, selectable = false }: { disabled?
 };
 
 describe('Dropdown 컴포넌트 테스트', () => {
+	beforeEach(() => {
+		// https://stackoverflow.com/questions/53271193/typeerror-scrollintoview-is-not-a-function
+		window.HTMLElement.prototype.scrollIntoView = vi.fn();
+	});
+
 	test('Dropdown 버튼 클릭시 DropdownMenu와 ListItem들을 볼 수 있다.', async () => {
 		render(<DropdownComponent />);
 		const button = screen.getByRole('button', { name: 'Dropdown 버튼' });
