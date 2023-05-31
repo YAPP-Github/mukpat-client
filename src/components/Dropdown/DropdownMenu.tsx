@@ -26,11 +26,14 @@ const DropdownMenu = ({
 
 	return (
 		<DropdownMenuContextProvider value={contextValue}>
-			{isOpen && (
-				<ul className={clsx(menu({ xplacement, yplacement }), className)} ref={menuRef} {...rest}>
+			{/* {isOpen && (
+				<ul className={clsx(menu({ xplacement, yplacement, open: isOpen }), className)} ref={menuRef} {...rest}>
 					{children}
 				</ul>
-			)}
+			)} */}
+			<ul className={clsx(menu({ xplacement, yplacement, open: isOpen }), className)} ref={menuRef} {...rest}>
+				{children}
+			</ul>
 		</DropdownMenuContextProvider>
 	);
 };

@@ -79,6 +79,12 @@ export const menu = recipe({
 				marginBottom: 0,
 			},
 		},
+		open: {
+			true: {},
+			false: {
+				display: 'none',
+			},
+		},
 	},
 	defaultVariants: {
 		xplacement: 'left',
