@@ -19,9 +19,7 @@ const DropdownButton = ({ children = '', placeholder = '선택', onClick, ...res
 			}}
 			{...rest}
 		>
-			<span className={buttonText}>
-				{typeof children === 'string' && (children as string).trim() === '' ? placeholder : children}
-			</span>
+			<span className={buttonText}>{children ?? placeholder}</span>
 			<CaretDownIcon size={24} />
 		</DropdownToggle>
 	);

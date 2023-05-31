@@ -26,9 +26,9 @@ import DropdownWrapper from './DropdownWrapper';
 // [x] Menu 스크롤바 스타일 적용
 // [x] 선택된 요소가 있을때 scrollintoview 적용 방식
 // [x] 자동으로 위아래 조절하기
-// 	- 조건부 렌더링 대신 visibility hidden으로 변경하기
+// 	- 조건부 렌더링 대신 display none으로 조절하기
 //  - 렌더링 시 useEffect로 위 또는 아래 조절하기
-// [ ] control 가능하게 할때 굳이 state가 string[] 타입이어야 하는가? (string | null) 타입으로도 충분해보인다...
+// [x] control 가능하게 할때 굳이 state가 string[] 타입이어야 하는가? (string | null) 타입으로도 충분해보인다...
 // [ ] 접근성 챙기기
 
 // 3. dropdown composite

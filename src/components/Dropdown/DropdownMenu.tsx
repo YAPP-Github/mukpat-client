@@ -12,7 +12,7 @@ const DropdownMenu = ({
 	children,
 	className,
 	selectable = false,
-	selectedKeys = [],
+	selectedLabel = null,
 	onSelectChange = () => null,
 	xplacement = 'left',
 	...rest
@@ -20,17 +20,12 @@ const DropdownMenu = ({
 	const { isOpen, yplacement, menuRef } = useDropdownContext();
 
 	const contextValue = useMemo(
-		() => ({ selectable, selectedKeys, onSelectChange }),
-		[selectable, selectedKeys, onSelectChange],
+		() => ({ selectable, selectedLabel, onSelectChange }),
+		[selectable, selectedLabel, onSelectChange],
 	);
 
 	return (
 		<DropdownMenuContextProvider value={contextValue}>
-			{/* {isOpen && (
-				<ul className={clsx(menu({ xplacement, yplacement, open: isOpen }), className)} ref={menuRef} {...rest}>
-					{children}
-				</ul>
-			)} */}
 			<ul className={clsx(menu({ xplacement, yplacement, open: isOpen }), className)} ref={menuRef} {...rest}>
 				{children}
 			</ul>

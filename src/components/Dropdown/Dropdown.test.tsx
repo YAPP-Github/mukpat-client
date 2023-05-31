@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { vi } from 'vitest';
 import { render, screen } from '@/tests/test-utils';
 import Dropdown from './Dropdown';
@@ -10,16 +10,15 @@ import userEvent from '@testing-library/user-event';
 const selections = ['react', 'typescript', 'nextjs', 'vanilla-extract'];
 
 const DropdownComponent = ({ disabled = false, selectable = false }: { disabled?: boolean; selectable?: boolean }) => {
-	const [selection, setSelection] = useState<string[]>([]);
-	const selectedValue = useMemo(() => Array.from(selection).join(', '), [selection]);
+	const [selection, setSelection] = useState<string | null>(null);
 
 	return (
 		<div style={{ display: 'flex', gap: '60px' }}>
 			<Dropdown>
 				<DropdownButton placeholder="Dropdown 버튼" disabled={disabled}>
-					{selectedValue}
+					{selection}
 				</DropdownButton>
-				<DropdownMenu selectable={selectable} selectedKeys={selection} onSelectChange={setSelection}>
+				<DropdownMenu selectable={selectable} selectedLabel={selection} onSelectChange={setSelection}>
 					{selections.map((v) => (
 						<DropdownItem key={v} label={v}>
 							{v}

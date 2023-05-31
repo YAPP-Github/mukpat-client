@@ -5,10 +5,10 @@ import { useContext, createContext, ReactNode } from 'react';
 interface DropdownMenuContextValue {
 	/** true = 선택 가능모드, false(default) = 선택 불가능모드 */
 	selectable: boolean;
-	/** 선택 state, 타입으로 string 형 배열이 요구됨 (selectionMode가 selectable일때만 입력) */
-	selectedKeys: Array<string>;
+	/** 선택 state된 label (selectionMode가 selectable일때만 입력) */
+	selectedLabel: string | null;
 	/** 선택 state 업데이트 함수 (selectionMode가 selectable 일때만 입력)*/
-	onSelectChange: (keys: Array<string>) => void;
+	onSelectChange: (label: string | null) => void;
 }
 
 const DropdownMenuContext = createContext<DropdownMenuContextValue | null>(null);

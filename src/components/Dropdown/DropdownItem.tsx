@@ -8,25 +8,24 @@ import clsx from 'classnames';
 import { useDropdownMenuContext } from './contexts/DropdownMenuContext';
 
 interface Props extends LiHTMLAttributes<HTMLLIElement> {
-	/** ListItem 별로 가지는 고유값 */
+	/** ListItem 별로 가지는 고유값 (선택 state 값에 사용됨) */
 	label: string;
 }
 
 const DropdownItem = ({ children, className, onClick, label, ...rest }: Props) => {
 	const { closeDropdown } = useDropdownContext();
-	const { selectable, selectedKeys, onSelectChange } = useDropdownMenuContext();
-	const selectedKeysSet = new Set(selectedKeys);
+	const { selectable, selectedLabel, onSelectChange } = useDropdownMenuContext();
 
-	const handleClickItem = (label: string) => (e: MouseEvent<HTMLLIElement>) => {
-		if (selectable) onSelectChange(selectedKeysSet.has(label) ? [] : [label]);
+	const handleClickItem = (e: MouseEvent<HTMLLIElement>) => {
+		if (selectable) onSelectChange(selectedLabel === label ? null : label);
 		onClick?.(e);
 		closeDropdown();
 	};
 
-	const isSelected = selectable && selectedKeysSet.has(label);
+	const isSelected = selectable && selectedLabel === label;
 
 	return (
-		<li className={clsx(item({ selected: isSelected }), className)} onClick={handleClickItem(label)} {...rest}>
+		<li className={clsx(item({ selected: isSelected }), className)} onClick={handleClickItem} {...rest}>
 			{children}
 			{isSelected && <span className={checkedIconColor}>{'✓'}</span>}
 		</li>
