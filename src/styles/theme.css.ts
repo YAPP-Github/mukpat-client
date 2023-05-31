@@ -79,7 +79,7 @@ export const themeTokens = createGlobalTheme(':root', {
 
 		// skyblue
 		skyblue200: '#C2EAFF',
-		skyblue500: '#22B1FF',
+		skyblue500: '#84D3FF',
 		skyblue800: '#0070AD',
 
 		// purple
