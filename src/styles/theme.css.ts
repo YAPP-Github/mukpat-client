@@ -64,7 +64,7 @@ export const themeTokens = createGlobalTheme(':root', {
 		navy: '#1C1A42',
 
 		// gray scale
-		white: '#1E293B',
+		white: '#FFFFFF',
 		black: '#0F172A',
 		grey50: '#F8FAFC',
 		grey100: '#F1F5F9',
@@ -84,7 +84,7 @@ export const themeTokens = createGlobalTheme(':root', {
 
 		// purple
 		purple200: '#DFBEFF',
-		purple500: '#80D2FF',
+		purple500: '#C084FC',
 		purple800: '#6A00D4',
 
 		// pink
