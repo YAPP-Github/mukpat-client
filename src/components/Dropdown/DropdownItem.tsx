@@ -29,13 +29,14 @@ const DropdownItem = ({ children, className, onClick, itemKey, ...rest }: Props)
 		<li
 			className={clsx(item({ selected: isSelected }), className)}
 			tabIndex={0}
-			role="menuitem"
+			role="menuitemradio"
+			aria-checked={isSelected}
 			onClick={handleClickItem}
 			{...rest}
 		>
 			{children}
 			{isSelected && (
-				<span className={checkedIconColor}>
+				<span className={checkedIconColor} aria-hidden={true}>
 					<CheckedIcon />
 				</span>
 			)}

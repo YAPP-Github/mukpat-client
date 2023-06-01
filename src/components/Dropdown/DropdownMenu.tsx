@@ -2,11 +2,14 @@
 
 import { HTMLAttributes, useMemo } from 'react';
 import clsx from 'classnames';
-import { menu, MenuVariant } from './Dropdown.css';
+import { menu, xPlacement } from './Dropdown.css';
 import { useDropdownContext } from './contexts/DropdownContext';
 import { type DropdownMenuContextValue, DropdownMenuContextProvider } from './contexts/DropdownMenuContext';
 
-type Props = HTMLAttributes<HTMLUListElement> & Partial<DropdownMenuContextValue> & MenuVariant;
+interface Props extends HTMLAttributes<HTMLUListElement>, Partial<DropdownMenuContextValue> {
+	/** Menu를 Toggle(Button)기준 왼쪽에 맞추어 보여줄지 오른쪽에 맞추어 보여줄지 결정 */
+	xplacement?: xPlacement;
+}
 
 const DropdownMenu = ({
 	children,

@@ -134,3 +134,4 @@ export const checkedIconColor = style({
 });
 
 export type MenuVariant = RecipeVariants<typeof menu>;
+export type xPlacement = NonNullable<MenuVariant>['xplacement'];

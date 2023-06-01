@@ -12,13 +12,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const DropdownButton = ({ children, placeholder = '선택', onClick, ...rest }: Props) => {
 	return (
-		<DropdownToggle
-			className={button}
-			onClick={(e) => {
-				onClick?.(e);
-			}}
-			{...rest}
-		>
+		<DropdownToggle className={button} onClick={onClick} {...rest}>
 			<span className={buttonText}>{children ?? placeholder}</span>
 			<span aria-hidden={true}>
 				<CaretDownIcon size={24} />

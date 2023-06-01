@@ -7,7 +7,19 @@ import DropdownItem from './DropdownItem';
 import DropdownButton from './DropdownButton';
 import userEvent from '@testing-library/user-event';
 
-const selections = ['react', 'typescript', 'nextjs', 'vanilla-extract'];
+const selections = [
+	'react',
+	'typescript',
+	'nextjs',
+	'vanilla-extract',
+	'vanilla-extract2',
+	'vanilla-extract3',
+	'vanilla-extract4',
+	'vanilla-extract5',
+	'vanilla-extract6',
+	'vanilla-extract7',
+	'vanilla-extract8',
+];
 
 const DropdownComponent = ({ disabled = false, selectable = false }: { disabled?: boolean; selectable?: boolean }) => {
 	const [selection, setSelection] = useState<string | null>(null);
@@ -45,8 +57,8 @@ describe('Dropdown 컴포넌트 테스트', () => {
 		const menu = screen.getByRole('menu');
 		expect(menu).toBeInTheDocument();
 
-		const menuItem = screen.getAllByRole('menuitem');
-		expect(menuItem).toHaveLength(4);
+		const menuItem = screen.getAllByRole('menuitemradio');
+		expect(menuItem).toHaveLength(selections.length);
 	});
 
 	test('Dropdown의 외부 영역을 클릭하면 DropdownMenu가 닫힌다.', async () => {
@@ -67,7 +79,7 @@ describe('Dropdown 컴포넌트 테스트', () => {
 		const button = screen.getByRole('button', { name: 'Dropdown 버튼' });
 		await userEvent.click(button);
 
-		const menuItem = screen.getAllByRole('menuitem')[0];
+		const menuItem = screen.getAllByRole('menuitemradio')[0];
 		await userEvent.click(menuItem);
 		expect(screen.queryByRole('menu')).not.toBeInTheDocument();
 	});
@@ -86,12 +98,12 @@ describe('Dropdown 컴포넌트 테스트', () => {
 		await userEvent.click(button);
 
 		// 첫번째 요소를 클릭하여 선택
-		await userEvent.click(screen.getAllByRole('menuitem')[0]);
+		await userEvent.click(screen.getAllByRole('menuitemradio')[0]);
 		expect(screen.getByRole('button', { name: selections[0] })).toBeInTheDocument();
 
 		await userEvent.click(button);
 		// 다시 선택하면 취소 된다.
-		await userEvent.click(screen.getAllByRole('menuitem')[0]);
+		await userEvent.click(screen.getAllByRole('menuitemradio')[0]);
 		expect(screen.queryByRole('button', { name: selections[0] })).not.toBeInTheDocument();
 	});
 });
