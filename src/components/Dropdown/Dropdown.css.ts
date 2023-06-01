@@ -43,6 +43,7 @@ export const menu = recipe({
 		boxShadow: '0px 7px 14px -7px rgba(0, 0, 0, 0.04), 0px 28px 42px rgba(0, 0, 0, 0.04)',
 		zIndex: zIndices.dropdown,
 		maxHeight: '300px',
+		minWidth: 'max-content',
 		overflow: 'auto',
 		selectors: {
 			'&::-webkit-scrollbar': {

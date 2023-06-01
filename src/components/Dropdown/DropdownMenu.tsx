@@ -26,7 +26,15 @@ const DropdownMenu = ({
 
 	return (
 		<DropdownMenuContextProvider value={menuContextValue}>
-			<ul className={clsx(menu({ xplacement, yplacement, open: isOpen }), className)} ref={menuRef} {...rest}>
+			<ul
+				aria-hidden={!isOpen}
+				id="dropdown-menu"
+				role="menu"
+				tabIndex={-1}
+				ref={menuRef}
+				className={clsx(menu({ xplacement, yplacement, open: isOpen }), className)}
+				{...rest}
+			>
 				{children}
 			</ul>
 		</DropdownMenuContextProvider>

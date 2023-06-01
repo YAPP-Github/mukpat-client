@@ -26,7 +26,13 @@ const DropdownItem = ({ children, className, onClick, itemKey, ...rest }: Props)
 	const isSelected = selectable && selectedItemKey === itemKey;
 
 	return (
-		<li className={clsx(item({ selected: isSelected }), className)} onClick={handleClickItem} {...rest}>
+		<li
+			className={clsx(item({ selected: isSelected }), className)}
+			tabIndex={0}
+			role="menuitem"
+			onClick={handleClickItem}
+			{...rest}
+		>
 			{children}
 			{isSelected && (
 				<span className={checkedIconColor}>

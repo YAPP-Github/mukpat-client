@@ -20,7 +20,9 @@ const DropdownButton = ({ children, placeholder = '선택', onClick, ...rest }: 
 			{...rest}
 		>
 			<span className={buttonText}>{children ?? placeholder}</span>
-			<CaretDownIcon size={24} />
+			<span aria-hidden={true}>
+				<CaretDownIcon size={24} />
+			</span>
 		</DropdownToggle>
 	);
 };

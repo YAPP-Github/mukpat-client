@@ -26,7 +26,7 @@ import DropdownWrapper from './DropdownWrapper';
 // 	- 조건부 렌더링 대신 display none으로 조절하기
 //  - 렌더링 시 useLayoutEffect 위 또는 아래 조절하기
 // [x] control 가능하게 할때 굳이 state가 string[] 타입이어야 하는가? (string | null) 타입으로도 충분해보인다...
-// [] 변수명 한번만..꼭 placement 여야할까
+// [x] 변수명 한번만..꼭 placement 여야할까
 // [ ] 접근성 챙기기
 // [ ] README Document 작성
 
