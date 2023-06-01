@@ -65,6 +65,10 @@ export const menu = recipe({
 			right: {
 				right: 0,
 			},
+			center: {
+				left: '50%',
+				transform: 'translate(-50%, 0)',
+			},
 		},
 		yplacement: {
 			top: {
@@ -88,7 +92,7 @@ export const menu = recipe({
 		},
 	},
 	defaultVariants: {
-		xplacement: 'left',
+		xplacement: 'center',
 		yplacement: 'bottom',
 	},
 });
