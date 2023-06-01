@@ -17,7 +17,7 @@ const DropdownMenu = ({
 	selectable = false,
 	selectedItemKey = null,
 	onSelectChange = () => null,
-	xplacement = 'left',
+	xplacement,
 	...rest
 }: Props) => {
 	const { isOpen, yplacement, menuRef } = useDropdownContext();
