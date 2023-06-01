@@ -19,13 +19,13 @@ const DropdownMenu = ({
 }: Props) => {
 	const { isOpen, yplacement, menuRef } = useDropdownContext();
 
-	const contextValue = useMemo(
+	const menuContextValue = useMemo(
 		() => ({ selectable, selectedItemKey, onSelectChange }),
 		[selectable, selectedItemKey, onSelectChange],
 	);
 
 	return (
-		<DropdownMenuContextProvider value={contextValue}>
+		<DropdownMenuContextProvider value={menuContextValue}>
 			<ul className={clsx(menu({ xplacement, yplacement, open: isOpen }), className)} ref={menuRef} {...rest}>
 				{children}
 			</ul>
