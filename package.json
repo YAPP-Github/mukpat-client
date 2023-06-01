@@ -11,12 +11,14 @@
 		"postinstall": "husky install",
 		"test:watch": "vitest --watch",
 		"test": "vitest",
-		"server:dev": "json-server --watch db.json --port 5000"
+		"server:dev": "json-server --watch db.json --port 5000",
+		"check-types": "tsc --noEmit --pretty --project tsconfig.json"
 	},
 	"lint-staged": {
 		"src/**/*.{js,jsx,ts,tsx}": [
 			"prettier --write",
-			"eslint --fix"
+			"eslint --fix",
+			"bash -c tsc --noEmit --pretty --project tsconfig.json"
 		]
 	},
 	"packageManager": "yarn@3.5.1",
