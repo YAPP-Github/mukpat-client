@@ -1,8 +1,7 @@
 'use client';
 
 import { useContext, createContext, ReactNode, RefObject, useMemo } from 'react';
-import useDropdownOpenState from '../hooks/useDropdownOpenState';
-import useMenuYPlacement from '../hooks/useMenuYPlacement';
+import { useDropdownOpenState, useMenuYPlacement } from '@/components/Dropdown/hooks';
 
 interface DropdownContextValue {
 	/** dropdown의 열림/닫힘 상태 */
