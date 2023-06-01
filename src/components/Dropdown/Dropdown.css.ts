@@ -7,6 +7,7 @@ const { color, space, borderRadius, zIndices } = themeTokens;
 
 export const wrapper = style({
 	position: 'relative',
+	width: 'max-content',
 });
 
 export const button = style({
