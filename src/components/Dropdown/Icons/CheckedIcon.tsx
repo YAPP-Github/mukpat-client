@@ -1,5 +1,5 @@
 interface Props {
-	size: number;
+	size?: number;
 }
 
 const CheckedIcon = ({ size = 10 }: Props) => {

@@ -6,28 +6,33 @@ import { useDropdownContext } from './contexts/DropdownContext';
 
 import clsx from 'classnames';
 import { useDropdownMenuContext } from './contexts/DropdownMenuContext';
+import CheckedIcon from './Icons/CheckedIcon';
 
 interface Props extends LiHTMLAttributes<HTMLLIElement> {
-	/** ListItem 별로 가지는 고유값 (선택 state 값에 사용됨) */
-	label: string;
+	/** Item 별로 가지는 고유값 (선택 state 값에 사용됨) */
+	itemKey: string;
 }
 
-const DropdownItem = ({ children, className, onClick, label, ...rest }: Props) => {
+const DropdownItem = ({ children, className, onClick, itemKey, ...rest }: Props) => {
 	const { closeDropdown } = useDropdownContext();
-	const { selectable, selectedLabel, onSelectChange } = useDropdownMenuContext();
+	const { selectable, selectedItemKey, onSelectChange } = useDropdownMenuContext();
 
 	const handleClickItem = (e: MouseEvent<HTMLLIElement>) => {
-		if (selectable) onSelectChange(selectedLabel === label ? null : label);
+		if (selectable) onSelectChange(selectedItemKey === itemKey ? null : itemKey);
 		onClick?.(e);
 		closeDropdown();
 	};
 
-	const isSelected = selectable && selectedLabel === label;
+	const isSelected = selectable && selectedItemKey === itemKey;
 
 	return (
 		<li className={clsx(item({ selected: isSelected }), className)} onClick={handleClickItem} {...rest}>
 			{children}
-			{isSelected && <span className={checkedIconColor}>{'✓'}</span>}
+			{isSelected && (
+				<span className={checkedIconColor}>
+					<CheckedIcon />
+				</span>
+			)}
 		</li>
 	);
 };

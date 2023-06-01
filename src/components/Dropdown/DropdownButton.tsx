@@ -10,7 +10,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 	placeholder?: string;
 }
 
-const DropdownButton = ({ children = '', placeholder = '선택', onClick, ...rest }: Props) => {
+const DropdownButton = ({ children, placeholder = '선택', onClick, ...rest }: Props) => {
 	return (
 		<DropdownToggle
 			className={button}

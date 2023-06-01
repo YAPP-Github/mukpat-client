@@ -100,6 +100,7 @@ export const item = recipe({
 		listStyleType: 'none',
 		cursor: 'pointer',
 		display: 'flex',
+		alignItems: 'center',
 		justifyContent: 'space-between',
 		borderRadius: borderRadius.sm,
 	},

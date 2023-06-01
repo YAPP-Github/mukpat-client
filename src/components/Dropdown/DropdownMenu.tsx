@@ -12,7 +12,7 @@ const DropdownMenu = ({
 	children,
 	className,
 	selectable = false,
-	selectedLabel = null,
+	selectedItemKey = null,
 	onSelectChange = () => null,
 	xplacement = 'left',
 	...rest
@@ -20,8 +20,8 @@ const DropdownMenu = ({
 	const { isOpen, yplacement, menuRef } = useDropdownContext();
 
 	const contextValue = useMemo(
-		() => ({ selectable, selectedLabel, onSelectChange }),
-		[selectable, selectedLabel, onSelectChange],
+		() => ({ selectable, selectedItemKey, onSelectChange }),
+		[selectable, selectedItemKey, onSelectChange],
 	);
 
 	return (

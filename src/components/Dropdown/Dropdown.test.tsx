@@ -18,9 +18,9 @@ const DropdownComponent = ({ disabled = false, selectable = false }: { disabled?
 				<DropdownButton placeholder="Dropdown 버튼" disabled={disabled}>
 					{selection}
 				</DropdownButton>
-				<DropdownMenu selectable={selectable} selectedLabel={selection} onSelectChange={setSelection}>
+				<DropdownMenu selectable={selectable} selectedItemKey={selection} onSelectChange={setSelection}>
 					{selections.map((v) => (
-						<DropdownItem key={v} label={v}>
+						<DropdownItem key={v} itemKey={v}>
 							{v}
 						</DropdownItem>
 					))}
