@@ -15,10 +15,10 @@ const useMenuYPlacement = (isOpen: boolean) => {
 			spaceBelow < MIN_Y_INTERVAL ||
 			(yplacement === 'top' && spaceBelow > menuRef.current.clientHeight + MIN_Y_INTERVAL)
 		);
-	}, [yplacement, menuRef]);
+	}, [yplacement]);
 
 	useLayoutEffect(() => {
-		if (isOpen && menuRef.current && needChangeYPlacement()) {
+		if (isOpen && needChangeYPlacement()) {
 			setYplacement((prev) => (prev === 'bottom' ? 'top' : 'bottom'));
 		}
 	}, [isOpen, needChangeYPlacement]);
