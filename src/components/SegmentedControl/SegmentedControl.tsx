@@ -15,8 +15,11 @@ interface Data {
 }
 
 interface Props {
+	/** Segmented Control을 렌더링하고자 하는 데이터 요소 {value: string, label: ReactNode}[]의 타입이 요구됨 */
 	data: Data[];
+	/** 현재 선택된 대상의 value (state) */
 	value?: string;
+	/** 선택되었을때 value를 변경하는 함수 (setState) */
 	onChange?: (value: string) => void;
 }
 
