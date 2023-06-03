@@ -80,7 +80,7 @@ Dropdown 부모 요소 입니다.
 
 #### Props
 
-`HTMLButtonElemen` 의 props와 동일합니다.
+`HTMLButtonElement` 의 props와 동일합니다.
 
 #### 예시
 
@@ -203,6 +203,34 @@ const [selection, setSelection] = useState<string | null>(null);
 
 <br/>
 
+- `DropdownMenu` 의 자식 컴포넌트에 `DropdownIte` 뿐만 아니라 다른 컴포넌트를 넣어 원하는 형태의 드랍다운을 구현할 수 있습니다.
+  
+  - 아래는 `DayPicker`를 `DropdownMenu` 자식 요소로 이용하는 예시입니다.
+   
+   ```tsx
+   'use client';
+
+    import { Dropdown, DropdownButton, DropdownMenu } from '@/components';
+    import { DayPicker } from 'react-day-picker';
+    import 'react-day-picker/dist/style.css';
+
+    const Calendar = () => {
+      return (
+        <Dropdown>
+          <DropdownButton placeholder="프론트엔드" />
+          <DropdownMenu style={{ maxHeight: 'max-content' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <DayPicker mode="single" />
+            </div>
+          </DropdownMenu>
+        </Dropdown>
+      );
+    };
+
+    export default Calendar;
+   ```
+  
+  ![image](https://github.com/YAPP-Github/22nd-Web-Team-1-Web/assets/38908080/9c91a880-339c-49b3-9f0e-7705a6e1811b)
 
 
 ### DropdownItem
