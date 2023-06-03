@@ -35,3 +35,15 @@ globalStyle('a', {
 	color: 'inherit',
 	textDecoration: 'none',
 });
+
+globalStyle('button', {
+	backgroundColor: 'transparent',
+	borderWidth: 0,
+	fontFamily: 'inherit',
+	fontSize: 'inherit',
+	fontStyle: 'inherit',
+	fontWeight: 'inherit',
+	lineHeight: 'inherit',
+	padding: 0,
+	cursor: 'pointer',
+});
