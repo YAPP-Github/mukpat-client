@@ -18,7 +18,7 @@
 		"src/**/*.{js,jsx,ts,tsx}": [
 			"prettier --write",
 			"eslint --fix",
-			"bash -c tsc --noEmit --pretty --project tsconfig.json"
+			"bash -c 'yarn check-types'"
 		]
 	},
 	"packageManager": "yarn@3.5.1",
