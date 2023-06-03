@@ -5,8 +5,11 @@ import { button, buttonText } from './Dropdown.css';
 import CaretDownIcon from './Icons/CaretDownIcon';
 import DropdownToggle from './DropdownToggle';
 
+/**
+ * @property {string} placeholder? - 선택된 요소가 없을때 기본적으로 버튼에 표시할 텍스트
+ */
+
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-	/** 선택된 요소가 없을때 기본적으로 버튼에 표시할 텍스트 */
 	placeholder?: string;
 }
 

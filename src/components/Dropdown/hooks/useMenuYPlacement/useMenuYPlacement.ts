@@ -2,6 +2,11 @@ import { useState, useRef, useLayoutEffect, useCallback } from 'react';
 
 const MIN_Y_INTERVAL = 48;
 
+/**
+ *
+ * @param {boolean} isOpen - 메뉴가 열려있는지 여부
+ */
+
 const useMenuYPlacement = (isOpen: boolean) => {
 	const [yplacement, setYplacement] = useState<'top' | 'bottom'>('bottom');
 	const toggleRef = useRef<HTMLButtonElement>(null);

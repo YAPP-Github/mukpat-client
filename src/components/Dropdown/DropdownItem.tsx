@@ -8,8 +8,10 @@ import clsx from 'classnames';
 import { useDropdownMenuContext } from './contexts/DropdownMenuContext';
 import CheckedIcon from './Icons/CheckedIcon';
 
+/**
+ * @property {string} itemKey - Item 별로 가지는 고유값 (선택 state 값에 사용됨)
+ */
 interface Props extends LiHTMLAttributes<HTMLLIElement> {
-	/** Item 별로 가지는 고유값 (선택 state 값에 사용됨) */
 	itemKey: string;
 }
 
