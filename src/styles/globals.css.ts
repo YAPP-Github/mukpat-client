@@ -35,3 +35,9 @@ globalStyle('a', {
 	color: 'inherit',
 	textDecoration: 'none',
 });
+
+globalStyle('input', {
+	backgroundColor: 'none',
+	outline: 'none',
+	appearance: 'none',
+});
