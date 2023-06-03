@@ -32,6 +32,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-env", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:7.21.5"],\
             ["@babel/preset-react", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:7.18.6"],\
             ["@babel/preset-typescript", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:7.21.5"],\
+            ["@hookform/resolvers", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:3.1.0"],\
             ["@tanstack/react-query", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:4.29.7"],\
             ["@testing-library/dom", "npm:9.3.0"],\
             ["@testing-library/jest-dom", "npm:5.16.5"],\
@@ -2949,6 +2950,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@gar-promisify-npm-1.1.3-ac1a325862-4059f790e2.zip/node_modules/@gar/promisify/",\
           "packageDependencies": [\
             ["@gar/promisify", "npm:1.1.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@hookform/resolvers", [\
+        ["npm:3.1.0", {\
+          "packageLocation": "./.yarn/cache/@hookform-resolvers-npm-3.1.0-8f7cf259db-8f6690e514.zip/node_modules/@hookform/resolvers/",\
+          "packageDependencies": [\
+            ["@hookform/resolvers", "npm:3.1.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:3.1.0", {\
+          "packageLocation": "./.yarn/__virtual__/@hookform-resolvers-virtual-a56f41e63d/0/cache/@hookform-resolvers-npm-3.1.0-8f7cf259db-8f6690e514.zip/node_modules/@hookform/resolvers/",\
+          "packageDependencies": [\
+            ["@hookform/resolvers", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:3.1.0"],\
+            ["@types/react-hook-form", null],\
+            ["react-hook-form", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:7.43.9"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-hook-form",\
+            "react-hook-form"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -12245,6 +12268,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-env", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:7.21.5"],\
             ["@babel/preset-react", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:7.18.6"],\
             ["@babel/preset-typescript", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:7.21.5"],\
+            ["@hookform/resolvers", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:3.1.0"],\
             ["@tanstack/react-query", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:4.29.7"],\
             ["@testing-library/dom", "npm:9.3.0"],\
             ["@testing-library/jest-dom", "npm:5.16.5"],\
