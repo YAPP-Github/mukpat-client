@@ -12,7 +12,8 @@
 		"test:watch": "vitest --watch",
 		"test": "vitest",
 		"server:dev": "json-server --watch db.json --port 5000",
-		"check-types": "tsc --noEmit --pretty --project tsconfig.json"
+		"check-types": "tsc --noEmit --pretty --project tsconfig.json",
+		"make-sprite": "rm public/sprite.svg && svgstore -o public/sprite.svg public/spriteIcons/**/*.svg"
 	},
 	"lint-staged": {
 		"src/**/*.{js,jsx,ts,tsx}": [
@@ -71,6 +72,8 @@
 		"lint-staged": "^13.2.2",
 		"msw": "^1.2.1",
 		"prettier": "^2.8.8",
+		"svgstore": "^3.0.1",
+		"svgstore-cli": "^2.0.1",
 		"typescript": "^5.0.4",
 		"vite": "^4.3.9",
 		"vitest": "^0.31.1"
