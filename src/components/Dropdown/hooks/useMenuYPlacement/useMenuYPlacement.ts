@@ -1,6 +1,6 @@
 import { useState, useRef, useLayoutEffect, useCallback } from 'react';
 
-const MIN_Y_INTERVAL = 48;
+const MIN_Y_INTERVAL = 40;
 
 /**
  *
@@ -17,8 +17,12 @@ const useMenuYPlacement = (isOpen: boolean) => {
 		const menuRect = menuRef.current.getBoundingClientRect();
 		const toggleRect = toggleRef.current.getBoundingClientRect();
 		const spaceBelowToggle = window.innerHeight - toggleRect.bottom;
+
 		const menuHeight = menuRect.height;
-		return spaceBelowToggle > menuHeight + MIN_Y_INTERVAL;
+		const { marginBottom: menuMarginBottom, marginTop: menuMarginTop } = getComputedStyle(menuRef.current);
+		const spaceMenuNeeds = parseInt(menuMarginBottom) + parseInt(menuMarginTop) + menuHeight + MIN_Y_INTERVAL;
+
+		return spaceBelowToggle > spaceMenuNeeds;
 	}, []);
 
 	useLayoutEffect(() => {
