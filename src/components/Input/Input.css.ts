@@ -4,12 +4,42 @@ import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
 const { color, space, borderRadius } = themeTokens;
 
-export const wrapper = style({
+export const formWrapper = style({
 	position: 'relative',
 	display: 'flex',
+	width: '674px',
 	flexDirection: 'column',
-	alignItems: 'center',
 	gap: '16px',
+});
+
+export const inputContainer = recipe({
+	base: {
+		width: 'inherit',
+		position: 'relative',
+		display: 'flex',
+	},
+	variants: {
+		size: {
+			small: {
+				flexDirection: 'column',
+				gap: '1rem',
+				alignItems: 'flex-start',
+			},
+			medium: {
+				flexDirection: 'column',
+				gap: '1rem',
+				alignItems: 'flex-start',
+			},
+			large: {
+				flexDirection: 'row',
+				justifyContent: 'space-between',
+				alignItems: 'center',
+			},
+		},
+	},
+	defaultVariants: {
+		size: 'large',
+	},
 });
 
 export const inputWrapper = recipe({
@@ -20,7 +50,6 @@ export const inputWrapper = recipe({
 		color: color.hint,
 		borderRadius: borderRadius.md,
 		border: `1px solid ${color.grey100}`,
-
 		selectors: {
 			'&:not(:disabled):focus': {
 				color: color.primary,
