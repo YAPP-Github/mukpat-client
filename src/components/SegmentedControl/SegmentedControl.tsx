@@ -15,7 +15,7 @@ interface Props {
 	/** 현재 선택된 대상의 value (state) */
 	value?: string;
 	/** 선택되었을때 value를 변경하는 함수 (setState) */
-	onChange?: (value: string) => void;
+	onChange: (value: string) => void;
 	/** SegmentedControl을 설명해줄 수 있는 label 요소의 Id */
 	ariaLabelledby?: string;
 }
@@ -27,7 +27,7 @@ const SegmentedControl = ({ data, value, onChange, ariaLabelledby }: Props) => {
 	const handleClickItem = useCallback(
 		(value: string) => {
 			setSelectedValue(value);
-			onChange?.(value);
+			onChange(value);
 		},
 		[onChange],
 	);
