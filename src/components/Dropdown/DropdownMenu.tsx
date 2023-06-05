@@ -2,15 +2,16 @@
 
 import { HTMLAttributes, useMemo } from 'react';
 import clsx from 'classnames';
-import { menu, xPlacement } from './Dropdown.css';
+import { menu, Placement } from './Dropdown.css';
 import { useDropdownContext } from './contexts/DropdownContext';
 import { type DropdownMenuContextValue, DropdownMenuContextProvider } from './contexts/DropdownMenuContext';
+import { getComputedPlacement } from './utils/placement';
 
 /**
- * @property {xPlacement} xplacement? - Menu를 Toggle(Button)기준 왼쪽에 맞추어 보여줄지 오른쪽에 맞추어 보여줄지 결정
+ * @property {Placement} placement? - Menu를 표시할 기준 위치를 선정하는 값
  */
 interface Props extends HTMLAttributes<HTMLUListElement>, Partial<DropdownMenuContextValue> {
-	xplacement?: xPlacement;
+	placement?: Placement;
 }
 
 const DropdownMenu = ({
@@ -19,14 +20,19 @@ const DropdownMenu = ({
 	selectable = false,
 	selectedItemKey = null,
 	onSelectChange = () => null,
-	xplacement,
+	placement = 'bottom',
 	...rest
 }: Props) => {
-	const { isOpen, yplacement, menuRef } = useDropdownContext();
+	const { isOpen, yplacement: systemYPlacement, menuRef } = useDropdownContext();
 
 	const menuContextValue = useMemo(
 		() => ({ selectable, selectedItemKey, onSelectChange }),
 		[selectable, selectedItemKey, onSelectChange],
+	);
+
+	const computedPlacement = useMemo(
+		() => getComputedPlacement(placement, systemYPlacement),
+		[placement, systemYPlacement],
 	);
 
 	return (
@@ -37,7 +43,7 @@ const DropdownMenu = ({
 				role="menu"
 				tabIndex={-1}
 				ref={menuRef}
-				className={clsx(menu({ xplacement, yplacement, open: isOpen }), className)}
+				className={clsx(menu({ placement: computedPlacement, open: isOpen }), className)}
 				{...rest}
 			>
 				{children}
