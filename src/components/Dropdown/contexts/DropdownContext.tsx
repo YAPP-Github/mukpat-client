@@ -1,7 +1,8 @@
 'use client';
 
 import { useContext, createContext, ReactNode, RefObject, useMemo } from 'react';
-import { useDropdownOpenState, useMenuYPlacement } from '@/components/Dropdown/hooks';
+import { useMenuYPlacement } from '@/components/Dropdown/hooks';
+import { useBooleanState } from '@/hooks';
 
 /**
  * @property {boolean} isOpen - dropdown의 열림/닫힘 상태
@@ -24,7 +25,7 @@ interface DropdownContextValue {
 const DropdownContext = createContext<DropdownContextValue | null>(null);
 
 const DropdownContextProvider = ({ children }: { children: ReactNode }) => {
-	const { isOpen, toggleDropdown, closeDropdown } = useDropdownOpenState();
+	const [isOpen, , closeDropdown, toggleDropdown] = useBooleanState();
 	const { toggleRef, menuRef, yplacement } = useMenuYPlacement(isOpen);
 
 	const contextValue = useMemo(
