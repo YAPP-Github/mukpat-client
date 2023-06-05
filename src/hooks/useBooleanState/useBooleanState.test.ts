@@ -18,7 +18,7 @@ describe('useBooleanState 테스트', () => {
 		}
 	});
 
-	test('toggleDropdown을 실행하면 isOpen 값이 toggle 된다', () => {
+	test('toggle 실행하면 상태값이 toggle 된다', () => {
 		const { result } = renderHook(() => useBooleanState());
 		const [, , , toggle] = result.current;
 		{
