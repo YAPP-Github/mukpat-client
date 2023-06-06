@@ -23,7 +23,7 @@ const DropdownMenu = ({
 	placement = 'bottom',
 	...rest
 }: Props) => {
-	const { isOpen, yplacement: systemYPlacement, menuRef } = useDropdownContext();
+	const { isOpen, yplacement: systemYPlacement, menuRef, menuId } = useDropdownContext();
 
 	const menuContextValue = useMemo(
 		() => ({ selectable, selectedItemKey, onSelectChange }),
@@ -39,7 +39,7 @@ const DropdownMenu = ({
 		<DropdownMenuContextProvider value={menuContextValue}>
 			<ul
 				aria-hidden={!isOpen}
-				id="dropdown-menu"
+				id={menuId}
 				role="menu"
 				tabIndex={-1}
 				ref={menuRef}

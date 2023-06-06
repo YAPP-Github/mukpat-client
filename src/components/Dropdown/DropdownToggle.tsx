@@ -6,7 +6,7 @@ import { useDropdownContext } from './contexts/DropdownContext';
 type Props = ButtonHTMLAttributes<HTMLButtonElement>;
 
 const DropdownToggle = ({ children, onClick, ...rest }: Props) => {
-	const { isOpen, toggleRef, toggleDropdown } = useDropdownContext();
+	const { isOpen, toggleRef, toggleDropdown, menuId } = useDropdownContext();
 
 	const handleClickButton = (e: MouseEvent<HTMLButtonElement>) => {
 		toggleDropdown();
@@ -15,10 +15,10 @@ const DropdownToggle = ({ children, onClick, ...rest }: Props) => {
 
 	return (
 		<button
-			aria-controls="dropdown-menu"
+			aria-controls={menuId}
 			aria-expanded={isOpen}
 			aria-haspopup={true}
-			aria-owns="dropdown-menu"
+			aria-owns={menuId}
 			type="button"
 			onClick={handleClickButton}
 			ref={toggleRef}
