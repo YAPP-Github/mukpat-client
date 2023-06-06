@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { themeTokens } from '@/styles/theme.css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
@@ -12,37 +12,39 @@ export const formWrapper = style({
 	gap: '16px',
 });
 
-export const inputContainer = recipe({
-	base: {
-		width: 'inherit',
-		position: 'relative',
-		display: 'flex',
-	},
-	variants: {
-		size: {
-			small: {
-				flexDirection: 'column',
-				gap: '1rem',
-				alignItems: 'flex-start',
-			},
-			medium: {
-				flexDirection: 'column',
-				gap: '1rem',
-				alignItems: 'flex-start',
-			},
-			large: {
-				flexDirection: 'row',
-				justifyContent: 'space-between',
-				alignItems: 'center',
-			},
+export const clearButton = style({
+	position: 'absolute',
+	display: 'flex',
+	justifyContent: 'center',
+	top: space['lg'],
+	right: space['lg'],
+	width: space['2xl'],
+	height: space['2xl'],
+	border: 'none',
+	background: 'transparent',
+	selectors: {
+		'&:disabled': {
+			display: 'none',
 		},
-	},
-	defaultVariants: {
-		size: 'large',
 	},
 });
 
-export const inputWrapper = recipe({
+globalStyle(`${clearButton} > img`, {
+	position: 'absolute',
+	width: '100%',
+	margin: '0 auto',
+	backgroundPosition: 'center',
+});
+
+export const inputWrapper = style({
+	width: 'inherit',
+	position: 'relative',
+	display: 'flex',
+	flexDirection: 'column',
+	gap: '0.5rem',
+});
+
+export const input = recipe({
 	base: {
 		padding: space.lg,
 		backgroundColor: color.grey50,
@@ -51,6 +53,10 @@ export const inputWrapper = recipe({
 		borderRadius: borderRadius.md,
 		border: `1px solid ${color.grey100}`,
 		selectors: {
+			'&:not(:disabled):focus:invalid': {
+				border: `1px solid ${color.red500}`,
+				background: 'black',
+			},
 			'&:not(:disabled):focus': {
 				color: color.primary,
 				border: `1px solid ${color.primary500}`,
@@ -75,5 +81,5 @@ export const inputWrapper = recipe({
 	},
 });
 
-export type InputVariants = RecipeVariants<typeof inputWrapper>;
+export type InputVariants = RecipeVariants<typeof input>;
 export type Size = NonNullable<InputVariants>['size'];
