@@ -14,10 +14,8 @@ export const formWrapper = style({
 
 export const clearButton = style({
 	position: 'absolute',
-	display: 'flex',
-	justifyContent: 'center',
-	top: space['lg'],
-	right: space['lg'],
+	right: space['md'],
+	bottom: space['md'],
 	width: space['2xl'],
 	height: space['2xl'],
 	border: 'none',
@@ -30,8 +28,6 @@ export const clearButton = style({
 });
 
 globalStyle(`${clearButton} > img`, {
-	position: 'absolute',
-	width: '100%',
 	margin: '0 auto',
 	backgroundPosition: 'center',
 });
@@ -41,7 +37,6 @@ export const inputWrapper = style({
 	position: 'relative',
 	display: 'flex',
 	flexDirection: 'column',
-	gap: '0.5rem',
 });
 
 export const input = recipe({
@@ -55,7 +50,6 @@ export const input = recipe({
 		selectors: {
 			'&:not(:disabled):focus:invalid': {
 				border: `1px solid ${color.red500}`,
-				background: 'black',
 			},
 			'&:not(:disabled):focus': {
 				color: color.primary,
