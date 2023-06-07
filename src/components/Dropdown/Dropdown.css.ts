@@ -32,6 +32,25 @@ export const buttonText = style({
 	},
 });
 
+const TOP_PLACEMENT = {
+	top: 'auto',
+	bottom: '100%',
+	marginTop: 0,
+	marginBottom: space.sm,
+} as const;
+
+const BOTTOM_PLACEMENT = {
+	top: '100%',
+	bottom: 'auto',
+	marginTop: space.sm,
+	marginBottom: 0,
+} as const;
+
+const CENTER_PLACEMENT = {
+	left: '50%',
+	transform: 'translate(-50%, 0)',
+} as const;
+
 export const menu = recipe({
 	base: {
 		position: 'absolute',
@@ -58,30 +77,30 @@ export const menu = recipe({
 		},
 	},
 	variants: {
-		xplacement: {
-			left: {
+		placement: {
+			topLeft: {
+				...TOP_PLACEMENT,
 				left: 0,
 			},
-			right: {
+			top: {
+				...TOP_PLACEMENT,
+				...CENTER_PLACEMENT,
+			},
+			topRight: {
+				...TOP_PLACEMENT,
 				right: 0,
 			},
-			center: {
-				left: '50%',
-				transform: 'translate(-50%, 0)',
-			},
-		},
-		yplacement: {
-			top: {
-				top: 'auto',
-				bottom: '100%',
-				marginTop: 0,
-				marginBottom: space.sm,
+			bottomLeft: {
+				...BOTTOM_PLACEMENT,
+				left: 0,
 			},
 			bottom: {
-				top: '100%',
-				bottom: 'auto',
-				marginTop: space.sm,
-				marginBottom: 0,
+				...BOTTOM_PLACEMENT,
+				...CENTER_PLACEMENT,
+			},
+			bottomRight: {
+				...BOTTOM_PLACEMENT,
+				right: 0,
 			},
 		},
 		open: {
@@ -92,8 +111,7 @@ export const menu = recipe({
 		},
 	},
 	defaultVariants: {
-		xplacement: 'center',
-		yplacement: 'bottom',
+		placement: 'bottom',
 	},
 });
 
@@ -138,4 +156,4 @@ export const checkedIconColor = style({
 });
 
 export type MenuVariant = RecipeVariants<typeof menu>;
-export type xPlacement = NonNullable<MenuVariant>['xplacement'];
+export type Placement = NonNullable<MenuVariant>['placement'];

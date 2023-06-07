@@ -1,7 +1,8 @@
 'use client';
 
-import { useContext, createContext, ReactNode, RefObject, useMemo } from 'react';
-import { useDropdownOpenState, useMenuYPlacement } from '@/components/Dropdown/hooks';
+import { useContext, createContext, ReactNode, RefObject, useMemo, useId } from 'react';
+import { useMenuYPlacement } from '@/components/Dropdown/hooks';
+import { useBooleanState } from '@/hooks';
 
 /**
  * @property {boolean} isOpen - dropdown의 열림/닫힘 상태
@@ -19,17 +20,19 @@ interface DropdownContextValue {
 	yplacement: 'top' | 'bottom';
 	toggleDropdown: () => void;
 	closeDropdown: () => void;
+	menuId: string;
 }
 
 const DropdownContext = createContext<DropdownContextValue | null>(null);
 
 const DropdownContextProvider = ({ children }: { children: ReactNode }) => {
-	const { isOpen, toggleDropdown, closeDropdown } = useDropdownOpenState();
+	const menuId = useId();
+	const [isOpen, , closeDropdown, toggleDropdown] = useBooleanState();
 	const { toggleRef, menuRef, yplacement } = useMenuYPlacement(isOpen);
 
 	const contextValue = useMemo(
-		() => ({ isOpen, toggleRef, menuRef, yplacement, toggleDropdown, closeDropdown }),
-		[isOpen, toggleRef, menuRef, yplacement, toggleDropdown, closeDropdown],
+		() => ({ isOpen, toggleRef, menuRef, yplacement, toggleDropdown, closeDropdown, menuId }),
+		[isOpen, toggleRef, menuRef, yplacement, toggleDropdown, closeDropdown, menuId],
 	);
 
 	return <DropdownContext.Provider value={contextValue}>{children}</DropdownContext.Provider>;
