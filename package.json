@@ -22,7 +22,7 @@
 			"bash -c 'yarn check-types'"
 		]
 	},
-	"packageManager": "yarn@3.5.1",
+	"packageManager": "yarn@3.6.0",
 	"dependencies": {
 		"@tanstack/react-query": "^4.29.7",
 		"@vanilla-extract/css": "^1.11.0",
@@ -75,7 +75,7 @@
 		"prettier": "^2.8.8",
 		"svgstore": "^3.0.1",
 		"svgstore-cli": "^2.0.1",
-		"typescript": "^5.0.4",
+		"typescript": "^5.1.3",
 		"vite": "^4.3.9",
 		"vitest": "^0.31.1"
 	}
