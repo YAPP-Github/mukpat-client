@@ -12,7 +12,7 @@
 > 💡 기본적으로 `Dropdown`은 클라이언트 컴포넌트 입니다.
 
 ```tsx
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '@/components';
+import { Dropdown, DropdownButton, DropdownMenu, DropdownItem } from '@/components';
 
 const selections = [
 	'react',
@@ -144,8 +144,14 @@ const [selection, setSelection] = useState<string | null>(null);
 
 #### Props
 
-- `xplacement` : `'left' | 'center' (center) | 'right'`
+- `placement` : `'topLeft' | 'top' | 'topRight' | 'bottomLeft' | 'bottom' | 'bottomRight' `
   - `Menu`의 위치를 설정하는 값으로 `DropdownButton` or `DropdownTrigger` 요소를 기준으로 어디에 맞추어 표시할지 정의합니다
+
+    - `top` 은 top + center를 `bottom`은 bottom + center를 의미합니다.
+
+    - `top` or `bottom`의 여부는 유저가 선택할 수 있으나 아래 공간이 부족할 경우 내부적으로 `top`으로 치환되어 적용됩니다. 
+  
+    - `left`, `right`, `center` 여부는 사용자가 결정할 수 있으며 각 값은 아래와 같은 형태로 나타나집니다.
 
     - `left`
       ![image](https://github.com/YAPP-Github/22nd-Web-Team-1-Web/assets/38908080/18f31140-dcb0-48b9-ab4a-40b2a03d51b4)
