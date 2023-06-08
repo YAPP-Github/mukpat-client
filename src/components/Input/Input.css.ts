@@ -1,8 +1,9 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { themeTokens } from '@/styles/theme.css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
+import { fontVariant } from '@/styles/variant.css';
 
-const { color, space, borderRadius } = themeTokens;
+const { color, space, fontSize, borderRadius } = themeTokens;
 
 export const formWrapper = style({
 	position: 'relative',
@@ -15,7 +16,6 @@ export const formWrapper = style({
 export const clearButton = style({
 	position: 'absolute',
 	right: space['md'],
-	bottom: space['md'],
 	width: space['2xl'],
 	height: space['2xl'],
 	border: 'none',
@@ -27,29 +27,26 @@ export const clearButton = style({
 	},
 });
 
-globalStyle(`${clearButton} > img`, {
-	margin: '0 auto',
-	backgroundPosition: 'center',
-});
-
 export const inputWrapper = style({
 	width: 'inherit',
 	position: 'relative',
-	display: 'flex',
-	flexDirection: 'column',
+	display: 'grid',
+	gridAutoFlow: 'column',
+	alignItems: 'center',
 });
 
-export const input = recipe({
+export const inputBase = recipe({
 	base: {
+		fontSize: fontSize.md,
 		padding: space.lg,
 		backgroundColor: color.grey50,
-		caretColor: color.primary500,
 		color: color.hint,
 		borderRadius: borderRadius.md,
 		border: `1px solid ${color.grey100}`,
+
 		selectors: {
-			'&:not(:disabled):focus:invalid': {
-				border: `1px solid ${color.red500}`,
+			'&:not(:focus)': {
+				color: color.primary,
 			},
 			'&:not(:disabled):focus': {
 				color: color.primary,
@@ -58,22 +55,57 @@ export const input = recipe({
 		},
 	},
 	variants: {
+		type: {
+			textarea: 'textarea',
+			date: 'date',
+			search: 'search',
+		},
 		size: {
-			small: {
-				width: '194px',
-			},
-			medium: {
-				width: '400px',
-			},
-			large: {
-				width: '505px',
-			},
+			small: { width: '200px' },
+			medium: { width: '400px' },
+			large: { width: '505px' },
 		},
 	},
+	compoundVariants: [
+		{
+			variants: { type: 'textarea' },
+			style: {
+				position: 'relative',
+				marginBottom: '6px',
+				width: '100%',
+			},
+		},
+		{
+			variants: { type: 'date' },
+			style: {
+				selectors: {
+					'&::before': {
+						content: `attr(placeholder)`,
+						width: '100%',
+					},
+					'&::-webkit-calendar-picker-indicator': {
+						cursor: 'pointer',
+						backgroundImage: `url('/icons/calendar/default.svg')`, // caretdown으로 교체
+						backgroundSize: 'cover',
+					},
+				},
+			},
+		},
+	],
 	defaultVariants: {
-		size: 'large',
+		size: 'medium',
 	},
 });
 
-export type InputVariants = RecipeVariants<typeof input>;
+export const inputError = style({
+	border: `1px solid ${color.red500}`,
+});
+
+globalStyle(`${clearButton} > img`, {
+	margin: '0 auto',
+	backgroundPosition: 'center',
+});
+
+export type InputVariants = RecipeVariants<typeof inputBase>;
 export type Size = NonNullable<InputVariants>['size'];
+export type Type = NonNullable<InputVariants>['type'];
