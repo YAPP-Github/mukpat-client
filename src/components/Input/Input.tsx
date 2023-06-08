@@ -1,7 +1,8 @@
 'use client';
 
+import clsx from 'classnames';
 import Image from 'next/image';
-import { inputWrapper, inputBase, Size, clearButton } from './Input.css';
+import { inputWrapper, inputBase, Size, Type, clearButton, inputError } from './Input.css';
 import { ForwardedRef, forwardRef, useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { getIconUrl } from '../IconButton/utils/getIconUrl';
@@ -10,32 +11,34 @@ import Typography from '../Typography/Typography';
 export type InputProps = {
 	name: string;
 	size?: Size;
+	type?: Type;
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTMLInputElement>) {
-	const { name, placeholder, size, ...rest } = props;
+	const { type, name, placeholder, size, ...rest } = props;
 	const { formState, resetField } = useFormContext();
 	const handleReset = useCallback(() => resetField(name, { defaultValue: '', keepDirty: false }), []);
 	const errorMessage = formState.errors[name]?.message as string;
-
+	const isDirty = formState.dirtyFields[name];
 	return (
 		<>
 			<div className={inputWrapper} aria-describedby={`${name} input wrapper`} id={`${name}_input`}>
 				<input
 					name={name}
-					className={inputBase({ size })}
+					className={clsx(inputBase({ size, type }), errorMessage && inputError)}
 					placeholder={placeholder}
 					ref={ref}
+					type={type}
 					aria-describedby={`${name} input field`}
 					{...rest}
 				></input>
-				{formState.dirtyFields[name] && (
+				{isDirty && (
 					<button className={clearButton} onClick={handleReset} aria-describedby={`Clear ${name} input`} type="button">
 						<Image src={getIconUrl('clear', 'default')} alt={'Icon'} width={24} height={24} />
 					</button>
 				)}
 			</div>
-			{formState.errors[name]?.message && (
+			{errorMessage && (
 				<Typography color="red500" variant="label5" as="p">
 					{errorMessage}
 				</Typography>
