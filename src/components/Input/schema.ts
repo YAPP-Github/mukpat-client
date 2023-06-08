@@ -14,12 +14,19 @@ export const loginSchema = z.object({
 });
 
 export const creationSchema = z.object({
-	date: z.string(),
-	person: z.string().min(1, { message: '먹팟의 구성원을?' }),
-	address: z.string().min(5, { message: '5자 이상이어야 합니다.' }).max(20, { message: '20자 이하여야 합니다.' }),
-	title: z.string(),
-	info: z.string(),
-	url: z.string().url(),
+	// date: z.date().min(new Date()),
+	date: z.coerce.date(),
+	// search: z.string().min(5, ""),
+	// person: z.string().min(1, { message: '먹팟의 구성원을?' }),
+	// address: z.string().min(5, { message: '5자 이상이어야 합니다.' }).max(20, { message: '20자 이하여야 합니다.' }),
+	title: z
+		.string()
+		.nonempty()
+		.min(5, { message: '5자 이상이어야 합니다.' })
+		.max(20, { message: '20자 이하여야 합니다.' }),
+	info: z.string().min(5, { message: '5자 이상이어야 합니다.' }).max(20, { message: '20자 이하여야 합니다.' }),
+	url: z.string().url({ message: '올바른 형식의 링크를 입력해주세요.' }),
+	// email: z.string().url().min(1),
 });
 
 export type CreationSchema = z.infer<typeof creationSchema>;
