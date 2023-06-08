@@ -23,11 +23,12 @@ const Modal = ({ size, isModalOpen, setIsModalOpen, className, children, ...rest
 	if (!isOpen) return null;
 
 	return (
-		<div className={cx(backgroundWrapper)}>
+		<>
+			<div className={cx(backgroundWrapper)}></div>
 			<div className={cx(modalWrapper({ size }), className)} ref={ref} {...rest}>
 				{children}
 			</div>
-		</div>
+		</>
 	);
 };
 
