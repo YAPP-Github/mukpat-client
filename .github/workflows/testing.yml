@@ -22,7 +22,7 @@ jobs:
           cache: yarn
 
       - name: dependency install
-        run: yarn install
+        run: yarn install --immutable --immutable-cache
 
       - name: check unit test
         run: yarn test
