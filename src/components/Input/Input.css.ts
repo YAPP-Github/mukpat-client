@@ -1,9 +1,9 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { themeTokens } from '@/styles/theme.css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-import { fontVariant } from '@/styles/variant.css';
+import { TypoVariant } from '../Typography/Typography.css';
 
-const { color, space, fontSize, borderRadius } = themeTokens;
+const { color, space, fontSize, fontWeight, borderRadius } = themeTokens;
 
 export const formWrapper = style({
 	position: 'relative',
@@ -56,28 +56,7 @@ export const inputBase = recipe({
 	},
 	variants: {
 		type: {
-			textarea: 'textarea',
-			date: 'date',
-			search: 'search',
-		},
-		size: {
-			small: { width: '200px' },
-			medium: { width: '400px' },
-			large: { width: '505px' },
-		},
-	},
-	compoundVariants: [
-		{
-			variants: { type: 'textarea' },
-			style: {
-				position: 'relative',
-				marginBottom: '6px',
-				width: '100%',
-			},
-		},
-		{
-			variants: { type: 'date' },
-			style: {
+			date: {
 				selectors: {
 					'&::before': {
 						content: `attr(placeholder)`,
@@ -90,10 +69,22 @@ export const inputBase = recipe({
 					},
 				},
 			},
+			email: {
+				width: '194px',
+			},
+			title: {
+				fontSize: fontSize.xl,
+				fontWeight: fontWeight.semibold,
+			},
 		},
-	],
+		size: {
+			small: { width: '200px' },
+			medium: { width: '400px' },
+			large: { width: '505px' },
+		},
+	},
 	defaultVariants: {
-		size: 'medium',
+		size: 'large',
 	},
 });
 
