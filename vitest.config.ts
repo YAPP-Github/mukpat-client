@@ -9,6 +9,8 @@ export default mergeConfig(
 			globals: true,
 			environment: 'jsdom',
 			setupFiles: ['./src/tests/setupTests.ts'],
+			maxThreads: 15,
+			minThreads: 8,
 		},
 	}),
 );
