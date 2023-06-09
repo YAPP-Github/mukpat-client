@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import localFont from 'next/font/local';
 import Provider from '@/providers/react-query';
+import { OverlayProvider } from '@/hooks/useOverlay/OverlayContext';
 
 const pretendardFont = localFont({
 	src: '../../public/PretendardVariable.woff2',
@@ -17,7 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en" className={pretendardFont.className}>
 			<link rel="preload" type="image/svg+xml" as="image" href="/sprite.svg" />
 			<body>
-				<Provider>{children}</Provider>
+				<Provider>
+					<OverlayProvider>{children}</OverlayProvider>
+				</Provider>
 			</body>
 		</html>
 	);
