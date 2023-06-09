@@ -20,7 +20,7 @@ const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTM
 	const errorMessage = formState.errors[name]?.message as string;
 	const isDirty = formState.dirtyFields[name];
 	return (
-		<div style={{ flexDirection: 'column' }}>
+		<div style={{ gridAutoFlow: 'column' }}>
 			<div className={inputWrapper} aria-describedby={`${name} input wrapper`} id={`${name}_input`}>
 				<input
 					name={name}
@@ -28,11 +28,11 @@ const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTM
 					placeholder={placeholder}
 					ref={ref}
 					type={type}
-					aria-describedby={`${name} input field`}
+					aria-describedby={`${name}-input-field`}
 					{...rest}
 				></input>
 				{isDirty && (
-					<button className={clearButton} onClick={handleReset} aria-describedby={`Clear ${name} input`} type="button">
+					<button className={clearButton} onClick={handleReset} aria-describedby={`clear-${name}-button`} type="button">
 						<Image src={getIconUrl('clear', 'default')} alt={'Icon'} width={24} height={24} />
 					</button>
 				)}

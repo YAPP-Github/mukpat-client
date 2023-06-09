@@ -30,14 +30,14 @@ export const section = recipe({
 	variants: {
 		direction: {
 			column: {
-				display: 'flex',
-				flexDirection: 'column',
+				display: 'grid',
+				gridAutoFlow: 'row',
 				justifyContent: 'flex-start',
 				gap: space.sm,
 			},
 			row: {
-				display: 'flex',
-				flexDirection: 'row',
+				display: 'grid',
+				gridAutoFlow: 'column',
 				justifyContent: 'space-between',
 				alignItems: 'center',
 			},
@@ -53,7 +53,7 @@ export const inputWrapper = style({
 	alignItems: 'center',
 });
 
-export const textAreaWrapper = style({
+export const textareaWrapper = style({
 	width: 'inherit',
 	display: 'grid',
 	gridAutoFlow: 'row',
@@ -93,13 +93,11 @@ export const inputBase = recipe({
 			},
 			date: {
 				selectors: {
-					'&::before': {
-						content: `attr(placeholder)`,
-						width: '100%',
-					},
 					'&::-webkit-calendar-picker-indicator': {
 						cursor: 'pointer',
-						backgroundImage: `url('/icons/calendar/default.svg')`, // caretdown으로 교체
+						width: '24px',
+						marginBottom: space.sm,
+						backgroundImage: `url('/icons/caretdown/default.svg')`,
 						backgroundSize: 'cover',
 					},
 				},
@@ -124,7 +122,7 @@ globalStyle(`${clearButton} > img`, {
 	backgroundPosition: 'center',
 });
 
-globalStyle(`${textAreaWrapper} > p`, {
+globalStyle(`${textareaWrapper} > p`, {
 	textAlign: 'end',
 });
 
