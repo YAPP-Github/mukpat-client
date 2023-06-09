@@ -43,6 +43,9 @@ export const section = recipe({
 			},
 		},
 	},
+	defaultVariants: {
+		direction: 'column',
+	},
 });
 
 export const inputWrapper = style({

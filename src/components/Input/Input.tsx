@@ -21,7 +21,7 @@ const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTM
 	const isDirty = formState.dirtyFields[name];
 	return (
 		<div style={{ gridAutoFlow: 'column' }}>
-			<div className={inputWrapper} aria-describedby={`${name} input wrapper`} id={`${name}_input`}>
+			<div className={inputWrapper} aria-describedby={`${name}-input-wrapper`} id={`${name}_input`}>
 				<input
 					name={name}
 					className={clsx(inputBase({ type }), errorMessage && inputError)}
