@@ -1,17 +1,8 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { themeTokens } from '@/styles/theme.css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
-import { TypoVariant } from '../Typography/Typography.css';
 
 const { color, space, fontSize, fontWeight, borderRadius } = themeTokens;
-
-export const formWrapper = style({
-	position: 'relative',
-	display: 'flex',
-	width: '674px',
-	flexDirection: 'column',
-	gap: '16px',
-});
 
 export const clearButton = style({
 	position: 'absolute',
@@ -27,6 +18,33 @@ export const clearButton = style({
 	},
 });
 
+export const formWrapper = style({
+	position: 'relative',
+	display: 'grid',
+	width: 'inherit',
+	gridAutoFlow: 'row',
+	gap: space.lg,
+});
+
+export const section = recipe({
+	variants: {
+		direction: {
+			column: {
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'flex-start',
+				gap: space.sm,
+			},
+			row: {
+				display: 'flex',
+				flexDirection: 'row',
+				justifyContent: 'space-between',
+				alignItems: 'center',
+			},
+		},
+	},
+});
+
 export const inputWrapper = style({
 	width: 'inherit',
 	position: 'relative',
@@ -35,15 +53,23 @@ export const inputWrapper = style({
 	alignItems: 'center',
 });
 
+export const textAreaWrapper = style({
+	width: 'inherit',
+	display: 'grid',
+	gridAutoFlow: 'row',
+	gap: space.sm,
+});
+
 export const inputBase = recipe({
 	base: {
+		fontFamily: 'Pretendard Variable, Pretendard, -apple-system',
+		minWidth: '400px',
 		fontSize: fontSize.md,
 		padding: space.lg,
 		backgroundColor: color.grey50,
 		color: color.hint,
 		borderRadius: borderRadius.md,
 		border: `1px solid ${color.grey100}`,
-
 		selectors: {
 			'&:not(:focus)': {
 				color: color.primary,
@@ -56,6 +82,15 @@ export const inputBase = recipe({
 	},
 	variants: {
 		type: {
+			textArea: {
+				display: 'flex',
+				flexDirection: 'column',
+				alignItems: 'flex-start',
+				padding: '16px',
+				gap: '8px',
+				width: '674px',
+				height: '299px',
+			},
 			date: {
 				selectors: {
 					'&::before': {
@@ -77,14 +112,6 @@ export const inputBase = recipe({
 				fontWeight: fontWeight.semibold,
 			},
 		},
-		size: {
-			small: { width: '200px' },
-			medium: { width: '400px' },
-			large: { width: '505px' },
-		},
-	},
-	defaultVariants: {
-		size: 'large',
 	},
 });
 
@@ -97,6 +124,13 @@ globalStyle(`${clearButton} > img`, {
 	backgroundPosition: 'center',
 });
 
+globalStyle(`${textAreaWrapper} > p`, {
+	textAlign: 'end',
+});
+
 export type InputVariants = RecipeVariants<typeof inputBase>;
-export type Size = NonNullable<InputVariants>['size'];
+// export type Size = NonNullable<InputVariants>['size'];
 export type Type = NonNullable<InputVariants>['type'];
+
+export type sectionVariants = RecipeVariants<typeof section>;
+export type Direction = NonNullable<sectionVariants>['direction'];
