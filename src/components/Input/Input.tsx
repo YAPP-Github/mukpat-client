@@ -2,30 +2,29 @@
 
 import clsx from 'classnames';
 import Image from 'next/image';
-import { inputWrapper, inputBase, Size, Type, clearButton, inputError } from './Input.css';
 import { ForwardedRef, forwardRef, useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { getIconUrl } from '../IconButton/utils/getIconUrl';
+import { inputWrapper, inputBase, Type, clearButton, inputError } from './Input.css';
 import Typography from '../Typography/Typography';
 
-export type InputProps = {
+type InputProps = {
 	name: string;
-	size?: Size;
 	type?: Type;
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTMLInputElement>) {
-	const { type, name, placeholder, size, ...rest } = props;
+	const { type, name, placeholder, ...rest } = props;
 	const { formState, resetField } = useFormContext();
 	const handleReset = useCallback(() => resetField(name, { defaultValue: '', keepDirty: false }), []);
 	const errorMessage = formState.errors[name]?.message as string;
 	const isDirty = formState.dirtyFields[name];
 	return (
-		<>
+		<div style={{ flexDirection: 'column' }}>
 			<div className={inputWrapper} aria-describedby={`${name} input wrapper`} id={`${name}_input`}>
 				<input
 					name={name}
-					className={clsx(inputBase({ size, type }), errorMessage && inputError)}
+					className={clsx(inputBase({ type }), errorMessage && inputError)}
 					placeholder={placeholder}
 					ref={ref}
 					type={type}
@@ -39,11 +38,11 @@ const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTM
 				)}
 			</div>
 			{errorMessage && (
-				<Typography color="red500" variant="label5" as="p">
+				<Typography style={{ marginTop: '8px' }} color="red500" variant="label5" as="p">
 					{errorMessage}
 				</Typography>
 			)}
-		</>
+		</div>
 	);
 });
 
