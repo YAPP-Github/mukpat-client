@@ -2,7 +2,7 @@
 
 import clsx from 'classnames';
 import { useController, FieldValues, FieldPath, Control, Controller, useFormContext } from 'react-hook-form';
-import { inputWrapper, inputBase, Type, Size, clearButton, inputError } from './Input.css';
+import { inputWrapper, inputBase, Type, clearButton, inputError } from './Input.css';
 import { ForwardedRef, forwardRef, useCallback } from 'react';
 import Image from 'next/image';
 import Typography from '../Typography/Typography';
@@ -11,12 +11,11 @@ import { getIconUrl } from '../IconButton/utils/getIconUrl';
 type TControl<T extends FieldValues> = {
 	control: Control<T>;
 	name: FieldPath<T>;
-	size?: Size;
 	type?: Type;
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const ControllerInput = forwardRef(function Input(props: TControl<any>, ref: ForwardedRef<HTMLInputElement>) {
-	const { type, control, name, placeholder = '텍스트를 입력해주세요', size } = props;
+	const { type, control, name, placeholder = '텍스트를 입력해주세요' } = props;
 	const { resetField } = useFormContext();
 	const {
 		field: { value, ...rest },
@@ -30,13 +29,13 @@ const ControllerInput = forwardRef(function Input(props: TControl<any>, ref: For
 				<Controller
 					defaultValue=""
 					name={name}
-					render={({ field }) => (
+					render={({}) => (
 						<input
 							{...rest}
 							aria-invalid={fieldState.invalid}
-							className={clsx(inputBase({ size, type }), fieldState.error && inputError)}
+							className={clsx(inputBase({ type }), fieldState.error && inputError)}
 							placeholder={placeholder}
-							value={field.value}
+							value={value}
 							type={type}
 							ref={ref}
 						/>

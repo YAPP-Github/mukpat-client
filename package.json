@@ -12,13 +12,14 @@
 		"test:watch": "vitest --watch",
 		"test": "vitest",
 		"server:dev": "json-server --watch db.json --port 5000",
-		"check-types": "tsc --noEmit --pretty --project tsconfig.json"
+		"check-types": "tsc --noEmit --pretty --project tsconfig.json",
+		"make-sprite": "rm public/sprite.svg && svgstore -o public/sprite.svg public/spriteIcons/**/*.svg"
 	},
 	"lint-staged": {
 		"src/**/*.{js,jsx,ts,tsx}": [
 			"prettier --write",
 			"eslint --fix",
-			"bash -c tsc --noEmit --pretty --project tsconfig.json"
+			"bash -c 'yarn check-types'"
 		]
 	},
 	"packageManager": "yarn@3.5.1",
@@ -29,6 +30,7 @@
 		"@vanilla-extract/next-plugin": "^2.1.2",
 		"@vanilla-extract/recipes": "^0.4.0",
 		"classnames": "^2.3.2",
+		"framer-motion": "^10.12.16",
 		"ky": "^0.33.3",
 		"next": "13.4.1",
 		"postcss": "^8.4.23",
@@ -72,6 +74,8 @@
 		"lint-staged": "^13.2.2",
 		"msw": "^1.2.1",
 		"prettier": "^2.8.8",
+		"svgstore": "^3.0.1",
+		"svgstore-cli": "^2.0.1",
 		"typescript": "^5.0.4",
 		"vite": "^4.3.9",
 		"vitest": "^0.31.1"

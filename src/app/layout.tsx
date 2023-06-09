@@ -15,6 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en" className={pretendardFont.className}>
+			<link rel="preload" type="image/svg+xml" as="image" href="/sprite.svg" />
 			<body>
 				<Provider>{children}</Provider>
 			</body>
