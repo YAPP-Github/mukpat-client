@@ -35,7 +35,7 @@ const TextArea = forwardRef(function TextArea(props: textareaProps, ref: Forward
 				{...rest}
 			></textarea>
 			<Typography color="sub" variant="body3" as="p">
-				{(watch(name)?.length && watch(name)?.length) || 0}/{maxLength}
+				{watch(name)?.length || 0}/{maxLength}
 			</Typography>
 		</div>
 	);

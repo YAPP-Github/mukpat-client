@@ -18,7 +18,7 @@ const ControllerInput = forwardRef(function Input(props: TControl<any>, ref: For
 	const { type, control, name, placeholder = '텍스트를 입력해주세요' } = props;
 	const { resetField } = useFormContext();
 	const {
-		field: { value, ...rest },
+		field: { ...rest },
 		fieldState,
 	} = useController({ name, control });
 	const handleReset = useCallback(() => resetField(name, { defaultValue: '', keepDirty: false }), []);
@@ -29,13 +29,13 @@ const ControllerInput = forwardRef(function Input(props: TControl<any>, ref: For
 				<Controller
 					defaultValue=""
 					name={name}
-					render={({}) => (
+					render={({ field }) => (
 						<input
 							{...rest}
 							aria-invalid={fieldState.invalid}
 							className={clsx(inputBase({ type }), fieldState.error && inputError)}
 							placeholder={placeholder}
-							value={value}
+							value={field.value}
 							type={type}
 							ref={ref}
 						/>
