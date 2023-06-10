@@ -1,30 +1,28 @@
 'use client';
 
 import clsx from 'classnames';
-import { useController, FieldValues, FieldPath, Control, Controller, useFormContext } from 'react-hook-form';
-import { inputWrapper, inputBase, Type, clearButton, inputError } from './Input.css';
-import { ForwardedRef, forwardRef, useCallback } from 'react';
-import Image from 'next/image';
-import Typography from '../Typography/Typography';
-import { getIconUrl } from '../IconButton/utils/getIconUrl';
+import { useController, FieldValues, FieldPath, Control, Controller } from 'react-hook-form';
+import { inputWrapper, inputBase, Type, inputError } from './Input.css';
+import { ForwardedRef, forwardRef } from 'react';
+import ClearButton from './ClearButton';
+import InputErrorMessage from './InputErrorMessage';
 
 type TControl<T extends FieldValues> = {
 	control: Control<T>;
 	name: FieldPath<T>;
 	type?: Type;
+	showError?: boolean;
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const ControllerInput = forwardRef(function Input(props: TControl<any>, ref: ForwardedRef<HTMLInputElement>) {
-	const { type, control, name, placeholder = '텍스트를 입력해주세요' } = props;
-	const { resetField } = useFormContext();
+	const { type, control, name, placeholder = '텍스트를 입력해주세요', showError = true } = props;
 	const {
 		field: { ...rest },
 		fieldState,
 	} = useController({ name, control });
-	const handleReset = useCallback(() => resetField(name, { defaultValue: '', keepDirty: false }), []);
 
 	return (
-		<>
+		<div style={{ gridAutoFlow: 'column' }}>
 			<div className={inputWrapper}>
 				<Controller
 					defaultValue=""
@@ -41,14 +39,10 @@ const ControllerInput = forwardRef(function Input(props: TControl<any>, ref: For
 						/>
 					)}
 				/>
-				<button className={clearButton} onClick={handleReset} disabled={!fieldState.isDirty} type="button">
-					<Image src={getIconUrl('clear', 'default')} alt={'Icon'} width={24} height={24} />
-				</button>
+				<ClearButton name={name} />
 			</div>
-			<Typography color="red500" variant="label5" as="p">
-				{fieldState.error?.message}
-			</Typography>
-		</>
+			<InputErrorMessage name={name} showError={showError} />
+		</div>
 	);
 });
 

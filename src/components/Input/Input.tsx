@@ -1,24 +1,25 @@
 'use client';
 
 import clsx from 'classnames';
-import Image from 'next/image';
-import { ForwardedRef, forwardRef, useCallback } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { getIconUrl } from '../IconButton/utils/getIconUrl';
-import { inputWrapper, inputBase, Type, clearButton, inputError } from './Input.css';
-import Typography from '../Typography/Typography';
+import { inputWrapper, inputBase, Type, inputError } from './Input.css';
+
+import InputErrorMessage from './InputErrorMessage';
+import ClearButton from './ClearButton';
 
 type InputProps = {
 	name: string;
 	type?: Type;
+	showError?: boolean;
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTMLInputElement>) {
-	const { type, name, placeholder, ...rest } = props;
-	const { formState, resetField } = useFormContext();
-	const handleReset = useCallback(() => resetField(name, { defaultValue: '', keepDirty: false }), []);
+	const { type, name, placeholder, showError, ...rest } = props;
+	const { formState } = useFormContext();
+
 	const errorMessage = formState.errors[name]?.message as string;
-	const isDirty = formState.dirtyFields[name];
+
 	return (
 		<div style={{ gridAutoFlow: 'column' }}>
 			<div className={inputWrapper} aria-describedby={`${name}-input-wrapper`} id={`${name}_input`}>
@@ -31,17 +32,9 @@ const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTM
 					aria-describedby={`${name}-input-field`}
 					{...rest}
 				></input>
-				{isDirty && (
-					<button className={clearButton} onClick={handleReset} aria-describedby={`clear-${name}-button`} type="button">
-						<Image src={getIconUrl('clear', 'default')} alt={'Icon'} width={24} height={24} />
-					</button>
-				)}
+				<ClearButton name={name} />
 			</div>
-			{errorMessage && (
-				<Typography style={{ marginTop: '8px' }} color="red500" variant="label5" as="p">
-					{errorMessage}
-				</Typography>
-			)}
+			<InputErrorMessage name={name} showError={showError} />
 		</div>
 	);
 });

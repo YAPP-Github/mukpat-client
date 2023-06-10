@@ -1,17 +1,21 @@
 import { useFormContext } from 'react-hook-form';
 import Typography from '../Typography/Typography';
 
-const ErrorMessage = () => {
+type errorProps = {
+	message?: string;
+};
+
+const FormErrorMessage = ({ message = '필수 항목을 입력하세요.' }: errorProps) => {
 	const { formState } = useFormContext();
 	return (
 		<div>
 			{formState.isSubmitted && !formState.isValid && (
 				<Typography color="red500" variant="label5" as="label">
-					필수 항목을 입력하세요.
+					{message}
 				</Typography>
 			)}
 		</div>
 	);
 };
 
-export default ErrorMessage;
+export default FormErrorMessage;

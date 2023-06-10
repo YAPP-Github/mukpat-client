@@ -6,7 +6,7 @@ const { color, space, fontSize, fontWeight, borderRadius } = themeTokens;
 
 export const clearButton = style({
 	position: 'absolute',
-	right: space['md'],
+	right: space['lg'],
 	width: space['2xl'],
 	height: space['2xl'],
 	border: 'none',
@@ -16,14 +16,6 @@ export const clearButton = style({
 			display: 'none',
 		},
 	},
-});
-
-export const formWrapper = style({
-	position: 'relative',
-	display: 'grid',
-	width: 'inherit',
-	gridAutoFlow: 'row',
-	gap: space.lg,
 });
 
 export const section = recipe({
@@ -67,6 +59,7 @@ export const inputBase = recipe({
 	base: {
 		fontFamily: 'Pretendard Variable, Pretendard, -apple-system',
 		minWidth: '400px',
+		height: '56px',
 		fontSize: fontSize.md,
 		padding: space.lg,
 		backgroundColor: color.grey50,
@@ -130,7 +123,6 @@ globalStyle(`${textareaWrapper} > p`, {
 });
 
 export type InputVariants = RecipeVariants<typeof inputBase>;
-// export type Size = NonNullable<InputVariants>['size'];
 export type Type = NonNullable<InputVariants>['type'];
 
 export type sectionVariants = RecipeVariants<typeof section>;
