@@ -1,9 +1,9 @@
 import clsx from 'classnames';
-import { HTMLAttributes } from 'react';
+import { ReactNode } from 'react';
 import { section, Direction } from './Input.css';
 import Typography from '../Typography/Typography';
 
-type sectionProps = { label?: string; direction?: Direction } & HTMLAttributes<HTMLInputElement>;
+type sectionProps = { label?: string; direction?: Direction; children: ReactNode };
 
 const InputSection = ({ children, label, direction }: sectionProps) => {
 	const variant = direction === 'column' ? 'title3' : 'label3';

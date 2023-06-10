@@ -3,15 +3,14 @@ https://github.com/YAPP-Github/22nd-Web-Team-1-Web/assets/51940808/b791f7b7-707e
 
 ## 요약
 #### react-Hook-Form과 zod 스키마를 기반으로 인풋 컴포넌트를 개발했습니다.
-Input 컴포넌트의 경우, Form 내부에서만 사용될 것으로 예상하여 개발하였습니다.
-Form의 전체 구성은 대략 아래와 같습니다. 괄호는 선택 요소입니다. 
+Input 컴포넌트의 경우, Form 내부에서만 사용될 것으로 예상하여 개발하였습니다. Input과 Form 컴포넌트가 함께 사용될 때, Form의 전체 구성은 대략 아래와 같습니다. 괄호는 Form 작동 로직에 있어 선택 요소입니다. 
 ```
 page
  └─ FormProvider
     | └─ form
     |     └─ (InputSection)
     |         └─ Input 
-    └─ Button
+    └─ SubmitButton
     └─ (ErrorMessage)
 ```
 ##### 구조 설명
@@ -20,11 +19,11 @@ page
 - form: form 전체의 구조.
 - InputSection : 디자인 시안 상에서 Input이 row 정렬 혹은 column 정렬인 경우가 있는데 각각에 사용하기 위한 일종의 wrapper. 정렬 방향을 props로 넘겨준다.
 - Input: 폼 내부에 데이터를 입력하기 위한 input 컴포넌트. 
-- Button: 폼에 데이터를 전송하기 위한 submit 타입의 버튼.
-- ErrorMessage: 폼의 유효성 결과에 따라 출력할 메세지.
+- SubmitButton: 폼에 데이터를 전송하기 위한 submit 타입의 버튼. Form 컴포넌트 폴더안에 존재합니다.
+- FormErrorMessage: 폼의 유효성 결과에 따라 출력할 메세지. Form 컴포넌트 폴더안에 존재합니다.
 
 <br/>
-##### 예시코드
+##### 예시코드 및 부가 설명
 
 ```typescript
   'use client';
@@ -52,13 +51,11 @@ page
           <InputSection label="날짜" direction="row">
             <Input {...method.register('date')} name={'date'} placeholder="날짜 입력칸" type="date"></Input>
           </InputSection>
-          <InputSection label="시간" direction="row">
-            <Input {...method.register('time')} name={'time'} placeholder="시간 입력칸"></Input>
+          <InputSection label="에러 안보이게" direction="row">
+            <Input {...method.register('somename')} name={'somename'} showError={false} placeholder="에러메세지없는 예제"></Input>
           </InputSection>
-          <Button type="submit" disabled={!method.formState.isDirty}>
-            제출하기
-          </Button>
-          <ErrorMessage />
+          <SubmitButton />
+          <FormErrorMessage />
         </form>
       </FormProvider>
     </div>
@@ -66,12 +63,16 @@ page
   }
 
 ```
+- Input 컴포넌트를 사용하기 위해선 useForm과 FormProvider가 필수로 존재해야 합니다.
+
+
 <br/>
 
 ##### InputProps 설명
 -	name: Input을 구분짓는 고유한 이름입니다. 한 폼안에는 오직 하나의 이름만이 존재해야 합니다.
 -	type: Input의 type입니다. 리턴받을 정보가 무엇인지에 따라 전달해 사용하면 됩니다. 기본값은 text이며 현재 "textArea" | "date" | "email" | "title"을 사용할 수 있습니다.
-- placeholder: Input창에 미리 보여줄 텍스트를 설정합니다. 
+- placeholder: Input창에 미리 보여줄 텍스트를 설정합니다.
+- showError: 유효성검사에서 해당 Input이 invalid 상태일 경우, error message의 표시 여부를 설정합니다. 기본값은 true입니다. 
 - {...register(`name`)}: Form에 Input을 등록하기 위한 속성입니다. Form에 등록할 Input 컴포넌트의 `name`을 register의 인자로 전달해야 합니다.
 
 <br/>
@@ -96,7 +97,7 @@ zod는 zod 객체로 스키마를 만들어 resolver를 통해 Form에서의 유
 
 zod schema에서 작성한 제약들은 onSubmit에 처음 validation이 이루어지고, 그 이후는 onChange에서 변경사항에 대한 validation을 진행합니다. 
 
-모든 validation을 통과한 data만이 제출 가능합니다.
+모든 validation을 통과한 data만 제출 가능합니다.
 
 <br/>
 
@@ -104,7 +105,7 @@ zod schema에서 작성한 제약들은 onSubmit에 처음 validation이 이루�
 FormProvider에 input을 등록해야 zod의 유효성검사와 useForm 또는 useFormContext의 메소드를 사용할 수 있습니다. Input 컴포넌트에 spread로 register를 props로 넘겨야 합니다. 
 
 ##### InputSection 사용하기
-InputSection은 props로 option으로 label과 direction을 받습니다. 
+InputSection은 props로 option으로 label과 direction을 받습니다. direction의 기본값은 'column'입니다. 
 label은 해당 input의 데이터와 관련한 라벨을 표시합니다.
 - direction = 'row'인 InputSection
 
@@ -114,6 +115,7 @@ label은 해당 input의 데이터와 관련한 라벨을 표시합니다.
 <img width="741" alt="input-column" src="https://github.com/YAPP-Github/22nd-Web-Team-1-Web/assets/51940808/f10cbb63-5978-4473-8187-091d89bece36">
 
 ##### Input 사용하기
+- Input의 showError props에 boolean값을 넘겨줄 수 있습니다. 기본값은 true입니다. 디자인에 따라 false를 사용하면 됩니다. 
 - Input field의 상태에 따라 border가 변합니다. onFocus 상태엔 Primary를, invalid 상태엔 red500을 사용했습니다. 
 - 입력된 데이터를 clear button으로 삭제할 수 있습니다. 데이터와 유효성도 함께 삭제됩니다.
 
