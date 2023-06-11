@@ -19,7 +19,7 @@ const Test = () => {
 
 	return (
 		<div>
-			<Button onClick={() => openToast(<Toast message="참여 신청이 완료되었어요!" onClose={closeToast} />)}>
+			<Button onClick={() => openToast(<Toast type="success" message="참여 신청이 완료되었어요!" onClose={closeToast} />)}>
 				토스트 열기
 			</Button>
 		</div>
