@@ -64,17 +64,6 @@ page
 
 ```
 - Input 컴포넌트를 사용하기 위해선 useForm과 FormProvider가 필수로 존재해야 합니다.
-
-
-<br/>
-
-##### InputProps 설명
--	name: Input을 구분짓는 고유한 이름입니다. 한 폼안에는 오직 하나의 이름만이 존재해야 합니다.
--	type: Input의 type입니다. 리턴받을 정보가 무엇인지에 따라 전달해 사용하면 됩니다. 기본값은 text이며 현재 "textArea" | "date" | "email" | "title"을 사용할 수 있습니다.
-- placeholder: Input창에 미리 보여줄 텍스트를 설정합니다.
-- showError: 유효성검사에서 해당 Input이 invalid 상태일 경우, error message의 표시 여부를 설정합니다. 기본값은 true입니다. 
-- {...register(`name`)}: Form에 Input을 등록하기 위한 속성입니다. Form에 등록할 Input 컴포넌트의 `name`을 register의 인자로 전달해야 합니다.
-
 <br/>
 
 ##### FormProvider 사용하기
@@ -118,6 +107,31 @@ label은 해당 input의 데이터와 관련한 라벨을 표시합니다.
 - Input의 showError props에 boolean값을 넘겨줄 수 있습니다. 기본값은 true입니다. 디자인에 따라 false를 사용하면 됩니다. 
 - Input field의 상태에 따라 border가 변합니다. onFocus 상태엔 Primary를, invalid 상태엔 red500을 사용했습니다. 
 - 입력된 데이터를 clear button으로 삭제할 수 있습니다. 데이터와 유효성도 함께 삭제됩니다.
+
+<br/>
+
+##### InputProps 설명
+-	name: Input을 구분짓는 고유한 이름입니다. 한 폼안에는 오직 하나의 이름만이 존재해야 합니다.
+-	type: Input의 type입니다. 리턴받을 정보가 무엇인지에 따라 전달해 사용하면 됩니다. 기본값은 text이며 현재 "textArea" | "date" | "email" | "title"을 사용할 수 있습니다.
+- placeholder: Input창에 미리 보여줄 텍스트를 설정합니다.
+- showError: 유효성검사에서 해당 Input이 invalid 상태일 경우, error message의 표시 여부를 설정합니다. 기본값은 true입니다. 
+- {...register(`name`)}: Form에 Input을 등록하기 위한 속성입니다. Form에 등록할 Input 컴포넌트의 `name`을 register의 인자로 전달해야 합니다.
+
+<br/>
+
+##### InputDropdown 사용하기
+https://github.com/YAPP-Github/22nd-Web-Team-1-Web/assets/51940808/c1b9b6b2-4c1c-479f-ab4d-42d868e3eb5b
+
+- props로 selections 배열을 전달하여 드롭다운 디자인의 인풋 컴포넌트를 사용할 수 있습니다.
+- 아이템 선택에 따라 field value가 변합니다. 
+
+##### InputDropdown Props 설명
+-	name: Input을 구분짓는 고유한 이름입니다. 한 폼안에는 오직 하나의 이름만이 존재해야 합니다. name을 전달해야 form validation이 가능합니다.
+- placeholder: Input창에 미리 보여줄 텍스트를 설정합니다.
+- showError: 유효성검사에서 해당 Input이 invalid 상태일 경우, error message의 표시 여부를 설정합니다. 기본값은 true입니다. 
+- selections: string 배열로, Dropdown 아이템의 리스트입니다.
+<br/>
+
 
 ##### 스키마를 활용한 폼의 return data 예제
 <img width="478" alt="스크린샷 2023-06-10 오전 12 32 56" src="https://github.com/YAPP-Github/22nd-Web-Team-1-Web/assets/51940808/d1c7d143-2fd6-4479-91f5-cbfc112e312a">

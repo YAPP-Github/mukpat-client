@@ -109,6 +109,25 @@ export const inputBase = recipe({
 	},
 });
 
+export const inputSize = recipe({
+	variants: {
+		size: {
+			small: {
+				minWidth: '194px',
+			},
+			medium: {
+				minWidth: '400px',
+			},
+			large: {
+				minWidth: '505px',
+			},
+		},
+	},
+	defaultVariants: {
+		size: 'medium',
+	},
+});
+
 export const inputError = style({
 	border: `1px solid ${color.red500}`,
 });
@@ -124,6 +143,9 @@ globalStyle(`${textareaWrapper} > p`, {
 
 export type InputVariants = RecipeVariants<typeof inputBase>;
 export type Type = NonNullable<InputVariants>['type'];
+
+export type SizeVariants = RecipeVariants<typeof inputSize>;
+export type Size = NonNullable<SizeVariants>['size'];
 
 export type sectionVariants = RecipeVariants<typeof section>;
 export type Direction = NonNullable<sectionVariants>['direction'];
