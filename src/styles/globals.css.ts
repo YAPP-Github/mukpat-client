@@ -36,12 +36,6 @@ globalStyle('a', {
 	textDecoration: 'none',
 });
 
-globalStyle('input', {
-	backgroundColor: 'none',
-	outline: 'none',
-	appearance: 'none',
-});
-
 globalStyle('button', {
 	backgroundColor: 'transparent',
 	borderWidth: 0,
@@ -52,4 +46,10 @@ globalStyle('button', {
 	lineHeight: 'inherit',
 	padding: 0,
 	cursor: 'pointer',
+});
+
+globalStyle('input', {
+	backgroundColor: 'none',
+	outline: 'none',
+	appearance: 'none',
 });
