@@ -1,4 +1,4 @@
-import { IconType, getIconUrl, icons } from '@/utils/getIconUrl';
+import { IconType, getIconUrl, icons } from './getIconUrl';
 
 describe('getIconUrl Utils Test', () => {
 	test('적절한 icon url 반환', () => {
