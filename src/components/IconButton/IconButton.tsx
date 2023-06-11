@@ -1,9 +1,10 @@
 'use client';
+import cx from 'classnames';
 import React, { useState, useEffect, MouseEvent, ButtonHTMLAttributes } from 'react';
+import { getIconUrl, IconType } from '@/utils/getIconUrl';
 import { iconButton } from './IconButton.css';
 import Image, { ImageProps } from 'next/image';
-import { IconType, getIconUrl } from './utils/getIconUrl';
-import cx from 'classnames';
+
 type Image = Pick<ImageProps, 'width' | 'height'>;
 
 type IconButtonProps = {
