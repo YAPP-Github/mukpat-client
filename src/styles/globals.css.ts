@@ -1,9 +1,11 @@
 import { themeTokens } from './theme.css';
 import { globalStyle } from '@vanilla-extract/css';
 
-globalStyle(':root', {
-	maxWidth: '1100px',
-	borderRadius: '12px',
+// reference1 : https://codesandbox.io/s/calculator-fpg8b?file=/src/styles/reset.css.ts
+// reference2: https://www.joshwcomeau.com/css/custom-css-reset/
+
+globalStyle('*, *:before, *:after', {
+	boxSizing: 'border-box',
 });
 
 globalStyle('html, body', {
