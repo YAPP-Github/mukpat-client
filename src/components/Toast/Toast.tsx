@@ -7,8 +7,6 @@ import { Typography } from '@/components';
 import { wrapper } from './Toast.css';
 import { getIconUrl } from '@/utils/getIconUrl';
 
-// TODO : type에 따라 다른 아이콘 구성하기 : warn, success
-
 interface Props extends HTMLAttributes<HTMLDivElement> {
 	/** 토스트 종류 */
 	type: 'success' | 'warn' | 'info';
