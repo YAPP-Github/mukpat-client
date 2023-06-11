@@ -5,13 +5,13 @@ import Image from 'next/image';
 import { HTMLAttributes, useEffect } from 'react';
 import { Typography } from '@/components';
 import { wrapper } from './Toast.css';
-import { getIconUrl } from '../IconButton/utils/getIconUrl';
+import { getIconUrl } from '@/utils/getIconUrl';
 
 // TODO : type에 따라 다른 아이콘 구성하기 : warn, success
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
 	/** 토스트 종류 */
-	type: 'success' | 'warn';
+	type: 'success' | 'warn' | 'info';
 	/** 토스트 메시지 */
 	message: string;
 	/** 토스트가 닫힐때 호출되는 함수 */
