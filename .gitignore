@@ -39,3 +39,6 @@ yarn-error.log*
 !.yarn/versions
 
 tsconfig.tsbuildinfo
+
+.env*
+.env*.local
