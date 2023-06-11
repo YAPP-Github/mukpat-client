@@ -95,7 +95,14 @@ FormProvider에 input을 등록해야 zod의 유효성검사와 useForm 또는 u
 
 ##### InputSection 사용하기
 InputSection은 props로 option으로 label과 direction을 받습니다. direction의 기본값은 'column'입니다. 
-label은 해당 input의 데이터와 관련한 라벨을 표시합니다.
+label은 해당 input의 데이터와 관련한 라벨을 표시합니다. 
+
+##### InputSection Props 설명
+- label?: 해당 Input field를 설명하기 위한 라벨입니다. 
+- direction?: 해당 Input field의 정렬 방향을 설정합니다. 'column'과 'row'가 있습니다.
+- required?: 해당 Input field가 필수 기입인지 아닌지 설정합니다. 기본값은 false입니다.
+- children: Input 컴포넌트 자식 노드를 ReactNode children으로 받습니다. 
+
 - direction = 'row'인 InputSection
 
 <img width="726" alt="input-row" src="https://github.com/YAPP-Github/22nd-Web-Team-1-Web/assets/51940808/1bab6c03-e63d-4e7d-9573-aa7053446c4a">
