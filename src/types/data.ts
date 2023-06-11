@@ -4,4 +4,10 @@ interface Post {
 	title: string;
 	body: string;
 }
-export { type Post };
+
+interface Profile {
+	userId: number;
+	nickName: string;
+}
+
+export { type Post, type Profile };

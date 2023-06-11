@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 import localFont from 'next/font/local';
+import { Header, Content } from '@/components';
 import Provider from '@/providers/react-query';
 
 const pretendardFont = localFont({
@@ -17,7 +18,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en" className={pretendardFont.className}>
 			<link rel="preload" type="image/svg+xml" as="image" href="/sprite.svg" />
 			<body>
-				<Provider>{children}</Provider>
+				<Provider>
+					<Header />
+					<Content>{children}</Content>
+				</Provider>
 			</body>
 		</html>
 	);
