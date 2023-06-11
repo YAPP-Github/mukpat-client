@@ -2,7 +2,7 @@ import { screen, render } from '@/tests/test-utils';
 import IconButton from './IconButton';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { getIconUrl } from './utils/getIconUrl';
+import { getIconUrl } from '@/utils/getIconUrl';
 
 describe('IconButton Components Test', () => {
 	test('아이콘 렌더링', () => {
