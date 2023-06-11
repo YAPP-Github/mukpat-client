@@ -15,3 +15,5 @@ export { default as IconButton } from './IconButton/IconButton';
 export { default as SvgIcon } from './SvgIcon/SvgIcon';
 
 export { default as SegmentedControl } from './SegmentedControl/SegmentedControl';
+
+export { default as DateInput } from './DateInput/DateInput';
