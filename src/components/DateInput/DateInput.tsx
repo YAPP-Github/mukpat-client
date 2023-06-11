@@ -15,9 +15,10 @@ interface Props extends Omit<DayPickerSingleProps, 'mode' | 'selected' | 'onSele
 	selected: Date | undefined;
 	onSelect: (date: Date | undefined) => void;
 	placeholder?: string;
+	isError?: boolean;
 }
 
-const DateInput = ({ mode = 'single', selected, onSelect, placeholder = '날짜 선택', ...rest }: Props) => {
+const DateInput = ({ mode = 'single', selected, onSelect, placeholder = '날짜 선택', isError, ...rest }: Props) => {
 	const menuRef = useRef<DropdownMenuHandle>(null);
 
 	const handleSelectDate: SelectSingleEventHandler = (date) => {
@@ -27,7 +28,9 @@ const DateInput = ({ mode = 'single', selected, onSelect, placeholder = '날짜 
 
 	return (
 		<Dropdown>
-			<DropdownButton placeholder={placeholder}>{selected ? selectedDateCaption(selected) : null}</DropdownButton>
+			<DropdownButton placeholder={placeholder} isError={isError}>
+				{selected ? selectedDateCaption(selected) : null}
+			</DropdownButton>
 			<DropdownMenu ref={menuRef} className={menu} placement="bottomRight">
 				<DayPicker
 					{...rest}

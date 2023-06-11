@@ -1,7 +1,8 @@
 'use client';
 
+import cx from 'classnames';
 import { ButtonHTMLAttributes } from 'react';
-import { button, buttonText } from './Dropdown.css';
+import { buttonBase, buttonVariant, buttonText } from './Dropdown.css';
 import CaretDownIcon from './Icons/CaretDownIcon';
 import DropdownToggle from './DropdownToggle';
 
@@ -11,11 +12,12 @@ import DropdownToggle from './DropdownToggle';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 	placeholder?: string;
+	isError?: boolean;
 }
 
-const DropdownButton = ({ children, placeholder = '선택', onClick, ...rest }: Props) => {
+const DropdownButton = ({ children, placeholder = '선택', onClick, isError, ...rest }: Props) => {
 	return (
-		<DropdownToggle className={button} onClick={onClick} {...rest}>
+		<DropdownToggle className={cx(buttonBase, buttonVariant({ isError }))} onClick={onClick} {...rest}>
 			<span className={buttonText}>{children ?? placeholder}</span>
 			<span aria-hidden={true}>
 				<CaretDownIcon size={24} />
