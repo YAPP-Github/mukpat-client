@@ -1,3 +1,9 @@
+interface ApiResponse {
+	status: number;
+	message?: string;
+	result?: unknown;
+}
+
 interface Post {
 	userId: number;
 	id: number;
@@ -10,4 +16,4 @@ interface Profile {
 	nickName: string;
 }
 
-export { type Post, type Profile };
+export { type ApiResponse, type Post, type Profile };
