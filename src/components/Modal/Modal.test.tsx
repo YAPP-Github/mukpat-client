@@ -1,58 +1,62 @@
 import { screen, render } from '@/tests/test-utils';
-import { Modal } from '@/components';
+import { Modal, ModalContent, ModalFooter, ModalHeader, Button } from '@/components';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 
 describe('Modal Components Test', () => {
-	test('isModalOpen 가 true일때 정상적으로 render', () => {
-		render(
-			<Modal
-				size="small"
-				isModalOpen={true}
-				setIsModalOpen={() => {
-					vi.fn();
-				}}
-			>
-				Modal
+	test('Modal 전체 정상 동작 확인', async () => {
+		const closeModal = vi.fn();
+
+		const { container } = render(
+			<Modal onClose={closeModal} size="small">
+				<ModalHeader type="info" title="참여신청안내" />
+				<ModalContent size="small">이것은 description입니다 </ModalContent>
+				<ModalFooter type="single">
+					<Button size="small">Button</Button>
+				</ModalFooter>
 			</Modal>,
 		);
+		expect(container).toBeInTheDocument();
+		expect(screen.getByText('참여신청안내')).toBeInTheDocument();
+		expect(screen.getByText('이것은 description입니다')).toBeInTheDocument();
 
-		const modalContent = screen.getByText('Modal');
-		expect(modalContent).toBeInTheDocument();
+		const button = screen.getByText('Button');
+		expect(button).toBeInTheDocument();
 	});
 
-	test('isModalOpen 가 false일때 render되지 않음', () => {
+	test('ModalFooter에서 single일때 버튼컴포넌트 1개 노출', () => {
 		render(
-			<Modal
-				size="small"
-				isModalOpen={false}
-				setIsModalOpen={() => {
-					vi.fn();
-				}}
-			>
-				Modal
-			</Modal>,
+			<ModalFooter type="single">
+				<Button size="small">Single Button</Button>
+			</ModalFooter>,
 		);
+		const button = screen.getByText('Single Button');
+		expect(button).toBeInTheDocument();
 
-		const modalContent = screen.queryByRole('Modal');
-		expect(modalContent).not.toBeInTheDocument();
+		const buttons = screen.queryAllByText('Single Button');
+		expect(buttons.length).toBe(1);
 	});
-
-	test('모달 외부 영역 클릭시 setIsModalOpen 호출', async () => {
-		const setIsModalOpenMock = vi.fn();
+	test('ModalFooter에서 vertical 버튼 2개 노출', () => {
+		render(
+			<ModalFooter type="vertical">
+				<Button size="small">Button 1</Button>
+				<Button size="small">Button 2</Button>
+			</ModalFooter>,
+		);
+		const buttons = screen.getAllByText(/Button/);
+		expect(buttons.length).toBe(2);
+	});
+	test('Modal의 외부 영역 클릭시 Modal오버레이가 닫힌다.', async () => {
+		const onClose = vi.fn();
 		render(
 			<div>
-				<div data-testid="outside-element">Outside Element</div>
-				<Modal size="small" isModalOpen={true} setIsModalOpen={setIsModalOpenMock}>
-					Modal
+				<Modal onClose={onClose}>
+					<div>Modal Content</div>
 				</Modal>
 			</div>,
 		);
-
-		const outsideElement = screen.getByTestId('outside-element');
-		await userEvent.click(outsideElement);
-		const modalContent = screen.queryByRole('Modal');
-		expect(modalContent).not.toBeInTheDocument();
-		expect(setIsModalOpenMock).toHaveBeenCalledWith(false);
+		expect(screen.getByText('Modal Content')).toBeInTheDocument();
+		await userEvent.click(screen.getByTestId('outside'));
+		expect(onClose).toHaveBeenCalledTimes(1);
 	});
 });

@@ -18,7 +18,7 @@ const Modal = ({ size, onClose, className, children, ...rest }: ModalProps) => {
 
 	return (
 		<>
-			<div className={cx(backgroundWrapper)}></div>
+			<div className={cx(backgroundWrapper)} data-testid="outside"></div>
 			<div className={cx(modalWrapper({ size }), className)} ref={ref} {...rest}>
 				{children}
 			</div>
