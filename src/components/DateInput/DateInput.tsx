@@ -11,14 +11,27 @@ import { selectedDateCaption } from './utils/caption';
 import { menu, calendar } from './DateInput.css';
 
 interface Props extends Omit<DayPickerSingleProps, 'mode' | 'selected' | 'onSelect'> {
+	/** 선택 모드 */
 	mode?: DayPickerSingleProps['mode'];
+	/** 선택된 날짜 상태값 */
 	selected: Date | undefined;
+	/** 선택 날짜 변경 함수 */
 	onSelect: (date: Date | undefined) => void;
+	/** 선택된 날짜가 없을때 기본적으로 표시할 텍스트 */
 	placeholder?: string;
+	/** 에러 상태 여부 */
 	isError?: boolean;
 }
 
-const DateInput = ({ mode = 'single', selected, onSelect, placeholder = '날짜 선택', isError, ...rest }: Props) => {
+const DateInput = ({
+	mode = 'single',
+	selected,
+	onSelect,
+	placeholder = '날짜 선택',
+	isError,
+	className,
+	...rest
+}: Props) => {
 	const menuRef = useRef<DropdownMenuHandle>(null);
 
 	const handleSelectDate: SelectSingleEventHandler = (date) => {
@@ -27,7 +40,7 @@ const DateInput = ({ mode = 'single', selected, onSelect, placeholder = '날짜 
 	};
 
 	return (
-		<Dropdown>
+		<Dropdown className={className}>
 			<DropdownButton placeholder={placeholder} isError={isError}>
 				{selected ? selectedDateCaption(selected) : null}
 			</DropdownButton>

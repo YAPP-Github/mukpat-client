@@ -27,3 +27,4 @@ export default Datepick;
 - `selected` : 선택된 날짜 상태값
 - `onSelect` : 날짜 선택 시 상태값을 변경하는 함수
 - `placeholder?` : 선택된 날짜가 없을 때 보여줄 placeholder 문자열
+- `isError?` : 날짜 선택에 대한 에러 여부 표시 
