@@ -17,6 +17,7 @@ interface Props {
 
 const LoginActions = ({ profile }: Props) => {
 	const { userId, nickName } = profile;
+
 	return (
 		<>
 			<Button color="explain" size="micro">
