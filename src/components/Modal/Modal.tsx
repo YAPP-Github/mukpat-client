@@ -2,32 +2,27 @@
 import { HTMLAttributes } from 'react';
 import cx from 'classnames';
 import { type Size, modalWrapper, backgroundWrapper } from './Modal.css';
-import { useClickOutside, useBooleanState } from '@/hooks';
+import { useClickOutside } from '@/hooks';
 
 type ModalProps = {
 	size?: Size;
-	isModalOpen: boolean;
-	setIsModalOpen: (value: boolean) => void;
+	onClose: () => void;
 } & HTMLAttributes<HTMLDivElement>;
 
-const Modal = ({ size, isModalOpen, setIsModalOpen, className, children, ...rest }: ModalProps) => {
-	const [isOpen, , closeModal] = useBooleanState(isModalOpen);
-
+const Modal = ({ size, onClose, className, children, ...rest }: ModalProps) => {
 	const ref = useClickOutside<HTMLDivElement>({
 		onClickOutside: () => {
-			setIsModalOpen(false);
-			closeModal();
+			onClose();
 		},
 	});
 
-	if (!isOpen) return null;
-
 	return (
-		<div className={cx(backgroundWrapper)}>
+		<>
+			<div className={cx(backgroundWrapper)}></div>
 			<div className={cx(modalWrapper({ size }), className)} ref={ref} {...rest}>
 				{children}
 			</div>
-		</div>
+		</>
 	);
 };
 
