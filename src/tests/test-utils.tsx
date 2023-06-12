@@ -2,7 +2,7 @@
 // reference : https://testing-library.com/docs/react-testing-library/setup/
 import { ReactElement, ReactNode, Suspense } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
-import QueryProvider from '@/providers/react-query';
+import { QueryProvider } from '@/providers';
 
 export const AllProviders = ({ children }: { children: ReactNode }) => {
 	return (
