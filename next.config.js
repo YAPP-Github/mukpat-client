@@ -8,6 +8,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  // 프록시 설정
   async rewrites(){
     const API_ENDPOINT = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL;
     
@@ -15,7 +16,7 @@ const nextConfig = {
       return [
         {
           source: '/api/:path*',
-          destination: `${API_ENDPOINT}/api/:path*`, 
+          destination: `${API_ENDPOINT}/:path*`, 
         }
       ]
     }

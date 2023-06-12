@@ -7,6 +7,9 @@ const processResponse: AfterResponseHook = async (request, options, response) =>
 	if (!response.ok) {
 		// 추가적인 에러 대응 정책 필요
 		const errorBody: ApiResponse = await response.json();
+		if (errorBody.status === 404) {
+			throw new Error('Not Found');
+		}
 		throw new Error(errorBody.message);
 	}
 
