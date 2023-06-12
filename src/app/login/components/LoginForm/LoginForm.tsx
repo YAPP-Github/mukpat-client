@@ -3,6 +3,7 @@
 import { FormEvent } from 'react';
 import { Button, Typography } from '@/components';
 import useLoginForm from '@/app/login/hooks/useLoginForm';
+import { useRouter } from 'next/navigation';
 
 interface LoginFormData {
 	email: { value: string };
@@ -11,7 +12,8 @@ interface LoginFormData {
 
 /** api 테스트를 위한 임시 form입니다 */
 const LoginForm = () => {
-	const { handleLogin, error } = useLoginForm();
+	const router = useRouter();
+	const { handleLogin, error } = useLoginForm(() => router.push('/'));
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
