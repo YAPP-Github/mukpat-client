@@ -17,3 +17,5 @@ export { default as SegmentedControl } from './SegmentedControl/SegmentedControl
 export { default as Logo } from './Logo/Logo';
 
 export { default as Content } from './Content/Content';
+
+export { default as Toast } from './Toast/Toast';
