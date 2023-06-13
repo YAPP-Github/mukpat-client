@@ -17,13 +17,7 @@ const useLoginForm = (onSuccess: () => void) => {
 				onSuccess();
 			} catch (error) {
 				// https://kentcdodds.com/blog/get-a-catch-block-error-message-with-typescript
-				let message = '';
-				if (error instanceof Error) {
-					message = error.message;
-				} else {
-					message = '알 수 없는 에러입니다.';
-				}
-				setError(new Error(message));
+				setError(error instanceof Error ? error : new Error('알 수 없는 에러입니다.'));
 			}
 		},
 		[onSuccess],
