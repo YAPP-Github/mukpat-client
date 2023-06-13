@@ -1,11 +1,10 @@
 import { AfterResponseHook } from 'ky';
 import { ResponseData } from '@/types/data';
 
-// response 에서 필요한 데이터(result)만 추출
+/** response 에서 필요한 데이터 추출 및 에러 전처리 */
 const processResponse: AfterResponseHook = async (request, options, response) => {
+	// Empty response
 	if (response.status === 204) {
-		// Empty response
-		// https://github.com/vercel/next.js/pull/48354
 		return new Response(undefined, { status: 204 });
 	}
 

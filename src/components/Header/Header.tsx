@@ -16,7 +16,7 @@ const fetchProfile = async () => {
 };
 
 interface Props {
-	// 헤더의 action buttons가 필요한지의 여부
+	/** 헤더의 action buttons가 필요한지의 여부 */
 	actionRequired?: boolean;
 }
 

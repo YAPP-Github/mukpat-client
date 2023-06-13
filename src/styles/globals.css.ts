@@ -2,7 +2,7 @@ import { themeTokens } from './theme.css';
 import { globalStyle } from '@vanilla-extract/css';
 
 // reference1 : https://codesandbox.io/s/calculator-fpg8b?file=/src/styles/reset.css.ts
-// reference2: https://www.joshwcomeau.com/css/custom-css-reset/
+// reference2 : https://www.joshwcomeau.com/css/custom-css-reset/
 
 globalStyle('*, *:before, *:after', {
 	boxSizing: 'border-box',
