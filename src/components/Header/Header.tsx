@@ -11,8 +11,8 @@ const fetchProfile = async () => {
 		.get('v1/users/profile', {
 			credentials: 'include',
 		})
-		.json<Profile | null>();
-	return profile ?? undefined;
+		.json<Profile | undefined>();
+	return profile;
 };
 
 interface Props {
