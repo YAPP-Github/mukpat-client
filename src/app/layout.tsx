@@ -1,7 +1,5 @@
 import '@/styles/globals.css';
 import localFont from 'next/font/local';
-// import { Content } from '@/components';
-// import { Header } from '@/components/server';
 import Provider from '@/providers/react-query';
 
 const pretendardFont = localFont({

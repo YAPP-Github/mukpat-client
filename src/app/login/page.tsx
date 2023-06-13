@@ -5,7 +5,7 @@ import { LoginForm } from '@/app/login/components';
 const login = () => {
 	return (
 		<>
-			<Header noAction={false} />
+			<Header actionRequired={false} />
 			<Content>
 				<div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 					<Typography variant="heading2" as="h1">

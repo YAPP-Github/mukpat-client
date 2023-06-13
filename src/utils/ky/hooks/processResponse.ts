@@ -15,7 +15,7 @@ const processResponse: AfterResponseHook = async (request, options, response) =>
 
 	if (response.status === 204) {
 		// https://github.com/vercel/next.js/pull/48354
-		return new Response('', { status: 200 });
+		return new Response(null, { status: 200 });
 	}
 
 	const body: ApiResponse = await response.json();
