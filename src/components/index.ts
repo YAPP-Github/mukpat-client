@@ -17,3 +17,5 @@ export { default as SvgIcon } from './SvgIcon/SvgIcon';
 export { default as SegmentedControl } from './SegmentedControl/SegmentedControl';
 
 export * from './Input';
+
+export { default as Toast } from './Toast/Toast';

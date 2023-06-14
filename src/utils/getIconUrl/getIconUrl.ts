@@ -16,6 +16,7 @@ export const icons = {
 	pin: '/icons/pin/',
 	search: '/icons/search/',
 	clear: '/icons/clear/',
+	toast: '/icons/toast/',
 };
 export const getIconUrl = (iconType: IconType, status: string): string => {
 	const iconMapping = icons[iconType];
