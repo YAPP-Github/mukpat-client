@@ -7,10 +7,9 @@ type sectionProps = { required?: boolean; label?: string; direction?: Direction;
 
 const InputSection = ({ required, children, label, direction }: sectionProps) => {
 	const variant = direction === 'column' ? 'title3' : 'label3';
-	const color = direction === 'column' ? 'secondary' : 'sub';
 	return (
 		<div className={clsx(section({ direction }))}>
-			<Typography required={required} variant={variant} color={color} as="label">
+			<Typography required={required} variant={variant} color="secondary" as="label">
 				{label}
 			</Typography>
 			{children}

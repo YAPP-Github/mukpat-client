@@ -9,7 +9,7 @@ type ClearProps = {
 	name: string;
 };
 
-const ClearButton = (props: ClearProps) => {
+const InputClearButton = (props: ClearProps) => {
 	const { name } = props;
 	const { formState, resetField } = useFormContext();
 	const handleReset = useCallback(() => resetField(name, { defaultValue: '', keepDirty: false }), []);
@@ -27,4 +27,4 @@ const ClearButton = (props: ClearProps) => {
 	);
 };
 
-export default ClearButton;
+export default InputClearButton;
