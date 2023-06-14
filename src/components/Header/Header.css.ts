@@ -3,7 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { themeTokens } from '@/styles/theme.css';
 import { calc } from '@vanilla-extract/css-utils';
 
-const { space, color } = themeTokens;
+const { space, color, zIndices } = themeTokens;
 
 export const wrapper = recipe({
 	base: {
@@ -15,6 +15,7 @@ export const wrapper = recipe({
 		alignItems: 'center',
 		width: '100%',
 		height: 'max-content',
+		zIndex: zIndices.docked,
 	},
 	variants: {
 		scrolled: {
