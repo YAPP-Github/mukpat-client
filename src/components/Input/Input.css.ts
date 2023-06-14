@@ -23,13 +23,12 @@ export const section = recipe({
 		direction: {
 			column: {
 				display: 'grid',
-				gridAutoFlow: 'row',
 				justifyContent: 'flex-start',
 				gap: space.sm,
 			},
 			row: {
 				display: 'grid',
-				gridAutoFlow: 'column',
+				gridTemplateColumns: '1fr 3fr',
 				justifyContent: 'space-between',
 				alignItems: 'center',
 			},
@@ -44,7 +43,6 @@ export const inputWrapper = style({
 	width: 'inherit',
 	position: 'relative',
 	display: 'grid',
-	gridAutoFlow: 'column',
 	alignItems: 'center',
 });
 
@@ -58,7 +56,7 @@ export const textareaWrapper = style({
 export const inputBase = recipe({
 	base: {
 		fontFamily: 'Pretendard Variable, Pretendard, -apple-system',
-		minWidth: '400px',
+		minWidth: '100%',
 		height: '56px',
 		fontSize: fontSize.md,
 		padding: space.lg,
@@ -79,27 +77,10 @@ export const inputBase = recipe({
 	variants: {
 		type: {
 			textArea: {
-				display: 'flex',
-				flexDirection: 'column',
 				alignItems: 'flex-start',
 				padding: '16px',
 				gap: '8px',
-				width: '674px',
 				height: '299px',
-			},
-			date: {
-				selectors: {
-					'&::-webkit-calendar-picker-indicator': {
-						cursor: 'pointer',
-						width: '24px',
-						marginBottom: space.sm,
-						backgroundImage: `url('/icons/caretdown/default.svg')`,
-						backgroundSize: 'cover',
-					},
-				},
-			},
-			email: {
-				width: '194px',
 			},
 			title: {
 				fontSize: fontSize.xl,
