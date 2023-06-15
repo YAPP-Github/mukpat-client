@@ -5,9 +5,13 @@ import { type Variant, checkButton, checkBox, checkBoxText } from './CheckBox.cs
 import { getIconId } from './utils';
 
 interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+	/** 체크 박스와 텍스트만 있는 형태(default) 혹은 배경색이 채워져 있는 형태(filled)를 선택할 수 있습니다. */
 	variant?: Variant;
+	/** 에러 상태값을 넘겨줍니다. */
 	error?: boolean;
+	/** 체크 여부 상태값 입니다. */
 	checked: boolean;
+	/** 체크 여부 상태값을 변화시키는 함수입니다. */
 	onChange: (checked: boolean) => void;
 }
 
