@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { clientRequest } from '@/utils/ky/clientRequest';
+import { request } from '@/utils/ky/request';
 
 const useLoginForm = (onSuccess: () => void) => {
 	const [error, setError] = useState<Error | null>(null);
@@ -7,7 +7,7 @@ const useLoginForm = (onSuccess: () => void) => {
 	const handleLogin = useCallback(
 		async (email: string, password: string) => {
 			try {
-				await clientRequest.post('v1/users/login', {
+				await request.post('v1/users/login', {
 					json: {
 						email,
 						password,

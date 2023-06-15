@@ -7,8 +7,8 @@ let profileData: Profile | null = { userId: 1, nickName: 'nickName2' };
 
 describe('Header 컴포넌트 테스트', () => {
 	beforeAll(() => {
-		vi.mock('@/utils/ky/serverRequest', () => ({
-			serverRequest: {
+		vi.mock('@/utils/ky/request', () => ({
+			request: {
 				get: () => ({
 					json: () => profileData,
 				}),

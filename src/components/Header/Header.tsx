@@ -1,5 +1,5 @@
 import { Logo } from '@/components';
-import { serverRequest } from '@/utils/ky/serverRequest';
+import { request } from '@/utils/ky/request';
 import { Profile } from '@/types/data';
 import { actions } from './Header.css';
 import HeaderWrapper from './HeaderWrapper';
@@ -7,12 +7,7 @@ import LoginActions from './LoginActions';
 import UnloginActions from './UnloginActions';
 
 const fetchProfile = async () => {
-	const profile = await serverRequest
-		.get('v1/users/profile', {
-			credentials: 'include',
-		})
-		.json<Profile | undefined>();
-	return profile;
+	return await request.get('v1/users/profile').json<Profile | undefined>();
 };
 
 interface Props {
