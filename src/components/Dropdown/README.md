@@ -33,6 +33,23 @@ const selections = [
 </Dropdown>
 ```
 
+또한, 클라이언트 컴포넌트 내부에선 컴파운드 컴포넌트 형태로 사용할 수 있습니다.
+
+```tsx
+'use client';
+
+import {Dropdown} from '@/components';
+
+
+<Dropdown>
+	<Dropdown.Toggle>Dropdown</Dropdown.Toggle>
+	<Dropdown.Menu>
+		<Dropdown.Item itemKey="1">Dropdown Item</Dropdown.Item>
+	</Dropdown.Menu>
+</Dropdown>
+```
+
+
 ### Controllable 한 형태로 사용하기
 
 선택 기능과 함께 state로 controllable 한 형태로 사용할 수 있습니다. 
@@ -40,19 +57,21 @@ const selections = [
 state의 타입은 `<string | null>` 가 요구 됩니다.
 
 ```tsx
+'use client';
+
 const Test = () => {
 	const [selection, setSelection] = useState<string | null>(null);
 
 	return (
 		<Dropdown>
-			<DropdownButton placeholder="프론트엔드">{selection}</DropdownButton>
-			<DropdownMenu selectable selectedItemKey={selection} onSelectChange={setSelection}>
+			<Dropdown.Button placeholder="프론트엔드">{selection}</Dropdown.Button>
+			<Dropdown.Menu selectable selectedItemKey={selection} onSelectChange={setSelection}>
 				{selections.map((v) => (
-					<DropdownItem key={v} itemKey={v}>
+					<Dropdown.Item key={v} itemKey={v}>
 						{v}
-					</DropdownItem>
+					</Dropdown.Item>
 				))}
-			</DropdownMenu>
+			</Dropdown.Menu>
 		</Dropdown>
 	);
 };
