@@ -26,7 +26,7 @@ export { default as Toast } from './Toast/Toast';
 
 export { default as CheckBox } from './CheckBox/CheckBox';
 
-export { default as Modal, ModalContent, ModalFooter, ModalHeader } from './Modal';
+export * from './Modal';
 
 export { default as Map } from './Map/Map';
 
