@@ -7,6 +7,7 @@ import { inputWrapper, inputBase, Type, inputError } from './Input.css';
 
 import InputErrorMessage from './InputErrorMessage';
 import ClearButton from './InputClearButton';
+import SvgIcon from '../SvgIcon/SvgIcon';
 
 /**
  * @property {string} name - Input을 구분짓는 고유한 이름입니다. 한 폼안에는 오직 하나의 이름만이 존재해야 합니다.
@@ -16,34 +17,37 @@ import ClearButton from './InputClearButton';
  */
 
 type InputProps = {
-	name: string;
-	type?: Type;
-	showError?: boolean;
+  name: string;
+  type?: Type;
+  showError?: boolean;
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTMLInputElement>) {
-	const { type, name, placeholder, showError, ...rest } = props;
-	const { formState } = useFormContext();
+  const { type, name, placeholder, showError, ...rest } = props;
+  const { formState } = useFormContext();
 
-	const errorMessage = formState.errors[name]?.message as string;
+  const errorMessage = formState.errors[name]?.message as string;
 
-	return (
-		<div style={{ width: 'inherit', gridAutoFlow: 'column' }}>
-			<div className={inputWrapper} aria-describedby={`${name}-input-wrapper`} id={`${name}_input`}>
-				<input
-					name={name}
-					className={clsx(inputBase({ type }), errorMessage && inputError)}
-					placeholder={placeholder}
-					ref={ref}
-					type={type}
-					aria-describedby={`${name}-input-field`}
-					{...rest}
-				></input>
-				<ClearButton name={name} />
-			</div>
-			<InputErrorMessage name={name} showError={showError} />
-		</div>
-	);
+  return (
+    <div style={{ width: 'inherit', gridAutoFlow: 'column' }}>
+      <div className={inputWrapper} aria-describedby={`${name}-input-wrapper`} id={`${name}_input`}>
+        {type === 'search' && (
+          <SvgIcon style={{ height: '100%', left: '12px', position: 'absolute', top: 0 }} id={'search'} />
+        )}
+        <input
+          name={name}
+          className={clsx(inputBase({ type }), errorMessage && inputError)}
+          placeholder={placeholder}
+          ref={ref}
+          type={type}
+          aria-describedby={`${name}-input-field`}
+          {...rest}
+        ></input>
+        <ClearButton name={name} />
+      </div>
+      <InputErrorMessage name={name} showError={showError} />
+    </div>
+  );
 });
 
 export default Input;
