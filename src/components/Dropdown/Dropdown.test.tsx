@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { render, screen } from '@/tests/test-utils';
+import { useState, useRef, forwardRef } from 'react';
+import { render, renderHook, screen, act } from '@/tests/test-utils';
 import Dropdown from './Dropdown';
-import DropdownMenu from './DropdownMenu';
+import DropdownMenu, { DropdownMenuHandle } from './DropdownMenu';
 import DropdownItem from './DropdownItem';
 import DropdownButton from './DropdownButton';
 import userEvent from '@testing-library/user-event';
@@ -20,7 +20,13 @@ const selections = [
 	'vanilla-extract8',
 ];
 
-const DropdownComponent = ({ disabled = false, selectable = false }: { disabled?: boolean; selectable?: boolean }) => {
+const DropdownComponent = forwardRef<
+	DropdownMenuHandle,
+	{
+		disabled?: boolean;
+		selectable?: boolean;
+	}
+>(({ disabled = false, selectable = false }, ref) => {
 	const [selection, setSelection] = useState<string | null>(null);
 
 	return (
@@ -29,7 +35,7 @@ const DropdownComponent = ({ disabled = false, selectable = false }: { disabled?
 				<DropdownButton placeholder="Dropdown 버튼" disabled={disabled}>
 					{selection}
 				</DropdownButton>
-				<DropdownMenu selectable={selectable} selectedItemKey={selection} onSelectChange={setSelection}>
+				<DropdownMenu selectable={selectable} selectedItemKey={selection} onSelectChange={setSelection} ref={ref}>
 					{selections.map((v) => (
 						<DropdownItem key={v} itemKey={v}>
 							{v}
@@ -40,11 +46,16 @@ const DropdownComponent = ({ disabled = false, selectable = false }: { disabled?
 			<button data-testid="outer-button">버튼</button>
 		</div>
 	);
-};
+});
+
+DropdownComponent.displayName = 'DropdownComponent';
 
 describe('Dropdown 컴포넌트 테스트', () => {
-	test('Dropdown 버튼 클릭시 DropdownMenu와 Item들을 볼 수 있다.', async () => {
-		render(<DropdownComponent />);
+	test('Dropdown 기본 동작 테스트', async () => {
+		const { result } = renderHook(() => useRef<DropdownMenuHandle>(null));
+
+		// Dropdown 버튼 클릭시 DropdownMenu와 Item들을 볼 수 있다.
+		render(<DropdownComponent ref={result.current} />);
 		const button = screen.getByRole('button', { name: 'Dropdown 버튼' });
 		await userEvent.click(button);
 
@@ -53,28 +64,20 @@ describe('Dropdown 컴포넌트 테스트', () => {
 
 		const menuItem = screen.getAllByRole('menuitemradio');
 		expect(menuItem).toHaveLength(selections.length);
-	});
 
-	test('Dropdown의 외부 영역을 클릭하면 DropdownMenu가 닫힌다.', async () => {
-		render(<DropdownComponent />);
-		const button = screen.getByRole('button', { name: 'Dropdown 버튼' });
+		// Dropdown의 외부 영역을 클릭하면 DropdownMenu가 닫힌다.
 		await userEvent.click(button);
-
-		const menu = screen.getByRole('menu');
-		expect(menu).toBeInTheDocument();
-
 		const outerButton = screen.getByTestId('outer-button');
 		await userEvent.click(outerButton);
 		expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-	});
 
-	test('Dropdown Item이 클릭되면 DropdownMenu는 닫힌다.', async () => {
-		render(<DropdownComponent />);
-		const button = screen.getByRole('button', { name: 'Dropdown 버튼' });
+		// 'Dropdown Item이 클릭되면 DropdownMenu는 닫힌다.
 		await userEvent.click(button);
+		await userEvent.click(menuItem[0]);
+		expect(screen.queryByRole('menu')).not.toBeInTheDocument();
 
-		const menuItem = screen.getAllByRole('menuitemradio')[0];
-		await userEvent.click(menuItem);
+		// ref를 전달하고 ref.close를 호출하면 DropdownMenu를 닫을 수 있다
+		act(() => result.current?.current?.close());
 		expect(screen.queryByRole('menu')).not.toBeInTheDocument();
 	});
 

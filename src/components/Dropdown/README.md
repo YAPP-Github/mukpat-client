@@ -136,6 +136,8 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from '@/componen
 
 `placeholder?: string` : 선택된 요소가 없을때 버튼에 기본적으로 표시할 텍스트를 명시합니다. 명시하지 않으면 선택되지 않은경우 `선택` 이라는 텍스트를 표시합니다.
 
+`isError?: boolean` : 에러 상태 여부를 넘겨줍니다. 에러인 경우 빨간테두리를 표시합니다.
+
 
 #### 예시
 
