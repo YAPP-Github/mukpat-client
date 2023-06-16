@@ -1,12 +1,11 @@
 'use client';
 
 import clsx from 'classnames';
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { inputWrapper, inputBase, Type, inputError } from './Input.css';
+import { inputWrapper, inputBase, Type, inputError, clearButton } from './Input.css';
 
 import InputErrorMessage from './InputErrorMessage';
-import ClearButton from './InputClearButton';
 import SvgIcon from '../SvgIcon/SvgIcon';
 
 /**
@@ -24,8 +23,8 @@ type InputProps = {
 
 const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTMLInputElement>) {
   const { type, name, placeholder, showError, ...rest } = props;
-  const { formState } = useFormContext();
-
+  const { formState, resetField } = useFormContext();
+  const handleReset = useCallback(() => resetField(name, { defaultValue: '', keepDirty: false }), []);
   const errorMessage = formState.errors[name]?.message as string;
 
   return (
@@ -43,7 +42,15 @@ const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTM
           aria-describedby={`${name}-input-field`}
           {...rest}
         ></input>
-        <ClearButton name={name} />
+        <button
+          className={clearButton}
+          disabled={!formState.dirtyFields[name]}
+          onClick={handleReset}
+          aria-describedby={`clear-${name}-button`}
+          type="button"
+        >
+          <SvgIcon id="clear" width={24} height={24} />
+        </button>
       </div>
       <InputErrorMessage name={name} showError={showError} />
     </div>
