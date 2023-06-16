@@ -14,6 +14,13 @@ describe('Header 컴포넌트 테스트', () => {
 				}),
 			},
 		}));
+		const IntersectionObserverMock = vi.fn(() => ({
+			disconnect: vi.fn(),
+			observe: vi.fn(),
+			takeRecords: vi.fn(),
+			unobserve: vi.fn(),
+		}));
+		vi.stubGlobal('IntersectionObserver', IntersectionObserverMock);
 	});
 	test('login 된 상태에서는 먹팟 버튼과 프로필이 보여야 한다.', async () => {
 		const header = await Header({});
