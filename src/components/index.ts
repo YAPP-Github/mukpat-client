@@ -19,3 +19,5 @@ export { default as SegmentedControl } from './SegmentedControl/SegmentedControl
 export * from './Input';
 
 export { default as Toast } from './Toast/Toast';
+
+export * from './Modal';
