@@ -9,24 +9,38 @@ export const wrapper = style({
 	position: 'relative',
 });
 
-export const button = style({
-	padding: space.lg,
+export const buttonBase = style({
+	height: '3.5rem',
 	display: 'flex',
 	justifyContent: 'space-between',
+	alignItems: 'center',
+	padding: `0 ${space.lg}`,
 	width: '100%',
 	backgroundColor: color.grey50,
 	borderRadius: borderRadius.xs,
-	border: 'none',
-	boxShadow: `0 0 0 1px ${color.grey100} inset`,
 	cursor: 'pointer',
+	border: `1px solid ${color.grey100}`,
 	color: color.sub,
+});
+
+export const buttonVariant = recipe({
+	variants: {
+		isError: {
+			true: {
+				borderColor: color.red500,
+			},
+		},
+	},
+	defaultVariants: {
+		isError: false,
+	},
 });
 
 export const buttonText = style({
 	...fontVariant.label2,
 	color: color.primary,
 	selectors: {
-		[`${button}:disabled  &`]: {
+		[`${buttonBase}:disabled  &`]: {
 			color: color.disable,
 		},
 	},
