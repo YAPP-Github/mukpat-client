@@ -18,6 +18,8 @@ export { default as SegmentedControl } from './SegmentedControl/SegmentedControl
 
 export * from './Input';
 
+export { default as DateInput } from './DateInput/DateInput';
+
 export { default as Toast } from './Toast/Toast';
 
 export * from './Modal';
