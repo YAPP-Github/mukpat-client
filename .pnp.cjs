@@ -45,6 +45,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:5.59.7"],\
             ["@typescript-eslint/parser", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:5.59.7"],\
             ["@vanilla-extract/css", "npm:1.11.0"],\
+            ["@vanilla-extract/css-utils", "npm:0.1.3"],\
             ["@vanilla-extract/next-plugin", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:2.1.2"],\
             ["@vanilla-extract/recipes", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:0.4.0"],\
             ["@vanilla-extract/vite-plugin", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:3.8.2"],\
@@ -3988,6 +3989,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["deepmerge", "npm:4.3.1"],\
             ["media-query-parser", "npm:2.0.2"],\
             ["outdent", "npm:0.8.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@vanilla-extract/css-utils", [\
+        ["npm:0.1.3", {\
+          "packageLocation": "./.yarn/cache/@vanilla-extract-css-utils-npm-0.1.3-5d3d0d7795-fa6c28d3f6.zip/node_modules/@vanilla-extract/css-utils/",\
+          "packageDependencies": [\
+            ["@vanilla-extract/css-utils", "npm:0.1.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -12566,6 +12576,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:5.59.7"],\
             ["@typescript-eslint/parser", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:5.59.7"],\
             ["@vanilla-extract/css", "npm:1.11.0"],\
+            ["@vanilla-extract/css-utils", "npm:0.1.3"],\
             ["@vanilla-extract/next-plugin", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:2.1.2"],\
             ["@vanilla-extract/recipes", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:0.4.0"],\
             ["@vanilla-extract/vite-plugin", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:3.8.2"],\
