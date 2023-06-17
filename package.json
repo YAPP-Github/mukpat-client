@@ -25,6 +25,8 @@
 	"packageManager": "yarn@3.6.0",
 	"dependencies": {
 		"@hookform/resolvers": "^3.1.0",
+		"@suspensive/react": "^1.11.1",
+		"@suspensive/react-query": "^1.11.1",
 		"@tanstack/react-query": "^4.29.7",
 		"@types/react": "^18.2.9",
 		"@vanilla-extract/css": "^1.11.0",
