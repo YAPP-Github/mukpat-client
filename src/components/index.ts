@@ -25,3 +25,5 @@ export { default as DateInput } from './DateInput/DateInput';
 export { default as Toast } from './Toast/Toast';
 
 export * from './Modal';
+
+export * from './Map';
