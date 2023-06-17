@@ -18,4 +18,10 @@ export { default as Logo } from './Logo/Logo';
 
 export { default as Content } from './Content/Content';
 
+export * from './Input';
+
+export { default as DateInput } from './DateInput/DateInput';
+
 export { default as Toast } from './Toast/Toast';
+
+export * from './Modal';

@@ -15,6 +15,7 @@ export const icons = {
 	chat: '/icons/chat/',
 	pin: '/icons/pin/',
 	search: '/icons/search/',
+	clear: '/icons/clear/',
 	toast: '/icons/toast/',
 };
 export const getIconUrl = (iconType: IconType, status: string): string => {
