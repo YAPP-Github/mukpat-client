@@ -1801,6 +1801,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@hookform/resolvers@npm:3.1.0"
+  peerDependencies:
+    react-hook-form: ^7.0.0
+  checksum: 8f6690e514e645dd2a38baf573e7a62a9555c95d6a27f84216be7b3ae4cdc1c09111d6f7a38250612e46aa9d562ccec63db9306ec179156381583b444bf552c2
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.8":
   version: 0.11.8
   resolution: "@humanwhocodes/config-array@npm:0.11.8"
@@ -2344,14 +2353,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.2.8":
-  version: 18.2.8
-  resolution: "@types/react@npm:18.2.8"
+"@types/react@npm:^18.2.9":
+  version: 18.2.9
+  resolution: "@types/react@npm:18.2.9"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 351fe2450d30bff2ceb6aa84788e948317555e5ea22cb44f6778e08c977aab1878a0119bd94bc3d1bec5f5af4a75ffaa2ce111df5cd9d4ce26bfd719e4d971c2
+  checksum: f155256171a2d701eb962a1d3aa2a1c9ee36d9dd4a4aecb911d29e50717aab1a76914aef25242665147c455b9e8d081d1a60275d13ca81075c148ebd6607414a
   languageName: node
   linkType: hard
 
@@ -9776,13 +9785,14 @@ __metadata:
     "@babel/preset-env": ^7.21.5
     "@babel/preset-react": ^7.18.6
     "@babel/preset-typescript": ^7.21.5
+    "@hookform/resolvers": ^3.1.0
     "@tanstack/react-query": ^4.29.7
     "@testing-library/dom": ^9.3.0
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": ^14.0.0
     "@testing-library/user-event": ^14.4.3
     "@types/node": ^20.1.5
-    "@types/react": ^18.2.8
+    "@types/react": ^18.2.9
     "@types/react-dom": ^18.2.4
     "@types/testing-library__jest-dom": ^5.14.6
     "@typescript-eslint/eslint-plugin": ^5.59.5
