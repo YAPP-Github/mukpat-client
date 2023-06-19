@@ -26,4 +26,4 @@ export { default as Toast } from './Toast/Toast';
 
 export * from './Modal';
 
-export * from './Map';
+export { default as Map } from './Map/Map';
