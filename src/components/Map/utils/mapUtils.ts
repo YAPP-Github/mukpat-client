@@ -32,8 +32,8 @@ export const creatGeocoder = () => {
 };
 export const getCurrentCoordinate = () => {
   return new Promise<LatLng>((resolve, reject) => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
+    if (window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
         const location = new window.kakao.maps.LatLng(latitude, longitude);
