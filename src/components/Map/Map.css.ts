@@ -74,6 +74,7 @@ export const searchButton = style({
 export const inputText = style({
   ...fontVariant.body2,
   width: '260px',
+  minWidth: '100px',
   border: 'none',
   color: color.primary,
   height: '56px',
