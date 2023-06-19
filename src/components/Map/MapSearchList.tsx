@@ -14,6 +14,14 @@ const NoSearchInfo = () => {
   return (
     <div className={noSearchInfoWrapper} role="alert">
       <IconButton iconType="map" hover={false} active={false} />
+      <div>검색 결과가 없습니다.</div>
+    </div>
+  );
+};
+const SearchInfo = () => {
+  return (
+    <div className={noSearchInfoWrapper} role="alert">
+      <IconButton iconType="map" hover={false} active={false} />
       <div>
         원하시는 장소를
         <br />
@@ -31,7 +39,9 @@ const MapSearchList = ({ map, marker }: MapSearchListProps) => {
     handleOnClickListWithMarkers,
     handleOnClickOnlyList,
   });
-
+  if (!placeList) {
+    return <SearchInfo />;
+  }
   if (placeList.length === 0) {
     return <NoSearchInfo />;
   }

@@ -24,6 +24,7 @@ export const placesSearchCB = (
   reject: (reason?: string) => void,
 ) => {
   const { data, status, pagination, places } = searchInfo;
+
   if (status === window.kakao.maps.services.Status.OK) {
     if (pagination.hasNextPage) {
       pagination.nextPage();
@@ -32,7 +33,7 @@ export const placesSearchCB = (
       resolve([...places, ...data]);
     }
   } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
-    reject('검색 결과가 존재하지 않습니다.');
+    resolve(data);
   } else if (status === window.kakao.maps.services.Status.ERROR) {
     reject('장소 검색 중 오류가 발생했습니다.');
   }

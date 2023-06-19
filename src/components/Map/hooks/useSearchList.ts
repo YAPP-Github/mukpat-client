@@ -8,7 +8,7 @@ interface UseSearchListProps {
 }
 const useSearchList = ({ handleOnClickListWithMarkers, handleOnClickOnlyList }: UseSearchListProps) => {
   const { searchedPlaces, markerPlace } = useMapContext();
-  const [placeList, setPlaceList] = useState<PlaceList>([]);
+  const [placeList, setPlaceList] = useState<PlaceList | undefined>([]);
   const listRefs = useRef<Record<number, HTMLLIElement | null>>({});
 
   useEffect(() => {

@@ -13,6 +13,7 @@ const useMapListMarkers = ({ map, markers }: MapListMarkersProps) => {
   const { searchedPlaces, setSelectedPlace } = useMapContext();
 
   const handleOnClickListWithMarkers = (placeIndex: number) => {
+    if (!searchedPlaces) return;
     setSelectedPlace(searchedPlaces[placeIndex]);
     removeMarkers(markers);
     const markersTotal = addMarkers([searchedPlaces[placeIndex]], map);
@@ -20,7 +21,7 @@ const useMapListMarkers = ({ map, markers }: MapListMarkersProps) => {
   };
 
   useEffect(() => {
-    if (searchedPlaces?.length === 0) return;
+    if (!searchedPlaces || searchedPlaces?.length === 0) return;
     removeMarkers(markers);
     setSelectedPlace({} as Place);
     const markersTotal = addMarkers(searchedPlaces, map);
