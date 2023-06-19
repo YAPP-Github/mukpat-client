@@ -12,7 +12,7 @@ type MapProps = {
   onClick: (data: Place | undefined) => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const Map = ({ onClose, onClick }: MapProps) => {
+const MapComponent = ({ onClose, onClick }: MapProps) => {
   return (
     <MapContextProvider>
       <MapWrapper onClick={onClick} onClose={onClose}></MapWrapper>
@@ -20,4 +20,4 @@ const Map = ({ onClose, onClick }: MapProps) => {
   );
 };
 
-export default Map;
+export default MapComponent;

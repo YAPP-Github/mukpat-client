@@ -28,4 +28,4 @@ export { default as CheckBox } from './CheckBox/CheckBox';
 
 export { default as Modal, ModalContent, ModalFooter, ModalHeader } from './Modal';
 
-export * from './Map';
+export { default as Map } from './Map/Map';
