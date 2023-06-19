@@ -19,7 +19,7 @@ const useMapSearchForm = () => {
     setMarkerPlace([]);
     setKeyword(keyword);
     const placesList: PlaceList = await searchPlaces(keyword);
-    placesList && setSearchedPlaces(placesList);
+    setSearchedPlaces(placesList);
   });
 
   useEffect(() => {

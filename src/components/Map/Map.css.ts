@@ -111,6 +111,7 @@ export const noSearchInfoWrapper = style({
   flexDirection: 'column',
   alignItems: 'center',
   borderBottom: '1px solid #E5E8EB',
+  textAlign: 'center',
 });
 globalStyle(`${noSearchInfoWrapper} > div`, {
   marginTop: '16px',
