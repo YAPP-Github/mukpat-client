@@ -64,7 +64,6 @@ const IconButton = ({
   };
   useEffect(() => {
     const appendDashStatus = status !== ICON_STATUS.DEFAULT ? `-${status}` : '';
-    console.log(`${iconType}${appendDashStatus}`);
     setIconSvgId(`${iconType}${appendDashStatus}`);
   }, [iconType, setIconSvgId, status]);
   return (
