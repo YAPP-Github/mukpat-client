@@ -6,7 +6,7 @@ const { color, space } = themeTokens;
 export const section = style({
   background: color.grey50,
   width: '100%',
-  paddingTop: space['7xl'], // 80px
+  padding: `${space['7xl']} 0`, // 80px
   flex: 1,
   display: 'flex',
   flexDirection: 'column',

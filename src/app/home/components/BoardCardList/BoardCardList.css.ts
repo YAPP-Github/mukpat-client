@@ -1,11 +1,10 @@
 import { style } from '@vanilla-extract/css';
+import { themeTokens } from '@/styles/theme.css';
+
+const { space } = themeTokens;
 
 export const listGrid = style({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
-});
-
-export const cardWrapper = style({
-  width: '364px',
-  height: '324px',
+  gap: space['2xl'],
 });
