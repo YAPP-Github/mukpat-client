@@ -11,7 +11,7 @@ const HeroSection = () => {
         <GradientText color="blue" text="삼성 생활" />
         <GradientText color="pink" text="을" />
         <br />
-        <GradientText color="pinkBlue" text="더 다채롭게 만들어 줄 " />
+        <GradientText color="bluePink" text="더 다채롭게 만들어 줄 " />
         <GradientText color="blue" text="먹팟" />
       </Typography>
       <Typography variant="body1" as="h2" className={subTitle}>
