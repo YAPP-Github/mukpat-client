@@ -13,7 +13,7 @@ type MapSearchListProps = { map: any; marker: any };
 const NoSearchInfo = () => {
   return (
     <div className={noSearchInfoWrapper} role="alert">
-      <IconButton iconType="map" hover={false} active={false} />
+      <IconButton iconType="info" hover={false} active={false} />
       <div>검색 결과가 없습니다.</div>
     </div>
   );
