@@ -38,6 +38,7 @@
     "framer-motion": "^10.12.16",
     "ky": "^0.33.3",
     "lottie-web": "^5.12.2",
+  	"lodash": "^4.17.21",
     "next": "^13.4.6",
     "postcss": "^8.4.23",
     "prop-types": "^15.8.1",
