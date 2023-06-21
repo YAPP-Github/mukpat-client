@@ -1,19 +1,13 @@
 'use client';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import MapSearchList from './MapSearchList';
 import MapSearchForm from './MapSearchForm';
 import MapConfirmButton from './MapConfirmButton';
-import {
-  mapWrapper,
-  mapContainer,
-  loadingWrapper,
-  backgroundWrapper,
-  mapSearchContainer,
-  searchWrapper,
-} from './Map.css';
+import { mapWrapper, mapContainer, backgroundWrapper, mapSearchContainer, searchWrapper } from './Map.css';
 import useMap from './hooks/useMap';
 import { useClickOutside } from '@/hooks';
 import { Place } from './types';
+import { Loading } from '@/components';
 
 type MapWrapperProps = {
   onClose: () => void;
@@ -33,7 +27,7 @@ const MapWrapper = ({ onClick, onClose }: MapWrapperProps) => {
   });
   return (
     <div className={mapContainer} role="dialog" aria-modal="true">
-      {!map && <div className={loadingWrapper} ref={loadingRef} aria-hidden={map}></div>}
+      {!map && <Loading ref={loadingRef} />}
       <div className={backgroundWrapper}></div>
       <div className={mapSearchContainer} ref={ref} aria-label="지도 검색 영역">
         <div className={searchWrapper}>

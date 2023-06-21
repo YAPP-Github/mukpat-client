@@ -2,7 +2,7 @@ import { style, globalStyle } from '@vanilla-extract/css';
 import { fontVariant } from '@/styles/variant.css';
 import { themeTokens } from '@/styles/theme.css';
 
-const { color, borderRadius, space, zIndices } = themeTokens;
+const { color, borderRadius, space } = themeTokens;
 
 export const mapContainer = style({
   position: 'absolute',
@@ -14,17 +14,6 @@ export const mapContainer = style({
   justifyContent: 'center',
   alignItems: 'center',
   padding: '0 280px',
-});
-export const loadingWrapper = style({
-  position: 'absolute',
-  width: '100%',
-  height: '100%',
-  background: color.black,
-  opacity: '0.3',
-  zIndex: zIndices.tooltip,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
 });
 export const backgroundWrapper = style({
   position: 'absolute',
