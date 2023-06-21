@@ -27,3 +27,5 @@ export { default as Toast } from './Toast/Toast';
 export * from './Modal';
 
 export { default as Map } from './Map/Map';
+
+export { default as Loading } from './Loading/Loading';
