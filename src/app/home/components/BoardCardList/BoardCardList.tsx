@@ -3,10 +3,11 @@
 import { useIntersectObserver } from '@/hooks';
 import { useBoardListQuery } from '@/app/home/hooks';
 import { BoardCard } from '@/app/home/components';
+import { BOARDS_PER_PAGE } from '@/app/home/constants';
 import { listGrid } from './BoardCardList.css';
 
 const BoardCardList = () => {
-  const { data: boardList, getNextPage } = useBoardListQuery(4);
+  const { data: boardList, getNextPage } = useBoardListQuery(BOARDS_PER_PAGE);
 
   const [ref] = useIntersectObserver<HTMLDivElement>({
     rootMargin: '100px',
