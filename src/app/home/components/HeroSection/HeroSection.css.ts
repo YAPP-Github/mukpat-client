@@ -24,7 +24,7 @@ export const subTitle = style({
 });
 
 export const button = style({
-  width: 'max-content',
+  width: 'max-content !important',
   padding: `${space.lg} ${space.xl}`,
   borderRadius: borderRadius.lg,
 });

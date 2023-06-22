@@ -16,3 +16,9 @@ export const section = style({
 export const title = style({
   marginBottom: space['5xl'],
 });
+
+export const listGrid = style({
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: space['2xl'],
+});

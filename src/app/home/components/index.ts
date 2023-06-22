@@ -9,3 +9,5 @@ export { default as BoardCardList } from './BoardCardList/BoardCardList';
 export { default as BoardCard } from './BoardCard/BoardCard';
 
 export { default as HydratedBoardCardList } from './HydratedBoardCardList/HydratedBoardCardList';
+
+export { default as BoardCardListLoading } from './BoardCardListLoading/BoardCardListLoading';
