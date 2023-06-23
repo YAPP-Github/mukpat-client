@@ -7,7 +7,6 @@ const { color, borderRadius } = themeTokens;
 export const buttonWrapper = recipe({
   base: {
     border: 'none',
-    color: color.white,
     ':disabled': {
       opacity: '0.2',
     },
@@ -15,6 +14,7 @@ export const buttonWrapper = recipe({
   variants: {
     color: {
       primary: {
+        color: color.white,
         backgroundColor: color.primary500,
         selectors: {
           '&:hover:not(:disabled)': {
@@ -26,6 +26,7 @@ export const buttonWrapper = recipe({
         },
       },
       secondary: {
+        color: color.white,
         backgroundColor: color.red500,
         selectors: {
           '&:hover:not(:disabled)': {
@@ -36,7 +37,7 @@ export const buttonWrapper = recipe({
           },
         },
       },
-      enabled: {
+      sub: {
         backgroundColor: color.grey100,
         color: color.secondary,
         selectors: {
@@ -48,15 +49,15 @@ export const buttonWrapper = recipe({
           },
         },
       },
-      none: {
+      text: {
         backgroundColor: 'transparent',
         color: color.secondary,
         selectors: {
           '&:hover:not(:disabled)': {
-            background: 'rgba(28, 26, 66, 0.04)',
+            backgroundColor: '#f6f6f8',
           },
           '&:active:not(:disabled)': {
-            background: 'rgba(28, 26, 66, 0.1);',
+            backgroundColor: '#e9e9ed',
           },
         },
       },
@@ -69,7 +70,7 @@ export const buttonWrapper = recipe({
       },
     },
     size: {
-      xlarge: {
+      xLarge: {
         ...fontVariant.label2,
         borderRadius: borderRadius.lg,
         width: '674px',
@@ -90,13 +91,24 @@ export const buttonWrapper = recipe({
       small: {
         ...fontVariant.label3,
         borderRadius: borderRadius.lg,
-        width: '140px',
+        width: '288px',
         padding: '14px',
       },
       micro: {
         ...fontVariant.label3,
+        borderRadius: borderRadius.lg,
+        width: '140px',
+        padding: '14px',
+      },
+      paddingSmall: {
+        ...fontVariant.label3,
         borderRadius: borderRadius.sm,
         padding: '12px 16px',
+      },
+      paddingMedium: {
+        ...fontVariant.body2,
+        borderRadius: borderRadius.sm,
+        padding: '12px 20px',
       },
     },
   },
