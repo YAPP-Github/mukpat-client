@@ -54,10 +54,10 @@ export const buttonWrapper = recipe({
         color: color.secondary,
         selectors: {
           '&:hover:not(:disabled)': {
-            backgroundColor: '#f6f6f8',
+            backgroundColor: color.grey100,
           },
           '&:active:not(:disabled)': {
-            backgroundColor: '#e9e9ed',
+            backgroundColor: color.grey200,
           },
         },
       },
