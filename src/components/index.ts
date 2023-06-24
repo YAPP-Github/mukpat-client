@@ -4,7 +4,7 @@ export { default as Profile } from './Profile/Profile';
 
 export { default as Chip } from './Chip/Chip';
 
-export * from './Dropdown';
+export { default as Dropdown, DropdownToggle, DropdownButton, DropdownItem, DropdownMenu } from './Dropdown';
 
 export { default as Button } from './Button/Button';
 
@@ -23,5 +23,7 @@ export * from './Input';
 export { default as DateInput } from './DateInput/DateInput';
 
 export { default as Toast } from './Toast/Toast';
+
+export { default as CheckBox } from './CheckBox/CheckBox';
 
 export * from './Modal';
