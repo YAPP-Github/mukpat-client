@@ -1,14 +1,20 @@
 import { Header } from '@/components/server';
 import { Content } from '@/components';
+import { BoardDetail } from '@/app/board/components';
 
 // 나중에 추가 예정
-const BoardDetail = () => {
+const BoardDetailPage = () => {
+  // prefetchQuery
+
   return (
     <>
       <Header />
-      <Content>Board detail</Content>
+      <Content>
+        {/* hydration? */}
+        <BoardDetail />
+      </Content>
     </>
   );
 };
 
-export default BoardDetail;
+export default BoardDetailPage;
