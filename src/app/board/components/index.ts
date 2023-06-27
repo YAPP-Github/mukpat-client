@@ -6,6 +6,6 @@ export { default as ContentSection } from './ContentSection/ContentSection';
 
 export { default as HeaderSection } from './HeaderSection/HeaderSection';
 
-export { default as JoinInfoModal } from './JoinInfoModal/JoinInfoModal';
+export { default as JoinModal } from './JoinModal/JoinModal';
 
 export { default as BulletTitle } from './BulletTitle/BulletTitle';
