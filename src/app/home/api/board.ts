@@ -1,12 +1,13 @@
 import { request } from '@/utils/ky/request';
 import { BoardListPagingData, BoardListResponse } from '@/app/home/types/board';
+import { BOARDS_PER_PAGE } from '@/app/home/constants';
 
-type GetBoardList = (requestlastId?: number, countPerScroll?: number) => Promise<BoardListPagingData>;
+type GetBoardList = (requestlastId?: number, boardsPerPage?: number) => Promise<BoardListPagingData>;
 
-export const getBoardList: GetBoardList = async (requestlastId, countPerPage = 8) => {
+export const getBoardList: GetBoardList = async (requestlastId, boardsPerPage = BOARDS_PER_PAGE) => {
   const { list, lastId } = await request('v1/boards', {
     searchParams: {
-      countPerScroll: countPerPage,
+      countPerScroll: boardsPerPage,
       ...(requestlastId && { lastId: requestlastId }),
     },
   }).json<BoardListResponse>();
@@ -14,6 +15,6 @@ export const getBoardList: GetBoardList = async (requestlastId, countPerPage = 8
   return {
     data: list,
     lastId,
-    isLastPage: list.length < countPerPage,
+    isLastPage: list.length < boardsPerPage,
   };
 };
