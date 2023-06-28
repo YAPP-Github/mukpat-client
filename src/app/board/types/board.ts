@@ -1,9 +1,10 @@
-import { Profile, ResponseData } from '@/types/data';
+import { Profile } from '@/types/data';
 
 export interface BoardDetail {
   boardId: number;
   title: string;
   status: string;
+  content: string;
   meetingDate: string;
   meetingTime: string;
   createDate: string;
@@ -18,5 +19,3 @@ export interface BoardDetail {
   views: number;
   participants: Profile[];
 }
-
-export type BoardDetailResponse = ResponseData<BoardDetail>;
