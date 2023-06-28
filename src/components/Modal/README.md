@@ -3,7 +3,7 @@
 ## 사용 예시
 - useOverlay 훅을 사용해 Modal을 띄울 수 있다.
   - 버튼을 눌렀을때, 오버레이 형태로 띄우고 싶다면 아래와 같이 사용해야 한다.
-```
+```tsx
 const ModalToggle = () => {
 	const [openModal, closeModal] = useOverlay();
 
@@ -13,7 +13,7 @@ const ModalToggle = () => {
 				<ModalHeader type="infoWithClose" title="참여신청안내">
 					<IconButton iconType="close" />
 				</ModalHeader>
-				<ModalContent size="large"> 이것은 description입니다 하히아히아히아히 </ModalContent>
+				<ModalContent size="large"> 이것은 description입니다 </ModalContent>
 				<ModalFooter type="single">
 					<Button size="large">Button</Button>
 				</ModalFooter>
@@ -26,7 +26,37 @@ const ModalToggle = () => {
 		</div>
 	);
 };
+export default ModalToggle;
 ```
+
+또는 아래와 같이 사용할 수 있습니다.
+
+```tsx
+const ModalToggle = () => {
+  const [openModal, closeModal] = useOverlay();
+
+  const renderModal = () => {
+    return (
+      <Modal onClose={closeModal} size="large">
+        <Modal.Header type="infoWithClose" title="참여신청안내">
+          <IconButton iconType="close" hover={true} active={false} />
+        </Modal.Header>
+        <Modal.Content size="large"> 이것은 description입니다 </Modal.Content>
+        <Modal.Footer type="single">
+          <Button size="large">Button</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  };
+  return (
+    <div>
+      <button onClick={() => openModal(renderModal())}>Modal Button</button>
+    </div>
+  );
+};
+export default ModalToggle;
+```
+
 # 구성 컴포넌트
 
 ## Modal
@@ -43,7 +73,7 @@ ModalHeader는 Modal의 Title로 사용 가능합니다.
 - title: 타이틀 값을 넣어 사용할 수 있습니다.
 
 **사용예시**
-```angular2html
+```tsx
 // IconButton 닫기 버튼이 있는 경우
 <ModalHeader type="infoWithClose" title="참여신청안내">
    <IconButton iconType="close" />
@@ -60,7 +90,7 @@ ModalContent는 내부 컨텐츠를 담는 컴포넌트입니다.
 - size:  ModaHeader의 영역 및 폰트 사이즈를 지정할 수 있습니다.
 
 **사용예시**
-```angular2html
+```tsx
 <ModalContent size="small"> 이것은 description입니다  </ModalContent>
 ```
 
@@ -73,7 +103,7 @@ ModalFooter는 Modal의 하단에 위치하는 컴포넌트입니다.
 - type: horizontal, vertical ,single 타입이 있으며, single을 제외하고 Button이 2개이상일때 사용 가능합니다. 
 
 **사용예시** 
-```angular2html
+```tsx
 // 버튼이 1개인 경우
 <ModalFooter type="single">
   <Button size="small">Button</Button>
