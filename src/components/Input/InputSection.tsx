@@ -1,7 +1,7 @@
 import clsx from 'classnames';
 import { ComponentProps } from 'react';
 import { section, Direction } from './Input.css';
-import Typography from '../Typography/Typography';
+import { Typography } from '@/components';
 
 interface SectionProps extends ComponentProps<typeof Typography> {
   label: string;
