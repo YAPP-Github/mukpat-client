@@ -2,6 +2,7 @@ import { HTTPError } from 'ky';
 import { useCallback, useMemo } from 'react';
 import { useSuspenseInfiniteQuery } from '@suspensive/react-query';
 import { getBoardList } from '@/app/home/api';
+import { queries } from '@/queries';
 import { BoardListPagingData } from '@/app/home/types';
 import { BOARDS_PER_PAGE } from '@/app/home/constants';
 
@@ -13,7 +14,9 @@ export const useBoardListQuery = (boardsPerPage = BOARDS_PER_PAGE) => {
     BoardListPagingData,
     HTTPError,
     BoardListPagingData
-  >(['boardList'], ({ pageParam = undefined }) => getBoardList(pageParam, boardsPerPage), {
+  >({
+    ...queries.board.list,
+    queryFn: ({ pageParam = undefined }) => getBoardList(pageParam, boardsPerPage),
     getNextPageParam: (lastPage) => (lastPage.isLastPage ? undefined : lastPage.lastId),
   });
 

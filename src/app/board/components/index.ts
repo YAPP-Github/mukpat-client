@@ -9,3 +9,5 @@ export { default as HeaderSection } from './HeaderSection/HeaderSection';
 export { default as JoinModal } from './JoinModal/JoinModal';
 
 export { default as BulletTitle } from './BulletTitle/BulletTitle';
+
+export { default as HydratedBoardDetail } from './HydratedBoardDetail/HydratedBoardDetail';

@@ -1,5 +1,8 @@
+import { HTTPError } from 'ky';
 import { useSuspenseQuery } from '@suspensive/react-query';
-import { getBoardDetail } from '@/app/board/api';
 
-export const useBoardDetail = (boardId: number) =>
-  useSuspenseQuery(['boardDetail', boardId], () => getBoardDetail(boardId));
+import { queries } from '@/queries';
+import { BoardDetailResponse } from '@/app/board/types';
+
+export const useBoardDetail = (boardId: string) =>
+  useSuspenseQuery<BoardDetailResponse, HTTPError, BoardDetailResponse>(queries.board.detail(boardId));
