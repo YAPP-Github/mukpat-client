@@ -10405,6 +10405,7 @@ __metadata:
     json-server: ^0.17.3
     ky: ^0.33.3
     lint-staged: ^13.2.2
+    lodash: ^4.17.21
     lottie-web: ^5.12.2
     msw: ^1.2.1
     next: ^13.4.6
