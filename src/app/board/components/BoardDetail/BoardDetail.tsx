@@ -8,7 +8,7 @@ import { wrapper } from './BoardDetail.css';
 
 const BoardDetail = () => {
   const { id: boardId } = useParams();
-  const { data: board } = useBoardDetail(boardId);
+  const { data: board } = useBoardDetail(Number(boardId));
 
   return (
     <div className={wrapper}>

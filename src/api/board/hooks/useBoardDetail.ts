@@ -3,7 +3,7 @@ import { boardKeys } from '@/api/board/queryKeys';
 import { BoardDetail } from '@/api/board/types';
 import { boardAPI } from '@/api/board/api';
 
-const useBoardDetail = (boardId: string) =>
+const useBoardDetail = (boardId: number) =>
   useSuspenseQuery<BoardDetail>(boardKeys.detail(boardId), () => boardAPI.getBoardDetail(boardId));
 
 export default useBoardDetail;

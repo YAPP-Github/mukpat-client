@@ -1,15 +1,19 @@
+import { notFound } from 'next/navigation';
 import { Content } from '@/components';
 import { Header } from '@/components/server';
 import { Suspense } from '@suspensive/react';
 import { HydratedBoardDetail } from '@/app/board/components';
 
 const BoardDetailPage = async ({
-  params: { id: boardId },
+  params: { id },
 }: {
   params: {
     id: string;
   };
 }) => {
+  const boardId = Number(id);
+  if (Number.isNaN(boardId)) notFound();
+
   return (
     <>
       <Header />
