@@ -1,8 +1,9 @@
 'use client';
 
 import { Button, Typography, Dropdown, SvgIcon } from '@/components';
-import { JoinModal, ParticipantsList } from '@/app/board/components';
-import { useOverlay, useProfile } from '@/hooks';
+import { JoinModal, DeleteModal, ParticipantsList } from '@/app/board/components';
+import { useProfile } from '@/api/hooks';
+import { useOverlay } from '@/hooks';
 import { BOARD_STATUS } from '@/app/board/constants';
 import { BoardDetail } from '@/app/board/types';
 import { wrapper, counterText, listBottomSpace, dropdown, dropdownMenu } from './AsideSection.css';
@@ -28,6 +29,10 @@ const AsideSection = ({ board }: Props) => {
     openModal(<JoinModal onClose={closeModal} />);
   };
 
+  const handleClickDelete = () => {
+    openModal(<DeleteModal onClose={closeModal} />);
+  };
+
   return (
     <aside className={wrapper}>
       <Dropdown className={dropdown}>
@@ -43,7 +48,7 @@ const AsideSection = ({ board }: Props) => {
               <Dropdown.Item itemKey="change">
                 <Typography variant="label2">수정하기</Typography>
               </Dropdown.Item>
-              <Dropdown.Item itemKey="delete">
+              <Dropdown.Item itemKey="delete" onClick={handleClickDelete}>
                 <Typography variant="label2" color="red500">
                   삭제하기
                 </Typography>

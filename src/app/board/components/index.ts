@@ -11,3 +11,5 @@ export { default as BulletTitle } from './BulletTitle/BulletTitle';
 export { default as HydratedBoardDetail } from './HydratedBoardDetail/HydratedBoardDetail';
 
 export { default as ParticipantsList } from './ParticipantsList/ParticipantsList';
+
+export { default as DeleteModal } from './DeleteModal/DeleteModal';

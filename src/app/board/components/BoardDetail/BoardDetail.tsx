@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { useBoardDetail } from '@/app/board/hooks';
+import { useBoardDetail } from '@/api/hooks';
 import { AsideSection, ContentSection } from '@/app/board/components';
 
 import { wrapper } from './BoardDetail.css';

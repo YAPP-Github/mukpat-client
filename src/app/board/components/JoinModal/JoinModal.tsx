@@ -1,10 +1,10 @@
 'use client';
 
-import { Modal, ModalContent, ModalFooter, ModalHeader, IconButton, Typography, Button, CheckBox } from '@/components';
-import { useCheckboxGroupState } from '@/app/board/hooks';
-import { BulletTitle } from '@/app/board/components';
 import cx from 'classnames';
-import { INSTURCTION, CHECKBOX, BUTTON } from './constants/text';
+import { Modal, ModalContent, ModalFooter, ModalHeader, IconButton, Typography, Button, CheckBox } from '@/components';
+import { BulletTitle } from '@/app/board/components';
+import { useCheckboxGroupState } from '@/app/board/hooks';
+import { JOIN_MODAL_TEXT } from '@/app/board/constants';
 import {
   modalHeader,
   modalContent,
@@ -14,6 +14,8 @@ import {
   checkBoxGroup,
   lineBreak,
 } from './JoinModal.css';
+
+const { INSTURCTION, CHECKBOX, BUTTON } = JOIN_MODAL_TEXT;
 
 interface Props {
   onClose: () => void;

@@ -1,11 +1,11 @@
 import { dehydrate, Hydrate } from '@tanstack/react-query';
 import { BoardDetail } from '@/app/board/components';
 import getQueryClient from '@/utils/getQueryClients';
-import { queries } from '@/queries';
+import { api, queryKeys } from '@/api';
 
 const HydratedBoardDetail = async ({ boardId }: { boardId: string }) => {
   const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(queries.board.detail(boardId));
+  await queryClient.prefetchQuery(queryKeys.board.detail(boardId), () => api.board.getBoardDetail(boardId));
   const dehydratedState = dehydrate(queryClient);
 
   return (

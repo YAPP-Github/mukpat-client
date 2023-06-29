@@ -1,11 +1,11 @@
 'use client';
 
 import cx from 'classnames';
+import { HTMLAttributes } from 'react';
 import { Profile, Typography, Chip, SvgIcon } from '@/components';
+import { useProfile } from '@/api/hooks';
 import { Profile as ProfileType } from '@/types/data';
 import { list, listItem, participantProfile, participantProfileText } from './ParticipantsList.css';
-import { HTMLAttributes } from 'react';
-import { useProfile } from '@/hooks';
 
 interface Props extends HTMLAttributes<HTMLUListElement> {
   participants: ProfileType[];
