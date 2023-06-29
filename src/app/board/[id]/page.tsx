@@ -1,5 +1,6 @@
 import { Content } from '@/components';
 import { Header } from '@/components/server';
+import { Suspense } from '@suspensive/react';
 import { HydratedBoardDetail } from '@/app/board/components';
 
 const BoardDetailPage = async ({
@@ -12,8 +13,10 @@ const BoardDetailPage = async ({
   return (
     <>
       <Header />
-      <Content>
-        <HydratedBoardDetail boardId={boardId} />
+      <Content verticalCenter={false} style={{ paddingTop: '116px' }}>
+        <Suspense>
+          <HydratedBoardDetail boardId={boardId} />
+        </Suspense>
       </Content>
     </>
   );

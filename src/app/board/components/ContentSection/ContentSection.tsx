@@ -1,21 +1,53 @@
 'use client';
 
-import { useParams } from 'next/navigation';
-import { useBoardDetail } from '@/app/board/hooks';
 import { IconButton, Typography } from '@/components';
-import { infoBanner, infoBannerItem, contentWrapper, footer, footerText, footerButtons } from './ContentSection.css';
+import { getBoardStatusText } from '@/app/board/utils';
+import { BoardDetail } from '@/app/board/types';
+import {
+  headerText,
+  statusText,
+  infoBanner,
+  infoBannerItem,
+  contentWrapper,
+  footer,
+  footerText,
+  footerButtons,
+} from './ContentSection.css';
 
 // TODO
 // [ ] 이전페이지 다음 페이지 버튼 연결
 
-const ContentSection = () => {
-  const params = useParams();
+interface Props {
+  board: BoardDetail;
+}
+
+const ContentSection = ({ board }: Props) => {
   const {
-    data: { meetingDate, meetingTime, locationName, locationDetail, minAge, maxAge, content, createDate, views },
-  } = useBoardDetail(params.id);
+    status,
+    title,
+    meetingDate,
+    meetingTime,
+    locationName,
+    locationDetail,
+    minAge,
+    maxAge,
+    content,
+    createDate,
+    views,
+  } = board;
 
   return (
     <section>
+      <Typography variant="heading1" as="p" className={headerText}>
+        <span
+          className={statusText({
+            active: status === '모집중',
+          })}
+        >
+          {getBoardStatusText(status)}
+        </span>
+        {title}
+      </Typography>
       <ul className={infoBanner}>
         <li className={infoBannerItem}>
           <Typography variant="label3" color="hint">

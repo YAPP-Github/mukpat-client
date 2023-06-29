@@ -1,14 +1,20 @@
-import { AsideSection, HeaderSection, ContentSection } from '@/app/board/components';
+'use client';
+
+import { useParams } from 'next/navigation';
+import { useBoardDetail } from '@/app/board/hooks';
+import { AsideSection, ContentSection } from '@/app/board/components';
+
+import { wrapper } from './BoardDetail.css';
 
 const BoardDetail = () => {
+  const { id: boardId } = useParams();
+  const { data: board } = useBoardDetail(boardId);
+
   return (
-    <>
-      <HeaderSection />
-      <div style={{ display: 'flex', gap: '24px' }}>
-        <ContentSection />
-        <AsideSection />
-      </div>
-    </>
+    <div className={wrapper}>
+      <ContentSection board={board} />
+      <AsideSection board={board} />
+    </div>
   );
 };
 
