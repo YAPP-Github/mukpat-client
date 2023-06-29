@@ -1,17 +1,16 @@
+import { Content } from '@/components';
 import { Header } from '@/components/server';
-import { Content, Typography } from '@/components';
 
-export default function Home() {
-	return (
-		<>
-			<Header />
-			<Content>
-				<div style={{ height: '150vh', paddingTop: '120px' }}>
-					<Typography variant="heading2" as="h1">
-						HOME
-					</Typography>
-				</div>
-			</Content>
-		</>
-	);
+import { HeroSection, BoardSection } from '@/app/home/components';
+
+export default async function Home() {
+  return (
+    <>
+      <Header />
+      <Content>
+        <HeroSection />
+        <BoardSection />
+      </Content>
+    </>
+  );
 }
