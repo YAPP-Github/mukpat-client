@@ -2,7 +2,7 @@
 
 import { IconButton, Typography } from '@/components';
 import { getBoardStatusText } from '@/app/board/utils';
-import { BoardDetail } from '@/app/board/types';
+import { BoardDetail } from '@/api/types';
 import {
   headerText,
   statusText,

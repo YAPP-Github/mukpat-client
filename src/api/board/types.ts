@@ -26,9 +26,12 @@ export interface BoardListPagingData {
 
 export interface BoardDetail {
   boardId: number;
+  prevId: number | null;
+  nexId: number | null;
   title: string;
   status: string;
   content: string;
+  chatLink: string;
   meetingDate: string;
   meetingTime: string;
   createDate: string;

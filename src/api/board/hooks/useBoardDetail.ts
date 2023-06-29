@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@suspensive/react-query';
 import { boardKeys } from '@/api/board/queryKeys';
-import { BoardDetail } from '@/api/board/types';
+import { BoardDetail } from '@/api/types';
 import { boardAPI } from '@/api/board/api';
 
 const useBoardDetail = (boardId: number) =>
