@@ -4,9 +4,16 @@ import { CANCEL_JOIN_MODAL_TEXT, TOAST_TEXT } from '@/app/board/constants';
 import { instructionText, buttonGroup } from './CancelJoinModal.css';
 
 interface Props {
+  /** 참가 신청 취소할 먹팟 boardId */
   boardId: number;
+
+  /** 참가 신청 취소 성공 시 실행할 콜백 함수 */
   onSuccessCancel?: () => void;
+
+  /** 참가 신청 취소 실패 시 실행할 콜백 함수 */
   onFailureCancel?: (errorMessage: string) => void;
+
+  /** 모달 닫기 버튼 클릭 시 실행할 콜백 함수 */
   onClose: () => void;
 }
 

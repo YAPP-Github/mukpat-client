@@ -5,3 +5,5 @@ export { default as useBoardListQuery } from './useBoardListQuery';
 export { default as useJoinBoard } from './useJoinBoard';
 
 export { default as useCancelJoinBoard } from './useCancelJoinBoard';
+
+export { default as useDeleteBoard } from './useDeleteBoard';

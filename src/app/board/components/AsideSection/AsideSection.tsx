@@ -1,24 +1,25 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { Button, Typography, Dropdown, SvgIcon, Toast } from '@/components';
 import { JoinModal, DeleteModal, CancelJoinModal, ParticipantsList } from '@/app/board/components';
 import { useProfile } from '@/api/hooks';
-import { useOverlay } from '@/hooks';
+import { useOverlay, useClipBoard } from '@/hooks';
 import { BOARD_STATUS, TOAST_TEXT } from '@/app/board/constants';
 import { BoardDetail } from '@/api/types';
-import { useClipBoard } from '@/hooks';
 import { wrapper, counterText, listBottomSpace, dropdown, dropdownMenu, buttonGroup } from './AsideSection.css';
 
 // TODO
-// [ ] 게시글 삭제 모달 기능 구성 완료
-// [ ] 토스트 메시지 상수화
 // [ ] 나이 제한에 대해서 참여 제한 걸기
+// [ ] BoardList 카드 장소, 시간 텍스트 overflow 처리
+// [ ] 모집 상세 페이지 로딩 처리
 
 interface Props {
   board: BoardDetail;
 }
 
 const AsideSection = ({ board }: Props) => {
+  const router = useRouter();
   const { boardId, chatLink, currentApply, maxApply, participants, status } = board;
   const { data: profile } = useProfile();
   const [openModal, closeModal] = useOverlay();
@@ -49,7 +50,19 @@ const AsideSection = ({ board }: Props) => {
   };
 
   const handleClickDelete = () => {
-    openModal(<DeleteModal onClose={closeModal} />);
+    openModal(
+      <DeleteModal
+        boardId={boardId}
+        onSuccessDelete={() => {
+          openToast(<Toast type="success" message={TOAST_TEXT.SUCCESS_DELETE} onClose={closeToast} />);
+          router.push('/');
+        }}
+        onFailureDelete={(errorMessage: string) =>
+          openToast(<Toast type="warn" message={errorMessage} onClose={closeToast} />)
+        }
+        onClose={closeModal}
+      />,
+    );
   };
 
   const handleClickOpenChatButton = () => {

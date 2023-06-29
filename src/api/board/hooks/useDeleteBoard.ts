@@ -4,13 +4,13 @@ import { boardKeys } from '@/api/board/queryKeys';
 import { boardAPI } from '@/api/board/api';
 
 /**
- * 먹팟 참여 신청을 하기 위한 Mutation
- * @param boardId - 참여할 먹팟 id
+ * 먹팟 삭제 mutation
+ * @param boardId - 삭제할 먹팟 id
  */
-const useJoinBoard = (boardId: number) => {
+const useDeleteBoard = (boardId: number) => {
   const queryClient = useQueryClient();
 
-  return useMutation(boardAPI.postBoardJoin, {
+  return useMutation(boardAPI.deleteBoard, {
     onSuccess: () => {
       void queryClient.invalidateQueries(boardKeys.list());
       void queryClient.invalidateQueries(boardKeys.detail(boardId));
@@ -18,4 +18,4 @@ const useJoinBoard = (boardId: number) => {
   });
 };
 
-export default useJoinBoard;
+export default useDeleteBoard;
