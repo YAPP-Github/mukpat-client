@@ -1,28 +1,31 @@
-import React, { forwardRef } from 'react';
-import Lottie from 'react-lottie';
+import React, { useEffect, forwardRef, RefObject } from 'react';
 import loading from './loading.json';
+import lottie from 'lottie-web';
 import { loadingWrapper, backgroundWrapper } from './Loading.css';
 
 interface LoadingProps {
   width?: number;
   height?: number;
 }
-
-const Loading = forwardRef<HTMLDivElement, LoadingProps>(({ width = 50, height = 50 }, ref) => {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: loading,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
-
+const Loading = forwardRef<HTMLDivElement, LoadingProps>(({ width = 50, height = 50 }: LoadingProps, ref) => {
+  const loadingRef = ref as RefObject<HTMLDivElement>;
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: loadingRef?.current as Element,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: loading,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice',
+      },
+    });
+  }, []);
   return (
-    <div className={loadingWrapper} ref={ref}>
+    <>
       <div className={backgroundWrapper}> </div>
-      <Lottie options={defaultOptions} height={height} width={width} />
-    </div>
+      <div className={loadingWrapper} ref={loadingRef} style={{ width, height }}></div>
+    </>
   );
 });
 
