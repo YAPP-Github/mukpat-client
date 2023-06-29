@@ -1,12 +1,13 @@
 'use client';
 
-import { Button, Typography, Dropdown, SvgIcon } from '@/components';
+import { Button, Typography, Dropdown, SvgIcon, Toast } from '@/components';
 import { JoinModal, DeleteModal, ParticipantsList } from '@/app/board/components';
 import { useProfile } from '@/api/hooks';
 import { useOverlay } from '@/hooks';
 import { BOARD_STATUS } from '@/app/board/constants';
-import { BoardDetail } from '@/app/board/types';
+import { BoardDetail } from '@/api/types';
 import { wrapper, counterText, listBottomSpace, dropdown, dropdownMenu } from './AsideSection.css';
+import { useClipBoard } from '@/hooks';
 
 // TODO
 // [] 삭제, 수정, 공유 기능 구현
@@ -17,16 +18,34 @@ interface Props {
 }
 
 const AsideSection = ({ board }: Props) => {
-  const { currentApply, maxApply, participants, status } = board;
+  const { boardId, chatLink, currentApply, maxApply, participants, status } = board;
   const { data: profile } = useProfile();
 
   const writer = participants.find(({ writer }) => writer);
   const isWriterProfile = writer?.userId === profile?.userId;
 
   const [openModal, closeModal] = useOverlay();
+  const [openToast, closeToast] = useOverlay();
+
+  const [, copy] = useClipBoard();
+
+  const handleClickShare = () => {
+    copy(window.location.href);
+    openToast(<Toast type="success" message="먹팟 링크를 복사했어요!" onClose={closeToast} />);
+  };
 
   const handleClickJoin = () => {
-    openModal(<JoinModal onClose={closeModal} />);
+    openModal(
+      <JoinModal
+        boardId={boardId}
+        chatLink={chatLink}
+        onClose={closeModal}
+        onSuccessJoin={() => openToast(<Toast type="success" message="참여 신청이 완료됐어요!" onClose={closeToast} />)}
+        onFailureJoin={(errorMessage: string) =>
+          openToast(<Toast type="warn" message={errorMessage} onClose={closeToast} />)
+        }
+      />,
+    );
   };
 
   const handleClickDelete = () => {
@@ -40,7 +59,7 @@ const AsideSection = ({ board }: Props) => {
           <SvgIcon id="dot" width={36} height={36} />
         </Dropdown.Toggle>
         <Dropdown.Menu className={dropdownMenu} placement="bottomRight">
-          <Dropdown.Item itemKey="share">
+          <Dropdown.Item itemKey="share" onClick={handleClickShare}>
             <Typography variant="label2">공유하기</Typography>
           </Dropdown.Item>
           {isWriterProfile && (

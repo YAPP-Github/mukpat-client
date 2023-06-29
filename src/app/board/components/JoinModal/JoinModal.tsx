@@ -1,7 +1,19 @@
 'use client';
 
 import cx from 'classnames';
-import { Modal, ModalContent, ModalFooter, ModalHeader, IconButton, Typography, Button, CheckBox } from '@/components';
+import { useClipBoard, useOverlay } from '@/hooks';
+import { useJoinBoard } from '@/api/hooks';
+import {
+  Modal,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  IconButton,
+  Typography,
+  Button,
+  CheckBox,
+  Toast,
+} from '@/components';
 import { BulletTitle } from '@/app/board/components';
 import { useCheckboxGroupState } from '@/app/board/hooks';
 import { JOIN_MODAL_TEXT } from '@/app/board/constants';
@@ -18,22 +30,51 @@ import {
 const { INSTURCTION, CHECKBOX, BUTTON } = JOIN_MODAL_TEXT;
 
 interface Props {
+  /** 먹팟 게시물 boardId */
+  boardId: number;
+
+  /** 먹팟 오픈채팅방 링크 */
+  chatLink: string;
+
+  /** 참가 성공 시 호출되는 함수 */
+  onSuccessJoin?: () => void;
+
+  /** 참가 실패 시 호출되는 함수 */
+  onFailureJoin?: (errorMessage: string) => void;
+
+  /** 모달을 닫을때 호출되는 함수 */
   onClose: () => void;
 }
 
-// TODO
-// [x] clipboard 관련 훅 작성
-// [x] checkbox state 훅 정의하기 (toggle, error)
-// [x] useCheckboxGroupState 테스트 코드
-// [x] 메시지 상수화..?
-// [ ] query 불러오기 + 버튼 이벤트 연동하기(오픈채팅방 이동, 링크 복사)
-// [ ] 참여하기 이벤트 연동하기(API 호출 + 토스트 호출)
-
-const JoinModal = ({ onClose }: Props) => {
+const JoinModal = ({ boardId, chatLink, onSuccessJoin, onFailureJoin, onClose }: Props) => {
   const [checkBoxGroupState, validateUnchecked, toggleChecked] = useCheckboxGroupState(2);
+  const [, copy] = useClipBoard();
+  const [openToast, closeToast] = useOverlay();
+  const { mutate: joinBoard } = useJoinBoard(boardId);
 
   const handleClickJoinButton = () => {
-    validateUnchecked();
+    if (!validateUnchecked()) return;
+
+    joinBoard(boardId, {
+      onSuccess: () => {
+        onSuccessJoin?.();
+      },
+      onError: (err) => {
+        onFailureJoin?.(err?.message || '참여 신청에 실패했습니다.');
+      },
+      onSettled: () => {
+        onClose();
+      },
+    });
+  };
+
+  const handleClickOpenChat = () => {
+    window.open(chatLink, '_blank');
+  };
+
+  const handleClickCopyLink = () => {
+    copy(chatLink);
+    openToast(<Toast type="success" message="오픈 채팅방 링크를 복사했어요!" onClose={closeToast} />);
   };
 
   return (
@@ -48,10 +89,10 @@ const JoinModal = ({ onClose }: Props) => {
             {INSTURCTION.CHAT_INFO_DETAIL}
           </Typography>
           <div className={buttonGroup}>
-            <Button color="enabled" size="micro">
+            <Button color="enabled" size="micro" onClick={handleClickOpenChat}>
               {BUTTON.OPENCHAT_SHORTCUT}
             </Button>
-            <IconButton iconType="link" width={44} height={44} active={false} hover />
+            <IconButton iconType="link" width={44} height={44} active={false} hover onClick={handleClickCopyLink} />
           </div>
         </div>
         <div>

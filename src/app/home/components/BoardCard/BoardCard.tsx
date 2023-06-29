@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Chip, Profile, SvgIcon, Typography } from '@/components';
-import { BoardListItem } from '@/app/home/types';
+import { BoardListItem } from '@/api/types';
 import { getChipColor } from '@/app/home/utils/chipColor';
 
 import {
