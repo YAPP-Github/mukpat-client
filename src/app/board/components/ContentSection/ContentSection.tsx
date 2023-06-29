@@ -3,6 +3,7 @@
 import { IconButton, Typography } from '@/components';
 import { getBoardStatusText } from '@/app/board/utils';
 import { BoardDetail } from '@/api/types';
+import { useRouter } from 'next/navigation';
 import {
   headerText,
   statusText,
@@ -13,9 +14,6 @@ import {
   footerText,
   footerButtons,
 } from './ContentSection.css';
-
-// TODO
-// [ ] 이전페이지 다음 페이지 버튼 연결
 
 interface Props {
   board: BoardDetail;
@@ -34,7 +32,11 @@ const ContentSection = ({ board }: Props) => {
     content,
     createDate,
     views,
+    prevId,
+    nextId,
   } = board;
+
+  const router = useRouter();
 
   return (
     <section>
@@ -103,8 +105,13 @@ const ContentSection = ({ board }: Props) => {
           </Typography>
         </div>
         <div className={footerButtons}>
-          <IconButton iconType="chevronleft" hover />
-          <IconButton iconType="chevronright" hover />
+          <IconButton iconType="chevronleft" hover disabled={!prevId} onClick={() => router.push(`/board/${prevId}`)} />
+          <IconButton
+            iconType="chevronright"
+            hover
+            disabled={!nextId}
+            onClick={() => router.push(`/board/${nextId}`)}
+          />
         </div>
       </div>
     </section>

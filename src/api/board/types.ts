@@ -27,7 +27,7 @@ export interface BoardListPagingData {
 export interface BoardDetail {
   boardId: number;
   prevId: number | null;
-  nexId: number | null;
+  nextId: number | null;
   title: string;
   status: string;
   content: string;
