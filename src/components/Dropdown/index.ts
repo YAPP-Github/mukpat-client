@@ -7,10 +7,10 @@ import DropdownItem from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
 
 const DropdownRoot = Object.assign(Dropdown, {
-	Button: DropdownButton,
-	Toggle: DropdownToggle,
-	Item: DropdownItem,
-	Menu: DropdownMenu,
+  Button: DropdownButton,
+  Toggle: DropdownToggle,
+  Item: DropdownItem,
+  Menu: DropdownMenu,
 });
 
 export default DropdownRoot;
