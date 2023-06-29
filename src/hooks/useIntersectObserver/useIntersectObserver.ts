@@ -2,48 +2,51 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 
 interface Args extends IntersectionObserverInit {
-	freezeOnceVisible?: boolean;
-	onIntersect?: (entry: IntersectionObserverEntry, observer: IntersectionObserver) => void;
+  /**
+   * 한 번 보여진 이후에 비활성화 할지 여부
+   * @default false
+   */
+  freezeOnceVisible?: boolean;
+  /**
+   * intersecting인 상태에서 실행할 콜백 (useCallback으로 감싸서 넘겨주는 것이 권장됨)
+   */
+  onIntersect?: (entry: IntersectionObserverEntry, observer: IntersectionObserver) => void;
 }
 
-const useIntersectionObserver = <T extends HTMLElement>({
-	threshold = 0,
-	root = null,
-	rootMargin = '0%',
-	freezeOnceVisible = false,
-	onIntersect,
-}: Args) => {
-	const ref = useRef<T | null>(null);
+const useIntersectionObserver = <T extends HTMLElement>(args: Args = {}) => {
+  const { threshold = 0, root = null, rootMargin = '0%', freezeOnceVisible = false, onIntersect } = args;
 
-	const [entry, setEntry] = useState<IntersectionObserverEntry>();
+  const ref = useRef<T | null>(null);
 
-	const frozen = entry?.isIntersecting && freezeOnceVisible;
+  const [entry, setEntry] = useState<IntersectionObserverEntry>();
 
-	const callback = useCallback(
-		([entry]: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-			setEntry(entry);
-			if (entry.isIntersecting && !frozen) {
-				onIntersect?.(entry, observer);
-			}
-		},
-		[onIntersect, frozen],
-	);
+  const frozen = entry?.isIntersecting && freezeOnceVisible;
 
-	useEffect(() => {
-		const node = ref?.current; // DOM Ref
+  const callback = useCallback(
+    ([entry]: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+      setEntry(entry);
+      if (entry.isIntersecting && !frozen) {
+        onIntersect?.(entry, observer);
+      }
+    },
+    [onIntersect, frozen],
+  );
 
-		if (frozen || !node) return;
+  useEffect(() => {
+    const node = ref?.current; // DOM Ref
 
-		const observerParams = { threshold, root, rootMargin };
-		const observer = new IntersectionObserver(callback, observerParams);
+    if (frozen || !node) return;
 
-		observer.observe(node);
+    const observerParams = { threshold, root, rootMargin };
+    const observer = new IntersectionObserver(callback, observerParams);
 
-		return () => observer.disconnect();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [JSON.stringify(threshold), root, rootMargin, frozen, callback]);
+    observer.observe(node);
 
-	return [ref, entry] as const;
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(threshold), root, rootMargin, frozen, callback]);
+
+  return [ref, entry] as const;
 };
 
 export default useIntersectionObserver;
