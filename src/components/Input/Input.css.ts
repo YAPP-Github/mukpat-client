@@ -93,6 +93,7 @@ export const inputBase = recipe({
       search: {
         paddingLeft: space['3xl'],
       },
+      password: {},
     },
   },
 });
