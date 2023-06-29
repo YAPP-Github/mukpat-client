@@ -20,5 +20,15 @@ export const JOIN_MODAL_TEXT = {
 } as const;
 
 export const DELETE_MODAL_TEXT = {
+  TITLE: '게시글 삭제',
   INSTRUCTION: '게시글 삭제 시 참여 멤버들에게\n모임 취소 메일이 전송됩니다.',
+  CANCEL: '취소',
+  DELETE: '삭제하기',
+} as const;
+
+export const CANCEL_JOIN_MODAL_TEXT = {
+  TITLE: '참여 취소',
+  INSTRUCTION: '참여 취소 시 멤버들에게\n안내 메일이 전송됩니다.',
+  NOT_CANCEL: '참여하기',
+  CANCEL: '취소하기',
 } as const;

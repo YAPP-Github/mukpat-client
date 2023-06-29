@@ -16,7 +16,7 @@ import {
 } from '@/components';
 import { BulletTitle } from '@/app/board/components';
 import { useCheckboxGroupState } from '@/app/board/hooks';
-import { JOIN_MODAL_TEXT } from '@/app/board/constants';
+import { JOIN_MODAL_TEXT, TOAST_TEXT } from '@/app/board/constants';
 import {
   modalHeader,
   modalContent,
@@ -60,7 +60,7 @@ const JoinModal = ({ boardId, chatLink, onSuccessJoin, onFailureJoin, onClose }:
         onSuccessJoin?.();
       },
       onError: (err) => {
-        onFailureJoin?.(err?.message || '참여 신청에 실패했습니다.');
+        onFailureJoin?.(err?.message || TOAST_TEXT.FAILURE_JOIN);
       },
       onSettled: () => {
         onClose();
@@ -68,13 +68,13 @@ const JoinModal = ({ boardId, chatLink, onSuccessJoin, onFailureJoin, onClose }:
     });
   };
 
-  const handleClickOpenChat = () => {
+  const handleClickOpenChatButton = () => {
     window.open(chatLink, '_blank');
   };
 
-  const handleClickCopyLink = () => {
+  const handleClickCopyChatLinkButton = () => {
     copy(chatLink);
-    openToast(<Toast type="success" message="오픈 채팅방 링크를 복사했어요!" onClose={closeToast} />);
+    openToast(<Toast type="success" message={TOAST_TEXT.COPY_OPENCHAT_LINK} onClose={closeToast} />);
   };
 
   return (
@@ -89,10 +89,17 @@ const JoinModal = ({ boardId, chatLink, onSuccessJoin, onFailureJoin, onClose }:
             {INSTURCTION.CHAT_INFO_DETAIL}
           </Typography>
           <div className={buttonGroup}>
-            <Button color="enabled" size="micro" onClick={handleClickOpenChat}>
+            <Button color="enabled" size="micro" onClick={handleClickOpenChatButton}>
               {BUTTON.OPENCHAT_SHORTCUT}
             </Button>
-            <IconButton iconType="link" width={44} height={44} active={false} hover onClick={handleClickCopyLink} />
+            <IconButton
+              iconType="link"
+              width={44}
+              height={44}
+              active={false}
+              hover
+              onClick={handleClickCopyChatLinkButton}
+            />
           </div>
         </div>
         <div>

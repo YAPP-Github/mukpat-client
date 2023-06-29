@@ -39,6 +39,15 @@ class BoardAPI {
   async postBoardJoin(boardId: number) {
     return request.post(`v1/boards/${boardId}/join`).json();
   }
+
+  /**
+   * boardId에 해당하는 먹팟에 참가 신청을 취소합니다
+   * @param boardId - 참가 신청할 board의 id
+   * @returns
+   */
+  async deleteBoardJoin(boardId: number) {
+    return request.delete(`v1/boards/${boardId}/join`).json();
+  }
 }
 
 // api fetchers instance

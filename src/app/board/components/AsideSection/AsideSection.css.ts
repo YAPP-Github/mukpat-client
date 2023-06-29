@@ -30,3 +30,9 @@ export const dropdown = style({
 export const dropdownMenu = style({
   width: '14.75rem !important',
 });
+
+export const buttonGroup = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: space.md,
+});

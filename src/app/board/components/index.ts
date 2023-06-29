@@ -13,3 +13,5 @@ export { default as HydratedBoardDetail } from './HydratedBoardDetail/HydratedBo
 export { default as ParticipantsList } from './ParticipantsList/ParticipantsList';
 
 export { default as DeleteModal } from './DeleteModal/DeleteModal';
+
+export { default as CancelJoinModal } from './CancelJoinModal/CancelJoinModal';

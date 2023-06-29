@@ -9,7 +9,7 @@ interface Props {
 const DeleteModal = ({ onClose }: Props) => {
   return (
     <Modal onClose={onClose}>
-      <ModalHeader title="게시글 삭제" type="info" />
+      <ModalHeader title={DELETE_MODAL_TEXT.TITLE} type="info" />
       <ModalContent size="small">
         <Typography variant="body3" color="secondary" className={instructionText}>
           {DELETE_MODAL_TEXT.INSTRUCTION}
@@ -17,10 +17,10 @@ const DeleteModal = ({ onClose }: Props) => {
       </ModalContent>
       <ModalFooter type="horizontal" className={buttonGroup}>
         <Button color="enabled" size="medium" onClick={onClose}>
-          취소
+          {DELETE_MODAL_TEXT.CANCEL}
         </Button>
         <Button color="secondary" size="medium" onClick={onClose}>
-          삭제하기
+          {DELETE_MODAL_TEXT.DELETE}
         </Button>
       </ModalFooter>
     </Modal>
