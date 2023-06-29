@@ -2426,6 +2426,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.14.195":
+  version: 4.14.195
+  resolution: "@types/lodash@npm:4.14.195"
+  checksum: 39b75ca635b3fa943d17d3d3aabc750babe4c8212485a4df166fe0516e39288e14b0c60afc6e21913cc0e5a84734633c71e617e2bd14eaa1cf51b8d7799c432e
+  languageName: node
+  linkType: hard
+
 "@types/minimist@npm:^1.2.0":
   version: 1.2.2
   resolution: "@types/minimist@npm:1.2.2"
@@ -6986,6 +6993,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lottie-web@npm:^5.12.2":
+  version: 5.12.2
+  resolution: "lottie-web@npm:5.12.2"
+  checksum: af5bc3bc405fd760de8b17a36158d5a8c3e8c586c711d0c63681ddf056b65bc6b54ea36b1fcad782fb02dbe12e696a40e0ba72daf41b8f10ab5b5d1113793636
+  languageName: node
+  linkType: hard
+
 "loupe@npm:^2.3.1, loupe@npm:^2.3.6":
   version: 2.3.6
   resolution: "loupe@npm:2.3.6"
@@ -10381,6 +10395,7 @@ __metadata:
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": ^14.0.0
     "@testing-library/user-event": ^14.4.3
+    "@types/lodash": ^4.14.195
     "@types/node": ^20.1.5
     "@types/react": ^18.2.9
     "@types/react-dom": ^18.2.4
@@ -10414,10 +10429,13 @@ __metadata:
     json-server: ^0.17.3
     ky: ^0.33.3
     lint-staged: ^13.2.2
+    lodash: ^4.17.21
+    lottie-web: ^5.12.2
     msw: ^1.2.1
     next: ^13.4.6
     postcss: ^8.4.23
     prettier: ^2.8.8
+    prop-types: ^15.8.1
     react: 18.2.0
     react-day-picker: ^8.7.1
     react-dom: 18.2.0
