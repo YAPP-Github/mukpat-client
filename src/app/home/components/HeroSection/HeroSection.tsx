@@ -20,7 +20,7 @@ const HeroSection = () => {
         가볍게 대화해보세요!
       </Typography>
 
-      <Link href="/">
+      <Link href={'/write'}>
         <Button color="primary" className={button}>
           <Typography color="white" variant="title2">
             우리 회사 먹팟 만들기

@@ -10,6 +10,7 @@ import {
 } from '@/components';
 import { type Profile as ProfileData } from '@/types/data';
 import { dropdownToggle } from './Header.css';
+import Link from 'next/link';
 
 interface Props {
   profile: ProfileData;
@@ -18,11 +19,13 @@ interface Props {
 const LoginActions = ({ profile }: Props) => {
   return (
     <>
-      <Button color="explain" size="micro">
-        <Typography variant="label3" color="white">
-          먹팟 만들기
-        </Typography>
-      </Button>
+      <Link href={'/write'}>
+        <Button color="explain" size="micro">
+          <Typography variant="label3" color="white">
+            먹팟 만들기
+          </Typography>
+        </Button>
+      </Link>
       <Dropdown>
         <DropdownToggle className={dropdownToggle}>
           <Profile uid={profile.userId} nickname={profile.nickName} size="medium" fontSize="large" />
