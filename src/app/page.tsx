@@ -1,5 +1,16 @@
-import Image from 'next/image';
+import { Content } from '@/components';
+import { Header } from '@/components/server';
 
-export default function Home() {
-	return <div>home</div>;
+import { HeroSection, BoardSection } from '@/app/home/components';
+
+export default async function Home() {
+  return (
+    <>
+      <Header />
+      <Content>
+        <HeroSection />
+        <BoardSection />
+      </Content>
+    </>
+  );
 }

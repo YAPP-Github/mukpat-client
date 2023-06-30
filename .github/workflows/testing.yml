@@ -1,0 +1,28 @@
+name: checking unit test before pull request
+run-name: ${{ github.actor }}가 실행한 testing 작업
+on:
+  pull_request:
+    branches:
+      - dev
+      - master
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-20.04
+    outputs:
+      status: ${{ job.status }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: nodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: yarn
+
+      - name: dependency install
+        run: yarn install --immutable --immutable-cache
+
+      - name: check unit test
+        run: yarn test
