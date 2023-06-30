@@ -36,7 +36,10 @@ export const chips = style({
   gap: space.sm,
 });
 
-export const titleSpace = style({
+export const titleStyle = style({
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   marginBottom: space.xl,
 });
 
@@ -63,6 +66,12 @@ export const bodyItem = style({
   display: 'flex',
   alignItems: 'center',
   gap: space.sm,
+});
+
+export const bodyItemText = style({
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 });
 
 export const footer = style({

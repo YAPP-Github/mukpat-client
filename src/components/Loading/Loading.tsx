@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, forwardRef, RefObject } from 'react';
 import loading from './loading.json';
 import lottie from 'lottie-web';

@@ -1,7 +1,7 @@
 'use client';
 
 import { useIntersectObserver } from '@/hooks';
-import { useBoardListQuery } from '@/app/home/hooks';
+import { useBoardListQuery } from '@/api/hooks';
 import { BoardCard } from '@/app/home/components';
 import { BOARDS_PER_PAGE } from '@/app/home/constants';
 
