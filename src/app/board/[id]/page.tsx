@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { Content } from '@/components';
 import { Header } from '@/components/server';
 import { Suspense } from '@suspensive/react';
-import { HydratedBoardDetail } from '@/app/board/components';
+import { HydratedBoardDetail, BoardDetailLoading } from '@/app/board/components';
 
 const BoardDetailPage = async ({
   params: { id },
@@ -18,7 +18,7 @@ const BoardDetailPage = async ({
     <>
       <Header />
       <Content verticalCenter={false} style={{ paddingTop: '116px' }}>
-        <Suspense>
+        <Suspense fallback={<BoardDetailLoading />}>
           <HydratedBoardDetail boardId={boardId} />
         </Suspense>
       </Content>

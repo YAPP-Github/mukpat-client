@@ -29,7 +29,19 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   mb?: number | string;
 }
 
-const Skeleton = ({ width, height, color, radius, className, mt = 0, ml = 0, mr = 0, mb = 0, ...rest }: Props) => {
+const Skeleton = ({
+  width,
+  height,
+  color,
+  radius,
+  className,
+  mt = 0,
+  ml = 0,
+  mr = 0,
+  mb = 0,
+
+  ...rest
+}: Props) => {
   return (
     <div
       className={cx(

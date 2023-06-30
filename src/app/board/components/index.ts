@@ -15,3 +15,5 @@ export { default as ParticipantsList } from './ParticipantsList/ParticipantsList
 export { default as DeleteModal } from './DeleteModal/DeleteModal';
 
 export { default as CancelJoinModal } from './CancelJoinModal/CancelJoinModal';
+
+export { default as BoardDetailLoading } from './BoardDetailLoading/BoardDetailLoading';

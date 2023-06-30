@@ -9,10 +9,6 @@ import { BOARD_STATUS, TOAST_TEXT } from '@/app/board/constants';
 import { BoardDetail } from '@/api/types';
 import { wrapper, counterText, listBottomSpace, dropdown, dropdownMenu, buttonGroup } from './AsideSection.css';
 
-// TODO
-// [ ] BoardList 카드 장소, 시간 텍스트 overflow 처리
-// [ ] 모집 상세 페이지 로딩 처리
-
 interface Props {
   board: BoardDetail;
 }
