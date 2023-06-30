@@ -2,32 +2,32 @@
 import { useRouter } from 'next/navigation';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import useFormStore from '../../store/useFormStore';
-import { stepTwoSchema, StepTwoSchema } from '../../lib/schema';
-import { StepTwoData } from '../../types';
+import useFormStore from '@/app/write/store/useFormStore';
+import { boardSchema, BoardSchema } from '@/app/write/lib/schema';
+import { BoardData } from '@/app/write/types';
 import { Button, Input, InputSection, TextArea, Typography } from '@/components';
-import usePostBoard from '../../hooks/usePostBoard';
-import { formWrapper, inputDivider } from './Form.css';
+import usePostBoard from '@/app/write/hooks/usePostBoard';
+import { formWrapper, inputGap } from './Form.css';
 
 const SecondStep = () => {
-  const { stepTwo, setData } = useFormStore();
+  const { stepOne, reset } = useFormStore();
   const router = useRouter();
-  const { error } = usePostBoard(() => {
+  const { error, handlePostBoard } = usePostBoard(() => {
     console.log(error);
   });
 
-  const method = useForm<StepTwoSchema>({
-    resolver: zodResolver(stepTwoSchema),
-    defaultValues: stepTwo || {},
+  const method = useForm<BoardSchema>({
+    resolver: zodResolver(boardSchema),
+    defaultValues: { ...stepOne } || {},
   });
 
-  const onSubmit = (data: StepTwoData) => {
+  const onSubmit = (data: BoardData) => {
     if (!data) {
       return;
     }
     console.log(data);
-    // handlePostBoard(data);
-    setData({ step: 2, data });
+    handlePostBoard(data);
+    reset();
     router.push('/');
   };
 
@@ -35,7 +35,7 @@ const SecondStep = () => {
     <>
       <FormProvider {...method}>
         <form className={formWrapper} onSubmit={method.handleSubmit(onSubmit)}>
-          <div className={inputDivider}>
+          <div className={inputGap}>
             <Input {...method.register('title')} name={'title'} placeholder="[필수] 제목을 입력해주세요."></Input>
             <TextArea {...method.register('content')} name="content" maxLength={2000} type="textArea"></TextArea>
           </div>
@@ -46,7 +46,7 @@ const SecondStep = () => {
               베타서비스에서는 채팅 기능이 제공되지 않습니다. <br /> 효율적인 소통을 위해 오픈 채팅방을 만들어주세요.
             </Typography>
           </InputSection>
-          <Button size="xlarge" type="submit" disabled={!method.formState.isDirty}>
+          <Button size="xLarge" type="submit" disabled={!method.formState.isDirty}>
             먹팟 만들기
           </Button>
         </form>

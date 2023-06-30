@@ -1,10 +1,10 @@
 'use client';
 
 import dayjs from 'dayjs';
-import { FieldValues, FieldPath, Controller, Control } from 'react-hook-form';
-import { inputWrapper } from '@/components/Input/Input.css';
 import { HTMLAttributes } from 'react';
+import { FieldValues, FieldPath, Controller, Control } from 'react-hook-form';
 import { DateInput } from '@/components';
+import { inputWrapper } from '@/components/Input/Input.css';
 
 /**
  * @property {string} name - Input을 구분짓는 고유한 이름입니다. 한 폼안에는 오직 하나의 이름만이 존재해야 합니다. name을 전달해야 form validation이 가능합니다.
@@ -22,7 +22,6 @@ type TControl<T extends FieldValues> = {
 const InputDate = ({ ...props }: TControl<any>) => {
   const { name, control } = props;
   const now = dayjs().format('YYYY년 MM월 DD일 (오늘)');
-
   return (
     <div className={inputWrapper}>
       <Controller

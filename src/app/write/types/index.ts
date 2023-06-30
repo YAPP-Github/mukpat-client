@@ -2,18 +2,18 @@ export type StepOneData = {
   meetingDate: string;
   meetingTime: string;
   maxApply: number;
-  minAge?: number | null;
-  maxAge?: number | null;
+  minAge: number | null;
+  maxAge: number | null;
   locationName: string;
-  x?: number;
-  y?: number;
-  locationDetail?: string | null;
+  x: number;
+  y: number;
+  locationDetail: string | null;
 };
 
 export type StepTwoData = {
   title: string;
-  content?: string | null;
+  content: string | null;
   chatLink: string;
 };
 
-export type FormData = StepOneData & StepTwoData;
+export type BoardData = StepOneData & StepTwoData;

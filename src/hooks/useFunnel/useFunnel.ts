@@ -10,14 +10,23 @@ const useFunnel = (
   steps: Array<string>,
 ): [
   string,
-  // (step: string) => void,
   {
+    prevStep: () => void;
     nextStep: () => void;
-    // prevStep: () => void;
   },
 ] => {
   assertString(steps[0]);
   const [step, setStep] = useState<string>(steps[0]);
+
+  const prevStep = () => {
+    const currentStepIndex = steps.indexOf(step);
+    if (currentStepIndex === 0) {
+      return;
+    }
+    const newStep = steps[currentStepIndex - 1];
+    assertString(newStep);
+    setStep(newStep);
+  };
 
   const nextStep = () => {
     const currentStepIndex = steps.indexOf(step);
@@ -29,22 +38,11 @@ const useFunnel = (
     setStep(newStep);
   };
 
-  // const prevStep = () => {
-  //   const currentStepIndex = steps.indexOf(step);
-  //   if (currentStepIndex === 0) {
-  //     return;
-  //   }
-  //   const newStep = steps[currentStepIndex - 1];
-  //   assertString(newStep);
-  //   setStep(newStep);
-  // };
-
   return [
     step,
-    // setStep,
     {
+      prevStep,
       nextStep,
-      // prevStep,
     },
   ];
 };

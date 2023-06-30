@@ -9,7 +9,14 @@ export const formWrapper = style({
   gap: '3.5rem',
 });
 
-export const inputDivider = style({
-  display: 'inherit',
+export const sectionGap = style({
+  display: 'grid',
+  gridAutoFlow: 'row',
+  gap: space.xl,
+});
+
+export const inputGap = style({
+  display: 'grid',
+  gridAutoFlow: 'row',
   gap: space.md,
 });

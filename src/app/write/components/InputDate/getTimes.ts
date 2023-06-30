@@ -1,12 +1,12 @@
 function getTimeList() {
-  const timeList = [];
+  const timeList: string[] = [];
 
-  for (let hour = 0; hour <= 12; hour++) {
-    for (let minute = 0; minute <= 45; minute += 15) {
-      const time = '오전 ' + padTime(hour) + ':' + padTime(minute);
-      timeList.push(time);
-    }
-  }
+  // for (let hour = 0; hour <= 12; hour++) {
+  //   for (let minute = 0; minute <= 45; minute += 15) {
+  //     const time = '오전 ' + padTime(hour) + ':' + padTime(minute);
+  //     timeList.push(time);
+  //   }
+  // }
 
   for (let hour = 12; hour <= 23; hour++) {
     for (let minute = 0; minute <= 45; minute += 15) {

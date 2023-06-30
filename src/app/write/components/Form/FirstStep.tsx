@@ -8,7 +8,9 @@ import { StepOneData } from '../../types';
 import { Button, Input, InputDropdown, InputSection, Typography } from '@/components';
 import { InputDate, Counter, AgeModal } from '@/app/write/components';
 import getTimeList from '../InputDate/getTimes';
-import { formWrapper } from './Form.css';
+import { formWrapper, sectionGap, inputGap } from './Form.css';
+import MapModal from '../MapModal/MapModal';
+import { useCallback } from 'react';
 
 type stepProps = {
   nextStep: () => void;
@@ -22,34 +24,30 @@ const FirstStep = ({ nextStep }: stepProps) => {
     defaultValues: stepOne || {},
   });
 
-  const onSubmit = (data: StepOneData) => {
-    const date = dayjs(data.meetingDate).format('YYYY-MM-DD');
-    const time = dayjs(data.meetingTime).format('HH:mm');
+  const onSubmit = useCallback((data: StepOneData) => {
     if (!data) {
       return;
     }
+    const date = dayjs(data.meetingDate).format('YYYY-MM-DD');
+    const time = data.meetingTime.substr(-5);
     data = {
       ...data,
       meetingDate: date,
       meetingTime: time,
     };
-    console.log(data);
     setData({ step: 1, data });
     nextStep();
-  };
-
-  console.log(dayjs(method.getValues('meetingDate')).format('YYYY-MM-DD'));
-  console.log(method.formState.errors);
+  }, []);
 
   return (
     <>
       <FormProvider {...method}>
         <form className={formWrapper} onSubmit={method.handleSubmit(onSubmit)}>
-          <div>
+          <div className={sectionGap}>
             <Typography variant="heading4" as="p">
               언제 만날까요?
             </Typography>
-            <>
+            <div className={inputGap}>
               <InputSection label="날짜" direction="row" required={true}>
                 <InputDate control={method.control} name={'meetingDate'} />
               </InputSection>
@@ -57,38 +55,32 @@ const FirstStep = ({ nextStep }: stepProps) => {
                 <InputDropdown
                   control={method.control}
                   name={'meetingTime'}
-                  placeholder="오후 12:00"
+                  placeholder="시간 선택"
                   selections={getTimeList()}
                 ></InputDropdown>
               </InputSection>
-            </>
+            </div>
           </div>
-          <div>
+          <div className={sectionGap}>
             <Typography variant="heading4" as="p">
               몇 명 모을까요?
             </Typography>
-            <>
+            <div className={inputGap}>
               <InputSection label="인원" direction="row" required={true}>
                 <Counter control={method.control} name={'maxApply'} />
               </InputSection>
               <InputSection label="" direction="row">
                 <AgeModal control={method.control} />
               </InputSection>
-            </>
+            </div>
           </div>
-          <div>
+          <div className={sectionGap}>
             <Typography variant="heading4" as="p">
               어디서 만날까요?
             </Typography>
-            <>
+            <div className={inputGap}>
               <InputSection label="만날 위치" direction="row" required={true}>
-                <Input
-                  {...method.register('locationName')}
-                  name={'locationName'}
-                  showError={true}
-                  type="search"
-                  placeholder="위치 검색"
-                ></Input>
+                <MapModal />
               </InputSection>
               <InputSection label="상세 주소" direction="row">
                 <Input
@@ -98,17 +90,17 @@ const FirstStep = ({ nextStep }: stepProps) => {
                   maxLength={100}
                 ></Input>
               </InputSection>
-            </>
+            </div>
           </div>
-          <Button size="xlarge" type="submit" disabled={!method.formState.isDirty}>
+          <Button size="xLarge" type="submit" disabled={!method.formState.isDirty}>
             다음
           </Button>
-          {method.formState.isSubmitted && !method.formState.isValid && (
-            <Typography color="red500" variant="label5" as="label">
-              필수 항목을 입력하세요.
-            </Typography>
-          )}
         </form>
+        {method.formState.isSubmitted && !method.formState.isValid && (
+          <Typography color="red500" variant="label5" as="label">
+            필수 항목을 입력하세요.
+          </Typography>
+        )}
       </FormProvider>
     </>
   );

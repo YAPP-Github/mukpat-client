@@ -14,6 +14,7 @@ interface formState {
   stepOne: StepOneData | null;
   stepTwo: StepTwoData | null;
   setData: ({ step, data }: setDataType) => void;
+  reset: () => void;
 }
 
 const useFormStore = create<formState>()(
@@ -25,6 +26,7 @@ const useFormStore = create<formState>()(
         ...state,
         [stepVariant[step]]: data,
       })),
+    reset: () => set((state) => ({ ...state, stepOne: null, stepTwo: null })),
   })),
 );
 

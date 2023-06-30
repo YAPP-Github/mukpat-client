@@ -1,7 +1,7 @@
 const getAgeList = (min: number, max: number) => {
-  const list = [''];
+  const list: string[] = [];
   for (let i = min; i < max; i++) {
-    list.push(`${i.toString()}세`);
+    list.push(i.toString());
   }
 
   return list;

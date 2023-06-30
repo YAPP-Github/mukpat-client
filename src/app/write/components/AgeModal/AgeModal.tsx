@@ -1,6 +1,7 @@
 import { Control, FieldValues, Controller, useFormContext, useWatch } from 'react-hook-form';
 import { HTMLAttributes, useCallback, useMemo } from 'react';
 import dayjs from 'dayjs';
+import clsx from 'clsx';
 import {
   Button,
   Dropdown,
@@ -15,15 +16,20 @@ import {
   SvgIcon,
 } from '@/components';
 import { useBooleanState, useOverlay } from '@/hooks';
-import clsx from 'clsx';
-import { openButton, modalContent, modalContentWrapper, birthText, buttonWrapper } from './AgeModal.css';
-import getAgeList from './getAgeList';
+import {
+  openButton,
+  modalContent,
+  modalContentWrapper,
+  birthText,
+  buttonWrapper,
+} from '@/app/write/components/AgeModal/AgeModal.css';
+import getAgeList from '@/app/write/components/AgeModal/getAgeList';
 
 type ModalProps<T extends FieldValues> = {
   control: Control<T>;
 } & HTMLAttributes<HTMLDivElement>;
 
-const BirthYear = ({ control }: ModalProps<any>) => {
+const BirthYear = ({ control }: ModalProps<FieldValues>) => {
   const results = useWatch({ control, name: ['minAge', 'maxAge'] });
   const year = dayjs().year();
   const min = parseInt(results[0]) || 20;
@@ -40,8 +46,8 @@ const BirthYear = ({ control }: ModalProps<any>) => {
 
 const AgeApply = () => {
   const { getValues, resetField } = useFormContext();
-  const min = getValues('minAge') || '20세';
-  const max = getValues('maxAge') || '30세';
+  const min = getValues('minAge') || 20;
+  const max = getValues('maxAge') || 30;
   const resetValues = useCallback(() => {
     resetField('minAge');
     resetField('maxAge');
@@ -50,7 +56,7 @@ const AgeApply = () => {
     <>
       <div className={buttonWrapper}>
         <button className={openButton} type="button">
-          {min} - {max}
+          {min}세 - {max}세
         </button>
         <IconButton width={36} height={36} iconType="close" onClick={resetValues} />
       </div>
@@ -67,21 +73,20 @@ const AgeModal = ({ control }: ModalProps<any>) => {
     closeModal();
   }, [setSave, closeModal]);
   const list = useMemo(() => getAgeList(20, 100), []);
-
   const renderModal = () => {
     return (
-      <Modal onClose={closeModal} size="large">
+      <Modal onClose={closeModal} overflow={true} size="large">
         <ModalHeader type="input" title="참여 가능 나이를 선택해 주세요." />
         <ModalContent className={modalContentWrapper} size="large">
           <BirthYear control={control} />
           <div className={modalContent}>
             <Controller
-              defaultValue={'20세'}
+              defaultValue={20}
               control={control}
               name={'minAge'}
               render={({ field: { value, onChange } }) => (
                 <Dropdown style={{ width: '100%' }}>
-                  <DropdownButton placeholder={'20세'}>{value}</DropdownButton>
+                  <DropdownButton placeholder={'20세'}>{value}세</DropdownButton>
                   <DropdownMenu selectable selectedItemKey={value} onSelectChange={onChange}>
                     {list.map((v) => (
                       <DropdownItem key={v} itemKey={v}>
@@ -94,12 +99,12 @@ const AgeModal = ({ control }: ModalProps<any>) => {
             />
             <SvgIcon width={10} id="bar" />
             <Controller
-              defaultValue={'30세'}
+              defaultValue={30}
               control={control}
               name={'maxAge'}
               render={({ field: { value, onChange } }) => (
                 <Dropdown style={{ width: '100%' }}>
-                  <DropdownButton placeholder={'30세'}>{value}</DropdownButton>
+                  <DropdownButton placeholder={'30세'}>{value}세</DropdownButton>
                   <DropdownMenu selectable selectedItemKey={value} onSelectChange={onChange}>
                     {list.map((v) => (
                       <DropdownItem key={v} itemKey={v}>
@@ -116,7 +121,7 @@ const AgeModal = ({ control }: ModalProps<any>) => {
           <Button onClick={handleSave} type="button">
             저장하기
           </Button>
-          <Button onClick={closeModal} type="button" color="none">
+          <Button onClick={closeModal} type="button" color="text">
             취소하기
           </Button>
         </ModalFooter>
