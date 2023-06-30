@@ -1,15 +1,16 @@
 import Link from 'next/link';
 import { Chip, Profile, SvgIcon, Typography } from '@/components';
-import { BoardListItem } from '@/app/home/types';
+import { BoardListItem } from '@/api/types';
 import { getChipColor } from '@/app/home/utils/chipColor';
 
 import {
   wrapper,
   header,
   chips,
-  titleSpace,
+  titleStyle,
   body,
   bodyItem,
+  bodyItemText,
   footer,
   participantsCount,
   participantsList,
@@ -45,19 +46,19 @@ const BoardCard = ({ boardListItem }: Props) => {
             {elapsedTime}
           </Typography>
         </div>
-        <Typography className={titleSpace} variant="title1" color="primary">
+        <Typography className={titleStyle} variant="title1" color="primary">
           {title}
         </Typography>
         <div className={body}>
           <div className={bodyItem}>
             <SvgIcon id="calendar" color="grey300" width={24} height={24} />
-            <Typography variant="body2" color="primary">
+            <Typography variant="body2" color="primary" className={bodyItemText}>
               {meetingDateTime}
             </Typography>
           </div>
           <div className={bodyItem}>
             <SvgIcon id="map" color="grey300" width={24} height={24} />
-            <Typography variant="body2" color="primary">
+            <Typography variant="body2" color="primary" className={bodyItemText}>
               {meetingPlace}
             </Typography>
           </div>

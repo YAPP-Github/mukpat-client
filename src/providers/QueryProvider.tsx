@@ -12,10 +12,10 @@ export default function Provider({ children, queryConfig }: Props) {
   const [queryClient] = useState(
     () =>
       new QueryClient({
-        ...queryConfig?.defaultOptions,
         defaultOptions: {
-          ...queryConfig?.defaultOptions?.queries,
+          ...queryConfig?.defaultOptions,
           queries: {
+            ...queryConfig?.defaultOptions?.queries,
             suspense: true,
           },
         },
