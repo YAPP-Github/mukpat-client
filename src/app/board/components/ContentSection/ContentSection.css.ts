@@ -6,7 +6,7 @@ import { fontVariant } from '@/styles/variant.css';
 const { space, color, borderRadius } = themeTokens;
 
 export const headerText = style({
-  marginBottom: space.xl,
+  marginBottom: '2.25rem',
 });
 
 export const statusText = recipe({
@@ -66,4 +66,15 @@ export const footerButtons = style({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+});
+
+export const disabledLink = recipe({
+  variants: {
+    disabled: {
+      true: {
+        pointerEvents: 'none',
+      },
+      false: {},
+    },
+  },
 });

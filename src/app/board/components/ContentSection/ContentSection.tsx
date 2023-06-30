@@ -1,9 +1,8 @@
-'use client';
-
+import Link from 'next/link';
 import { IconButton, Typography } from '@/components';
 import { getBoardStatusText } from '@/app/board/utils';
 import { BoardDetail } from '@/api/types';
-import { useRouter } from 'next/navigation';
+
 import {
   headerText,
   statusText,
@@ -13,6 +12,7 @@ import {
   footer,
   footerText,
   footerButtons,
+  disabledLink,
 } from './ContentSection.css';
 
 interface Props {
@@ -35,8 +35,6 @@ const ContentSection = ({ board }: Props) => {
     prevId,
     nextId,
   } = board;
-
-  const router = useRouter();
 
   return (
     <section>
@@ -105,13 +103,22 @@ const ContentSection = ({ board }: Props) => {
           </Typography>
         </div>
         <div className={footerButtons}>
-          <IconButton iconType="chevronleft" hover disabled={!prevId} onClick={() => router.push(`/board/${prevId}`)} />
-          <IconButton
-            iconType="chevronright"
-            hover
-            disabled={!nextId}
-            onClick={() => router.push(`/board/${nextId}`)}
-          />
+          <Link
+            href={`/board/${prevId}`}
+            className={disabledLink({
+              disabled: !prevId,
+            })}
+          >
+            <IconButton iconType="chevronleft" hover disabled={!prevId} />
+          </Link>
+          <Link
+            href={`/board/${nextId}`}
+            className={disabledLink({
+              disabled: !nextId,
+            })}
+          >
+            <IconButton iconType="chevronright" hover disabled={!nextId} />
+          </Link>
         </div>
       </div>
     </section>

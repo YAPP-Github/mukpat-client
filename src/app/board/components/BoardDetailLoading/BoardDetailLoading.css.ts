@@ -20,7 +20,12 @@ export const flexColumn = style({
   flexDirection: 'column',
 });
 
-export const wrapper = style([wrapperStyle]);
+export const wrapper = style([
+  wrapperStyle,
+  {
+    gap: space['3xl'],
+  },
+]);
 
 export const infoBanner = style([
   infoBannerStyle,
