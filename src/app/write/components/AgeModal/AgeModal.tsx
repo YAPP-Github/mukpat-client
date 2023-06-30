@@ -1,20 +1,8 @@
-import { Control, FieldValues, Controller, useFormContext, useWatch } from 'react-hook-form';
-import { HTMLAttributes, useCallback, useMemo } from 'react';
+import { Control, FieldValues, useFormContext, useWatch } from 'react-hook-form';
+import { HTMLAttributes, useCallback } from 'react';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
-import {
-  Button,
-  Dropdown,
-  DropdownButton,
-  DropdownItem,
-  DropdownMenu,
-  IconButton,
-  Modal,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  SvgIcon,
-} from '@/components';
+import { Button, IconButton, Modal, ModalContent, ModalFooter, ModalHeader, SvgIcon } from '@/components';
 import { useBooleanState, useOverlay } from '@/hooks';
 import {
   openButton,
@@ -23,17 +11,11 @@ import {
   birthText,
   buttonWrapper,
 } from '@/app/write/components/AgeModal/AgeModal.css';
-import getAgeList from '@/app/write/components/AgeModal/getAgeList';
+import AgeController from './AgeController';
 
 type ModalProps<T extends FieldValues> = {
   control: Control<T>;
 } & HTMLAttributes<HTMLDivElement>;
-
-type ControllerProps<T extends FieldValues> = {
-  control: Control<T>;
-  name: string;
-  defaultValue: number;
-};
 
 const BirthYear = ({ control }: ModalProps<FieldValues>) => {
   const results = useWatch({ control, name: ['minAge', 'maxAge'] });
@@ -67,29 +49,6 @@ const AgeApply = () => {
         <IconButton width={36} height={36} iconType="close" onClick={resetValues} />
       </div>
     </>
-  );
-};
-
-const AgeController = ({ control, name, defaultValue }: ControllerProps<any>) => {
-  const list = useMemo(() => getAgeList(20, 100), []);
-  return (
-    <Controller
-      defaultValue={defaultValue}
-      control={control}
-      name={name}
-      render={({ field: { value, onChange } }) => (
-        <Dropdown style={{ width: '100%' }}>
-          <DropdownButton placeholder={'20세'}>{value}세</DropdownButton>
-          <DropdownMenu selectable selectedItemKey={value} onSelectChange={onChange}>
-            {list.map((v) => (
-              <DropdownItem key={v} itemKey={v}>
-                {v}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </Dropdown>
-      )}
-    />
   );
 };
 
