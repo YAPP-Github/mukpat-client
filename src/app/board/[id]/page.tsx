@@ -17,7 +17,7 @@ const BoardDetailPage = async ({
   return (
     <>
       <Header />
-      <Content verticalCenter={false} style={{ paddingTop: '116px' }}>
+      <Content verticalCenter={false} style={{ paddingTop: '120px' }}>
         <Suspense fallback={<BoardDetailLoading />}>
           <HydratedBoardDetail boardId={boardId} />
         </Suspense>
