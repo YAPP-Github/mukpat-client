@@ -1,40 +1,49 @@
 'use client';
+import { Input, InputSection } from '@/components';
+import { wrapper, form } from './LoginForm.css';
+import { FormProvider, FieldValues, SubmitHandler } from 'react-hook-form';
+import { useLogin, useLoginForm } from '@/app/login/hooks';
+import { useLoginContext } from '../../contexts/LoginContext';
+import { LoginButton } from '../../components';
 
-import { FormEvent } from 'react';
-import { Button, Typography } from '@/components';
-import useLoginForm from '@/app/login/hooks/useLoginForm';
-import { useRouter } from 'next/navigation';
-
-interface LoginFormData {
-	email: { value: string };
-	password: { value: string };
-}
-
-/** api 테스트를 위한 임시 form입니다 */
 const LoginForm = () => {
-	const router = useRouter();
-	const { handleLogin, error } = useLoginForm(() => router.push('/'));
+  const loginMutation = useLogin();
+  const { keep } = useLoginContext();
+  const { fieldErrorMsg, setFieldErrorMsg, method } = useLoginForm();
 
-	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const { email, password } = e.target as typeof e.target & LoginFormData;
-		await handleLogin(email.value, password.value);
-	};
+  const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
+    const { email, password } = data;
+    setFieldErrorMsg('');
+    try {
+      await loginMutation.mutateAsync({ email, password, keep });
+    } catch (error) {
+      if (error instanceof Error && 'message' in error) {
+        setFieldErrorMsg(error.message);
+      }
+    }
+  };
 
-	return (
-		<>
-			<form onSubmit={handleSubmit}>
-				<input type="email" name="email" placeholder="email" />
-				<input type="password" name="password" placeholder="password" />
-				<Button size="micro" type="submit">
-					로그인
-				</Button>
-			</form>
-			<Typography as="p" color="red500">
-				{error?.message}
-			</Typography>
-		</>
-	);
+  return (
+    <div className={wrapper}>
+      <FormProvider {...method}>
+        <form className={form} onSubmit={method.handleSubmit(onSubmit)}>
+          <InputSection label="회사 이메일" direction="column">
+            <Input {...method.register('email')} name="email" placeholder="회사 이메일" showError={true} />
+          </InputSection>
+          <InputSection label="비밀번호" direction="column">
+            <Input
+              {...method.register('password')}
+              type="password"
+              name="password"
+              placeholder="비밀번호"
+              showError={true}
+            />
+          </InputSection>
+          {<LoginButton fieldErrorMsg={fieldErrorMsg} />}
+        </form>
+      </FormProvider>
+    </div>
+  );
 };
 
 export default LoginForm;
