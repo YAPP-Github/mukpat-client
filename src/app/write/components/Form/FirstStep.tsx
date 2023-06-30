@@ -1,16 +1,15 @@
 'use client';
 import dayjs from 'dayjs';
-import { FormProvider, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import useFormStore from '../../store/useFormStore';
-import { stepOneSchema, StepOneSchema } from '../../lib/schema';
-import { StepOneData } from '../../types';
-import { Button, Input, InputDropdown, InputSection, Typography } from '@/components';
-import { InputDate, Counter, AgeModal } from '@/app/write/components';
-import getTimeList from '../InputDate/getTimes';
-import { formWrapper, sectionGap, inputGap } from './Form.css';
-import MapModal from '../MapModal/MapModal';
 import { useCallback } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { Button, Input, InputDropdown, InputSection, Typography } from '@/components';
+import { InputDate, Counter, AgeModal, MapModal } from '@/app/write/components';
+import { zodResolver } from '@hookform/resolvers/zod';
+import getTimeList from '@/app/write/components/InputDate/getTimes';
+import useFormStore from '@/app/write/store/useFormStore';
+import { stepOneSchema, StepOneSchema } from '@/app/write/lib/schema';
+import { StepOneData } from '@/app/write/types';
+import { formWrapper, sectionGap, inputGap } from './Form.css';
 
 type stepProps = {
   nextStep: () => void;

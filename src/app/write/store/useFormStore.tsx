@@ -10,14 +10,14 @@ const stepVariant = {
 
 type setDataType = { step: 1; data: StepOneData } | { step: 2; data: StepTwoData };
 
-interface formState {
+interface FormState {
   stepOne: StepOneData | null;
   stepTwo: StepTwoData | null;
   setData: ({ step, data }: setDataType) => void;
   reset: () => void;
 }
 
-const useFormStore = create<formState>()(
+const useFormStore = create<FormState>()(
   devtools((set) => ({
     stepOne: null,
     stepTwo: null,

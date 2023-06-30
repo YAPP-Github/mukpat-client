@@ -18,7 +18,7 @@ const SecondStep = () => {
 
   const method = useForm<BoardSchema>({
     resolver: zodResolver(boardSchema),
-    defaultValues: { ...stepOne } || {},
+    defaultValues: { ...stepOne },
   });
 
   const onSubmit = (data: BoardData) => {

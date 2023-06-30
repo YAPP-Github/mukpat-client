@@ -1,9 +1,7 @@
+import { useCallback, HTMLAttributes } from 'react';
+import { FieldValues, FieldPath, Controller, Control, useFormContext } from 'react-hook-form';
 import { IconButton } from '@/components';
-import { useCallback } from 'react';
 import { counterWrapper } from './Counter.css';
-import { FieldValues, FieldPath, Controller, Control } from 'react-hook-form';
-import { HTMLAttributes } from 'react';
-import { useFormContext } from 'react-hook-form';
 
 type CounterProps<T extends FieldValues> = {
   min?: number;
