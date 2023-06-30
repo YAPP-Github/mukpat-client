@@ -4,7 +4,7 @@ import { themeTokens } from '@/styles/theme.css';
 import {
   wrapper as cardWrapper,
   header as cardHeader,
-  titleSpace as cardTitleSpace,
+  titleStyle as cardTitleStyle,
   body as cardBody,
   footer as cardFooter,
 } from '@/app/home/components/BoardCard/BoardCard.css';
@@ -86,7 +86,7 @@ export const wrapper = style([
 
 export const header = style([cardHeader]);
 
-export const titleSpace = style([cardTitleSpace]);
+export const titleStyle = style([cardTitleStyle]);
 
 export const body = style([
   cardBody,

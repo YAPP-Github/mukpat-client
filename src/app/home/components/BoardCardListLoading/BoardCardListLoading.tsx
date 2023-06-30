@@ -1,4 +1,4 @@
-import { wrapper, header, skeleton, titleSpace, body, footer } from './BoardCardListLoading.css';
+import { wrapper, header, skeleton, titleStyle, body, footer } from './BoardCardListLoading.css';
 import { BOARDS_PER_PAGE } from '@/app/home/constants';
 
 const BoardCardSkeleton = () => {
@@ -18,7 +18,7 @@ const BoardCardSkeleton = () => {
           })}
         />
       </div>
-      <div className={titleSpace}>
+      <div className={titleStyle}>
         <div
           className={skeleton({
             width: 'md',
