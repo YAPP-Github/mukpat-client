@@ -10,7 +10,6 @@ import { BoardDetail } from '@/api/types';
 import { wrapper, counterText, listBottomSpace, dropdown, dropdownMenu, buttonGroup } from './AsideSection.css';
 
 // TODO
-// [ ] 나이 제한에 대해서 참여 제한 걸기
 // [ ] BoardList 카드 장소, 시간 텍스트 overflow 처리
 // [ ] 모집 상세 페이지 로딩 처리
 
@@ -20,15 +19,16 @@ interface Props {
 
 const AsideSection = ({ board }: Props) => {
   const router = useRouter();
-  const { boardId, chatLink, currentApply, maxApply, participants, status } = board;
   const { data: profile } = useProfile();
   const [openModal, closeModal] = useOverlay();
   const [openToast, closeToast] = useOverlay();
   const [, copyToClipBoard] = useClipBoard();
 
+  const { boardId, chatLink, currentApply, maxApply, participants, status, minAge, maxAge, userAge } = board;
   const writer = participants.find(({ writer }) => writer);
   const isJoined = participants.find(({ userId }) => userId === profile?.userId);
   const isWriter = writer?.userId === profile?.userId;
+  const isNotPossibleAge = Boolean(userAge && minAge && maxAge) && !(minAge <= userAge && userAge <= maxAge);
 
   const handleClickShareButton = () => {
     copyToClipBoard(window.location.href);
@@ -119,9 +119,20 @@ const AsideSection = ({ board }: Props) => {
       <ParticipantsList participants={participants} className={listBottomSpace} />
       <div className={buttonGroup}>
         {!isJoined && (
-          <Button size="medium" disabled={status === BOARD_STATUS.DONE} onClick={handleClickJoinButton}>
-            참여하기
-          </Button>
+          <>
+            <Button
+              size="medium"
+              disabled={status === BOARD_STATUS.DONE || isNotPossibleAge}
+              onClick={handleClickJoinButton}
+            >
+              참여하기
+            </Button>
+            {isNotPossibleAge && (
+              <Typography variant="label3" as="p" color="red500">
+                나이 제한이 있는 먹팟이에요.
+              </Typography>
+            )}
+          </>
         )}
         {isJoined && (
           <>

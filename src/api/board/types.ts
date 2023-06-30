@@ -39,6 +39,7 @@ export interface BoardDetail {
   currentApply: number;
   minAge: number;
   maxAge: number;
+  userAge: number;
   locationName: string;
   x: number;
   y: number;
