@@ -81,7 +81,7 @@ const ContentSection = ({ board }: Props) => {
             {locationDetail}
           </Typography>
         </li>
-        {minAge && maxAge && (
+        {Boolean(minAge && maxAge) && (
           <li className={infoBannerItem}>
             <Typography variant="label3" color="hint">
               참여 가능 나이
