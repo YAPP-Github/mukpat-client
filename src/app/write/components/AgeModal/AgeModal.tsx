@@ -29,6 +29,12 @@ type ModalProps<T extends FieldValues> = {
   control: Control<T>;
 } & HTMLAttributes<HTMLDivElement>;
 
+type ControllerProps<T extends FieldValues> = {
+  control: Control<T>;
+  name: string;
+  defaultValue: number;
+};
+
 const BirthYear = ({ control }: ModalProps<FieldValues>) => {
   const results = useWatch({ control, name: ['minAge', 'maxAge'] });
   const year = dayjs().year();
@@ -64,6 +70,29 @@ const AgeApply = () => {
   );
 };
 
+const AgeController = ({ control, name, defaultValue }: ControllerProps<any>) => {
+  const list = useMemo(() => getAgeList(20, 100), []);
+  return (
+    <Controller
+      defaultValue={defaultValue}
+      control={control}
+      name={name}
+      render={({ field: { value, onChange } }) => (
+        <Dropdown style={{ width: '100%' }}>
+          <DropdownButton placeholder={'20세'}>{value}세</DropdownButton>
+          <DropdownMenu selectable selectedItemKey={value} onSelectChange={onChange}>
+            {list.map((v) => (
+              <DropdownItem key={v} itemKey={v}>
+                {v}
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        </Dropdown>
+      )}
+    />
+  );
+};
+
 const AgeModal = ({ control }: ModalProps<any>) => {
   const [openModal, closeModal] = useOverlay();
   const [save, setSave] = useBooleanState();
@@ -72,7 +101,7 @@ const AgeModal = ({ control }: ModalProps<any>) => {
     setSave();
     closeModal();
   }, [setSave, closeModal]);
-  const list = useMemo(() => getAgeList(20, 100), []);
+
   const renderModal = () => {
     return (
       <Modal onClose={closeModal} overflow={true} size="large">
@@ -80,41 +109,9 @@ const AgeModal = ({ control }: ModalProps<any>) => {
         <ModalContent className={modalContentWrapper} size="large">
           <BirthYear control={control} />
           <div className={modalContent}>
-            <Controller
-              defaultValue={20}
-              control={control}
-              name={'minAge'}
-              render={({ field: { value, onChange } }) => (
-                <Dropdown style={{ width: '100%' }}>
-                  <DropdownButton placeholder={'20세'}>{value}세</DropdownButton>
-                  <DropdownMenu selectable selectedItemKey={value} onSelectChange={onChange}>
-                    {list.map((v) => (
-                      <DropdownItem key={v} itemKey={v}>
-                        {v}
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </Dropdown>
-              )}
-            />
+            <AgeController defaultValue={20} name={'minAge'} control={control} />
             <SvgIcon width={10} id="bar" />
-            <Controller
-              defaultValue={30}
-              control={control}
-              name={'maxAge'}
-              render={({ field: { value, onChange } }) => (
-                <Dropdown style={{ width: '100%' }}>
-                  <DropdownButton placeholder={'30세'}>{value}세</DropdownButton>
-                  <DropdownMenu selectable selectedItemKey={value} onSelectChange={onChange}>
-                    {list.map((v) => (
-                      <DropdownItem key={v} itemKey={v}>
-                        {v}
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </Dropdown>
-              )}
-            />
+            <AgeController defaultValue={30} name={'maxAge'} control={control} />
           </div>
         </ModalContent>
         <ModalFooter type="vertical">
