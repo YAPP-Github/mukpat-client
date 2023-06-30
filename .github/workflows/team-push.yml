@@ -1,4 +1,4 @@
-name: git push into 22nd-Web-Team-1-Web to deploy to vercel
+name: git push into mukpat-client to deploy to vercel
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
         with:
           source-directory: 'output'
           destination-github-username: jieunpark247
-          destination-repository-name: 22nd-Web-Team-1-Web
+          destination-repository-name: mukpat-client
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: master
