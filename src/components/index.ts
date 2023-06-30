@@ -31,3 +31,5 @@ export * from './Modal';
 export { default as Map } from './Map/Map';
 
 export { default as Loading } from './Loading/Loading';
+
+export { default as Skeleton } from './Skeleton/Skeleton';
