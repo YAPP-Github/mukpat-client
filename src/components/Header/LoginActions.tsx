@@ -18,7 +18,7 @@ interface Props {
 const LoginActions = ({ profile }: Props) => {
   return (
     <>
-      <Button color="explain" size="micro">
+      <Button color="explain" size="paddingSmall">
         <Typography variant="label3" color="white">
           먹팟 만들기
         </Typography>

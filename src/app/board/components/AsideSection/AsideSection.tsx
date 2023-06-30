@@ -135,7 +135,7 @@ const AsideSection = ({ board }: Props) => {
             <Button size="medium" onClick={handleClickOpenChatButton}>
               오픈 채팅방 바로가기
             </Button>
-            <Button size="medium" color="none" onClick={handleClickCancelJoinButton}>
+            <Button size="medium" color="text" onClick={handleClickCancelJoinButton}>
               참가 취소하기
             </Button>
           </>

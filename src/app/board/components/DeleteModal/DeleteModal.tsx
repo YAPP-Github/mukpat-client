@@ -1,4 +1,4 @@
-import { Modal, ModalContent, ModalFooter, ModalHeader, Typography, Button } from '@/components';
+import { Modal, Typography, Button } from '@/components';
 import { DELETE_MODAL_TEXT, TOAST_TEXT } from '@/app/board/constants';
 import { instructionText, buttonGroup } from './DeleteModal.css';
 import { useDeleteBoard } from '@/api/board/hooks';
@@ -36,20 +36,20 @@ const DeleteModal = ({ boardId, onSuccessDelete, onFailureDelete, onClose }: Pro
 
   return (
     <Modal onClose={onClose}>
-      <ModalHeader title={DELETE_MODAL_TEXT.TITLE} type="info" />
-      <ModalContent size="small">
+      <Modal.Header title={DELETE_MODAL_TEXT.TITLE} type="info" />
+      <Modal.Content size="small">
         <Typography variant="body3" color="secondary" className={instructionText}>
           {DELETE_MODAL_TEXT.INSTRUCTION}
         </Typography>
-      </ModalContent>
-      <ModalFooter type="horizontal" className={buttonGroup}>
-        <Button color="enabled" size="medium" onClick={onClose}>
+      </Modal.Content>
+      <Modal.Footer type="horizontal" className={buttonGroup}>
+        <Button color="sub" size="medium" onClick={onClose}>
           {DELETE_MODAL_TEXT.CANCEL}
         </Button>
         <Button color="secondary" size="medium" onClick={handleClickDeleteButton}>
           {DELETE_MODAL_TEXT.DELETE}
         </Button>
-      </ModalFooter>
+      </Modal.Footer>
     </Modal>
   );
 };

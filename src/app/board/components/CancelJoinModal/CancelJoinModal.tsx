@@ -1,4 +1,4 @@
-import { Button, Typography, Modal, ModalHeader, ModalContent, ModalFooter } from '@/components';
+import { Button, Typography, Modal } from '@/components';
 import { useCancelJoinBoard } from '@/api/hooks';
 import { CANCEL_JOIN_MODAL_TEXT, TOAST_TEXT } from '@/app/board/constants';
 import { instructionText, buttonGroup } from './CancelJoinModal.css';
@@ -36,20 +36,20 @@ const CancelJoinModal = ({ boardId, onSuccessCancel, onFailureCancel, onClose }:
 
   return (
     <Modal onClose={onClose}>
-      <ModalHeader type="info" title={CANCEL_JOIN_MODAL_TEXT.TITLE} />
-      <ModalContent size="small">
+      <Modal.Header type="info" title={CANCEL_JOIN_MODAL_TEXT.TITLE} />
+      <Modal.Content size="small">
         <Typography variant="body3" color="secondary" className={instructionText}>
           {CANCEL_JOIN_MODAL_TEXT.INSTRUCTION}
         </Typography>
-      </ModalContent>
-      <ModalFooter type="horizontal" className={buttonGroup}>
-        <Button color="enabled" size="medium" onClick={onClose}>
+      </Modal.Content>
+      <Modal.Footer type="horizontal" className={buttonGroup}>
+        <Button color="sub" size="medium" onClick={onClose}>
           {CANCEL_JOIN_MODAL_TEXT.NOT_CANCEL}
         </Button>
         <Button color="secondary" size="medium" onClick={handleClickCancelButton}>
           {CANCEL_JOIN_MODAL_TEXT.CANCEL}
         </Button>
-      </ModalFooter>
+      </Modal.Footer>
     </Modal>
   );
 };

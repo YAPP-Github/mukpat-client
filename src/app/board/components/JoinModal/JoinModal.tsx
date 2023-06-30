@@ -3,17 +3,7 @@
 import cx from 'classnames';
 import { useClipBoard, useOverlay } from '@/hooks';
 import { useJoinBoard } from '@/api/hooks';
-import {
-  Modal,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  IconButton,
-  Typography,
-  Button,
-  CheckBox,
-  Toast,
-} from '@/components';
+import { Modal, IconButton, Typography, Button, CheckBox, Toast } from '@/components';
 import { BulletTitle } from '@/app/board/components';
 import { useCheckboxGroupState } from '@/app/board/hooks';
 import { JOIN_MODAL_TEXT, TOAST_TEXT } from '@/app/board/constants';
@@ -79,17 +69,17 @@ const JoinModal = ({ boardId, chatLink, onSuccessJoin, onFailureJoin, onClose }:
 
   return (
     <Modal onClose={onClose} size="large">
-      <ModalHeader title="참여 신청 안내" type="infoWithClose" className={modalHeader}>
+      <Modal.Header title="참여 신청 안내" type="infoWithClose" className={modalHeader}>
         <IconButton iconType="close" active={false} hover onClick={onClose} />
-      </ModalHeader>
-      <ModalContent size="large" className={modalContent}>
+      </Modal.Header>
+      <Modal.Content size="large" className={modalContent}>
         <div>
           <BulletTitle className={bulletTitleBottomSpace}>{INSTURCTION.CHAT_INFO_TITLE}</BulletTitle>
           <Typography variant="body3" color="secondary" className={cx(bodyBottomSpace, lineBreak)}>
             {INSTURCTION.CHAT_INFO_DETAIL}
           </Typography>
           <div className={buttonGroup}>
-            <Button color="enabled" size="micro" onClick={handleClickOpenChatButton}>
+            <Button color="sub" size="paddingSmall" onClick={handleClickOpenChatButton}>
               {BUTTON.OPENCHAT_SHORTCUT}
             </Button>
             <IconButton
@@ -121,12 +111,12 @@ const JoinModal = ({ boardId, chatLink, onSuccessJoin, onFailureJoin, onClose }:
             </CheckBox>
           ))}
         </div>
-      </ModalContent>
-      <ModalFooter type="single">
+      </Modal.Content>
+      <Modal.Footer type="single">
         <Button color="primary" onClick={handleClickJoinButton}>
           {BUTTON.JOIN}
         </Button>
-      </ModalFooter>
+      </Modal.Footer>
     </Modal>
   );
 };
