@@ -81,3 +81,16 @@ export const agelist = [
   '99',
   '100',
 ];
+
+export const MEETING_DATE = 'meetingDate';
+export const MEEETING_TIME = 'meetingTime';
+export const MAX_APPLY = 'maxApply';
+export const MIN_AGE = 'minAge';
+export const MAX_AGE = 'maxAge';
+export const LOCATION_NAME = 'locationName';
+export const X = 'x';
+export const Y = 'y';
+export const LOCATION_DETAIL = 'locationDetail';
+export const TITLE = 'title';
+export const CONTENT = 'content';
+export const CHAT_LINK = 'chatLink';

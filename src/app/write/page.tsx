@@ -6,7 +6,7 @@ import { Typography } from '@/components';
 import { wrapper } from './style.css';
 import { useEffect } from 'react';
 
-export default function StepOnePage() {
+export default function Write() {
   const [step, { nextStep }] = useFunnel(['1', '2']);
 
   const preventClose = (e: BeforeUnloadEvent) => {

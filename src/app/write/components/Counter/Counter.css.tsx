@@ -16,6 +16,7 @@ globalStyle('input', {
 
 globalStyle('input[type="number"]', {
   ...fontVariant.body2,
+  width: 'min-content',
   textAlign: 'center',
   outline: 'none',
 });
