@@ -5,3 +5,6 @@ export const inputWrapper = style({
 globalStyle(`${inputWrapper} > div`, {
   justifyContent: 'normal',
 });
+export const input = style({
+  width: '100%',
+});

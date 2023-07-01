@@ -31,3 +31,6 @@ globalStyle(`${inputArea} > div`, {
   width: '200px',
   marginRight: '12px',
 });
+export const input = style({
+  width: '100%',
+});
