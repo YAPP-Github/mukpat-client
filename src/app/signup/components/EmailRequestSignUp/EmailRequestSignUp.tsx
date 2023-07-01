@@ -1,7 +1,7 @@
 'use client';
 import { Button, Input, InputSection } from '@/components';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
-import { requiredFields, button, buttonWrapper, inputArea } from './EmailRequestSignUp.css';
+import { requiredFields, button, buttonWrapper, inputArea, input } from './EmailRequestSignUp.css';
 import { useSignupContext } from '../../contexts/SignupContext';
 import { postRequestEmail } from '../../api';
 import { usePostApi, useCommonForm, useConsent } from '../../hooks';
@@ -49,8 +49,14 @@ const EmailRequestSignUp = ({ onNext }: EmailRequestSignUpProps) => {
       <InputField method={method} onSubmit={onSubmit}>
         <InputSection variant="label3" color="sub" label="회사이메일" direction="column" required={true}>
           <div className={inputArea}>
-            <div>
-              <Input {...method.register('email')} name="email" placeholder="회사 이메일" showError={true} />
+            <div style={{ width: '200px' }}>
+              <Input
+                {...method.register('email')}
+                name="email"
+                placeholder="회사 이메일"
+                showError={true}
+                className={input}
+              />
             </div>
             <span>@samsung.com</span>
           </div>
