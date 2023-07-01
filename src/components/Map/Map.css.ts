@@ -17,7 +17,7 @@ export const mapContainer = style({
   zIndex: zIndices.overlay,
 });
 export const backgroundWrapper = style({
-  position: 'absolute',
+  position: 'fixed',
   width: '100%',
   height: '100%',
   background: color.black,

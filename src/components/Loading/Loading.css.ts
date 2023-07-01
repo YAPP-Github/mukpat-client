@@ -13,7 +13,7 @@ export const loadingWrapper = style({
   zIndex: zIndices.tooltip,
 });
 export const backgroundWrapper = style({
-  position: 'absolute',
+  position: 'fixed',
   width: '100%',
   height: '100%',
   background: 'rgba(255, 255, 255, 0.5)',
