@@ -22,7 +22,7 @@ type InputProps = {
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTMLInputElement>) {
-  const { type, name, placeholder, showError, ...rest } = props;
+  const { type, name, placeholder, showError, className, ...rest } = props;
   const { formState, resetField } = useFormContext();
   const handleReset = useCallback(() => resetField(name, { defaultValue: '', keepDirty: false }), []);
   const errorMessage = formState.errors[name]?.message as string;
@@ -40,7 +40,7 @@ const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTM
         )}
         <input
           name={name}
-          className={clsx(inputBase({ type }), errorMessage && inputError)}
+          className={clsx(inputBase({ type }), errorMessage && inputError, className)}
           placeholder={placeholder}
           ref={ref}
           type={type}
