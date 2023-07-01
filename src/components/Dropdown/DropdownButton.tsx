@@ -11,19 +11,19 @@ import DropdownToggle from './DropdownToggle';
  */
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-	placeholder?: string;
-	isError?: boolean;
+  placeholder?: string;
+  isError?: boolean;
 }
 
 const DropdownButton = ({ children, placeholder = '선택', onClick, isError, ...rest }: Props) => {
-	return (
-		<DropdownToggle className={cx(buttonBase, buttonVariant({ isError }))} onClick={onClick} {...rest}>
-			<span className={buttonText}>{children ?? placeholder}</span>
-			<span aria-hidden={true}>
-				<CaretDownIcon size={24} />
-			</span>
-		</DropdownToggle>
-	);
+  return (
+    <DropdownToggle className={cx(buttonBase, buttonVariant({ isError }))} onClick={onClick} {...rest}>
+      <span className={buttonText}>{children ?? placeholder}</span>
+      <span aria-hidden={true}>
+        <CaretDownIcon size={24} />
+      </span>
+    </DropdownToggle>
+  );
 };
 
 export default DropdownButton;

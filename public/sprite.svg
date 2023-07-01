@@ -11,6 +11,18 @@
 <rect width="12" height="12" fill="white" transform="translate(9.99805 10.0005)"/>
 </clipPath>
 
+<linearGradient id="paint0_linear_214_5469" x1="-6.46409" y1="60" x2="69.7238" y2="60" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B0A4EE"/>
+<stop offset="1" stop-color="#738CF7"/>
+</linearGradient>
+<linearGradient id="paint1_linear_214_5469" x1="17.076" y1="37.5" x2="45.6464" y2="37.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B0A4EE"/>
+<stop offset="1" stop-color="#738CF7"/>
+</linearGradient>
+<clipPath id="clip0_214_5469">
+<rect width="36" height="36" fill="white" transform="translate(12 12)"/>
+</clipPath>
+
 <clipPath id="clip0_300_6282">
 <rect width="12" height="12" fill="white" transform="translate(5.99805 6.00024)"/>
 </clipPath>
@@ -57,6 +69,12 @@
 <circle cx="16" cy="16" r="12" fill="#D1D6DC"/>
 <g clip-path="url(#clip0_286_7160)">
 <path d="M21.6484 13.6846L15.318 20.0146C14.8492 20.4835 14.0888 20.4835 13.6196 20.0146L10.3517 16.7466C9.88276 16.2778 9.88276 15.5172 10.3517 15.0483C10.8208 14.5792 11.5812 14.5792 12.05 15.0481L14.469 17.4671L19.95 11.9862C20.419 11.5171 21.1795 11.5175 21.6483 11.9862C22.1171 12.4552 22.1171 13.2154 21.6484 13.6846Z" fill="white"/>
+</g>
+
+</symbol><symbol id="check-info" viewBox="0 0 60 60">
+<circle cx="30" cy="30" r="28.5" stroke="url(#paint0_linear_214_5469)" stroke-width="3"/>
+<g clip-path="url(#clip0_214_5469)">
+<path d="M19.5 30L27 37.5L42 22.5" stroke="url(#paint1_linear_214_5469)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 
 </symbol><symbol id="check" viewBox="0 0 24 24">
