@@ -12,7 +12,7 @@ export type StepOneData = {
 
 export type StepTwoData = {
   title: string;
-  content: string | null;
+  content?: string | null;
   chatLink: string;
 };
 

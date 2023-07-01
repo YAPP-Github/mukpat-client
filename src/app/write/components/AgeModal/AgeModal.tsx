@@ -32,30 +32,19 @@ const BirthYear = ({ control }: ModalProps<FieldValues>) => {
   );
 };
 
-const AgeApply = () => {
-  const { getValues, resetField } = useFormContext();
-  const min = getValues('minAge') || 20;
-  const max = getValues('maxAge') || 30;
+const ClearButton = () => {
+  const { resetField } = useFormContext();
   const resetValues = useCallback(() => {
     resetField('minAge');
     resetField('maxAge');
   }, [resetField]);
-  return (
-    <>
-      <div className={buttonWrapper}>
-        <button className={openButton} type="button">
-          {min}세 - {max}세
-        </button>
-        <IconButton width={36} height={36} iconType="close" onClick={resetValues} />
-      </div>
-    </>
-  );
+  return <IconButton width={36} height={36} iconType="close" onClick={resetValues} />;
 };
 
 const AgeModal = ({ control }: ModalProps<any>) => {
   const [openModal, closeModal] = useOverlay();
-  const [save, setSave] = useBooleanState();
-  const { formState } = useFormContext();
+  const [save, setSave] = useBooleanState(false);
+  const { formState, getFieldState } = useFormContext();
   const handleSave = useCallback(() => {
     setSave();
     closeModal();
@@ -68,13 +57,17 @@ const AgeModal = ({ control }: ModalProps<any>) => {
         <ModalContent className={modalContentWrapper} size="large">
           <BirthYear control={control} />
           <div className={modalContent}>
-            <AgeController defaultValue={20} name={'minAge'} control={control} />
+            <AgeController placeholder={'최소 나이 제한'} name={'minAge'} control={control} />
             <SvgIcon width={10} id="bar" />
-            <AgeController defaultValue={30} name={'maxAge'} control={control} />
+            <AgeController placeholder={'최대 나이 제한'} name={'maxAge'} control={control} />
           </div>
         </ModalContent>
         <ModalFooter type="vertical">
-          <Button onClick={handleSave} type="button">
+          <Button
+            onClick={handleSave}
+            disabled={getFieldState('minAge').invalid && getFieldState('maxAge').invalid}
+            type="button"
+          >
             저장하기
           </Button>
           <Button onClick={closeModal} type="button" color="text">
@@ -86,15 +79,12 @@ const AgeModal = ({ control }: ModalProps<any>) => {
   };
   return (
     <>
-      {(save && formState.dirtyFields['minAge']) || formState.dirtyFields['maxAge'] ? (
-        <AgeApply />
-      ) : (
-        <div className={buttonWrapper}>
-          <button className={openButton} type="button" onClick={() => openModal(renderModal())}>
-            나이 제한 걸기
-          </button>
-        </div>
-      )}
+      <div className={buttonWrapper}>
+        <button className={openButton} type="button" onClick={() => openModal(renderModal())}>
+          나이 제한 걸기
+        </button>
+        {save && formState.dirtyFields['minAge'] && formState.dirtyFields['maxAge'] && <ClearButton />}
+      </div>
     </>
   );
 };
