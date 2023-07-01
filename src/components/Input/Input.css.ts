@@ -91,7 +91,7 @@ export const inputBase = recipe({
         fontWeight: fontWeight.semibold,
       },
       search: {
-        paddingLeft: space['3xl'],
+        paddingLeft: space['5xl'],
       },
       password: {},
     },
