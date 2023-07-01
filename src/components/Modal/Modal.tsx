@@ -6,10 +6,11 @@ import { useClickOutside } from '@/hooks';
 
 type ModalProps = {
   size?: Size;
+  overflow?: boolean;
   onClose: () => void;
 } & HTMLAttributes<HTMLDivElement>;
 
-const Modal = ({ size, onClose, className, children, ...rest }: ModalProps) => {
+const Modal = ({ size, onClose, overflow, className, children, ...rest }: ModalProps) => {
   const ref = useClickOutside<HTMLDivElement>({
     onClickOutside: () => {
       onClose();
@@ -19,7 +20,7 @@ const Modal = ({ size, onClose, className, children, ...rest }: ModalProps) => {
   return (
     <>
       <div className={cx(backgroundWrapper)} data-testid="outside"></div>
-      <div className={cx(modalWrapper({ size }), className)} ref={ref} {...rest}>
+      <div className={cx(modalWrapper({ size, overflow }), className)} ref={ref} {...rest}>
         {children}
       </div>
     </>

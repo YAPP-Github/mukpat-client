@@ -3746,6 +3746,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "clsx@npm:1.2.1"
+  checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
+  languageName: node
+  linkType: hard
+
 "color-convert@npm:^1.9.0":
   version: 1.9.3
   resolution: "color-convert@npm:1.9.3"
@@ -4046,6 +4053,13 @@ __metadata:
   dependencies:
     time-zone: ^1.0.0
   checksum: f9cfcd1b15dfeabab15c0b9d18eb9e4e2d9d4371713564178d46a8f91ad577a290b5178b80050718d02d9c0cf646f8a875011e12d1ed05871e9f72c72c8a8fe6
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.8":
+  version: 1.11.8
+  resolution: "dayjs@npm:1.11.8"
+  checksum: 4fe04b6df98ba6e5f89b49d80bba603cbf01e21a1b4a24ecb163c94c0ba5324a32ac234a139cee654f89d5277a2bcebca5347e6676c28a0a6d1a90f1d34a42b8
   languageName: node
   linkType: hard
 
@@ -10395,7 +10409,9 @@ __metadata:
     "@vanilla-extract/vite-plugin": ^3.8.2
     "@vitejs/plugin-react": ^4.0.0
     classnames: ^2.3.2
+    clsx: ^1.2.1
     date-fns: ^2.30.0
+    dayjs: ^1.11.8
     eslint: ^8.40.0
     eslint-config-next: ^13.4.2
     eslint-config-prettier: ^8.8.0

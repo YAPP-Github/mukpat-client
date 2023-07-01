@@ -14,39 +14,39 @@ import { HTMLAttributes } from 'react';
  */
 
 type TControl<T extends FieldValues> = {
-	control: Control<T>;
-	name: FieldPath<T>;
-	showError?: boolean;
-	selections?: string[];
+  control: Control<T>;
+  name: FieldPath<T>;
+  showError?: boolean;
+  selections?: string[];
 } & HTMLAttributes<HTMLDivElement>;
 
 const InputDropdown = ({ ...props }: TControl<any>) => {
-	const { name, control, placeholder, showError = true, selections = ['default'] } = props;
+  const { name, control, placeholder, showError = true, selections = ['default'] } = props;
 
-	return (
-		<div className={inputWrapper}>
-			<Controller
-				defaultValue={null}
-				control={control}
-				name={name}
-				render={({ field: { value, onChange } }) => (
-					<Dropdown>
-						<DropdownButton placeholder={placeholder} style={{ width: '100%' }}>
-							{value}
-						</DropdownButton>
-						<DropdownMenu selectable selectedItemKey={value} onSelectChange={onChange}>
-							{selections.map((v) => (
-								<DropdownItem key={v} itemKey={v}>
-									{v}
-								</DropdownItem>
-							))}
-						</DropdownMenu>
-					</Dropdown>
-				)}
-			/>
-			<InputErrorMessage name={name} showError={showError} />
-		</div>
-	);
+  return (
+    <div className={inputWrapper}>
+      <Controller
+        defaultValue={null}
+        control={control}
+        name={name}
+        render={({ field: { value, onChange }, fieldState }) => (
+          <Dropdown>
+            <DropdownButton isError={Boolean(fieldState.error)} placeholder={placeholder} style={{ width: '100%' }}>
+              {value}
+            </DropdownButton>
+            <DropdownMenu selectable selectedItemKey={value} onSelectChange={onChange}>
+              {selections.map((v) => (
+                <DropdownItem key={v} itemKey={v}>
+                  {v}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+        )}
+      />
+      <InputErrorMessage name={name} showError={showError} />
+    </div>
+  );
 };
 
 export default InputDropdown;

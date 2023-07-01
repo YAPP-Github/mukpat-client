@@ -31,7 +31,12 @@ const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTM
     <div style={{ width: 'inherit', gridAutoFlow: 'column' }}>
       <div className={inputWrapper} aria-describedby={`${name}-input-wrapper`} id={`${name}_input`}>
         {type === 'search' && (
-          <SvgIcon style={{ height: '100%', left: '12px', position: 'absolute', top: 0 }} id={'search'} />
+          <SvgIcon
+            width={32}
+            height={32}
+            style={{ height: '100%', left: '12px', position: 'absolute', top: 0 }}
+            id={'search-disable'}
+          />
         )}
         <input
           name={name}

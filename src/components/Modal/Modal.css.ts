@@ -33,6 +33,11 @@ export const modalWrapper = recipe({
         width: '320px',
       },
     },
+    overflow: {
+      true: {
+        overflow: 'visible',
+      },
+    },
   },
   defaultVariants: {
     size: 'small',
