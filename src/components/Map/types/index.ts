@@ -8,3 +8,9 @@ export type Place = {
 };
 
 export type PlaceList = Place[] | [];
+
+export type CustomPlace = {
+  x: number;
+  y: number;
+  address: string;
+};

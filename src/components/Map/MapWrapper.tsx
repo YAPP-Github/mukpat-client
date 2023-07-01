@@ -6,12 +6,12 @@ import MapConfirmButton from './MapConfirmButton';
 import { mapWrapper, mapContainer, backgroundWrapper, mapSearchContainer, searchWrapper } from './Map.css';
 import useMap from './hooks/useMap';
 import { useClickOutside } from '@/hooks';
-import { Place } from './types';
+import { CustomPlace } from './types';
 import { Loading } from '@/components';
 
 type MapWrapperProps = {
   onClose: () => void;
-  onClick: (data: Place) => void;
+  onClick: (data: CustomPlace) => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const MapWrapper = ({ onClick, onClose }: MapWrapperProps) => {
