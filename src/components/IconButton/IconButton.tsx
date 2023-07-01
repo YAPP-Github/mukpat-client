@@ -41,6 +41,7 @@ const IconButton = ({
   const [iconSvgId, setIconSvgId] = useState<string>(iconType);
 
   useEffect(() => {
+    if (!error) return;
     setStatus(error ? ICON_STATUS.ERROR : disabled ? ICON_STATUS.DISABLE : ICON_STATUS.DEFAULT);
   }, [error, disabled]);
 
@@ -55,8 +56,8 @@ const IconButton = ({
   };
 
   const handleOnClick = (e: MouseEvent<HTMLButtonElement>): void => {
-    if (error || disabled) return;
-    if (active) {
+    if (disabled) return;
+    if (active || error) {
       setStatus(isActive ? ICON_STATUS.DEFAULT : ICON_STATUS.ACTIVE);
       setIsActive(!isActive);
     }
