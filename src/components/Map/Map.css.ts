@@ -110,9 +110,15 @@ globalStyle(`${noSearchInfoWrapper} > div`, {
 
 export const searchList = style({
   listStyleType: 'none',
+  display: 'flex',
   padding: '8px 20px',
   flexDirection: 'column',
-  height: '78px',
+  alignItems: 'flex-start',
+  justifyContent: 'center',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  height: '66px',
   selectors: {
     '&:active': {
       background: 'rgba(28, 26, 66, 0.1)',
