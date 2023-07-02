@@ -23,20 +23,23 @@ const FirstStep = ({ nextStep }: stepProps) => {
     defaultValues: stepOne || {},
   });
 
-  const onSubmit = useCallback((data: StepOneData) => {
-    if (!data) {
-      return;
-    }
-    const date = dayjs(data.meetingDate).format('YYYY-MM-DD');
-    const time = data.meetingTime.substr(-5);
-    data = {
-      ...data,
-      meetingDate: date,
-      meetingTime: time,
-    };
-    setData({ step: 1, data });
-    nextStep();
-  }, []);
+  const onSubmit = useCallback(
+    (data: StepOneData) => {
+      if (!data) {
+        return;
+      }
+      const date = dayjs(data.meetingDate).format('YYYY-MM-DD');
+      const time = data.meetingTime.substr(-5);
+      data = {
+        ...data,
+        meetingDate: date,
+        meetingTime: time,
+      };
+      setData({ step: 1, data });
+      nextStep();
+    },
+    [setData, nextStep],
+  );
 
   return (
     <>

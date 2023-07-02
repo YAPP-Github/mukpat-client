@@ -24,7 +24,7 @@ type InputProps = {
 const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTMLInputElement>) {
   const { type, name, placeholder, showError, ...rest } = props;
   const { formState, resetField } = useFormContext();
-  const handleReset = useCallback(() => resetField(name, { defaultValue: '', keepDirty: false }), []);
+  const handleReset = useCallback(() => resetField(name, { defaultValue: '', keepDirty: false }), [name, resetField]);
   const errorMessage = formState.errors[name]?.message as string;
 
   return (
