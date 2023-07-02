@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Place, PlaceList } from '../types';
-import { createLatLngBounds, createLatLng, createMarker, creatGeocoder } from '../utils/mapUtils';
+import { createLatLngBounds, createLatLng, createMarker, creatGeocoder, createMarkerImg } from '../utils/mapUtils';
 
 export const addMarker = (markerDetail: any, markers: React.MutableRefObject<any[]>) => {
   const updatedMarkers = [...markers.current, { markerDetail }];
@@ -19,7 +19,8 @@ export const displayPlacesMarker = (kakaoMap: { bounds: any; map: any }, place: 
   const placePosition = createLatLng({ latitude: place.y, longitude: place.x });
   bounds.extend(placePosition);
   map.setBounds(bounds);
-  const marker = createMarker({ position: placePosition });
+  const markerImg = createMarkerImg();
+  const marker = createMarker({ position: placePosition, image: markerImg });
   marker.setMap(map);
   return marker;
 };

@@ -15,7 +15,7 @@ export const createMap = (mapContainer: HTMLElement | null, location: LatLng) =>
   };
   return new window.kakao.maps.Map(mapContainer, mapOption);
 };
-export const createMarker = (markerInfo: { position: GeolocationPosition } | null) => {
+export const createMarker = (markerInfo: { position?: GeolocationPosition; image: any } | null) => {
   return new window.kakao.maps.Marker(markerInfo);
 };
 export const createLatLngBounds = () => {
@@ -29,6 +29,11 @@ export const creatPlaces = () => {
 };
 export const creatGeocoder = () => {
   return new window.kakao.maps.services.Geocoder();
+};
+export const createMarkerImg = () => {
+  const imgSize = new window.kakao.maps.Size(48, 48);
+  const markerImg = '/spriteIcons/marker.svg';
+  return new window.kakao.maps.MarkerImage(markerImg, imgSize);
 };
 export const getCurrentCoordinate = () => {
   return new Promise<LatLng>((resolve, reject) => {
