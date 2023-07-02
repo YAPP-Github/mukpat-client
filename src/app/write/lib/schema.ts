@@ -29,7 +29,8 @@ export const stepTwoSchema = z.object({
   chatLink: z
     .string({ invalid_type_error: '필수 입력 항목을 입력해주세요.', required_error: '필수 입력 항목을 입력해주세요.' })
     .url({ message: '올바른 url을 입력해 주세요.' })
-    .max(300, { message: '링크는 300(자)를 넘을 수 없습니다.' }),
+    .max(300, { message: '링크는 300(자)를 넘을 수 없습니다.' })
+    .regex(new RegExp('https://open.kakao.com/o/[A-Za-z0-9]+')),
 });
 
 export const boardSchema = stepOneSchema.merge(stepTwoSchema);

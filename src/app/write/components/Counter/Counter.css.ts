@@ -4,7 +4,7 @@ import { themeTokens } from '@/styles/theme.css';
 
 export const counterWrapper = style({
   display: 'flex',
-  justifyContent: 'end',
+  justifyContent: 'flex-end',
   alignItems: 'center',
   gap: themeTokens.space.sm,
 });
