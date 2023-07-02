@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Place, PlaceList } from '../types';
+import { Place, PlaceList } from '@/types/map';
 import { createLatLngBounds, createLatLng, createMarker, creatGeocoder, createMarkerImg } from '../utils/mapUtils';
 
 export const addMarker = (markerDetail: any, markers: React.MutableRefObject<any[]>) => {

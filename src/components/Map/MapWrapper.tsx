@@ -6,7 +6,7 @@ import MapConfirmButton from './MapConfirmButton';
 import { mapWrapper, mapContainer, backgroundWrapper, mapSearchContainer, searchWrapper } from './Map.css';
 import useMap from './hooks/useMap';
 import { useClickOutside } from '@/hooks';
-import { CustomPlace } from './types';
+import { CustomPlace } from '@/types/map';
 import { Loading } from '@/components';
 
 type MapWrapperProps = {

@@ -1,5 +1,5 @@
 import { searchList } from './Map.css';
-import { Place } from './types';
+import { Place } from '@/types/map';
 
 type SearchListItemProps = {
   place: Place;

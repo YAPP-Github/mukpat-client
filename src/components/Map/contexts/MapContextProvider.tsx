@@ -1,7 +1,7 @@
 'use client';
 
 import { useContext, createContext, ReactNode, useState } from 'react';
-import { Place, PlaceList } from '../types';
+import { Place, PlaceList } from '@/types/map';
 
 interface MapContextValue {
   keyword: string;

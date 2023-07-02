@@ -2,7 +2,7 @@
 import { Button } from '@/components';
 import { buttonWrapper } from './Map.css';
 import { useMapContext } from './contexts/MapContextProvider';
-import { CustomPlace } from './types';
+import { CustomPlace } from '@/types/map';
 
 type MapConfirmButtonProps = {
   onClick: (data: CustomPlace) => void;

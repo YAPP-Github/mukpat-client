@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMapContext } from '../contexts/MapContextProvider';
 import { searchPlaces } from '../utils/mapSearchUtils';
-import { PlaceList } from '../types';
+import { PlaceList } from '@/types/map';
 
 const useMapSearchForm = () => {
   const {

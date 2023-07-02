@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { PlaceList } from '../types';
+import { PlaceList } from '@/types/map';
 import { creatPlaces } from './mapUtils';
 
 export const searchPlaces = async (keyword: string): Promise<PlaceList> => {

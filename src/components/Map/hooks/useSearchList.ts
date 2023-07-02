@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useMemo, useCallback } from 'react';
-import { PlaceList } from '../types';
+import { PlaceList } from '@/types/map';
 import { useMapContext } from '../contexts/MapContextProvider';
 
 interface UseSearchListProps {

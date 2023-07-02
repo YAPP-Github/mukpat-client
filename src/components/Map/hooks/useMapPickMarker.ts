@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useMapContext } from '../contexts/MapContextProvider';
 import { removeMarkers, setMarkerPlaceInfo } from '../utils/mapMarkerUtils';
-import { Place } from '../types';
+import { Place } from '@/types/map';
 
 interface MapPickMarkerProps {
   map: any;
