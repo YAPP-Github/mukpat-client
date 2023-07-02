@@ -13,7 +13,8 @@ export const useLogin = (): UseMutationResult<LoginResponse, unknown, LoginReque
     return error;
   };
 
-  const loginMutation = useMutation<LoginResponse, unknown, LoginRequest>(postLogin, {
+  const loginMutation = useMutation<LoginResponse, unknown, LoginRequest>({
+    mutationFn: postLogin,
     onSuccess: handleLoginSuccess,
     onError: handleLoginError,
   });
