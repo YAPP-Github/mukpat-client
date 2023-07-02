@@ -24,10 +24,10 @@ const Loading = forwardRef<HTMLDivElement, LoadingProps>(({ width = 50, height =
     });
   }, []);
   return (
-    <>
+    <div className={loadingWrapper}>
       <div className={backgroundWrapper}> </div>
-      <div className={loadingWrapper} ref={loadingRef} style={{ width, height }}></div>
-    </>
+      <div ref={loadingRef} style={{ width, height }}></div>
+    </div>
   );
 });
 
