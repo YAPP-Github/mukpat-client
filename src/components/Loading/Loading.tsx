@@ -22,7 +22,7 @@ const Loading = forwardRef<HTMLDivElement, LoadingProps>(({ width = 50, height =
         preserveAspectRatio: 'xMidYMid slice',
       },
     });
-  }, []);
+  }, [loadingRef]);
   return (
     <div className={loadingWrapper}>
       <div className={backgroundWrapper}> </div>

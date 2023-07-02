@@ -33,12 +33,12 @@ const EmailRequestSignUp = ({ onNext }: EmailRequestSignUpProps) => {
     onClickConsentError: onClickConsentErrorInformation,
   } = useConsent();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     !agreeService && onClickConsentErrorService();
     !agreeInformation && onClickConsentErrorInformation();
     if (!agreeService || !agreeInformation) return;
     setUserInfo({ ...userInfo, email: data.email });
-    postData(data);
+    postData({ email: data.email });
   };
 
   const errorAgreementMsg = () => (errorService || errorInformation) && '필수 항목에 동의해주세요.';
