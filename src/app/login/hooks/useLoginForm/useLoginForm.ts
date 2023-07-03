@@ -1,19 +1,21 @@
-import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '../../constants/loginSchema';
 
 export const useLoginForm = () => {
-  const [fieldErrorMsg, setFieldErrorMsg] = useState('');
   const method = useForm({
     resolver: zodResolver(loginSchema),
   });
-  const emailInput = method.watch('email');
-  const passwordInput = method.watch('password');
 
-  useEffect(() => {
-    setFieldErrorMsg('');
-  }, [emailInput, passwordInput]);
+  const setFieldError = (message: string) => {
+    method.setError('field', {
+      message,
+    });
+  };
 
-  return { fieldErrorMsg, setFieldErrorMsg, method };
+  const resetFieldError = () => {
+    method.clearErrors('field');
+  };
+
+  return { method, errors: method.formState.errors, setFieldError, resetFieldError };
 };

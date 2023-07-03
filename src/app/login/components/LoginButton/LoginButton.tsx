@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useLoginContext } from '../../contexts/LoginContext';
 
 interface LoginButtonProps {
-  fieldErrorMsg: string;
+  fieldErrorMsg?: string;
 }
 const LoginButton = ({ fieldErrorMsg }: LoginButtonProps) => {
   const { keep, setKeep } = useLoginContext();
