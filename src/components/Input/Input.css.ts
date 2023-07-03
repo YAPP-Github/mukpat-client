@@ -111,9 +111,6 @@ export const fixedError = recipe({
       },
     },
   },
-  defaultVariants: {
-    fix: true,
-  },
 });
 
 globalStyle(`${clearButton} > img`, {
