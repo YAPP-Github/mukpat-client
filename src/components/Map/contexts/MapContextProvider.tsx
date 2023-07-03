@@ -8,10 +8,12 @@ interface MapContextValue {
   searchedPlaces: PlaceList | undefined;
   markerPlace: PlaceList;
   selectedPlace: Place;
+  loading: boolean;
   setKeyword: (keyword: string) => void;
   setSearchedPlaces: (places: PlaceList) => void;
   setMarkerPlace: (places: PlaceList) => void;
   setSelectedPlace: (places: Place) => void;
+  setLoading: (loading: boolean) => void;
 }
 const MapContext = createContext<MapContextValue | null>(null);
 
@@ -20,6 +22,7 @@ const MapContextProvider = ({ children }: { children: ReactNode }) => {
   const [searchedPlaces, setSearchedPlaces] = useState<PlaceList>();
   const [markerPlace, setMarkerPlace] = useState<PlaceList>([]);
   const [selectedPlace, setSelectedPlace] = useState<Place>({} as Place);
+  const [loading, setLoading] = useState(false);
 
   const contextValue: MapContextValue = {
     keyword,
@@ -30,6 +33,8 @@ const MapContextProvider = ({ children }: { children: ReactNode }) => {
     setMarkerPlace,
     selectedPlace,
     setSelectedPlace,
+    loading,
+    setLoading,
   };
 
   return <MapContext.Provider value={contextValue}>{children}</MapContext.Provider>;

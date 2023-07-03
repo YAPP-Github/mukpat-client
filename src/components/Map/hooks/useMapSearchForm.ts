@@ -12,13 +12,15 @@ const useMapSearchForm = () => {
     setValue,
   } = useForm();
 
-  const { keyword, setKeyword, setSearchedPlaces, setMarkerPlace } = useMapContext();
+  const { keyword, setKeyword, setSearchedPlaces, setMarkerPlace, setLoading } = useMapContext();
 
   const onSubmit = handleSubmit(async (data) => {
     const keyword = data?.placeKeyword.trim();
     setMarkerPlace([]);
     setKeyword(keyword);
+    setLoading(true);
     const placesList: PlaceList = await searchPlaces(keyword);
+    setLoading(false);
     setSearchedPlaces(placesList);
   });
 
