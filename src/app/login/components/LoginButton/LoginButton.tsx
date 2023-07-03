@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 import { useLoginContext } from '../../contexts/LoginContext';
 
 interface LoginButtonProps {
-  fieldErrorMsg?: string;
+  submitErrorMsg?: string;
 }
-const LoginButton = ({ fieldErrorMsg }: LoginButtonProps) => {
+const LoginButton = ({ submitErrorMsg }: LoginButtonProps) => {
   const { keep, setKeep } = useLoginContext();
   const router = useRouter();
 
@@ -38,7 +38,7 @@ const LoginButton = ({ fieldErrorMsg }: LoginButtonProps) => {
         <Button size="large" color="primary" type="submit">
           로그인
         </Button>
-        <div className={requiredFields}>{fieldErrorMsg}</div>
+        <div className={requiredFields}>{submitErrorMsg}</div>
         <Button size="large" color="text" onClick={onClickSignup} type="button">
           회원가입
         </Button>

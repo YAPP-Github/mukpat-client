@@ -13,7 +13,7 @@ const LoginForm = () => {
   const router = useRouter();
   const { mutate: login } = useLogin();
   const { keep } = useLoginContext();
-  const { method, errors, setFieldError, resetFieldError } = useLoginForm();
+  const { method, errors, setSubmitError, resetSubmitError } = useLoginForm();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     const { email, password } = data;
@@ -25,7 +25,7 @@ const LoginForm = () => {
           router.replace('/');
         },
         onError: (error) => {
-          setFieldError(error.message);
+          setSubmitError(error.message);
         },
       },
     );
@@ -38,7 +38,7 @@ const LoginForm = () => {
           <InputSection label="회사 이메일" direction="column">
             <Input
               {...method.register('email', {
-                onChange: resetFieldError,
+                onChange: resetSubmitError,
               })}
               name="email"
               placeholder="회사 이메일"
@@ -48,7 +48,7 @@ const LoginForm = () => {
           <InputSection label="비밀번호" direction="column">
             <Input
               {...method.register('password', {
-                onChange: resetFieldError,
+                onChange: resetSubmitError,
               })}
               type="password"
               name="password"
@@ -56,7 +56,7 @@ const LoginForm = () => {
               showError={true}
             />
           </InputSection>
-          {<LoginButton fieldErrorMsg={errors?.field?.message as string} />}
+          {<LoginButton submitErrorMsg={errors?.submit?.message as string} />}
         </form>
       </FormProvider>
     </div>

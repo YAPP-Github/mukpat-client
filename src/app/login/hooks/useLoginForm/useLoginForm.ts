@@ -7,15 +7,15 @@ export const useLoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const setFieldError = (message: string) => {
-    method.setError('field', {
+  const setSubmitError = (message: string) => {
+    method.setError('submit', {
       message,
     });
   };
 
-  const resetFieldError = () => {
-    method.clearErrors('field');
+  const resetSubmitError = () => {
+    method.clearErrors('submit');
   };
 
-  return { method, errors: method.formState.errors, setFieldError, resetFieldError };
+  return { method, errors: method.formState.errors, setSubmitError, resetSubmitError };
 };
