@@ -102,6 +102,20 @@ export const inputError = style({
   border: `1px solid ${color.red500}`,
 });
 
+export const fixedError = recipe({
+  base: {},
+  variants: {
+    fix: {
+      true: {
+        height: space.lg,
+      },
+    },
+  },
+  defaultVariants: {
+    fix: true,
+  },
+});
+
 globalStyle(`${clearButton} > img`, {
   margin: '0 auto',
   backgroundPosition: 'center',

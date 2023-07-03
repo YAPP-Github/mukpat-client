@@ -28,7 +28,7 @@ const LoginForm = () => {
       <FormProvider {...method}>
         <form className={form} onSubmit={method.handleSubmit(onSubmit)}>
           <InputSection label="회사 이메일" direction="column">
-            <Input {...method.register('email')} name="email" placeholder="회사 이메일" showError={true} />
+            <Input {...method.register('email')} name="email" placeholder="회사 이메일" showError={true} fix />
           </InputSection>
           <InputSection label="비밀번호" direction="column">
             <Input
@@ -37,6 +37,7 @@ const LoginForm = () => {
               name="password"
               placeholder="비밀번호"
               showError={true}
+              fix
             />
           </InputSection>
           {<LoginButton fieldErrorMsg={fieldErrorMsg} />}
