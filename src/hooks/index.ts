@@ -1,3 +1,7 @@
+'use client';
+
+export { default as useMutation } from './useMutation/useMutation';
+
 export { default as useBooleanState } from './useBooleanState/useBooleanState';
 
 export { default as useClickOutside } from './useClickOutside/useClickOutside';

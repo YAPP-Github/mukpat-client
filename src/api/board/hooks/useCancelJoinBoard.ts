@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { useMutation } from '@/api/hooks';
+import { useMutation } from '@/hooks';
 import { boardKeys } from '@/api/board/queryKeys';
 import { boardAPI } from '@/api/board/api';
 
