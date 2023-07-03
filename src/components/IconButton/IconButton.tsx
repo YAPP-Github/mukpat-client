@@ -42,8 +42,12 @@ const IconButton = ({
 
   useEffect(() => {
     if (!error) return;
-    setStatus(error ? ICON_STATUS.ERROR : disabled ? ICON_STATUS.DISABLE : ICON_STATUS.DEFAULT);
+    setStatus(error ? ICON_STATUS.ERROR : ICON_STATUS.DEFAULT);
   }, [error, disabled]);
+
+  useEffect(() => {
+    setStatus(disabled ? ICON_STATUS.DISABLE : ICON_STATUS.DEFAULT);
+  }, [disabled]);
 
   const handleMouseEnter = () => {
     if (error || disabled || status === ICON_STATUS.ACTIVE) return;

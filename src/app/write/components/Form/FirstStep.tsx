@@ -19,6 +19,7 @@ const FirstStep = ({ nextStep }: stepProps) => {
   const { stepOne, setData } = useFormStore();
 
   const method = useForm<StepOneSchema>({
+    mode: 'onSubmit',
     resolver: zodResolver(stepOneSchema),
     defaultValues: stepOne || {},
   });
