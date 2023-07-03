@@ -25,7 +25,6 @@ const InputDate = ({ ...props }: TControl<any>) => {
   return (
     <div className={inputWrapper}>
       <Controller
-        defaultValue={null}
         control={control}
         name={name}
         render={({ field: { value, onChange } }) => (

@@ -10,9 +10,13 @@ const MapModal = () => {
   };
 
   const onClick = (data: any) => {
-    method.setValue('locationName', `${data.road_address_name} ${data.place_name}`);
-    method.setValue('x', parseFloat(data.x));
-    method.setValue('y', parseFloat(data.y));
+    if (data) {
+      method.setValue('locationName', `${data.road_address_name} ${data.place_name}`);
+      if (data.x && data.y) {
+        method.setValue('x', parseFloat(data.x));
+        method.setValue('y', parseFloat(data.y));
+      }
+    }
     closeModal();
   };
   return (

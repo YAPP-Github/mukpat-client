@@ -7,7 +7,7 @@ export const wrapper = style({
   margin: '7.25rem auto',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'start',
+  alignItems: 'flex-start',
   gap: '2.25rem',
 });
 
