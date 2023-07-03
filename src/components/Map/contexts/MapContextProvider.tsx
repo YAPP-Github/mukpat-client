@@ -5,7 +5,7 @@ import { Place, PlaceList } from '@/types/map';
 
 interface MapContextValue {
   keyword: string;
-  searchedPlaces: PlaceList | undefined;
+  searchedPlaces: PlaceList;
   markerPlace: PlaceList;
   selectedPlace: Place;
   loading: boolean;
@@ -19,7 +19,7 @@ const MapContext = createContext<MapContextValue | null>(null);
 
 const MapContextProvider = ({ children }: { children: ReactNode }) => {
   const [keyword, setKeyword] = useState('');
-  const [searchedPlaces, setSearchedPlaces] = useState<PlaceList>();
+  const [searchedPlaces, setSearchedPlaces] = useState<PlaceList>([] as PlaceList);
   const [markerPlace, setMarkerPlace] = useState<PlaceList>([]);
   const [selectedPlace, setSelectedPlace] = useState<Place>({} as Place);
   const [loading, setLoading] = useState(false);

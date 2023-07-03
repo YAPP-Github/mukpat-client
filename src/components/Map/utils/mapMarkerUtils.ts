@@ -16,7 +16,7 @@ export const removeMarkers = (markers: React.MutableRefObject<any[]>) => {
 export const displayPlacesMarker = (kakaoMap: { bounds: any; map: any }, place: Place) => {
   const { bounds, map } = kakaoMap;
   if (!place.x || !place.y) return;
-  const placePosition = createLatLng({ latitude: place.y, longitude: place.x });
+  const placePosition = createLatLng({ latitude: String(place?.y), longitude: String(place?.x) });
   bounds.extend(placePosition);
   map.setBounds(bounds);
   const markerImg = createMarkerImg();
@@ -34,21 +34,22 @@ export const addMarkers = (placeList: PlaceList, map: any) => {
   return combinedMarkerDetails;
 };
 
-export const setMarkerPlaceInfo = async (latitude: string, longitude: string): Promise<Place> => {
+export const getPlaceInfo = async (latitude: string, longitude: string): Promise<Place> => {
   const geocoder = creatGeocoder();
   const coord = createLatLng({ latitude, longitude });
   return new Promise<Place>((resolve, reject) => {
     geocoder.coord2Address(coord.getLng(), coord.getLat(), (result: any, status: any) => {
       if (status === window.kakao.maps.services.Status.OK) {
-        const placeList: Place = {
-          id: '',
-          place_name: '',
-          address_name: result[0]?.address?.address_name,
-          road_address_name: result[0]?.road_address?.address_name,
-          x: latitude,
-          y: longitude,
+        const { road_address, address } = result[0];
+        const placeInfo: Place = {
+          place_name: road_address?.address_name && address?.address_name,
+          address_name: road_address?.address_name && address?.address_name,
+          region_1depth_name: address?.region_1depth_name,
+          region_2depth_name: address?.region_2depth_name,
+          x: Number(latitude),
+          y: Number(longitude),
         };
-        resolve(placeList);
+        resolve(placeInfo);
       } else {
         reject(new Error('Failed to get marker place'));
       }
