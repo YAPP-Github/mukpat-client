@@ -9,10 +9,10 @@ type MapConfirmButtonProps = {
 };
 
 const MapConfirmButton = ({ onClick }: MapConfirmButtonProps) => {
-  const { selectedPlace } = useMapContext();
+  const { selectedPlace, keyword } = useMapContext();
   return (
     <div className={buttonWrapper}>
-      <Button size="medium" aria-label="확인" onClick={() => onClick(selectedPlace)}>
+      <Button disabled={!keyword} size="medium" aria-label="확인" onClick={() => onClick(selectedPlace)}>
         확인
       </Button>
     </div>
