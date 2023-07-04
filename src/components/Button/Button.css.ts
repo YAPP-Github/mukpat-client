@@ -117,6 +117,9 @@ export const buttonWrapper = recipe({
         borderRadius: borderRadius.sm,
         padding: '12px 20px',
       },
+      custom: {
+        width: '100%',
+      },
     },
   },
   defaultVariants: {
