@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
-import { breakPoints } from '@/styles/theme.css';
+import { breakPoints, BreakPoints } from '@/styles/theme.css';
 
-function useMediaQuery(): boolean {
-  const query = `(max-width:${breakPoints.m}px)`;
+interface MqProps {
+  bp: BreakPoints;
+}
+
+const useMediaQuery = (props: MqProps): boolean => {
+  const query = `(max-width:${breakPoints[props.bp]}px)`;
 
   const getMatches = (query: string): boolean => {
     if (typeof window !== 'undefined') {
@@ -36,6 +40,6 @@ function useMediaQuery(): boolean {
     };
   }, [handleChange, query]);
   return matches;
-}
+};
 
 export default useMediaQuery;

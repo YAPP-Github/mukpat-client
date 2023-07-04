@@ -11,3 +11,5 @@ export { default as useIntersectObserver } from './useIntersectObserver/useInter
 export { default as useOverlay } from './useOverlay/useOverlay';
 
 export { default as useClipBoard } from './useClipBoard/useClipBoard';
+
+export { default as useMediaQuery } from './useMediaQuery/useMediaQuery';

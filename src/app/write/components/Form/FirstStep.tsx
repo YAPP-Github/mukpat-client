@@ -10,7 +10,7 @@ import useFormStore from '@/app/write/store/useFormStore';
 import { stepOneSchema, StepOneSchema } from '@/app/write/lib/schema';
 import { StepOneData } from '@/app/write/types';
 import { formWrapper, sectionGap, inputGap, submitButton } from './Form.css';
-import useMediaQuery from '../../hooks/useMediaQuery';
+import { useMediaQuery } from '@/hooks';
 
 type stepProps = {
   nextStep: () => void;
@@ -18,6 +18,8 @@ type stepProps = {
 
 const FirstStep = ({ nextStep }: stepProps) => {
   const { stepOne, setData } = useFormStore();
+  const [isMobile, setMobile] = useState<boolean>(false);
+  const mobile = useMediaQuery({ bp: 'm' });
 
   const method = useForm<StepOneSchema>({
     mode: 'onSubmit',
@@ -25,8 +27,6 @@ const FirstStep = ({ nextStep }: stepProps) => {
     defaultValues: stepOne || {},
   });
 
-  const [isMobile, setMobile] = useState<boolean>(false);
-  const mobile = useMediaQuery();
   useEffect(() => {
     setMobile(mobile);
   }, [mobile]);

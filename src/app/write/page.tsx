@@ -5,12 +5,12 @@ import useFunnel from '@/hooks/useFunnel/useFunnel';
 import { Typography } from '@/components';
 import { wrapper } from './style.css';
 import { useEffect, useState } from 'react';
-import useMediaQuery from './hooks/useMediaQuery';
+import { useMediaQuery } from '@/hooks';
 
 export default function Write() {
   const [step, { nextStep }] = useFunnel(['1', '2']);
   const [isMobile, setMobile] = useState<boolean>(false);
-  const mobile = useMediaQuery();
+  const mobile = useMediaQuery({ bp: 'm' });
   useEffect(() => {
     setMobile(mobile);
   }, [mobile]);
