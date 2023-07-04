@@ -32,6 +32,7 @@ const AsideSection = ({ board }: Props) => {
   };
 
   const handleClickJoinButton = () => {
+    if (!profile) return router.push('/login');
     openModal(
       <JoinModal
         boardId={boardId}
