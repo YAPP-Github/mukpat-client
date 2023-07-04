@@ -42,9 +42,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </noscript>
         <QueryProvider>
-          <OverlayProvider>
-            <ProfileProvider>{children}</ProfileProvider>
-          </OverlayProvider>
+          <ProfileProvider>
+            <OverlayProvider>{children}</OverlayProvider>
+          </ProfileProvider>
         </QueryProvider>
       </body>
     </html>
