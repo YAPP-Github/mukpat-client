@@ -19,6 +19,7 @@ type TControl<T extends FieldValues> = {
   showError?: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const InputDate = ({ ...props }: TControl<any>) => {
   const { name, control } = props;
   const now = dayjs().format('YYYY년 MM월 DD일 (오늘)');
