@@ -43,6 +43,7 @@ const LoginForm = () => {
               name="email"
               placeholder="회사 이메일"
               showError={true}
+              fix 
             />
           </InputSection>
           <InputSection label="비밀번호" direction="column">
@@ -54,6 +55,7 @@ const LoginForm = () => {
               name="password"
               placeholder="비밀번호"
               showError={true}
+              fix
             />
           </InputSection>
           {<LoginButton submitErrorMsg={errors?.submit?.message as string} />}
