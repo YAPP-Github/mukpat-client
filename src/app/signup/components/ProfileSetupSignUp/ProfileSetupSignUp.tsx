@@ -71,7 +71,6 @@ const ProfileSetupSignUp = () => {
             className={inputMargin}
           />
         </div>
-        {/* <MapButton mapValue={mapValue} setMapValue={setMapValue} /> */}
         <div className={category}>
           <GenderSelector genderValue={genderValue} setGenderValue={setGenderValue} />
           <CommonDropDown
