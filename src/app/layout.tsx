@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import localFont from 'next/font/local';
 import Script from 'next/script';
-import { OverlayProvider, QueryProvider } from '@/providers';
+import { OverlayProvider, QueryProvider, ProfileProvider } from '@/providers';
 
 const pretendardFont = localFont({
   src: '../../public/PretendardVariable.woff2',
@@ -42,7 +42,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </noscript>
         <QueryProvider>
-          <OverlayProvider>{children}</OverlayProvider>
+          <OverlayProvider>
+            <ProfileProvider>{children}</ProfileProvider>
+          </OverlayProvider>
         </QueryProvider>
       </body>
     </html>
