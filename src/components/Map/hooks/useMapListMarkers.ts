@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react';
 import { useMapContext } from '../contexts/MapContextProvider';
-import { Place } from '../types';
+import { Place } from '@/types/map';
 import { removeMarkers, addMarkers } from '../utils/mapMarkerUtils';
 
 interface MapListMarkersProps {

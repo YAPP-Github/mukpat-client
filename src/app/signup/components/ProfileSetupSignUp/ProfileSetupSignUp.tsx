@@ -10,10 +10,9 @@ import { SelectedDropDownValue } from '../../types/profile';
 import { postSignup } from '../../api';
 import { usePostApi, useCommonForm } from '../../hooks';
 import { jobType, birthType } from '../../constants/dropdown';
-import { GenderSelector, InputField, InputArea, Title, CommonDropDown, MapButton } from '../../components';
+import { GenderSelector, InputField, InputArea, Title, CommonDropDown } from '../../components';
 import { wrapper } from '../../styles/common.css';
 import { SignupRequest, SignupResponse } from '../../types/signup';
-import { Maptype } from '../../types/map';
 
 const ProfileSetupSignUp = () => {
   const { userInfo } = useSignupContext();
@@ -23,7 +22,6 @@ const ProfileSetupSignUp = () => {
     birth: null,
   });
   const [genderValue, setGenderValue] = useState('MEN');
-  const [mapValue, setMapValue] = useState<Maptype>();
   const successSignup = () => {
     router.replace('/welcome');
   };
@@ -34,16 +32,12 @@ const ProfileSetupSignUp = () => {
   const { method } = useCommonForm({ schema: signupSchema, checkMode: 'onSubmit' });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
-    if (!mapValue) return;
     postData({
       email: `${userInfo?.email}@naver.com`,
       password: userInfo?.password,
       nickname: data?.nickname,
       jobGroupMain: selectedValue?.job,
       jobGroupSub: data?.job,
-      locationName: mapValue?.place_name || mapValue?.address_name || mapValue?.road_address_name || '',
-      x: Number(mapValue?.x),
-      y: Number(mapValue?.y),
       gender: genderValue,
       yearOfBirth: selectedValue?.birth,
     });
@@ -77,7 +71,6 @@ const ProfileSetupSignUp = () => {
             className={inputMargin}
           />
         </div>
-        <MapButton mapValue={mapValue} setMapValue={setMapValue} />
         <div className={category}>
           <GenderSelector genderValue={genderValue} setGenderValue={setGenderValue} />
           <CommonDropDown
