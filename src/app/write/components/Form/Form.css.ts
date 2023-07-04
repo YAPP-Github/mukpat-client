@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { themeTokens } from '@/styles/theme.css';
+import { screenMQ, themeTokens } from '@/styles/theme.css';
 
 const { space } = themeTokens;
 export const formWrapper = style({
@@ -20,4 +20,13 @@ export const inputGap = style({
   display: 'grid',
   gridAutoFlow: 'row',
   gap: space.md,
+});
+
+export const submitButton = style({
+  width: '100%',
+  '@media': {
+    [screenMQ.m]: {
+      marginTop: space['5xl'],
+    },
+  },
 });

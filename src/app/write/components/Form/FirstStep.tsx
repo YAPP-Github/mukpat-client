@@ -9,7 +9,7 @@ import getTimeList from '@/app/write/components/InputDate/getTimes';
 import useFormStore from '@/app/write/store/useFormStore';
 import { stepOneSchema, StepOneSchema } from '@/app/write/lib/schema';
 import { StepOneData } from '@/app/write/types';
-import { formWrapper, sectionGap, inputGap } from './Form.css';
+import { formWrapper, sectionGap, inputGap, submitButton } from './Form.css';
 import useMediaQuery from '../../hooks/useMediaQuery';
 
 type stepProps = {
@@ -115,7 +115,7 @@ const FirstStep = ({ nextStep }: stepProps) => {
               </InputSection>
             </div>
           </div>
-          <Button style={{ width: '100%' }} type="submit" disabled={!method.formState.isDirty}>
+          <Button className={submitButton} type="submit" disabled={!method.formState.isDirty}>
             다음
           </Button>
         </form>

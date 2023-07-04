@@ -4,15 +4,18 @@ import { screenMQ, themeTokens } from '@/styles/theme.css';
 const { space } = themeTokens;
 export const wrapper = style({
   width: '674px',
-  margin: '7.25rem auto',
+  marginTop: '7.25rem',
+  marginBottom: space['7xl'],
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
   gap: '2.25rem',
   '@media': {
     [screenMQ.m]: {
-      width: '100vw',
-      padding: `${space.lg} ${space.xl}`,
+      width: '100%',
+      marginTop: '7.25rem',
+      marginBottom: space.xl,
+      padding: `${space.lg} ${space.xl} 0 ${space.xl}`,
     },
   },
 });
