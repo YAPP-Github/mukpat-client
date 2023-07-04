@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { themeTokens } from '@/styles/theme.css';
+import { screenMQ, themeTokens } from '@/styles/theme.css';
 
 const { space } = themeTokens;
 export const wrapper = style({
@@ -9,6 +9,12 @@ export const wrapper = style({
   flexDirection: 'column',
   alignItems: 'flex-start',
   gap: '2.25rem',
+  '@media': {
+    [screenMQ.m]: {
+      width: '100vw',
+      padding: `${space.lg} ${space.xl}`,
+    },
+  },
 });
 
 export const rowSection = style({

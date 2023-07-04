@@ -1,6 +1,6 @@
 'use client';
 import dayjs from 'dayjs';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Button, Input, InputDropdown, InputSection, Typography } from '@/components';
 import { InputDate, Counter, AgeModal, MapModal } from '@/app/write/components';
@@ -10,6 +10,7 @@ import useFormStore from '@/app/write/store/useFormStore';
 import { stepOneSchema, StepOneSchema } from '@/app/write/lib/schema';
 import { StepOneData } from '@/app/write/types';
 import { formWrapper, sectionGap, inputGap } from './Form.css';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 type stepProps = {
   nextStep: () => void;
@@ -23,6 +24,12 @@ const FirstStep = ({ nextStep }: stepProps) => {
     resolver: zodResolver(stepOneSchema),
     defaultValues: stepOne || {},
   });
+
+  const [isMobile, setMobile] = useState<boolean>(false);
+  const mobile = useMediaQuery();
+  useEffect(() => {
+    setMobile(mobile);
+  }, [mobile]);
 
   const onSubmit = useCallback(
     (data: StepOneData) => {
@@ -47,7 +54,7 @@ const FirstStep = ({ nextStep }: stepProps) => {
       <FormProvider {...method}>
         <form className={formWrapper} onSubmit={method.handleSubmit(onSubmit)}>
           <div className={sectionGap}>
-            <Typography variant="heading4" as="p">
+            <Typography variant={isMobile ? 'title3' : 'heading4'} as="p">
               언제 만날까요?
             </Typography>
             <div className={inputGap}>
@@ -65,20 +72,33 @@ const FirstStep = ({ nextStep }: stepProps) => {
             </div>
           </div>
           <div className={sectionGap}>
-            <Typography variant="heading4" as="p">
+            <Typography variant={isMobile ? 'title3' : 'heading4'} as="p">
               몇 명 모을까요?
             </Typography>
             <div className={inputGap}>
-              <InputSection label="인원" direction="row" required={true}>
-                <Counter control={method.control} name={'maxApply'} />
-              </InputSection>
-              <InputSection label="" direction="row">
-                <AgeModal control={method.control} />
-              </InputSection>
+              {isMobile ? (
+                <>
+                  <InputSection label="인원" direction="row" required={true}>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                      <AgeModal control={method.control} />
+                      <Counter control={method.control} name={'maxApply'} />
+                    </div>
+                  </InputSection>
+                </>
+              ) : (
+                <>
+                  <InputSection label="인원" direction="row" required={true}>
+                    <Counter control={method.control} name={'maxApply'} />
+                  </InputSection>
+                  <InputSection label="" direction="row">
+                    <AgeModal control={method.control} />
+                  </InputSection>
+                </>
+              )}
             </div>
           </div>
           <div className={sectionGap}>
-            <Typography variant="heading4" as="p">
+            <Typography variant={isMobile ? 'title3' : 'heading4'} as="p">
               어디서 만날까요?
             </Typography>
             <div className={inputGap}>
@@ -95,15 +115,10 @@ const FirstStep = ({ nextStep }: stepProps) => {
               </InputSection>
             </div>
           </div>
-          <Button size="xLarge" type="submit" disabled={!method.formState.isDirty}>
+          <Button style={{ width: '100%' }} type="submit" disabled={!method.formState.isDirty}>
             다음
           </Button>
         </form>
-        {method.formState.isSubmitted && !method.formState.isValid && (
-          <Typography color="red500" variant="label5" as="label">
-            필수 항목을 입력하세요.
-          </Typography>
-        )}
       </FormProvider>
     </>
   );

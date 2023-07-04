@@ -16,6 +16,7 @@ export const sectionGap = style({
 });
 
 export const inputGap = style({
+  width: 'inherit',
   display: 'grid',
   gridAutoFlow: 'row',
   gap: space.md,
