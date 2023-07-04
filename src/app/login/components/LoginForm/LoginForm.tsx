@@ -22,7 +22,7 @@ const LoginForm = () => {
       { email, password, keep },
       {
         onSuccess: () => {
-          router.replace('/');
+          router.back();
         },
         onError: (error) => {
           setSubmitError(error.message);
