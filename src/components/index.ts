@@ -33,3 +33,5 @@ export { default as Map } from './Map/Map';
 export { default as Loading } from './Loading/Loading';
 
 export { default as Skeleton } from './Skeleton/Skeleton';
+
+export { default as BottomButton } from './BottomButton/BottomButton';
