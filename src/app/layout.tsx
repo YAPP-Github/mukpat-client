@@ -1,7 +1,8 @@
 import '@/styles/globals.css';
 import localFont from 'next/font/local';
 import Script from 'next/script';
-import { OverlayProvider, QueryProvider, ProfileProvider } from '@/providers';
+import { OverlayProvider, QueryProvider } from '@/providers';
+import { ProfileProvider } from '@/providers/server';
 
 const pretendardFont = localFont({
   src: '../../public/PretendardVariable.woff2',
