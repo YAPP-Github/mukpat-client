@@ -1,9 +1,7 @@
 import { Logo } from '@/components';
-import { api } from '@/api';
-import { actions } from './Header.css';
+import { Suspense } from '@suspensive/react';
 import HeaderWrapper from './HeaderWrapper';
-import LoginActions from './LoginActions';
-import UnloginActions from './UnloginActions';
+import HydratedHeaderActions from './HydratedHeaderActions';
 
 interface Props {
   /** 헤더의 action buttons가 필요한지의 여부 */
@@ -11,13 +9,13 @@ interface Props {
 }
 
 const Header = async ({ actionRequired = true }: Props) => {
-  const profile = await api.user.getProfile();
-
   return (
     <HeaderWrapper>
       <Logo />
       {actionRequired && (
-        <div className={actions}>{profile ? <LoginActions profile={profile} /> : <UnloginActions />}</div>
+        <Suspense>
+          <HydratedHeaderActions />
+        </Suspense>
       )}
     </HeaderWrapper>
   );

@@ -2,7 +2,7 @@ name: git push into 22nd-Web-Team-1-Web to deploy to vercel
 
 on:
   push:
-    branches: [master]
+    branches: [dev]
 
 jobs:
   build:

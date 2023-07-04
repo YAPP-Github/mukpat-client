@@ -197,3 +197,15 @@ export const themeTokens = createGlobalTheme(':root', {
     '7xl': '4rem',
   },
 });
+
+export const breakPoints = {
+  /** mobile */
+  s: 360,
+  /** tablet */
+  m: 791,
+};
+
+export const screenMQ = {
+  /** mobile 대응 max-width: 791px*/
+  m: `screen and (max-width: ${breakPoints.m}px)`,
+};
