@@ -1,12 +1,13 @@
 import { style } from '@vanilla-extract/css';
 import { themeTokens } from '@/styles/theme.css';
+import { sizeProp } from '@/utils/sizeProp';
 
 const { color, space } = themeTokens;
 
 export const section = style({
   background: color.grey50,
   width: '100%',
-  padding: `${space['7xl']} 0`, // 80px
+  padding: `${sizeProp('56px')} 0`, // 56px
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
