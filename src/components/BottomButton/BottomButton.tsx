@@ -1,16 +1,19 @@
 'use client';
 import { Button } from '@/components';
-import { wrapper } from './BottomButton.css';
+import { wrapper, error, button } from './BottomButton.css';
 import { ButtonHTMLAttributes } from 'react';
+import cx from 'classnames';
 
 type ButtonProps = {
   debounceDelay?: number;
+  errorMsg?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const BottomButton = ({ children = 'button', disabled, onClick, debounceDelay = 200, className }: ButtonProps) => {
+const BottomButton = ({ children, errorMsg, disabled, onClick, className, debounceDelay = 200 }: ButtonProps) => {
   return (
-    <div className={wrapper}>
-      <Button disabled={disabled} className={className} debounceDelay={debounceDelay} onClick={onClick}>
+    <div className={cx(wrapper, className)}>
+      {errorMsg && <div className={error}>{errorMsg}</div>}
+      <Button disabled={disabled} className={button} debounceDelay={debounceDelay} onClick={onClick}>
         {children}
       </Button>
     </div>
