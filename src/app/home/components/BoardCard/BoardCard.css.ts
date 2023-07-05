@@ -1,24 +1,39 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 import { themeTokens } from '@/styles/theme.css';
 
 const { space, borderRadius, color } = themeTokens;
 
-export const wrapper = style({
-  padding: space['3xl'],
-  borderRadius: borderRadius.xl,
-  border: `1px solid ${color.grey100}`,
-  backgroundColor: color.white,
-  width: '364px',
-  height: '324px',
-  position: 'relative',
-  transitionProperty: 'box-shadow, transform',
-  transitionDuration: '0.2s',
-  transitionTimingFunction: 'ease-in-out',
-  selectors: {
-    '&:hover': {
-      boxShadow: `0px 10px 15px -3px rgba(0, 0, 0, 0.05)`,
-      transform: `translateY(-8px)`,
+export const wrapper = recipe({
+  base: {
+    padding: space['3xl'],
+    borderRadius: borderRadius.xl,
+    border: `1px solid ${color.grey200}`,
+    width: '364px',
+    height: '324px',
+    position: 'relative',
+    transitionProperty: 'box-shadow, transform',
+    transitionDuration: '0.2s',
+    transitionTimingFunction: 'ease-in-out',
+    selectors: {
+      '&:hover': {
+        boxShadow: `0px 10px 15px -3px rgba(0, 0, 0, 0.05)`,
+        transform: `translateY(-8px)`,
+      },
     },
+  },
+  variants: {
+    isRecruiting: {
+      true: {
+        backgroundColor: color.white,
+      },
+      false: {
+        backgroundColor: color.grey100,
+      },
+    },
+  },
+  defaultVariants: {
+    isRecruiting: true,
   },
 });
 
