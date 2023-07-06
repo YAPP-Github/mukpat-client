@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { themeTokens } from '@/styles/theme.css';
 import { fontVariant } from '@/styles/variant.css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
+import { sizeProp } from '@/utils/sizeProp';
 
 const { color, space, borderRadius, zIndices } = themeTokens;
 
@@ -89,13 +90,7 @@ export const menu = recipe({
     overflow: 'auto',
     selectors: {
       '&::-webkit-scrollbar': {
-        width: '12px',
-      },
-      '&::-webkit-scrollbar-thumb': {
-        borderRadius: borderRadius.pill,
-        border: `4px solid rgba(0,0,0,0)`,
-        backgroundClip: 'padding-box',
-        backgroundColor: color.grey300,
+        display: 'none',
       },
     },
   },
@@ -179,6 +174,36 @@ export const item = recipe({
   defaultVariants: {
     selected: false,
     size: 'small',
+  },
+});
+
+export const modal = recipe({
+  base: {
+    padding: space.sm,
+    position: 'fixed',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 'calc(100% - 40px)',
+    boxShadow: '0px 7px 14px -7px rgba(0, 0, 0, 0.04), 0px 28px 42px rgba(0, 0, 0, 0.04)',
+    background: color.white,
+    borderRadius: borderRadius.sm,
+    zIndex: zIndices.modal,
+    maxHeight: sizeProp('540px'),
+    overflowY: 'scroll',
+    selectors: {
+      '&::-webkit-scrollbar': {
+        display: 'none',
+      },
+    },
+  },
+  variants: {
+    open: {
+      true: {},
+      false: {
+        display: 'none',
+      },
+    },
   },
 });
 

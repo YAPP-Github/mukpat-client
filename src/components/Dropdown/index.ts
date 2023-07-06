@@ -5,12 +5,14 @@ import DropdownButton from './DropdownButton';
 import DropdownToggle from './DropdownToggle';
 import DropdownItem from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
+import DropdownModal from './DropdownModal';
 
 const DropdownRoot = Object.assign(Dropdown, {
   Button: DropdownButton,
   Toggle: DropdownToggle,
   Item: DropdownItem,
   Menu: DropdownMenu,
+  Modal: DropdownModal,
 });
 
 export default DropdownRoot;
