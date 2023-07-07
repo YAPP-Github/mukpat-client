@@ -1,6 +1,6 @@
 'use client';
-import { Button, IconButton, Typography } from '@/components';
-import { buttonWrapper, persistentButton, loginButton, requiredFields } from './LoginButton.css';
+import { BottomButton, Button, IconButton, Typography } from '@/components';
+import { buttonWrapper, persistentButton, buttonList, requiredFields, signup, login } from './LoginButton.css';
 import { useRouter } from 'next/navigation';
 import { useLoginContext } from '../../contexts/LoginContext';
 
@@ -34,14 +34,17 @@ const LoginButton = ({ submitErrorMsg }: LoginButtonProps) => {
           로그인 유지
         </Typography>
       </div>
-      <div className={loginButton}>
-        <Button size="large" color="primary" type="submit">
+      <div className={buttonList}>
+        <Button size="large" color="primary" type="submit" className={login}>
           로그인
         </Button>
         <div className={requiredFields}>{submitErrorMsg}</div>
-        <Button size="large" color="text" onClick={onClickSignup} type="button">
+        <Button color="text" onClick={onClickSignup} className={signup} type="button">
           회원가입
         </Button>
+        <BottomButton type="submit" errorMsg={submitErrorMsg}>
+          로그인
+        </BottomButton>
       </div>
     </div>
   );
