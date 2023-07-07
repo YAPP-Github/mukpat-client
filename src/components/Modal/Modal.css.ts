@@ -44,11 +44,11 @@ export const modalWrapper = recipe({
   },
 });
 export const backgroundWrapper = style({
+  position: 'fixed',
   width: '100%',
   height: '100%',
   top: '0',
   left: '0',
-  position: 'absolute',
   background: '#000000',
   opacity: '0.3',
   zIndex: zIndices.overlay,
