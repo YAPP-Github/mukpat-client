@@ -18,6 +18,10 @@ class UserAPI {
       })
       .json<Profile | undefined>();
   }
+
+  async postLogout() {
+    return request.post('v1/users/logout').json();
+  }
 }
 
 export const userAPI = new UserAPI();

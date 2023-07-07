@@ -8,6 +8,7 @@ import {
   SvgIcon,
   Typography,
 } from '@/components';
+import { useLogout } from '@/api/user';
 import { type Profile as ProfileData } from '@/types/data';
 import { dropdownToggle } from './Header.css';
 import Link from 'next/link';
@@ -17,6 +18,8 @@ interface Props {
 }
 
 const LoginActions = ({ profile }: Props) => {
+  const { mutate: logout } = useLogout();
+
   return (
     <>
       <Link href={'/write'}>
@@ -32,7 +35,9 @@ const LoginActions = ({ profile }: Props) => {
           <SvgIcon id="chevrondown" width={24} height={24} />
         </DropdownToggle>
         <DropdownMenu placement="bottomRight" style={{ width: '236px' }}>
-          <DropdownItem itemKey="logout">로그아웃</DropdownItem>
+          <DropdownItem itemKey="logout" onClick={logout}>
+            로그아웃
+          </DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </>

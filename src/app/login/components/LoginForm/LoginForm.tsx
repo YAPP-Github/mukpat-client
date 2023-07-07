@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useLogin } from '@/api/hooks';
+import { useLoginRedirect } from '@/hooks';
 import { Input, InputSection } from '@/components';
 import { wrapper, form } from './LoginForm.css';
 import { FormProvider, FieldValues, SubmitHandler } from 'react-hook-form';
@@ -10,8 +10,8 @@ import { useLoginContext } from '../../contexts/LoginContext';
 import { LoginButton } from '../../components';
 
 const LoginForm = () => {
-  const router = useRouter();
   const { mutate: login } = useLogin();
+  const { redirectBack } = useLoginRedirect();
   const { keep } = useLoginContext();
   const { method, errors, setSubmitError, resetSubmitError } = useLoginForm();
 
@@ -22,7 +22,7 @@ const LoginForm = () => {
       { email, password, keep },
       {
         onSuccess: () => {
-          router.replace('/');
+          redirectBack();
         },
         onError: (error) => {
           setSubmitError(error.message);

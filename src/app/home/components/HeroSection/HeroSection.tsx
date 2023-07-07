@@ -1,9 +1,16 @@
+'use client';
+
 import Link from 'next/link';
+import { useProfile } from '@/api/user';
 import { Button, Typography } from '@/components';
 import { GradientText } from '@/app/home/components';
 import { section, title, subTitle, button } from './HeroSection.css';
+import { useLoginRedirect } from '@/hooks';
 
 const HeroSection = () => {
+  const { data: profile } = useProfile();
+  const { loginPath } = useLoginRedirect();
+
   return (
     <section className={section}>
       <Typography variant="display2" as="h1" className={title}>
@@ -20,7 +27,7 @@ const HeroSection = () => {
         가볍게 대화해보세요!
       </Typography>
 
-      <Link href={'/write'}>
+      <Link href={profile ? '/write' : loginPath}>
         <Button color="primary" className={button}>
           <Typography color="white" variant="title2">
             우리 회사 먹팟 만들기
