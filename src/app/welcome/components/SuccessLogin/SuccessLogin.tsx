@@ -1,7 +1,7 @@
 'use client';
-import { Button, Typography } from '@/components';
+import { Button, Typography, BottomButton } from '@/components';
 import { useRouter } from 'next/navigation';
-import { welcomeWrapper, title, description } from './SuccessLogin.css';
+import { welcomeWrapper, title, description, login } from './SuccessLogin.css';
 import Image from 'next/image';
 
 const SuccessLogin = () => {
@@ -18,9 +18,12 @@ const SuccessLogin = () => {
       <Typography as="p" variant="body2" color="primary" className={description}>
         먹팟에서 새로운 사람들을 만나보세요 !
       </Typography>
-      <Button size="large" onClick={onClick}>
+      <Button size="large" onClick={onClick} className={login}>
         로그인하기
       </Button>
+      <BottomButton type="submit" onClick={onClick}>
+        로그인하기
+      </BottomButton>
     </div>
   );
 };
