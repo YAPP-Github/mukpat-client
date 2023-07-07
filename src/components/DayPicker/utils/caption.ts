@@ -1,6 +1,11 @@
 import { format, isTomorrow, isToday } from 'date-fns';
 import { ko } from 'date-fns/locale';
 
+const yearMonthCaption = (date: Date) =>
+  format(date, 'yyyy.MM', {
+    locale: ko,
+  });
+
 const selectedDateCaption = (selected: Date) => {
   const postFix = isToday(selected) ? ' (오늘)' : isTomorrow(selected) ? ' (내일)' : '';
 
@@ -11,4 +16,4 @@ const selectedDateCaption = (selected: Date) => {
   );
 };
 
-export { selectedDateCaption };
+export { yearMonthCaption, selectedDateCaption };
