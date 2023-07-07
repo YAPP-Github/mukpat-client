@@ -39,3 +39,5 @@ export { default as DayPicker } from './DayPicker/DayPicker';
 export { default as BottomButton } from './BottomButton/BottomButton';
 
 export { default as BottomSheet } from './BottomSheet/BottomSheet';
+
+export { default as DayPicker } from './DayPicker/DayPicker';
