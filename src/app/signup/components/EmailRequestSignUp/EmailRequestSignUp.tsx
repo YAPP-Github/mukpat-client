@@ -1,7 +1,7 @@
 'use client';
-import { Button, Input, InputSection } from '@/components';
+import { Button, Input, InputSection, BottomButton } from '@/components';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
-import { requiredFields, button, buttonWrapper, inputArea, input } from './EmailRequestSignUp.css';
+import { requestWrapper, requiredFields, button, buttonWrapper, inputArea, input } from './EmailRequestSignUp.css';
 import { useSignupContext } from '../../contexts/SignupContext';
 import { postRequestEmail } from '../../api';
 import { usePostApi, useCommonForm, useConsent } from '../../hooks';
@@ -9,6 +9,7 @@ import { emailCodeSchema } from '../../constants/schema';
 import { InputField, Title, AgreeButton } from '../../components';
 import { wrapper } from '../../styles/common.css';
 import { RequestEmailRequest, RequestEmailResponse } from '../../types/verify';
+import clsx from 'classnames';
 
 interface EmailRequestSignUpProps {
   onNext: () => void;
@@ -44,18 +45,19 @@ const EmailRequestSignUp = ({ onNext }: EmailRequestSignUpProps) => {
   const errorAgreementMsg = () => (errorService || errorInformation) && '필수 항목에 동의해주세요.';
 
   return (
-    <div className={wrapper}>
+    <div className={clsx(wrapper, requestWrapper)}>
       <Title>회원가입</Title>
       <InputField method={method} onSubmit={onSubmit}>
         <InputSection variant="label3" color="sub" label="회사이메일" direction="column" required={true}>
           <div className={inputArea}>
-            <div style={{ width: '200px' }}>
+            <div>
               <Input
                 {...method.register('email')}
                 name="email"
                 placeholder="회사 이메일"
                 showError={true}
                 className={input}
+                fix
               />
             </div>
             <span>@samsung.com</span>
@@ -66,6 +68,9 @@ const EmailRequestSignUp = ({ onNext }: EmailRequestSignUpProps) => {
             <Button size="large" type="submit" className={button}>
               인증 메일 받기
             </Button>
+            <BottomButton type="submit" errorMsg={errorAgreementMsg() || errorMsg || ''}>
+              인증 메일 받기
+            </BottomButton>
             <div className={requiredFields}>{errorAgreementMsg() || errorMsg || ''}</div>
           </div>
         </InputSection>
