@@ -14,7 +14,7 @@ export const wrapper = style({
       bottom: space.none,
       right: space.none,
       zIndex: zIndices.sticky,
-      width: '100%',
+      width: '100% !important',
       backgroundColor: color.white,
       flexDirection: 'row',
       padding: `${space.none} ${space.xl} ${space.xl}`,
