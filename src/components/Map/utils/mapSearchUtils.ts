@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { PlaceList } from '../types';
+import { SearchPlace } from '@/types/map';
 import { creatPlaces } from './mapUtils';
 
-export const searchPlaces = async (keyword: string): Promise<PlaceList> => {
+export const searchPlaces = async (keyword: string): Promise<SearchPlace[]> => {
   const ps = creatPlaces();
-  let places: PlaceList = [];
+  let places: SearchPlace[] = [];
 
-  const placesSearchCB = new Promise<PlaceList>((resolve, reject) => {
+  const placesSearchCB = new Promise<SearchPlace[]>((resolve, reject) => {
     const searchCallback = (data: any, status: any, pagination: any) => {
       if (status === window.kakao.maps.services.Status.OK) {
         places = [...places, ...data];

@@ -9,4 +9,3 @@ export { default as Title } from './Title/Title';
 export { default as AgreeButton } from './AgreeButton/AgreeButton';
 export { default as GenderSelector } from './GenderSelector/GenderSelector';
 export { default as CommonDropDown } from './CommonDropDown/CommonDropDown';
-export { default as MapButton } from './MapButton/MapButton';

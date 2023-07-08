@@ -2,7 +2,7 @@
 'use client';
 import { searchinfoWrapper, noSearchInfoWrapper } from './Map.css';
 import { useRef } from 'react';
-import { Place } from './types';
+import { Place } from '@/types/map';
 import { useMapPickMarker, useMapListMarkers } from './hooks';
 import MapSearchListItem from './MapSearchItem';
 import IconButton from '../IconButton/IconButton';

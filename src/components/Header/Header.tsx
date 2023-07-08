@@ -1,7 +1,6 @@
 import { Logo } from '@/components';
-import { Suspense } from '@suspensive/react';
 import HeaderWrapper from './HeaderWrapper';
-import HydratedHeaderActions from './HydratedHeaderActions';
+import HeaderActions from './HeaderActions';
 
 interface Props {
   /** 헤더의 action buttons가 필요한지의 여부 */
@@ -12,11 +11,7 @@ const Header = async ({ actionRequired = true }: Props) => {
   return (
     <HeaderWrapper>
       <Logo />
-      {actionRequired && (
-        <Suspense>
-          <HydratedHeaderActions />
-        </Suspense>
-      )}
+      {actionRequired && <HeaderActions />}
     </HeaderWrapper>
   );
 };

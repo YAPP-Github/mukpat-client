@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { Button, Typography, Dropdown, SvgIcon, Toast } from '@/components';
 import { JoinModal, DeleteModal, CancelJoinModal, ParticipantsList } from '@/app/board/components';
 import { useProfile } from '@/api/hooks';
-import { useOverlay, useClipBoard } from '@/hooks';
+import { useOverlay, useClipBoard, useLoginRedirect } from '@/hooks';
 import { BOARD_STATUS, TOAST_TEXT } from '@/app/board/constants';
 import { BoardDetail } from '@/api/types';
 import { wrapper, counterText, listBottomSpace, dropdown, dropdownMenu, buttonGroup } from './AsideSection.css';
@@ -16,6 +16,7 @@ interface Props {
 const AsideSection = ({ board }: Props) => {
   const router = useRouter();
   const { data: profile } = useProfile();
+  const { redirectToLogin } = useLoginRedirect();
   const [openModal, closeModal] = useOverlay();
   const [openToast, closeToast] = useOverlay();
   const [, copyToClipBoard] = useClipBoard();
@@ -32,6 +33,7 @@ const AsideSection = ({ board }: Props) => {
   };
 
   const handleClickJoinButton = () => {
+    if (!profile) return redirectToLogin();
     openModal(
       <JoinModal
         boardId={boardId}

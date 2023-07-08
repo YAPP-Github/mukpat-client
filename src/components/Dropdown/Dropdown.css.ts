@@ -6,167 +6,167 @@ import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 const { color, space, borderRadius, zIndices } = themeTokens;
 
 export const wrapper = style({
-	position: 'relative',
+  position: 'relative',
 });
 
 export const buttonBase = style({
-	height: '3.5rem',
-	display: 'flex',
-	justifyContent: 'space-between',
-	alignItems: 'center',
-	padding: `0 ${space.lg}`,
-	width: '100%',
-	backgroundColor: color.grey50,
-	borderRadius: borderRadius.xs,
-	cursor: 'pointer',
-	border: `1px solid ${color.grey100}`,
-	color: color.sub,
+  height: '3.5rem',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: `0 ${space.lg}`,
+  width: '100%',
+  backgroundColor: color.grey50,
+  borderRadius: borderRadius.md,
+  cursor: 'pointer',
+  border: `1px solid ${color.grey100}`,
+  color: color.sub,
 });
 
 export const buttonVariant = recipe({
-	variants: {
-		isError: {
-			true: {
-				borderColor: color.red500,
-			},
-		},
-	},
-	defaultVariants: {
-		isError: false,
-	},
+  variants: {
+    isError: {
+      true: {
+        borderColor: color.red500,
+      },
+    },
+  },
+  defaultVariants: {
+    isError: false,
+  },
 });
 
 export const buttonText = style({
-	...fontVariant.label2,
-	color: color.primary,
-	selectors: {
-		[`${buttonBase}:disabled  &`]: {
-			color: color.disable,
-		},
-	},
+  ...fontVariant.label2,
+  color: color.primary,
+  selectors: {
+    [`${buttonBase}:disabled  &`]: {
+      color: color.disable,
+    },
+  },
 });
 
 const TOP_PLACEMENT = {
-	top: 'auto',
-	bottom: '100%',
-	marginTop: 0,
-	marginBottom: space.sm,
+  top: 'auto',
+  bottom: '100%',
+  marginTop: 0,
+  marginBottom: space.sm,
 } as const;
 
 const BOTTOM_PLACEMENT = {
-	top: '100%',
-	bottom: 'auto',
-	marginTop: space.sm,
-	marginBottom: 0,
+  top: '100%',
+  bottom: 'auto',
+  marginTop: space.sm,
+  marginBottom: 0,
 } as const;
 
 const CENTER_PLACEMENT = {
-	left: '50%',
-	transform: 'translate(-50%, 0)',
+  left: '50%',
+  transform: 'translate(-50%, 0)',
 } as const;
 
 export const menu = recipe({
-	base: {
-		position: 'absolute',
-		padding: space.sm,
-		background: color.white,
-		borderRadius: borderRadius.sm,
-		color: color.primary,
-		width: '100%',
-		boxShadow: '0px 7px 14px -7px rgba(0, 0, 0, 0.04), 0px 28px 42px rgba(0, 0, 0, 0.04)',
-		zIndex: zIndices.dropdown,
-		maxHeight: '300px',
-		minWidth: 'max-content',
-		overflow: 'auto',
-		selectors: {
-			'&::-webkit-scrollbar': {
-				width: '12px',
-			},
-			'&::-webkit-scrollbar-thumb': {
-				borderRadius: borderRadius.pill,
-				border: `4px solid rgba(0,0,0,0)`,
-				backgroundClip: 'padding-box',
-				backgroundColor: color.grey300,
-			},
-		},
-	},
-	variants: {
-		placement: {
-			topLeft: {
-				...TOP_PLACEMENT,
-				left: 0,
-			},
-			top: {
-				...TOP_PLACEMENT,
-				...CENTER_PLACEMENT,
-			},
-			topRight: {
-				...TOP_PLACEMENT,
-				right: 0,
-			},
-			bottomLeft: {
-				...BOTTOM_PLACEMENT,
-				left: 0,
-			},
-			bottom: {
-				...BOTTOM_PLACEMENT,
-				...CENTER_PLACEMENT,
-			},
-			bottomRight: {
-				...BOTTOM_PLACEMENT,
-				right: 0,
-			},
-		},
-		open: {
-			true: {},
-			false: {
-				display: 'none',
-			},
-		},
-	},
-	defaultVariants: {
-		placement: 'bottom',
-	},
+  base: {
+    position: 'absolute',
+    padding: space.sm,
+    background: color.white,
+    borderRadius: borderRadius.sm,
+    color: color.primary,
+    width: '100%',
+    boxShadow: '0px 7px 14px -7px rgba(0, 0, 0, 0.04), 0px 28px 42px rgba(0, 0, 0, 0.04)',
+    zIndex: zIndices.dropdown,
+    maxHeight: '300px',
+    minWidth: 'max-content',
+    overflow: 'auto',
+    selectors: {
+      '&::-webkit-scrollbar': {
+        width: '12px',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        borderRadius: borderRadius.pill,
+        border: `4px solid rgba(0,0,0,0)`,
+        backgroundClip: 'padding-box',
+        backgroundColor: color.grey300,
+      },
+    },
+  },
+  variants: {
+    placement: {
+      topLeft: {
+        ...TOP_PLACEMENT,
+        left: 0,
+      },
+      top: {
+        ...TOP_PLACEMENT,
+        ...CENTER_PLACEMENT,
+      },
+      topRight: {
+        ...TOP_PLACEMENT,
+        right: 0,
+      },
+      bottomLeft: {
+        ...BOTTOM_PLACEMENT,
+        left: 0,
+      },
+      bottom: {
+        ...BOTTOM_PLACEMENT,
+        ...CENTER_PLACEMENT,
+      },
+      bottomRight: {
+        ...BOTTOM_PLACEMENT,
+        right: 0,
+      },
+    },
+    open: {
+      true: {},
+      false: {
+        display: 'none',
+      },
+    },
+  },
+  defaultVariants: {
+    placement: 'bottom',
+  },
 });
 
 export const item = recipe({
-	base: {
-		...fontVariant.label2,
-		margin: '0',
-		padding: `${space.md} ${space.lg}`,
-		listStyleType: 'none',
-		cursor: 'pointer',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-		borderRadius: borderRadius.sm,
-	},
-	variants: {
-		selected: {
-			true: {
-				backgroundColor: 'rgba(28, 26, 66, 0.1)',
-			},
-			false: {
-				selectors: {
-					'&:hover': {
-						backgroundColor: 'rgba(28, 26, 66, 0.04)',
-					},
+  base: {
+    ...fontVariant.label2,
+    margin: '0',
+    padding: `${space.md} ${space.lg}`,
+    listStyleType: 'none',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderRadius: borderRadius.sm,
+  },
+  variants: {
+    selected: {
+      true: {
+        backgroundColor: 'rgba(28, 26, 66, 0.1)',
+      },
+      false: {
+        selectors: {
+          '&:hover': {
+            backgroundColor: 'rgba(28, 26, 66, 0.04)',
+          },
 
-					'&:active': {
-						borderRadius: borderRadius.sm,
-						backgroundColor: 'rgba(28, 26, 66, 0.1)',
-					},
-				},
-			},
-		},
-	},
-	defaultVariants: {
-		selected: false,
-	},
+          '&:active': {
+            borderRadius: borderRadius.sm,
+            backgroundColor: 'rgba(28, 26, 66, 0.1)',
+          },
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    selected: false,
+  },
 });
 
 export const checkedIconColor = style({
-	color: color.grey500,
+  color: color.grey500,
 });
 
 export type MenuVariant = RecipeVariants<typeof menu>;
