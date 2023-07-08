@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react';
 import { useMapContext } from '../contexts/MapContextProvider';
-import { removeMarkers, setMarkerPlaceInfo } from '../utils/mapMarkerUtils';
-import { Place } from '../types';
+import { removeMarkers, getPlaceInfo } from '../utils/mapMarkerUtils';
+import { Place } from '@/types/map';
 
 interface MapPickMarkerProps {
   map: any;
@@ -29,7 +29,7 @@ const useMapPickMarker = ({ map, marker, markers }: MapPickMarkerProps) => {
         setKeyword('직접입력');
         const latlng = mouseEvent.latLng;
         marker.current.setPosition(latlng);
-        const markerPlace = await setMarkerPlaceInfo(latlng.getLat(), latlng.getLng());
+        const markerPlace = await getPlaceInfo(latlng.getLat(), latlng.getLng());
         const markerPlaceList = [markerPlace];
         setMarkerPlace(markerPlaceList);
       });

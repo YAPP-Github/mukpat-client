@@ -19,10 +19,11 @@ type InputProps = {
   name: string;
   type?: Type;
   showError?: boolean;
+  fix?: boolean;
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTMLInputElement>) {
-  const { type, name, placeholder, showError, className, ...rest } = props;
+  const { type, name, placeholder, showError, className, fix, ...rest } = props;
   const { formState, resetField } = useFormContext();
   const handleReset = useCallback(() => resetField(name, { defaultValue: '', keepDirty: false }), [name, resetField]);
   const errorMessage = formState.errors[name]?.message as string;
@@ -57,7 +58,7 @@ const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTM
           <SvgIcon id="clear" width={24} height={24} />
         </button>
       </div>
-      <InputErrorMessage name={name} showError={showError} />
+      <InputErrorMessage name={name} showError={showError} fix={fix} />
     </div>
   );
 });

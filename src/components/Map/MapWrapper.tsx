@@ -6,8 +6,9 @@ import MapConfirmButton from './MapConfirmButton';
 import { mapWrapper, mapContainer, backgroundWrapper, mapSearchContainer, searchWrapper } from './Map.css';
 import useMap from './hooks/useMap';
 import { useClickOutside } from '@/hooks';
-import { Place } from './types';
+import { Place } from '@/types/map';
 import { Loading } from '@/components';
+import { useMapContext } from './contexts/MapContextProvider';
 
 type MapWrapperProps = {
   onClose: () => void;
@@ -15,6 +16,7 @@ type MapWrapperProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const MapWrapper = ({ onClick, onClose }: MapWrapperProps) => {
+  const { loading } = useMapContext();
   const mapRef = useRef<HTMLDivElement>(null);
   const loadingRef = useRef<HTMLDivElement>(null);
   const { map, marker } = useMap(mapRef);
@@ -25,9 +27,10 @@ const MapWrapper = ({ onClick, onClose }: MapWrapperProps) => {
       onClose();
     },
   });
+
   return (
     <div className={mapContainer} role="dialog" aria-modal="true">
-      {!map && <Loading ref={loadingRef} />}
+      {loading && <Loading ref={loadingRef} />}
       <div className={backgroundWrapper}></div>
       <div className={mapSearchContainer} ref={ref} aria-label="지도 검색 영역">
         <div className={searchWrapper}>

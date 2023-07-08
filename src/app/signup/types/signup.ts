@@ -4,9 +4,6 @@ export interface SignupRequest {
   nickname: string;
   jobGroupMain: string | null;
   jobGroupSub: string | null;
-  locationName: string;
-  x: number;
-  y: number;
   gender: string;
   yearOfBirth: string | null;
 }

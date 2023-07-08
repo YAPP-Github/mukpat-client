@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMapContext } from '../contexts/MapContextProvider';
 import { searchPlaces } from '../utils/mapSearchUtils';
-import { PlaceList } from '../types';
+import { PlaceList, SearchPlace } from '@/types/map';
 
 const useMapSearchForm = () => {
   const {
@@ -12,14 +12,23 @@ const useMapSearchForm = () => {
     setValue,
   } = useForm();
 
-  const { keyword, setKeyword, setSearchedPlaces, setMarkerPlace } = useMapContext();
-
+  const { keyword, setKeyword, setSearchedPlaces, setMarkerPlace, setLoading } = useMapContext();
   const onSubmit = handleSubmit(async (data) => {
-    const keyword = data?.placeKeyword.trim();
     setMarkerPlace([]);
+    const keyword = data?.placeKeyword.trim();
     setKeyword(keyword);
-    const placesList: PlaceList = await searchPlaces(keyword);
-    setSearchedPlaces(placesList);
+    setLoading(true);
+    const searchPlaceList: SearchPlace[] = await searchPlaces(keyword);
+    const placeList: PlaceList = searchPlaceList.map((place) => ({
+      x: Number(place.x),
+      y: Number(place.y),
+      place_name: place.place_name,
+      address_name: place.address_name,
+      region_1depth_name: '',
+      region_2depth_name: '',
+    }));
+    setLoading(false);
+    setSearchedPlaces(placeList);
   });
 
   useEffect(() => {

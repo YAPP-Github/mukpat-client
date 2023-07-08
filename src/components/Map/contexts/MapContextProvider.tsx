@@ -1,25 +1,28 @@
 'use client';
 
 import { useContext, createContext, ReactNode, useState } from 'react';
-import { Place, PlaceList } from '../types';
+import { Place, PlaceList } from '@/types/map';
 
 interface MapContextValue {
   keyword: string;
-  searchedPlaces: PlaceList | undefined;
+  searchedPlaces: PlaceList;
   markerPlace: PlaceList;
   selectedPlace: Place;
+  loading: boolean;
   setKeyword: (keyword: string) => void;
   setSearchedPlaces: (places: PlaceList) => void;
   setMarkerPlace: (places: PlaceList) => void;
   setSelectedPlace: (places: Place) => void;
+  setLoading: (loading: boolean) => void;
 }
 const MapContext = createContext<MapContextValue | null>(null);
 
 const MapContextProvider = ({ children }: { children: ReactNode }) => {
   const [keyword, setKeyword] = useState('');
-  const [searchedPlaces, setSearchedPlaces] = useState<PlaceList>();
+  const [searchedPlaces, setSearchedPlaces] = useState<PlaceList>([] as PlaceList);
   const [markerPlace, setMarkerPlace] = useState<PlaceList>([]);
   const [selectedPlace, setSelectedPlace] = useState<Place>({} as Place);
+  const [loading, setLoading] = useState(false);
 
   const contextValue: MapContextValue = {
     keyword,
@@ -30,6 +33,8 @@ const MapContextProvider = ({ children }: { children: ReactNode }) => {
     setMarkerPlace,
     selectedPlace,
     setSelectedPlace,
+    loading,
+    setLoading,
   };
 
   return <MapContext.Provider value={contextValue}>{children}</MapContext.Provider>;

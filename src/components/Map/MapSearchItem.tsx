@@ -1,5 +1,5 @@
 import { searchList } from './Map.css';
-import { Place } from './types';
+import { Place } from '@/types/map';
 
 type SearchListItemProps = {
   place: Place;
@@ -9,7 +9,7 @@ type SearchListItemProps = {
 };
 
 const MapSearchListItem = ({ place, index, handleOnClickList, setListItemRef }: SearchListItemProps) => {
-  const { place_name, address_name, road_address_name } = place;
+  const { place_name, address_name } = place;
   return (
     <li
       key={index}
@@ -21,8 +21,7 @@ const MapSearchListItem = ({ place, index, handleOnClickList, setListItemRef }: 
       aria-label={`${place_name} 선택`}
     >
       {place_name && <div>{place_name}</div>}
-      {!road_address_name && <div>{address_name}</div>}
-      <div>{road_address_name}</div>
+      <div>{address_name}</div>
     </li>
   );
 };
