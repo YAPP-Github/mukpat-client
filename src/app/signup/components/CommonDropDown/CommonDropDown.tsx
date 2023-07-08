@@ -1,6 +1,7 @@
 'use client';
 import { MouseEvent } from 'react';
 import { Typography, Dropdown, DropdownMenu, DropdownButton, DropdownItem } from '@/components';
+import { dropdownWrapper, dropdown } from './CommonDropDown.css';
 
 type CommonDropDownProps = {
   selectedValue: string | null;
@@ -12,11 +13,11 @@ type CommonDropDownProps = {
 
 const CommonDropDown = ({ onClick, selectedValue, label, placeholder, selections }: CommonDropDownProps) => {
   return (
-    <div style={{ width: '100%' }}>
+    <div className={dropdownWrapper}>
       <Typography id="gender-select" color="sub" variant="label3" as="label" required={true}>
         {label}
       </Typography>
-      <Dropdown>
+      <Dropdown className={dropdown}>
         <DropdownButton placeholder={placeholder}>{selectedValue}</DropdownButton>
         <DropdownMenu>
           {selections.map((item, index) => (
