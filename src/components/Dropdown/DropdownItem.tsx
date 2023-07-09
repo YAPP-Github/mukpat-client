@@ -2,15 +2,11 @@
 
 import { LiHTMLAttributes, MouseEvent } from 'react';
 import { item, checkedIconColor, type Size } from './Dropdown.css';
-import { useDropdownContext } from './contexts/DropdownContext';
 
 import clsx from 'classnames';
 import { useDropdownMenuContext } from './contexts/DropdownMenuContext';
 import CheckedIcon from './Icons/CheckedIcon';
 
-/**
- * @property {string} itemKey - Item 별로 가지는 고유값 (선택 state 값에 사용됨)
- */
 interface Props extends LiHTMLAttributes<HTMLLIElement> {
   /**
    * Item 별로 가지는 고유값 (선택 state 값에 사용됨)
@@ -24,8 +20,7 @@ interface Props extends LiHTMLAttributes<HTMLLIElement> {
 }
 
 const DropdownItem = ({ children, className, onClick, itemKey, size, ...rest }: Props) => {
-  const { closeDropdown } = useDropdownContext();
-  const { selectable, selectedItemKey, onSelectChange } = useDropdownMenuContext();
+  const { selectable, selectedItemKey, onSelectChange, closeDropdown } = useDropdownMenuContext();
 
   const handleClickItem = (e: MouseEvent<HTMLLIElement>) => {
     if (selectable) onSelectChange(selectedItemKey === itemKey ? null : itemKey);

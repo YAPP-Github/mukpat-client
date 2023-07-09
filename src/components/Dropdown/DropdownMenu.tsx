@@ -35,8 +35,8 @@ const DropdownMenu = forwardRef<DropdownMenuHandle, Props>(
     const { isOpen, closeDropdown, yplacement: systemYPlacement, menuRef, menuId } = useDropdownContext();
 
     const menuContextValue = useMemo(
-      () => ({ selectable, selectedItemKey, onSelectChange }),
-      [selectable, selectedItemKey, onSelectChange],
+      () => ({ selectable, selectedItemKey, onSelectChange, closeDropdown }),
+      [selectable, selectedItemKey, onSelectChange, closeDropdown],
     );
 
     const computedPlacement = useMemo(

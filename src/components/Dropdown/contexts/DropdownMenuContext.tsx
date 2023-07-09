@@ -17,6 +17,11 @@ interface DropdownMenuContextValue {
    * 선택 state 업데이트 함수 (selectionMode가 selectable 일때만 입력)
    */
   onSelectChange: (itemKey: string | null) => void;
+
+  /**
+   * dropdown menu를 닫는 함수
+   */
+  closeDropdown: () => void;
 }
 
 const DropdownMenuContext = createContext<DropdownMenuContextValue | null>(null);

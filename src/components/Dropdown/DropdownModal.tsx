@@ -7,36 +7,20 @@ import { useDropdownContext } from './contexts/DropdownContext';
 import { type DropdownMenuContextValue, DropdownMenuContextProvider } from './contexts/DropdownMenuContext';
 import { modal, modalContent } from './Dropdown.css';
 
-interface Props extends HTMLAttributes<HTMLDivElement>, Partial<DropdownMenuContextValue> {
-  variant?: 'centerModal' | 'bottomModal';
-}
+interface Props extends HTMLAttributes<HTMLDivElement>, Partial<DropdownMenuContextValue> {}
 
 export interface DropdownMenuHandle {
   /** menu를 닫는다 */
   close: () => void;
 }
 
-// TODO
-// [] bottomsheet랑 같이 넣어보기
-
 const DropdownModal = forwardRef<DropdownMenuHandle, Props>(
-  (
-    {
-      children,
-      //   variant = 'centerModal',
-      className,
-      selectable = false,
-      selectedItemKey = null,
-      onSelectChange = () => null,
-      ...rest
-    },
-    ref,
-  ) => {
+  ({ children, className, selectable = false, selectedItemKey = null, onSelectChange = () => null, ...rest }, ref) => {
     const { isOpen, closeDropdown } = useDropdownContext();
 
     const menuContextValue = useMemo(
-      () => ({ selectable, selectedItemKey, onSelectChange }),
-      [selectable, selectedItemKey, onSelectChange],
+      () => ({ selectable, selectedItemKey, onSelectChange, closeDropdown }),
+      [selectable, selectedItemKey, onSelectChange, closeDropdown],
     );
 
     useImperativeHandle(ref, () => ({
