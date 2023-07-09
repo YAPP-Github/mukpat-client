@@ -34,4 +34,6 @@ export { default as Loading } from './Loading/Loading';
 
 export { default as Skeleton } from './Skeleton/Skeleton';
 
+export { default as BottomButton } from './BottomButton/BottomButton';
+
 export { default as BottomSheet } from './BottomSheet/BottomSheet';
