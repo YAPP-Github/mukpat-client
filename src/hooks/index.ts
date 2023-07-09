@@ -14,6 +14,10 @@ export { default as useClipBoard } from './useClipBoard/useClipBoard';
 
 export { default as useMediaQuery } from './useMediaQuery/useMediaQuery';
 
+export { default as useIsMobile } from './useIsMobile/useIsMobile';
+
 export { default as useLockScroll } from './useLockScroll/useLockScroll';
 
 export { default as useLoginRedirect } from './useLoginRedirect/useLoginRedirect';
+
+export { default as useFunnel } from './useFunnel/useFunnel';
