@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { IconButton, Typography, Dropdown } from '@/components';
+import { IconButton, Typography } from '@/components';
 import { getBoardStatusText } from '@/app/board/utils';
 import { BoardDetail } from '@/api/types';
 
@@ -92,66 +92,7 @@ const ContentSection = ({ board }: Props) => {
           </li>
         )}
       </ul>
-      <div className={contentWrapper}>
-        {content}
-        <Dropdown>
-          <Dropdown.Button size="small" placeholder="지역 선택" />
-          <Dropdown.Modal>
-            <Dropdown.Item size="small" itemKey="seoul">
-              서울
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="gyeonggi">
-              경기도
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="gangwon">
-              강원도
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="1">
-              1
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="2">
-              2
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="3">
-              3
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="4">
-              4
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="5">
-              5
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="6">
-              6
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="7">
-              7
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="8">
-              8
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="9">
-              9
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="10">
-              10
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="11">
-              11
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="12">
-              12
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="13">
-              13
-            </Dropdown.Item>
-            <Dropdown.Item size="small" itemKey="14">
-              14
-            </Dropdown.Item>
-          </Dropdown.Modal>
-        </Dropdown>
-        {/* 바텀시트 내부에 위치한 드랍다운 테스트 해보기 */}
-      </div>
+      <div className={contentWrapper}>{content}</div>
       <div className={footer}>
         <div className={footerText}>
           <Typography variant="label3" color="hint">
