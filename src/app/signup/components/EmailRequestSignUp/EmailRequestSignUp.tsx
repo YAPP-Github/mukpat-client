@@ -21,28 +21,17 @@ const EmailRequestSignUp = ({ onNext }: EmailRequestSignUpProps) => {
     onSuccess: onNext,
   });
   const { method } = useCommonForm({ schema: emailCodeSchema, checkMode: 'onSubmit' });
-  const {
-    agree: agreeService,
-    error: errorService,
-    onClickConsent: onClickChangeConsentService,
-    onClickConsentError: onClickConsentErrorService,
-  } = useConsent();
-  const {
-    agree: agreeInformation,
-    error: errorInformation,
-    onClickConsent: onClickConsentInformation,
-    onClickConsentError: onClickConsentErrorInformation,
-  } = useConsent();
-
+  const [agreeService, errorService, onClickService, onClickErrorService] = useConsent();
+  const [agreePrivacy, errorPrivacy, onClickPrivacy, onClickErrorPrivacy] = useConsent();
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
-    !agreeService && onClickConsentErrorService();
-    !agreeInformation && onClickConsentErrorInformation();
-    if (!agreeService || !agreeInformation) return;
+    !agreeService && onClickErrorService();
+    !agreePrivacy && onClickErrorPrivacy();
+    if (!agreeService || !agreePrivacy) return;
     setUserInfo({ ...userInfo, email: data.email });
     postData({ email: data.email });
   };
 
-  const errorAgreementMsg = () => (errorService || errorInformation) && '필수 항목에 동의해주세요.';
+  const errorAgreementMsg = () => (errorService || errorPrivacy) && '필수 항목에 동의해주세요.';
 
   return (
     <div className={clsx(wrapper, requestWrapper)}>
@@ -63,8 +52,8 @@ const EmailRequestSignUp = ({ onNext }: EmailRequestSignUpProps) => {
             <span>@samsung.com</span>
           </div>
           <div className={buttonWrapper}>
-            <AgreeButton error={errorService} text="서비스 이용약관" onClick={onClickChangeConsentService} />
-            <AgreeButton error={errorInformation} text="개인정보 수집 및 이용" onClick={onClickConsentInformation} />
+            <AgreeButton error={errorService} text="서비스 이용약관" name="service" onClick={onClickService} />
+            <AgreeButton error={errorPrivacy} text="개인정보 수집 및 이용" name="privacy" onClick={onClickPrivacy} />
             <Button size="large" type="submit" className={button}>
               인증 메일 받기
             </Button>
