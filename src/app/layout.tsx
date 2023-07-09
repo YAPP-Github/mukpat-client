@@ -12,7 +12,40 @@ const pretendardFont = localFont({
 
 export const metadata = {
   title: '먹팟',
-  description: '점심 랜덤 모임',
+  description: '번개 점심팟 구하기',
+  openGraph: {
+    title: '먹팟',
+    description: '번개 점심팟 구하기',
+    url: 'https://mukpat.com',
+    images: [
+      {
+        url: '/ogImg/chatlink_kakaotalk.png',
+        width: 800,
+        height: 400,
+        alt: '먹팟',
+      },
+      {
+        url: '/ogImg/chatlink_facebook.png',
+        width: 600,
+        height: 315,
+        alt: '먹팟',
+      },
+      {
+        url: '/ogImg/chatlink_twitter.png',
+        width: 1200,
+        height: 630,
+        alt: '먹팟',
+      },
+      {
+        url: '/ogImg/chatlink_instagram.png',
+        width: 320,
+        height: 320,
+        alt: '먹팟',
+      },
+    ],
+    locale: 'en-US',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
