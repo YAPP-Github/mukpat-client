@@ -5,7 +5,7 @@ export const postRequestEmail = async ({ email }: { email: string }): Promise<Re
   return await request
     .post('v1/emails/request', {
       json: {
-        email: `${email}@naver.com`,
+        email: `${email}@samsung.com`,
       },
     })
     .json<RequestEmailResponse>();
@@ -18,7 +18,7 @@ export const postVerfiyEmail = async ({
   return await request
     .post('v1/emails/verify', {
       json: {
-        email: `${email}@naver.com`,
+        email: `${email}@samsung.com`,
         verificationCode,
       },
     })

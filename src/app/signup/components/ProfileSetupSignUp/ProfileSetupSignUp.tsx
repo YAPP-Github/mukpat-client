@@ -34,7 +34,7 @@ const ProfileSetupSignUp = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     postData({
-      email: `${userInfo?.email}@naver.com`,
+      email: `${userInfo?.email}@samsung.com`,
       password: userInfo?.password,
       nickname: data?.nickname,
       jobGroupMain: selectedValue?.job,
