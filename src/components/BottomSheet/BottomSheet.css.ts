@@ -9,7 +9,7 @@ export const titleWrapper = style({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  marginBottom: '30px',
+  padding: '20px 20px 30px 20px',
 });
 globalStyle(`${titleWrapper} > div`, {
   ...fontVariant.title3,
@@ -51,7 +51,6 @@ export const wrap = recipe({
     width: '100%',
     background: color.white,
     zIndex: zIndices.modal,
-    padding: '20px',
     borderRadius: '14px 14px 0px 0px',
     flexDirection: 'column',
     justifyContent: 'flex-start',
