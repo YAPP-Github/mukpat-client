@@ -46,6 +46,7 @@ export const wrap = recipe({
     position: 'fixed',
     display: 'flex',
     bottom: '0',
+    left: '0',
     width: '100%',
     background: color.white,
     zIndex: zIndices.modal,
