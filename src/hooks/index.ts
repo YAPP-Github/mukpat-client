@@ -15,5 +15,3 @@ export { default as useClipBoard } from './useClipBoard/useClipBoard';
 export { default as useLockScroll } from './useLockScroll/useLockScroll';
 
 export { default as useLoginRedirect } from './useLoginRedirect/useLoginRedirect';
-
-export { default as useModalControl } from './useModalControl/useModalControl';
