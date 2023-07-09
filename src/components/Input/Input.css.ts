@@ -1,5 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { themeTokens } from '@/styles/theme.css';
+import { themeTokens, screenMQ } from '@/styles/theme.css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 
 const { color, space, fontSize, fontWeight, borderRadius } = themeTokens;
@@ -31,6 +31,14 @@ export const section = recipe({
         gridTemplateColumns: '1fr 3fr',
         justifyContent: 'space-between',
         alignItems: 'center',
+        '@media': {
+          [screenMQ.m]: {
+            gridAutoFlow: 'row',
+            gridTemplateColumns: '1fr',
+            gridGap: space.sm,
+            alignItems: 'start',
+          },
+        },
       },
     },
   },

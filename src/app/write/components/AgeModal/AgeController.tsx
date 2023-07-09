@@ -8,6 +8,7 @@ type ControllerProps<T extends FieldValues> = {
   placeholder: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AgeController = ({ control, name, placeholder }: ControllerProps<any>) => {
   return (
     <Controller
