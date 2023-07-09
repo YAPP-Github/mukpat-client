@@ -177,38 +177,24 @@ export const item = recipe({
   },
 });
 
-export const modal = recipe({
-  base: {
-    padding: space.sm,
-    position: 'fixed',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 'calc(100% - 40px)',
-    boxShadow: '0px 7px 14px -7px rgba(0, 0, 0, 0.04), 0px 28px 42px rgba(0, 0, 0, 0.04)',
-    background: color.white,
-    borderRadius: borderRadius.sm,
-    zIndex: zIndices.modal,
-    maxHeight: sizeProp('540px'),
-    overflowY: 'scroll',
-    selectors: {
-      '&::-webkit-scrollbar': {
-        display: 'none',
-      },
-    },
-  },
-  variants: {
-    open: {
-      true: {},
-      false: {
-        display: 'none',
-      },
+export const checkedIconColor = style({
+  color: color.grey500,
+});
+
+export const modal = style({
+  width: 'calc(100% - 40px) !important',
+  padding: `${space.sm} !important`,
+  maxHeight: sizeProp('540px'),
+  overflow: 'scroll',
+  selectors: {
+    '&::-webkit-scrollbar': {
+      display: 'none',
     },
   },
 });
 
-export const checkedIconColor = style({
-  color: color.grey500,
+export const modalContent = style({
+  margin: '0 !important',
 });
 
 export type MenuVariant = RecipeVariants<typeof menu>;

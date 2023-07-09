@@ -2,11 +2,12 @@
 
 import cx from 'classnames';
 import { HTMLAttributes, useMemo, forwardRef, useImperativeHandle } from 'react';
+import { Modal } from '@/components';
 import { useDropdownContext } from './contexts/DropdownContext';
 import { type DropdownMenuContextValue, DropdownMenuContextProvider } from './contexts/DropdownMenuContext';
-import { modal } from './Dropdown.css';
+import { modal, modalContent } from './Dropdown.css';
 
-interface Props extends HTMLAttributes<HTMLUListElement>, Partial<DropdownMenuContextValue> {
+interface Props extends HTMLAttributes<HTMLDivElement>, Partial<DropdownMenuContextValue> {
   variant?: 'centerModal' | 'bottomModal';
 }
 
@@ -16,7 +17,7 @@ export interface DropdownMenuHandle {
 }
 
 // TODO
-// [] variant 처리 (bottomModal, centerModal)
+// [] bottomsheet랑 같이 넣어보기
 
 const DropdownModal = forwardRef<DropdownMenuHandle, Props>(
   (
@@ -31,7 +32,7 @@ const DropdownModal = forwardRef<DropdownMenuHandle, Props>(
     },
     ref,
   ) => {
-    const { isOpen, closeDropdown, menuId } = useDropdownContext();
+    const { isOpen, closeDropdown } = useDropdownContext();
 
     const menuContextValue = useMemo(
       () => ({ selectable, selectedItemKey, onSelectChange }),
@@ -44,20 +45,13 @@ const DropdownModal = forwardRef<DropdownMenuHandle, Props>(
 
     return (
       <DropdownMenuContextProvider value={menuContextValue}>
-        <ul
-          className={cx(
-            modal({
-              open: isOpen,
-            }),
-            className,
-          )}
-          aria-hidden={!isOpen}
-          role="menu"
-          id={menuId}
-          {...rest}
-        >
-          {children}
-        </ul>
+        {isOpen && (
+          <Modal onClose={closeDropdown} className={cx(modal, className)} withBackground={false} {...rest}>
+            <Modal.Content size="small" className={modalContent}>
+              {children}
+            </Modal.Content>
+          </Modal>
+        )}
       </DropdownMenuContextProvider>
     );
   },
