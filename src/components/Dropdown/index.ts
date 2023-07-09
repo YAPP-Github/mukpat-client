@@ -6,6 +6,7 @@ import DropdownToggle from './DropdownToggle';
 import DropdownItem from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
 import DropdownModal from './DropdownModal';
+import DropdownBottomSheet from './DropdownBottomSheet';
 
 const DropdownRoot = Object.assign(Dropdown, {
   Button: DropdownButton,
@@ -13,6 +14,7 @@ const DropdownRoot = Object.assign(Dropdown, {
   Item: DropdownItem,
   Menu: DropdownMenu,
   Modal: DropdownModal,
+  BottomSheet: DropdownBottomSheet,
 });
 
 export default DropdownRoot;
