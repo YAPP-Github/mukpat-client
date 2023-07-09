@@ -2,8 +2,7 @@
 
 import { ComponentProps } from 'react';
 import BottomSheetView from './BottomSheetView';
-import { useLockScroll } from '@/hooks';
-import { useModalControl } from './hooks';
+import { useLockScroll, useModalControl } from '@/hooks';
 
 type BottomSheetProps = Omit<ComponentProps<typeof BottomSheetView>, 'isOpen'>;
 

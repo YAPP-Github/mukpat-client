@@ -16,3 +16,4 @@ export { default as useLockScroll } from './useLockScroll/useLockScroll';
 
 export { default as useLoginRedirect } from './useLoginRedirect/useLoginRedirect';
 
+export { default as useModalControl } from './useModalControl/useModalControl';
