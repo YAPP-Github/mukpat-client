@@ -2,6 +2,7 @@ import { themeTokens } from '@/styles/theme.css';
 import { style, globalStyle } from '@vanilla-extract/css';
 import { fontVariant } from '@/styles/variant.css';
 import { recipe } from '@vanilla-extract/recipes';
+import { sizeProp } from '@/utils/sizeProp';
 const { color, zIndices } = themeTokens;
 
 export const titleWrapper = style({
@@ -53,7 +54,8 @@ export const wrap = recipe({
     padding: '20px',
     borderRadius: '14px 14px 0px 0px',
     flexDirection: 'column',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
+    minHeight: sizeProp('632px'),
   },
   variants: {
     open: {
