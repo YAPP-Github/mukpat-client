@@ -10,6 +10,7 @@ type CounterProps<T extends FieldValues> = {
   name: FieldPath<T>;
 } & HTMLAttributes<HTMLDivElement>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Counter = ({ control, name, min = 2, max = 20, ...rest }: CounterProps<any>) => {
   const { setValue, getValues } = useFormContext();
   const handleClickAdd = useCallback(() => setValue(name, getValues(name) + 1), [getValues, name, setValue]);
