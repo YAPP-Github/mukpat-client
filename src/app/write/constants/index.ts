@@ -1,4 +1,4 @@
-export const agelist = [
+export const AGE_LIST = [
   '20',
   '21',
   '22',

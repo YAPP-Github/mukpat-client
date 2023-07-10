@@ -1,6 +1,6 @@
 import { Dropdown, DropdownButton, DropdownItem, DropdownMenu } from '@/components';
 import { Control, Controller, FieldValues } from 'react-hook-form';
-import { agelist as list } from '@/app/write/constants';
+import { AGE_LIST } from '@/app/write/constants';
 
 type ControllerProps<T extends FieldValues> = {
   control: Control<T>;
@@ -19,7 +19,7 @@ const AgeController = ({ control, name, placeholder }: ControllerProps<any>) => 
         <Dropdown style={{ width: '100%' }}>
           <DropdownButton placeholder={placeholder}>{value && `${value}세`}</DropdownButton>
           <DropdownMenu selectable selectedItemKey={value} onSelectChange={onChange}>
-            {list.map((v) => (
+            {AGE_LIST.map((v) => (
               <DropdownItem key={v} itemKey={v}>
                 {v}
               </DropdownItem>
