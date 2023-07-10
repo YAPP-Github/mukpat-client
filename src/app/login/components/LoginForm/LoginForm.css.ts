@@ -5,10 +5,11 @@ import { screenMQ } from '@/styles/theme.css';
 const { space } = themeTokens;
 
 export const wrapper = style({
-  margin: '64px 0 20px 0',
+  marginTop: ' 64px',
   '@media': {
     [screenMQ.m]: {
-      width: '335px',
+      width: '100%',
+      padding: '0 20px',
       margin: '48px 0 0 0',
     },
   },
