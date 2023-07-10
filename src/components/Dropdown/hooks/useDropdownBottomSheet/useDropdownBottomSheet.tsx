@@ -7,6 +7,7 @@ interface Props {
 }
 
 const useDropdownBottomSheet = ({ isDropdownOpen, onClose }: Props) => {
+  const firstRender = useRef(true);
   const [isOpen, setOpen, setClose] = useBooleanState(false);
   const closeStatus = useRef(false);
 
@@ -36,6 +37,11 @@ const useDropdownBottomSheet = ({ isDropdownOpen, onClose }: Props) => {
   );
 
   useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+
     if (isDropdownOpen) {
       openBottomSheet();
     } else {
