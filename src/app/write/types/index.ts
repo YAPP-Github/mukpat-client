@@ -1,5 +1,6 @@
 export type StepOneData = {
-  meetingDate: string;
+  meetingDate: Date;
+  timezone: string;
   meetingTime: string;
   maxApply: number;
   minAge: number | null;
@@ -7,6 +8,8 @@ export type StepOneData = {
   locationName: string;
   x: number;
   y: number;
+  region_1depth_name: string;
+  region_2depth_name: string;
   locationDetail: string | null;
 };
 
@@ -16,4 +19,4 @@ export type StepTwoData = {
   chatLink: string;
 };
 
-export type BoardData = StepOneData & StepTwoData;
+export type ParsedData = Omit<StepOneData, 'meetingDate'> & StepTwoData & { meetingDate: string | Date };

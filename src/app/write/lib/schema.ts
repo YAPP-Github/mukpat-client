@@ -1,10 +1,15 @@
 import * as z from 'zod';
 
 export const stepOneSchema = z.object({
-  meetingDate: z.coerce.string({
-    invalid_type_error: '필수 항목을 입력해주세요.',
-    required_error: '필수 항목을 입력해주세요.',
-  }),
+  meetingDate: z
+    .date({
+      invalid_type_error: '필수 항목을 입력해주세요.',
+      required_error: '필수 항목을 입력해주세요.',
+    })
+    .default(new Date()),
+  timezone: z
+    .string({ invalid_type_error: '필수 항목을 입력해주세요.', required_error: '필수 항목을 입력해주세요.' })
+    .default('오후'),
   meetingTime: z
     .string({ invalid_type_error: '필수 항목을 입력해주세요.', required_error: '필수 항목을 입력해주세요.' })
     .default('12:00'),
@@ -16,6 +21,8 @@ export const stepOneSchema = z.object({
     .min(5, { message: '필수 항목을 입력해주세요.' }),
   x: z.number(),
   y: z.number(),
+  region_1depth_name: z.coerce.string(),
+  region_2depth_name: z.coerce.string(),
   locationDetail: z.string().optional().nullable().default(null),
 });
 

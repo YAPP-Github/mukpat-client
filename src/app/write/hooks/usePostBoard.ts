@@ -1,13 +1,13 @@
 import { useState, useCallback } from 'react';
 import { request } from '@/utils/ky/request';
 import { KyResponse } from 'ky';
-import { BoardData } from '../types';
+import { ParsedData } from '../types';
 import dayjs from 'dayjs';
 
 const usePostBoard = (onSuccess: (response: KyResponse) => void) => {
   const [error, setError] = useState<Error | null>(null);
   const handlePostBoard = useCallback(
-    async (data: BoardData) => {
+    async (data: ParsedData) => {
       try {
         if (data.meetingDate == 'Invalid Date') {
           data.meetingDate = dayjs().format('YYYY-MM-DD');
