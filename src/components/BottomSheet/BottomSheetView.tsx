@@ -21,7 +21,7 @@ const BottomSheetView = forwardRef<HTMLDivElement, Props>(
 
     return (
       <>
-        <div className={cx(background({ open: isOpen }))} data-testid="outside"></div>
+        <div className={cx(background({ open: isOpen }))} data-testid="outside" onClick={onClose}></div>
         <div className={cx(wrap({ open: isOpen }), className)} {...rest} ref={ref}>
           <div className={titleWrapper}>
             <div>{title}</div>

@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import { useClickOutside } from '@/hooks';
 
 interface Props {
   onClose: () => void;
 }
 const useModalControl = ({ onClose }: Props) => {
+  const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const closeStatus = useRef(false);
   const closeModalWithTransition = () => {
@@ -14,11 +14,7 @@ const useModalControl = ({ onClose }: Props) => {
   const openModalWithTransition = () => {
     setIsOpen(true);
   };
-  const ref = useClickOutside<HTMLDivElement>({
-    onClickOutside: () => {
-      closeModalWithTransition();
-    },
-  });
+
   const handleTransitionEnd = (event: TransitionEvent) => {
     if (event.propertyName === 'transform' && closeStatus.current) {
       onClose();

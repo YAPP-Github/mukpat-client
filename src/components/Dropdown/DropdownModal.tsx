@@ -2,6 +2,7 @@
 
 import cx from 'classnames';
 import { HTMLAttributes, useMemo, forwardRef, useImperativeHandle } from 'react';
+import { createPortal } from 'react-dom';
 import { Modal } from '@/components';
 import { useDropdownContext } from './contexts/DropdownContext';
 import { type DropdownMenuContextValue, DropdownMenuContextProvider } from './contexts/DropdownMenuContext';
@@ -29,13 +30,15 @@ const DropdownModal = forwardRef<DropdownMenuHandle, Props>(
 
     return (
       <DropdownMenuContextProvider value={menuContextValue}>
-        {isOpen && (
-          <Modal onClose={closeDropdown} className={cx(modal, className)} withBackground={false} {...rest}>
-            <Modal.Content size="small" className={modalContent}>
-              {children}
-            </Modal.Content>
-          </Modal>
-        )}
+        {isOpen &&
+          createPortal(
+            <Modal onClose={closeDropdown} className={cx(modal, className)} withBackground={false} {...rest}>
+              <Modal.Content size="small" className={modalContent}>
+                {children}
+              </Modal.Content>
+            </Modal>,
+            document.getElementById('overlay-container') as HTMLElement,
+          )}
       </DropdownMenuContextProvider>
     );
   },

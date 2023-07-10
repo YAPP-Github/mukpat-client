@@ -28,9 +28,11 @@ const useClickOutside = <T extends HTMLElement = HTMLElement>({
 
   useEffect(() => {
     const handleClickOutside = (e: ClickOutsideEvents[typeof event]) => {
+      // ref가 overlay-container내에 없는데, overlay-container 안에서 발생한 이벤트 인 경우
       if (!ref.current?.closest(OVERLAY_CONTAINER) && (e.target as HTMLElement).closest(OVERLAY_CONTAINER)) {
         return;
       }
+
       if (ref.current && !ref.current.contains(e.target as Node)) {
         onClickOutside();
       }
