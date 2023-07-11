@@ -296,6 +296,54 @@ const [selection, setSelection] = useState<string | null>(null);
 - 각 요소들은 커스터마이징 하여 스타일을 조절할 수 있습니다.(className이나 인라인 스타일 이용가능)
 
 
+### Dropdown.Modal
+
+```tsx
+`Dropdown` 버튼을 통해 모달(모바일에서 화면 가운데 위치한 모달)을 트리거할때 사용합니다.
+
+const [selection, setSelection] = useState<string | null>(null);
+
+<Dropdown>
+  <Dropdown.Button size="small" placeholder="지역 선택" />
+  <Dropdown.Modal selectable selectedItemKey={selection} onSelectChange={setSelection}>
+    <Dropdown.Item size="small" itemKey="seoul">
+      서울
+    </Dropdown.Item>
+    <Dropdown.Item size="small" itemKey="gyeonggi">
+      경기도
+    </Dropdown.Item>
+    <Dropdown.Item size="small" itemKey="gangwon">
+      강원도
+    </Dropdown.Item>
+  </Dropdown.Modal>
+</Dropdown>
+```
+
+
+### Dropdown.BottomSheet
+
+`Dropdown` 버튼을 통해 BottomSheet를 트리거할때 사용합니다.
+
+```tsx
+const [selection, setSelection] = useState<string | null>(null);
+
+<Dropdown>
+  <Dropdown.Button size="small" placeholder="지역 선택" />
+  <Dropdown.BottomSheet title="날짜선택" selectable selectedItemKey={selection} onSelectChange={setSelection}>
+    <Dropdown.Item size="small" itemKey="seoul">
+      서울
+    </Dropdown.Item>
+    <Dropdown.Item size="small" itemKey="gyeonggi">
+      경기도
+    </Dropdown.Item>
+    <Dropdown.Item size="small" itemKey="gangwon">
+      강원도
+    </Dropdown.Item>
+  </Dropdown.BottomSheet>
+</Dropdown>
+```
+
+
 
 ## 참고 사항
 - [ ] 향후 sprite icon을 만들면 아이콘 접근 방법을 변경해야할듯 합니다.

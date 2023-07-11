@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { themeTokens } from '@/styles/theme.css';
 import { fontVariant } from '@/styles/variant.css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
+import { sizeProp } from '@/utils/sizeProp';
 
 const { color, space, borderRadius, zIndices } = themeTokens;
 
@@ -10,17 +11,15 @@ export const wrapper = style({
 });
 
 export const buttonBase = style({
-  height: '3.5rem',
+  width: '100%',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  padding: `0 ${space.lg}`,
-  width: '100%',
   backgroundColor: color.grey50,
-  borderRadius: borderRadius.md,
   cursor: 'pointer',
   border: `1px solid ${color.grey100}`,
   color: color.sub,
+  padding: `0 ${space.lg}`,
 });
 
 export const buttonVariant = recipe({
@@ -30,8 +29,19 @@ export const buttonVariant = recipe({
         borderColor: color.red500,
       },
     },
+    size: {
+      medium: {
+        height: '3.5rem',
+        borderRadius: borderRadius.md,
+      },
+      small: {
+        height: '2.5rem',
+        borderRadius: borderRadius.xs,
+      },
+    },
   },
   defaultVariants: {
+    size: 'medium',
     isError: false,
   },
 });
@@ -80,13 +90,7 @@ export const menu = recipe({
     overflow: 'auto',
     selectors: {
       '&::-webkit-scrollbar': {
-        width: '12px',
-      },
-      '&::-webkit-scrollbar-thumb': {
-        borderRadius: borderRadius.pill,
-        border: `4px solid rgba(0,0,0,0)`,
-        backgroundClip: 'padding-box',
-        backgroundColor: color.grey300,
+        display: 'none',
       },
     },
   },
@@ -133,7 +137,6 @@ export const item = recipe({
   base: {
     ...fontVariant.label2,
     margin: '0',
-    padding: `${space.md} ${space.lg}`,
     listStyleType: 'none',
     cursor: 'pointer',
     display: 'flex',
@@ -159,9 +162,18 @@ export const item = recipe({
         },
       },
     },
+    size: {
+      medium: {
+        padding: `${space.md} ${space.lg}`,
+      },
+      small: {
+        padding: `${space.md} ${space.md}`,
+      },
+    },
   },
   defaultVariants: {
     selected: false,
+    size: 'small',
   },
 });
 
@@ -169,5 +181,23 @@ export const checkedIconColor = style({
   color: color.grey500,
 });
 
+export const modal = style({
+  width: 'calc(100% - 40px) !important',
+  padding: `${space.sm} !important`,
+  maxHeight: sizeProp('540px'),
+  overflow: 'scroll',
+  selectors: {
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+  },
+});
+
+export const modalContent = style({
+  margin: '0 !important',
+});
+
 export type MenuVariant = RecipeVariants<typeof menu>;
+export type ButtonVariant = RecipeVariants<typeof buttonVariant>;
+export type Size = NonNullable<ButtonVariant>['size'];
 export type Placement = NonNullable<MenuVariant>['placement'];

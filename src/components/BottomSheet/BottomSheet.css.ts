@@ -2,13 +2,14 @@ import { themeTokens } from '@/styles/theme.css';
 import { style, globalStyle } from '@vanilla-extract/css';
 import { fontVariant } from '@/styles/variant.css';
 import { recipe } from '@vanilla-extract/recipes';
+import { sizeProp } from '@/utils/sizeProp';
 const { color, zIndices } = themeTokens;
 
 export const titleWrapper = style({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  marginBottom: '30px',
+  padding: '20px 20px 30px 20px',
 });
 globalStyle(`${titleWrapper} > div`, {
   ...fontVariant.title3,
@@ -46,13 +47,14 @@ export const wrap = recipe({
     position: 'fixed',
     display: 'flex',
     bottom: '0',
+    left: '0',
     width: '100%',
     background: color.white,
     zIndex: zIndices.modal,
-    padding: '20px',
     borderRadius: '14px 14px 0px 0px',
     flexDirection: 'column',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
+    minHeight: sizeProp('632px'),
   },
   variants: {
     open: {
