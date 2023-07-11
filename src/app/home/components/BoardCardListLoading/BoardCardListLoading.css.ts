@@ -9,8 +9,9 @@ import {
 } from '@/app/home/components/BoardCard/BoardCard.css';
 
 export const wrapper = style([
-  cardWrapper,
+  cardWrapper(),
   {
+    border: '1px solid white',
     transition: 'none',
     selectors: {
       '&:hover': {

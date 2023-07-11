@@ -1,5 +1,5 @@
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
-import { themeTokens } from '@/styles/theme.css';
+import { themeTokens, screenMQ } from '@/styles/theme.css';
 import { fontVariant } from '@/styles/variant.css';
 
 const { color, borderRadius } = themeTokens;
@@ -9,6 +9,13 @@ export const buttonWrapper = recipe({
     border: 'none',
     ':disabled': {
       opacity: '0.2',
+    },
+    '@media': {
+      [screenMQ.m]: {
+        ...fontVariant.label2,
+        borderRadius: borderRadius.lg,
+        width: '100%',
+      },
     },
   },
   variants: {
@@ -109,6 +116,9 @@ export const buttonWrapper = recipe({
         ...fontVariant.body2,
         borderRadius: borderRadius.sm,
         padding: '12px 20px',
+      },
+      custom: {
+        width: '100%',
       },
     },
   },

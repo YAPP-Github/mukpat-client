@@ -209,3 +209,5 @@ export const screenMQ = {
   /** mobile 대응 max-width: 791px*/
   m: `screen and (max-width: ${breakPoints.m}px)`,
 };
+
+export type BreakPoints = keyof typeof breakPoints;

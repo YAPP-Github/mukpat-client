@@ -9,6 +9,7 @@ const MapModal = () => {
     return <Map onClick={onClick} onClose={closeModal} />;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onClick = (data: any) => {
     if (data) {
       method.setValue('locationName', `${data.road_address_name} ${data.place_name}`);
