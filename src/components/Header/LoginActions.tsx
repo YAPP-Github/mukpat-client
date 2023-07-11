@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
   Button,
   Dropdown,
@@ -10,8 +11,7 @@ import {
 } from '@/components';
 import { useLogout } from '@/api/user';
 import { type Profile as ProfileData } from '@/types/data';
-import { dropdownToggle } from './Header.css';
-import Link from 'next/link';
+import { dropdownToggle, pcActionButton, profileWrapper } from './Header.css';
 
 interface Props {
   profile: ProfileData;
@@ -22,7 +22,7 @@ const LoginActions = ({ profile }: Props) => {
 
   return (
     <>
-      <Link href={'/write'}>
+      <Link href={'/write'} className={pcActionButton}>
         <Button color="explain" size="paddingSmall">
           <Typography variant="label3" color="white">
             먹팟 만들기
@@ -31,7 +31,9 @@ const LoginActions = ({ profile }: Props) => {
       </Link>
       <Dropdown>
         <DropdownToggle className={dropdownToggle}>
-          <Profile uid={profile.userId} nickname={profile.nickName} size="medium" fontSize="large" />
+          <div className={profileWrapper}>
+            <Profile uid={profile.userId} nickname={profile.nickName} size="full" fontSize="large" />
+          </div>
           <SvgIcon id="chevrondown" width={24} height={24} />
         </DropdownToggle>
         <DropdownMenu placement="bottomRight" style={{ width: '236px' }}>
