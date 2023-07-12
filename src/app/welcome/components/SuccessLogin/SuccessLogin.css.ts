@@ -13,6 +13,7 @@ export const welcomeWrapper = style({
   alignItems: 'center',
   flexDirection: 'column',
   animation: `${fadeInAnimation} 1s ease-in-out`,
+  padding: '0 20px',
 });
 
 export const title = style({
