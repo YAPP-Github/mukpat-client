@@ -7,7 +7,7 @@ const UnloginActions = () => {
   const { loginPath } = useLoginRedirect();
   return (
     <Link href={`${loginPath}`}>
-      <Button color="primary" size="paddingSmall" className={actionButton}>
+      <Button color="explain" size="paddingSmall" className={actionButton}>
         로그인
       </Button>
     </Link>

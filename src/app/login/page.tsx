@@ -7,7 +7,7 @@ const login = () => {
   return (
     <LoginContextProvider>
       <>
-        <Header />
+        <Header actionRequired={false} />
         <Content>
           <LoginTitle />
           <LoginForm />
