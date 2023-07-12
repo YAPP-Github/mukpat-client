@@ -2,16 +2,16 @@ import { style } from '@vanilla-extract/css';
 import { themeTokens, screenMQ } from '@/styles/theme.css';
 import { fontVariant } from '@/styles/variant.css';
 const { color, space } = themeTokens;
-
+import { sizeProp } from '@/utils/sizeProp';
 export const profile = style({
   '@media': {
     [screenMQ.m]: {
-      marginBottom: '82px',
+      marginBottom: sizeProp(82),
     },
   },
 });
 export const button = style({
-  marginTop: '36px',
+  marginTop: sizeProp(36),
   '@media': {
     [screenMQ.m]: {
       display: 'none',

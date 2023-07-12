@@ -10,10 +10,12 @@ import { verificationCodeSchema } from '../../constants/schema';
 import { InputField, InputArea, Title } from '../../components';
 import { wrapper } from '../../styles/common.css';
 import { RequestEmailRequest, RequestEmailResponse, VerifyEmailRequest, VerifyEmailResponse } from '../../types/verify';
+import { useIsMobile } from '@/hooks';
 interface EmailVerificationSignUpPropsProps {
   onNext: () => void;
 }
 const EmailVerificationSignUp = ({ onNext }: EmailVerificationSignUpPropsProps) => {
+  const mobile = useIsMobile();
   const { userInfo } = useSignupContext();
   const verifyEmail = usePostApi<VerifyEmailRequest, VerifyEmailResponse>({
     apiFunction: postVerfiyEmail,
@@ -34,7 +36,7 @@ const EmailVerificationSignUp = ({ onNext }: EmailVerificationSignUpPropsProps) 
   // Title - PC : start / mobile : middle
   return (
     <div className={clsx(wrapper, verificationWrapper)}>
-      <Title textAlign="start">인증 메일을 보냈습니다.</Title>
+      <Title textAlign={mobile ? 'center' : 'start'}>인증 메일을 보냈습니다.</Title>
       <Typography as="p" variant="body2" className={description}>
         인증 코드를 {`${userInfo.email}@samsung`}으로 전송했습니다.
         <br /> 메일 확인 후 인증 코드를 입력해 주세요.
@@ -51,7 +53,13 @@ const EmailVerificationSignUp = ({ onNext }: EmailVerificationSignUpPropsProps) 
           확인
         </BottomButton>
       </InputField>
-      <Button size="paddingSmall" color="text" type="button" className={sendEmail} onClick={onClickRequsetEmail}>
+      <Button
+        size={mobile ? 'paddingSmall' : 'large'}
+        color="text"
+        type="button"
+        className={sendEmail}
+        onClick={onClickRequsetEmail}
+      >
         이메일 다시 보내기
       </Button>
     </div>

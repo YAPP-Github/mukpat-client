@@ -2,11 +2,11 @@ import { fontVariant } from '@/styles/variant.css';
 import { style, globalStyle } from '@vanilla-extract/css';
 import { themeTokens, screenMQ } from '@/styles/theme.css';
 const { color, space } = themeTokens;
-
+import { sizeProp } from '@/utils/sizeProp';
 export const requestWrapper = style({
   '@media': {
     [screenMQ.m]: {
-      marginBottom: '82px',
+      marginBottom: sizeProp(82),
     },
   },
 });
@@ -41,11 +41,11 @@ globalStyle(`${inputArea} > span`, {
   position: 'absolute',
   ...fontVariant.body2,
   color: color.primary,
-  top: '14px',
-  left: '212px',
+  top: sizeProp(14),
+  left: sizeProp(212),
 });
 globalStyle(`${inputArea} > div`, {
-  width: '200px',
+  width: sizeProp(200),
 });
 export const input = style({
   width: '100%',

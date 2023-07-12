@@ -2,11 +2,11 @@ import { fontVariant } from '@/styles/variant.css';
 import { style } from '@vanilla-extract/css';
 import { themeTokens, screenMQ } from '@/styles/theme.css';
 const { color, space } = themeTokens;
-
+import { sizeProp } from '@/utils/sizeProp';
 export const verificationWrapper = style({
   '@media': {
     [screenMQ.m]: {
-      marginBottom: '82px',
+      marginBottom: sizeProp(82),
     },
   },
 });
@@ -32,9 +32,9 @@ export const sendEmail = style({
   '@media': {
     [screenMQ.m]: {
       position: 'absolute',
-      width: 'inherit',
+      width: sizeProp(160),
       left: '50%',
-      bottom: '122px',
+      bottom: sizeProp(122),
       transform: 'translate(-50%, 0)',
     },
   },

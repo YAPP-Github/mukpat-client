@@ -1,7 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { themeTokens, screenMQ } from '@/styles/theme.css';
 const { space } = themeTokens;
-
+import { sizeProp } from '@/utils/sizeProp';
 export const wrapper = style({
   margin: `${space['6xl']} 0 ${space['xl']} 0`,
   '@media': {
@@ -13,11 +13,11 @@ export const wrapper = style({
 export const form = style({});
 globalStyle(`${form} > div`, {
   marginBottom: space['md'],
-  width: '400px',
+  width: sizeProp(400),
   '@media': {
     [screenMQ.m]: {
       marginBottom: space['md'],
-      width: '335px',
+      width: sizeProp(335),
       justifyContent: 'normal',
     },
   },
