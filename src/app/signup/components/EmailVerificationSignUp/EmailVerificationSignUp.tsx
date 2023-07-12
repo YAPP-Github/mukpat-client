@@ -3,7 +3,7 @@ import { Typography, Button, BottomButton } from '@/components';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { useSignupContext } from '../../contexts/SignupContext';
 import clsx from 'classnames';
-import { verificationWrapper, requiredFields, button, description, sendEmail } from './EmailVerificationSignUp.css';
+import { requiredFields, button, description, sendEmail } from './EmailVerificationSignUp.css';
 import { postVerfiyEmail, postRequestEmail } from '../../api';
 import { usePostApi, useCommonForm } from '../../hooks';
 import { verificationCodeSchema } from '../../constants/schema';
@@ -33,7 +33,7 @@ const EmailVerificationSignUp = ({ onNext }: EmailVerificationSignUpPropsProps) 
   // button - PC : large / mobile : paddingSmall
   // Title - PC : start / mobile : middle
   return (
-    <div className={clsx(wrapper, verificationWrapper)}>
+    <div className={clsx(wrapper)}>
       <Title textAlign="start">인증 메일을 보냈습니다.</Title>
       <Typography as="p" variant="body2" className={description}>
         인증 코드를 {`${userInfo.email}@samsung`}으로 전송했습니다.
@@ -51,7 +51,7 @@ const EmailVerificationSignUp = ({ onNext }: EmailVerificationSignUpPropsProps) 
           확인
         </BottomButton>
       </InputField>
-      <Button size="paddingSmall" color="text" type="button" className={sendEmail} onClick={onClickRequsetEmail}>
+      <Button size="large" color="text" type="button" className={sendEmail} onClick={onClickRequsetEmail}>
         이메일 다시 보내기
       </Button>
     </div>

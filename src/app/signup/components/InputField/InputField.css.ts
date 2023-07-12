@@ -13,11 +13,9 @@ export const wrapper = style({
 export const form = style({});
 globalStyle(`${form} > div`, {
   marginBottom: space['md'],
-  width: '400px',
   '@media': {
     [screenMQ.m]: {
       marginBottom: space['md'],
-      width: '335px',
       justifyContent: 'normal',
     },
   },

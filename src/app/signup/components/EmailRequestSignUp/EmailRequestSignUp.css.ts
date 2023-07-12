@@ -3,13 +3,6 @@ import { style, globalStyle } from '@vanilla-extract/css';
 import { themeTokens, screenMQ } from '@/styles/theme.css';
 const { color, space } = themeTokens;
 
-export const requestWrapper = style({
-  '@media': {
-    [screenMQ.m]: {
-      marginBottom: '82px',
-    },
-  },
-});
 export const requiredFields = style({
   ...fontVariant.label5,
   color: color.red500,
@@ -36,16 +29,18 @@ export const buttonWrapper = style({
 export const inputArea = style({
   display: 'flex',
   position: 'relative',
+  justifyContent: 'space-between',
+  alignItems: 'center',
 });
 globalStyle(`${inputArea} > span`, {
-  position: 'absolute',
   ...fontVariant.body2,
   color: color.primary,
-  top: '14px',
-  left: '212px',
+  // marginLeft: '12px',
+  margin: '0 20px 0 12px',
+  paddingBottom: '32px',
 });
 globalStyle(`${inputArea} > div`, {
-  width: '200px',
+  // width: '200px',
 });
 export const input = style({
   width: '100%',

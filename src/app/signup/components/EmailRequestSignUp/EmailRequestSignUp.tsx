@@ -1,7 +1,7 @@
 'use client';
 import { Button, Input, InputSection, BottomButton } from '@/components';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
-import { requestWrapper, requiredFields, button, buttonWrapper, inputArea, input } from './EmailRequestSignUp.css';
+import { requiredFields, button, buttonWrapper, inputArea, input } from './EmailRequestSignUp.css';
 import { useSignupContext } from '../../contexts/SignupContext';
 import { postRequestEmail } from '../../api';
 import { usePostApi, useCommonForm, useConsent } from '../../hooks';
@@ -34,12 +34,12 @@ const EmailRequestSignUp = ({ onNext }: EmailRequestSignUpProps) => {
   const errorAgreementMsg = () => (errorService || errorPrivacy) && '필수 항목에 동의해주세요.';
 
   return (
-    <div className={clsx(wrapper, requestWrapper)}>
+    <div className={clsx(wrapper)}>
       <Title>회원가입</Title>
       <InputField method={method} onSubmit={onSubmit}>
         <InputSection variant="label3" color="sub" label="회사이메일" direction="column" required={true}>
           <div className={inputArea}>
-            <div>
+            <div className={input}>
               <Input
                 {...method.register('email')}
                 name="email"
