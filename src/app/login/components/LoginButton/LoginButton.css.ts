@@ -55,7 +55,6 @@ export const requiredFields = style({
   ...fontVariant.label5,
   color: color.red500,
   height: '16px',
-  width: '400px',
   '@media': {
     [screenMQ.m]: {
       display: 'none',

@@ -6,6 +6,7 @@ const { space } = themeTokens;
 
 export const wrapper = style({
   marginTop: ' 64px',
+  maxWidth: '400px',
   '@media': {
     [screenMQ.m]: {
       width: '100%',
