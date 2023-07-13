@@ -1,14 +1,19 @@
 'use client';
 import FirstStep from './components/Form/FirstStep';
 import SecondStep from './components/Form/SecondStep';
-import { Typography } from '@/components';
 import { wrapper } from './style.css';
 import { useEffect } from 'react';
-import { useIsMobile, useFunnel } from '@/hooks';
+import { useFunnel } from '@/hooks';
+import { useProfile } from '@/api/hooks';
+import WriteTitle from './components/WriteTitle/WriteTitle';
 
 export default function Write() {
-  const [step, { nextStep }] = useFunnel(['1', '2']);
-  const mobile = useIsMobile();
+  const [step, { prevStep, nextStep }] = useFunnel(['1', '2']);
+  const { data: profile } = useProfile();
+  const isLogin = Boolean(profile);
+  if (!isLogin) {
+    // window.history.back();
+  }
 
   const preventClose = (e: BeforeUnloadEvent) => {
     e.preventDefault();
@@ -26,9 +31,7 @@ export default function Write() {
 
   return (
     <div className={wrapper}>
-      <Typography variant={mobile ? 'title1' : 'heading1'} as="p" color="primary500">
-        우리 회사 먹팟 만들기
-      </Typography>
+      <WriteTitle prevStep={prevStep} />
       {step === '1' && <FirstStep nextStep={nextStep} />}
       {step === '2' && <SecondStep />}
     </div>
