@@ -1,13 +1,15 @@
 import { style } from '@vanilla-extract/css';
 import { fontVariant } from '@/styles/variant.css';
-import { themeTokens } from '@/styles/theme.css';
+import { screenMQ, themeTokens } from '@/styles/theme.css';
+
+const { space, color } = themeTokens;
 
 export const openButton = style({
   ...fontVariant.label3,
-  padding: `${themeTokens.space.md} ${themeTokens.space.xl}`,
-  gap: themeTokens.space.sm,
-  background: themeTokens.color.grey100,
-  borderRadius: themeTokens.space.md,
+  padding: `${space.md} ${space.xl}`,
+  gap: space.sm,
+  background: color.grey100,
+  borderRadius: space.md,
 });
 
 export const buttonWrapper = style({
@@ -28,6 +30,14 @@ export const modalContent = style({
   justifyContent: 'space-evenly',
   alignItems: 'center',
   gap: themeTokens.space.sm,
+  '@media': {
+    [screenMQ.m]: {
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      margin: space.xl,
+    },
+  },
 });
 
 export const birthText = style({
