@@ -1,16 +1,16 @@
 'use client';
-import dayjs from 'dayjs';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Button, Input, InputDropdown, InputSection, Typography } from '@/components';
+import { Button, Input, InputSection, Typography } from '@/components';
 import { InputDate, Counter, AgeModal, MapModal } from '@/app/write/components';
 import { zodResolver } from '@hookform/resolvers/zod';
-import getTimeList from '@/app/write/components/InputDate/getTimes';
 import useFormStore from '@/app/write/store/useFormStore';
 import { stepOneSchema, StepOneSchema } from '@/app/write/lib/schema';
 import { StepOneData } from '@/app/write/types';
-import { formWrapper, sectionGap, inputGap, submitButton } from './Form.css';
-import { useMediaQuery } from '@/hooks';
+import { formWrapper, sectionGap, inputGap, submitButton, flexBetween } from './Form.css';
+import { useIsMobile } from '@/hooks';
+import TimeDropDown from '../TimeDropDown/TimeDropDown';
+import AgeBottomSheet from '../AgeModal/AgeBottomSheet';
 
 type stepProps = {
   nextStep: () => void;
@@ -18,31 +18,19 @@ type stepProps = {
 
 const FirstStep = ({ nextStep }: stepProps) => {
   const { stepOne, setData } = useFormStore();
-  const [isMobile, setMobile] = useState<boolean>(false);
-  const mobile = useMediaQuery({ bp: 'm' });
-
+  const mobile = useIsMobile();
   const method = useForm<StepOneSchema>({
-    mode: 'onSubmit',
     resolver: zodResolver(stepOneSchema),
+    mode: 'onChange',
     defaultValues: stepOne || {},
   });
-
-  useEffect(() => {
-    setMobile(mobile);
-  }, [mobile]);
+  console.log(method.formState.errors);
 
   const onSubmit = useCallback(
     (data: StepOneData) => {
       if (!data) {
         return;
       }
-      const date = dayjs(data.meetingDate).format('YYYY-MM-DD');
-      const time = data.meetingTime.substr(-5);
-      data = {
-        ...data,
-        meetingDate: date,
-        meetingTime: time,
-      };
       setData({ step: 1, data });
       nextStep();
     },
@@ -54,37 +42,28 @@ const FirstStep = ({ nextStep }: stepProps) => {
       <FormProvider {...method}>
         <form className={formWrapper} onSubmit={method.handleSubmit(onSubmit)}>
           <div className={sectionGap}>
-            <Typography variant={isMobile ? 'title3' : 'heading4'} as="p">
+            <Typography variant={mobile ? 'title3' : 'heading4'} as="p">
               언제 만날까요?
             </Typography>
             <div className={inputGap}>
               <InputSection label="날짜" direction="row" required={true}>
                 <InputDate control={method.control} name={'meetingDate'} />
               </InputSection>
-              <InputSection label="시간" direction="row" required={true}>
-                <InputDropdown
-                  control={method.control}
-                  name={'meetingTime'}
-                  placeholder="시간 선택"
-                  selections={getTimeList()}
-                ></InputDropdown>
-              </InputSection>
+              <TimeDropDown />
             </div>
           </div>
           <div className={sectionGap}>
-            <Typography variant={isMobile ? 'title3' : 'heading4'} as="p">
+            <Typography variant={mobile ? 'title3' : 'heading4'} as="p">
               몇 명 모을까요?
             </Typography>
             <div className={inputGap}>
-              {isMobile ? (
-                <>
-                  <InputSection label="인원" direction="row" required={true}>
-                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                      <AgeModal control={method.control} />
-                      <Counter control={method.control} name={'maxApply'} />
-                    </div>
-                  </InputSection>
-                </>
+              {mobile ? (
+                <InputSection label="인원" direction="row" required={true}>
+                  <div className={flexBetween}>
+                    <AgeBottomSheet control={method.control}></AgeBottomSheet>
+                    <Counter control={method.control} name={'maxApply'} />
+                  </div>
+                </InputSection>
               ) : (
                 <>
                   <InputSection label="인원" direction="row" required={true}>
@@ -98,7 +77,7 @@ const FirstStep = ({ nextStep }: stepProps) => {
             </div>
           </div>
           <div className={sectionGap}>
-            <Typography variant={isMobile ? 'title3' : 'heading4'} as="p">
+            <Typography variant={mobile ? 'title3' : 'heading4'} as="p">
               어디서 만날까요?
             </Typography>
             <div className={inputGap}>
@@ -115,7 +94,7 @@ const FirstStep = ({ nextStep }: stepProps) => {
               </InputSection>
             </div>
           </div>
-          <Button className={submitButton} type="submit" disabled={!method.formState.isDirty}>
+          <Button size="paddingMedium" className={submitButton} type="submit" disabled={!method.formState.isDirty}>
             다음
           </Button>
         </form>

@@ -1,34 +1,27 @@
 'use client';
-import { useRouter } from 'next/navigation';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import useFormStore from '@/app/write/store/useFormStore';
 import { boardSchema, BoardSchema } from '@/app/write/lib/schema';
-import { BoardData } from '@/app/write/types';
+import { ParsedData } from '@/app/write/types';
 import { Button, Input, InputSection, TextArea, Typography } from '@/components';
-import usePostBoard from '@/app/write/hooks/usePostBoard';
 import { formWrapper, inputGap } from './Form.css';
+import parseData from './util/parseData';
 
 const SecondStep = () => {
-  const { stepOne, reset } = useFormStore();
-  const router = useRouter();
-  const { error, handlePostBoard } = usePostBoard(() => {
-    console.log(error);
-  });
+  const { stepOne, stepTwo, reset } = useFormStore();
 
   const method = useForm<BoardSchema>({
     resolver: zodResolver(boardSchema),
-    defaultValues: { ...stepOne },
+    defaultValues: { ...stepOne, ...stepTwo },
   });
 
-  const onSubmit = (data: BoardData) => {
+  const onSubmit = (data: ParsedData) => {
     if (!data) {
       return;
     }
-    console.log(data);
-    handlePostBoard(data);
+    parseData(data);
     reset();
-    router.push('/');
   };
 
   return (

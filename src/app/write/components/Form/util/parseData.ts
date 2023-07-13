@@ -1,15 +1,21 @@
 import dayjs from 'dayjs';
 import { ParsedData } from '@/app/write/types';
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 const parseData = (data: ParsedData) => {
+  if (!data) return;
+
   const date = dayjs(data.meetingDate).format('YYYY-MM-DD');
-  const time = data.meetingTime.substr(-5);
+
+  if (data.timezone === '오후' && !data.meetingTime.startsWith('12')) {
+    const [hours, minutes] = data.meetingTime.split(':');
+    data.meetingTime = `${String(parseInt(hours) + 12)}:${minutes}` as string;
+  }
+
   data = {
     ...data,
     meetingDate: date,
-    meetingTime: time,
+    meetingTime: data.meetingTime,
   };
-  console.log(data);
 
   return data;
 };
