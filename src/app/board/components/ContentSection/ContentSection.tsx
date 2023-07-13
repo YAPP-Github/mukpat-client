@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PropsWithChildren } from 'react';
 import { IconButton, Typography } from '@/components';
 import { getBoardStatusText } from '@/app/board/utils';
 import { BoardDetail } from '@/api/types';
@@ -13,13 +14,14 @@ import {
   footerText,
   footerButtons,
   disabledLink,
+  childrenWrapper,
 } from './ContentSection.css';
 
-interface Props {
+interface Props extends PropsWithChildren {
   board: BoardDetail;
 }
 
-const ContentSection = ({ board }: Props) => {
+const ContentSection = ({ board, children }: Props) => {
   const {
     status,
     title,
@@ -38,7 +40,7 @@ const ContentSection = ({ board }: Props) => {
 
   return (
     <section>
-      <Typography variant="heading1" as="p" className={headerText}>
+      <p className={headerText}>
         <span
           className={statusText({
             active: status === '모집중',
@@ -47,7 +49,7 @@ const ContentSection = ({ board }: Props) => {
           {getBoardStatusText(status)}
         </span>
         {title}
-      </Typography>
+      </p>
       <ul className={infoBanner}>
         <li className={infoBannerItem}>
           <Typography variant="label3" color="hint">
@@ -93,6 +95,7 @@ const ContentSection = ({ board }: Props) => {
         )}
       </ul>
       <div className={contentWrapper}>{content}</div>
+      <div className={childrenWrapper}>{children}</div>
       <div className={footer}>
         <div className={footerText}>
           <Typography variant="label3" color="hint">

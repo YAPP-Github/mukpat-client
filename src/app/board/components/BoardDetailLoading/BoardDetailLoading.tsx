@@ -1,7 +1,10 @@
+'use client';
+
 import { Skeleton } from '@/components';
 
 import {
   wrapper,
+  title,
   infoBanner,
   footer,
   footerText,
@@ -10,13 +13,14 @@ import {
   flexColumn,
   list,
   listItem,
+  asideSection,
 } from './BoardDetailLoading.css';
 
 const BoardDetailLoading = () => {
   return (
     <div className={wrapper}>
       <div>
-        <Skeleton width="396px" height="42px" mb="36px" />
+        <Skeleton className={title} />
         <div className={infoBanner}>
           {Array(5)
             .fill(0)
@@ -27,6 +31,7 @@ const BoardDetailLoading = () => {
               </div>
             ))}
         </div>
+
         <div className={footer}>
           <div className={footerText}>
             <Skeleton width="124px" height="20px" />
@@ -38,7 +43,7 @@ const BoardDetailLoading = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className={asideSection}>
         <Skeleton width="77px" height="20px" mt="78px" />
         <div className={list}>
           {Array(4)

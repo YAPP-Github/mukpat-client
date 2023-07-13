@@ -3,6 +3,7 @@ import { style, globalStyle } from '@vanilla-extract/css';
 import { fontVariant } from '@/styles/variant.css';
 import { recipe } from '@vanilla-extract/recipes';
 import { sizeProp } from '@/utils/sizeProp';
+import { calc } from '@vanilla-extract/css-utils';
 const { color, zIndices } = themeTokens;
 
 export const titleWrapper = style({
@@ -54,7 +55,7 @@ export const wrap = recipe({
     borderRadius: '14px 14px 0px 0px',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    minHeight: sizeProp('632px'),
+    height: calc.subtract('100vh', sizeProp('180px')),
   },
   variants: {
     open: {
