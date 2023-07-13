@@ -6,7 +6,7 @@ export default function layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header actionRequired={true} />
-      <Content>{children}</Content>
+      <Content verticalCenter>{children}</Content>
     </>
   );
 }

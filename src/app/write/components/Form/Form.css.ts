@@ -30,3 +30,9 @@ export const submitButton = style({
     },
   },
 });
+
+export const flexBetween = style({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+});
