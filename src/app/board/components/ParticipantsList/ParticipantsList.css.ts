@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { themeTokens } from '@/styles/theme.css';
+import { screenMQ, themeTokens } from '@/styles/theme.css';
 
 const { space, color, borderRadius } = themeTokens;
 
@@ -24,6 +24,13 @@ export const listItem = style({
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: space.sm,
+
+  '@media': {
+    [screenMQ.m]: {
+      justifyContent: 'flex-start',
+      gap: space.lg,
+    },
+  },
 });
 
 export const participantProfile = style({
@@ -36,4 +43,12 @@ export const participantProfileText = style({
   display: 'flex',
   flexDirection: 'column',
   gap: space['3xs'],
+});
+
+export const counterText = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: space.sm,
+  paddingLeft: space.sm,
+  marginBottom: space.md,
 });
