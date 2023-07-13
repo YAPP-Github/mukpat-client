@@ -17,3 +17,5 @@ export { default as DeleteModal } from './DeleteModal/DeleteModal';
 export { default as CancelJoinModal } from './CancelJoinModal/CancelJoinModal';
 
 export { default as BoardDetailLoading } from './BoardDetailLoading/BoardDetailLoading';
+
+export { default as DetailMenuButton } from './DetailMenuButton/DetailMenuButton';
