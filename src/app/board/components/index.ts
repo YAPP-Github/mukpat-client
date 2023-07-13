@@ -1,3 +1,5 @@
+export { default as Content } from './Content/Content';
+
 export { default as BoardDetail } from './BoardDetail/BoardDetail';
 
 export { default as AsideSection } from './AsideSection/AsideSection';
