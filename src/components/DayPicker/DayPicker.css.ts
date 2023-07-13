@@ -17,6 +17,8 @@ export const captionButtons = style({
 });
 
 export const calendar = style({
+  display: 'flex',
+  justifyContent: 'center',
   vars: {
     '--rdp-background-color': 'rgba(28, 26, 26, 0.04)',
   },
