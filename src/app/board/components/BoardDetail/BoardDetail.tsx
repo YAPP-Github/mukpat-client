@@ -1,19 +1,33 @@
 'use client';
 
-import { useParams } from 'next/navigation';
-import { useBoardDetail } from '@/api/hooks';
-import { AsideSection, ContentSection } from '@/app/board/components';
-
+import { Media } from '@/components';
+import { useBoardDetail } from '@/app/board/hooks';
+import {
+  AsideSection,
+  ContentSection,
+  BottomSection,
+  DetailMenuButton,
+  ParticipantsList,
+} from '@/app/board/components';
 import { wrapper } from './BoardDetail.css';
 
 const BoardDetail = () => {
-  const { id: boardId } = useParams();
-  const { data: board } = useBoardDetail(Number(boardId));
+  const board = useBoardDetail();
 
   return (
     <div className={wrapper}>
-      <ContentSection board={board} />
-      <AsideSection board={board} />
+      <Media lessThan="m">
+        <DetailMenuButton />
+      </Media>
+      <ContentSection board={board}>
+        <Media lessThan="m">
+          <ParticipantsList />
+        </Media>
+      </ContentSection>
+      <Media greaterThan="m">
+        <AsideSection board={board} />
+      </Media>
+      <BottomSection />
     </div>
   );
 };

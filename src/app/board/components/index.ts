@@ -19,3 +19,7 @@ export { default as CancelJoinModal } from './CancelJoinModal/CancelJoinModal';
 export { default as BoardDetailLoading } from './BoardDetailLoading/BoardDetailLoading';
 
 export { default as DetailMenuButton } from './DetailMenuButton/DetailMenuButton';
+
+export { default as BottomSection } from './BottomSection/BottomSection';
+
+export { default as JoinBottomSheet } from './JoinBottomSheet/JoinBottomSheet';
