@@ -91,6 +91,7 @@ export const mobileListSection = style({
   display: 'none',
   '@media': {
     [screenMQ.m]: {
+      paddingLeft: space.sm,
       display: 'block',
     },
   },

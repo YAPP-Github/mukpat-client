@@ -7,7 +7,10 @@ import { MediaContextProvider, useMediaContext } from './MediaContext';
 import { MEDIA_STATE } from './hooks/useLoadingMediaQuery';
 
 interface Props extends PropsWithChildren {
+  /** 반응형 기준으로 삼을 breakpoint */
   breakpoint: BreakPoints;
+
+  /** media query를 로드할때까지 보여줄 대체 UI */
   fallback?: ReactNode;
 }
 
