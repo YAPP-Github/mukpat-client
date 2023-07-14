@@ -1,7 +1,7 @@
 'use client';
 import { FormProvider, SubmitHandler } from 'react-hook-form';
 import useFormStore from '@/app/write/store/useFormStore';
-import { BoardData } from '@/app/write/types';
+import { BoardData, PostResponse } from '@/app/write/types';
 import { Button, Input, InputSection, TextArea, Toast, Typography } from '@/components';
 import { formWrapper, inputGap } from './Form.css';
 import parseData from './util/parseData';
@@ -24,8 +24,7 @@ const SecondStep = () => {
     board(
       { ...parseData(data) },
       {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onSuccess: (response: any) => {
+        onSuccess: (response: PostResponse) => {
           openToast(<Toast type="success" message="먹팟 생성이 완료되었어요!" onClose={closeToast} />);
           router.push(`/board/${response.boardId}`);
           reset();
