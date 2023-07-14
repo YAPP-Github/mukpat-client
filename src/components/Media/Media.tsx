@@ -1,31 +1,37 @@
 'use client';
 
-import { useState, useLayoutEffect, PropsWithChildren } from 'react';
-import { useMediaQuery } from '@/hooks';
+import { ReactNode, PropsWithChildren } from 'react';
+
 import { BreakPoints } from '@/styles/theme.css';
+import { MediaContextProvider, useMediaContext } from './MediaContext';
+import { MEDIA_STATE } from './hooks/useLoadingMediaQuery';
 
 interface Props extends PropsWithChildren {
-  greaterThan?: BreakPoints;
-  lessThan?: BreakPoints;
+  breakpoint: BreakPoints;
+  fallback?: ReactNode;
 }
 
-const Media = ({ greaterThan, lessThan, children }: Props) => {
-  const [loading, setLoading] = useState(true);
-  const [, setMobile] = useState<boolean>(false);
-
-  const satisfyQuery = useMediaQuery({ bp: greaterThan ?? lessThan ?? 'm' });
-  const condition = lessThan ? satisfyQuery : !satisfyQuery;
-
-  useLayoutEffect(() => {
-    setMobile(satisfyQuery);
-    setLoading(false);
-  }, [satisfyQuery]);
-
-  if (loading) {
-    return null;
-  }
-
-  return condition ? children : null;
+const Media = ({ breakpoint, fallback, children }: Props) => {
+  return (
+    <MediaContextProvider breakpoint={breakpoint} fallback={fallback}>
+      {children}
+    </MediaContextProvider>
+  );
 };
 
-export default Media;
+const MediaLess = ({ children }: { children: ReactNode }) => {
+  const { mediaState } = useMediaContext();
+  return mediaState === MEDIA_STATE.LESS ? <>{children}</> : null;
+};
+
+const MediaGreater = ({ children }: { children: ReactNode }) => {
+  const { mediaState } = useMediaContext();
+  return mediaState === MEDIA_STATE.GREATER ? <>{children}</> : null;
+};
+
+const MediaRoot = Object.assign(Media, {
+  Less: MediaLess,
+  Greater: MediaGreater,
+});
+
+export default MediaRoot;

@@ -1,10 +1,10 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Dropdown, SvgIcon, Typography, Toast, Media } from '@/components';
+import { Dropdown, SvgIcon, Typography, Toast } from '@/components';
 import { useBoardDetail } from '@/app/board/hooks';
 import { useProfile } from '@/api/hooks';
-import { useOverlay, useClipBoard } from '@/hooks';
+import { useOverlay, useClipBoard, useIsMobile } from '@/hooks';
 import { TOAST_TEXT } from '@/app/board/constants';
 import { DeleteModal, CancelJoinModal } from '@/app/board/components';
 import * as styles from './DetailMenuButton.css';
@@ -17,6 +17,7 @@ const DetailMenuButton = () => {
   const [openModal, closeModal] = useOverlay();
   const [openToast, closeToast] = useOverlay();
   const [, copyToClipBoard] = useClipBoard();
+  const isMobile = useIsMobile();
 
   const writer = participants.find(({ writer }) => writer);
   const isWriter = writer?.userId === profile?.userId;
@@ -79,13 +80,11 @@ const DetailMenuButton = () => {
             </Dropdown.Item>
           </>
         )}
-        <Media lessThan="m">
-          {!isWriter && isJoined && (
-            <Dropdown.Item itemKey="cancelJoin" onClick={handleClickCancelJoinButton}>
-              <Typography variant="label2">참가 취소하기</Typography>
-            </Dropdown.Item>
-          )}
-        </Media>
+        {isMobile && !isWriter && isJoined && (
+          <Dropdown.Item itemKey="cancelJoin" onClick={handleClickCancelJoinButton}>
+            <Typography variant="label2">참가 취소하기</Typography>
+          </Dropdown.Item>
+        )}
       </Dropdown.Menu>
     </Dropdown>
   );

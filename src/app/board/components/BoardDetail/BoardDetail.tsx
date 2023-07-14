@@ -8,6 +8,7 @@ import {
   BottomSection,
   DetailMenuButton,
   ParticipantsList,
+  BoardDetailLoading,
 } from '@/app/board/components';
 import { wrapper } from './BoardDetail.css';
 
@@ -15,20 +16,23 @@ const BoardDetail = () => {
   const board = useBoardDetail();
 
   return (
-    <div className={wrapper}>
-      <Media lessThan="m">
-        <DetailMenuButton />
-      </Media>
-      <ContentSection board={board}>
-        <Media lessThan="m">
-          <ParticipantsList />
-        </Media>
-      </ContentSection>
-      <Media greaterThan="m">
-        <AsideSection board={board} />
-      </Media>
-      <BottomSection />
-    </div>
+    <Media breakpoint="m" fallback={<BoardDetailLoading />}>
+      <Media.Less>
+        <div className={wrapper}>
+          <DetailMenuButton />
+          <ContentSection board={board}>
+            <ParticipantsList />
+          </ContentSection>
+          <BottomSection />
+        </div>
+      </Media.Less>
+      <Media.Greater>
+        <div className={wrapper}>
+          <ContentSection board={board} />
+          <AsideSection board={board} />
+        </div>
+      </Media.Greater>
+    </Media>
   );
 };
 

@@ -9,7 +9,20 @@ import {
 } from '@/app/board/components/ContentSection/ContentSection.css';
 import { screenMQ, themeTokens } from '@/styles/theme.css';
 
-const { space } = themeTokens;
+const { space, borderRadius } = themeTokens;
+
+export const menuButton = style({
+  display: 'none',
+
+  '@media': {
+    [screenMQ.m]: {
+      display: 'block',
+      width: 'max-content',
+      marginLeft: 'auto',
+      marginBottom: space.sm,
+    },
+  },
+});
 
 export const flexAlignCenter = style({
   display: 'flex',
@@ -46,6 +59,11 @@ export const infoBanner = style([
   infoBannerStyle,
   {
     marginBottom: '14rem',
+    '@media': {
+      [screenMQ.m]: {
+        marginBottom: space['3xl'],
+      },
+    },
   },
 ]);
 
@@ -69,6 +87,15 @@ export const list = style([
   },
 ]);
 
+export const mobileListSection = style({
+  display: 'none',
+  '@media': {
+    [screenMQ.m]: {
+      display: 'block',
+    },
+  },
+});
+
 export const listItem = style([
   flexAlignCenter,
   {
@@ -80,6 +107,25 @@ export const asideSection = style({
   '@media': {
     [screenMQ.m]: {
       display: 'none',
+    },
+  },
+});
+
+export const mobileBottomButton = style({
+  display: 'none',
+  '@media': {
+    [screenMQ.m]: {
+      width: '100%',
+      height: '54px',
+      borderRadius: borderRadius.lg,
+      overflow: 'hidden',
+      marginTop: 'auto',
+      display: 'block',
+      position: 'fixed',
+      left: space.none,
+      bottom: space.xl,
+      right: space.none,
+      padding: `${space.none} ${space.xl} ${space.xl}`,
     },
   },
 });

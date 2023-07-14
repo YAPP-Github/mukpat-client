@@ -1,8 +1,7 @@
-'use client';
-
-import { Skeleton } from '@/components';
+import { Skeleton, SvgIcon } from '@/components';
 
 import {
+  menuButton,
   wrapper,
   title,
   infoBanner,
@@ -11,14 +10,17 @@ import {
   footerButtons,
   flexAlignCenter,
   flexColumn,
+  mobileListSection,
   list,
   listItem,
   asideSection,
+  mobileBottomButton,
 } from './BoardDetailLoading.css';
 
 const BoardDetailLoading = () => {
   return (
     <div className={wrapper}>
+      <SvgIcon id="dot" width={36} height={36} className={menuButton} />
       <div>
         <Skeleton className={title} />
         <div className={infoBanner}>
@@ -31,7 +33,22 @@ const BoardDetailLoading = () => {
               </div>
             ))}
         </div>
-
+        <div className={mobileListSection}>
+          <Skeleton width="77px" height="20px" />
+          <div className={list}>
+            {Array(4)
+              .fill(0)
+              .map((_, idx) => (
+                <div className={listItem} key={idx}>
+                  <Skeleton width="40px" height="40px" radius="circle" />
+                  <div className={flexColumn}>
+                    <Skeleton width="120px" height="18px" mb="2px" />
+                    <Skeleton width="32px" height="18px" />
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
         <div className={footer}>
           <div className={footerText}>
             <Skeleton width="124px" height="20px" />
@@ -59,6 +76,9 @@ const BoardDetailLoading = () => {
             ))}
         </div>
         <Skeleton width="274px" height="54px" radius="md" />
+      </div>
+      <div className={mobileBottomButton}>
+        <Skeleton width="100%" height="54px" />
       </div>
     </div>
   );
