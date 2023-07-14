@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { fontVariant } from '@/styles/variant.css';
 import { screenMQ, themeTokens } from '@/styles/theme.css';
+import { sizeProp } from '@/utils/sizeProp';
 
 const { space, color } = themeTokens;
 
@@ -21,7 +22,7 @@ export const buttonWrapper = style({
 export const modalContentWrapper = style({
   display: 'grid',
   gridAutoFlow: 'row',
-  gap: '36px',
+  gap: sizeProp(36),
 });
 
 export const modalContent = style({
