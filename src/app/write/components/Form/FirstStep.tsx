@@ -1,30 +1,22 @@
 'use client';
 import { useCallback } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
 import { Button, Input, InputSection, Typography } from '@/components';
-import { InputDate, Counter, AgeModal, MapModal } from '@/app/write/components';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { InputDate, Counter, AgeModal, AgeBottomSheet, MapModal, TimeDropDown } from '@/app/write/components';
 import useFormStore from '@/app/write/store/useFormStore';
-import { stepOneSchema, StepOneSchema } from '@/app/write/lib/schema';
 import { StepOneData } from '@/app/write/types';
+import { useWriteForm } from '@/app/write/hooks/useWriteForm';
 import { formWrapper, sectionGap, inputGap, submitButton, flexBetween } from './Form.css';
 import { useIsMobile } from '@/hooks';
-import TimeDropDown from '../TimeDropDown/TimeDropDown';
-import AgeBottomSheet from '../AgeModal/AgeBottomSheet';
 
 type stepProps = {
   nextStep: () => void;
 };
 
 const FirstStep = ({ nextStep }: stepProps) => {
-  const { stepOne, setData } = useFormStore();
+  const { stepOneMethod } = useWriteForm();
+  const { setData } = useFormStore();
   const mobile = useIsMobile();
-  const method = useForm<StepOneSchema>({
-    resolver: zodResolver(stepOneSchema),
-    mode: 'onChange',
-    defaultValues: stepOne || {},
-  });
-  console.log(method.formState.errors);
 
   const onSubmit = useCallback(
     (data: StepOneData) => {
@@ -39,15 +31,15 @@ const FirstStep = ({ nextStep }: stepProps) => {
 
   return (
     <>
-      <FormProvider {...method}>
-        <form className={formWrapper} onSubmit={method.handleSubmit(onSubmit)}>
+      <FormProvider {...stepOneMethod}>
+        <form className={formWrapper} onSubmit={stepOneMethod.handleSubmit(onSubmit)}>
           <div className={sectionGap}>
             <Typography variant={mobile ? 'title3' : 'heading4'} as="p">
               언제 만날까요?
             </Typography>
             <div className={inputGap}>
               <InputSection label="날짜" direction="row" required={true}>
-                <InputDate control={method.control} name={'meetingDate'} />
+                <InputDate control={stepOneMethod.control} name={'meetingDate'} />
               </InputSection>
               <TimeDropDown />
             </div>
@@ -60,17 +52,17 @@ const FirstStep = ({ nextStep }: stepProps) => {
               {mobile ? (
                 <InputSection label="인원" direction="row" required={true}>
                   <div className={flexBetween}>
-                    <AgeBottomSheet control={method.control}></AgeBottomSheet>
-                    <Counter control={method.control} name={'maxApply'} />
+                    <AgeBottomSheet control={stepOneMethod.control}></AgeBottomSheet>
+                    <Counter control={stepOneMethod.control} name={'maxApply'} />
                   </div>
                 </InputSection>
               ) : (
                 <>
                   <InputSection label="인원" direction="row" required={true}>
-                    <Counter control={method.control} name={'maxApply'} />
+                    <Counter control={stepOneMethod.control} name={'maxApply'} />
                   </InputSection>
                   <InputSection label="" direction="row">
-                    <AgeModal control={method.control} />
+                    <AgeModal control={stepOneMethod.control} />
                   </InputSection>
                 </>
               )}
@@ -86,7 +78,7 @@ const FirstStep = ({ nextStep }: stepProps) => {
               </InputSection>
               <InputSection label="상세 주소" direction="row">
                 <Input
-                  {...method.register('locationDetail', { required: false })}
+                  {...stepOneMethod.register('locationDetail', { required: false })}
                   name={'locationDetail'}
                   placeholder="ex) 1층 로비, 식당 입구"
                   maxLength={100}
@@ -94,7 +86,12 @@ const FirstStep = ({ nextStep }: stepProps) => {
               </InputSection>
             </div>
           </div>
-          <Button size="paddingMedium" className={submitButton} type="submit" disabled={!method.formState.isDirty}>
+          <Button
+            size="paddingMedium"
+            className={submitButton}
+            type="submit"
+            disabled={!stepOneMethod.formState.isDirty}
+          >
             다음
           </Button>
         </form>

@@ -19,4 +19,9 @@ export type StepTwoData = {
   chatLink: string;
 };
 
-export type ParsedData = Omit<StepOneData, 'meetingDate'> & StepTwoData & { meetingDate: string | Date };
+export type PostResponse = {
+  boardId: number;
+};
+
+export type BoardData = Omit<StepOneData, 'meetingDate'> & StepTwoData & { meetingDate: string | Date };
+export type ParsedData = Omit<BoardData, 'timezone'>;

@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
-import { ParsedData } from '@/app/write/types';
+import { BoardData } from '@/app/write/types';
 
-const parseData = (data: ParsedData) => {
-  if (!data) return;
+const parseData = (data: BoardData) => {
+  if (!data) return {} as BoardData;
 
   const date = dayjs(data.meetingDate).format('YYYY-MM-DD');
 
