@@ -17,6 +17,27 @@ import {
   mobileBottomButton,
 } from './BoardDetailLoading.css';
 
+const ParticipantsSkeleton = () => {
+  return (
+    <>
+      <Skeleton width="77px" height="20px" />
+      <div className={list}>
+        {Array(4)
+          .fill(0)
+          .map((_, idx) => (
+            <div className={listItem} key={idx}>
+              <Skeleton width="40px" height="40px" radius="circle" />
+              <div className={flexColumn}>
+                <Skeleton width="120px" height="18px" mb="2px" />
+                <Skeleton width="32px" height="18px" />
+              </div>
+            </div>
+          ))}
+      </div>
+    </>
+  );
+};
+
 const BoardDetailLoading = () => {
   return (
     <div className={wrapper}>
@@ -34,20 +55,7 @@ const BoardDetailLoading = () => {
             ))}
         </div>
         <div className={mobileListSection}>
-          <Skeleton width="77px" height="20px" />
-          <div className={list}>
-            {Array(4)
-              .fill(0)
-              .map((_, idx) => (
-                <div className={listItem} key={idx}>
-                  <Skeleton width="40px" height="40px" radius="circle" />
-                  <div className={flexColumn}>
-                    <Skeleton width="120px" height="18px" mb="2px" />
-                    <Skeleton width="32px" height="18px" />
-                  </div>
-                </div>
-              ))}
-          </div>
+          <ParticipantsSkeleton />
         </div>
         <div className={footer}>
           <div className={footerText}>
@@ -61,20 +69,7 @@ const BoardDetailLoading = () => {
         </div>
       </div>
       <div className={asideSection}>
-        <Skeleton width="77px" height="20px" mt="78px" />
-        <div className={list}>
-          {Array(4)
-            .fill(0)
-            .map((_, idx) => (
-              <div className={listItem} key={idx}>
-                <Skeleton width="40px" height="40px" radius="circle" />
-                <div className={flexColumn}>
-                  <Skeleton width="120px" height="18px" mb="2px" />
-                  <Skeleton width="32px" height="18px" />
-                </div>
-              </div>
-            ))}
-        </div>
+        <ParticipantsSkeleton />
         <Skeleton width="274px" height="54px" radius="md" />
       </div>
       <div className={mobileBottomButton}>
