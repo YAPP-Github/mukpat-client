@@ -2,6 +2,7 @@ import { Logo } from '@/components';
 import HeaderWrapper from './HeaderWrapper';
 import HeaderActions from './HeaderActions';
 import FeedbackAction from './FeedbackAction';
+import HeaderDataLayer from './HeaderDataLayer';
 import { actions } from './Header.css';
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 const Header = async ({ actionRequired = true }: Props) => {
   return (
     <HeaderWrapper>
+      <HeaderDataLayer />
       <Logo />
       <div className={actions}>
         <FeedbackAction />
