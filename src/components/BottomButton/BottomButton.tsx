@@ -13,7 +13,13 @@ const BottomButton = ({ children, errorMsg, disabled, onClick, className, deboun
   return (
     <div className={cx(wrapper, className)}>
       {errorMsg && <div className={error}>{errorMsg}</div>}
-      <Button disabled={disabled} className={button} debounceDelay={debounceDelay} onClick={onClick}>
+      <Button
+        size="mobileBottom"
+        disabled={disabled}
+        className={button}
+        debounceDelay={debounceDelay}
+        onClick={onClick}
+      >
         {children}
       </Button>
     </div>

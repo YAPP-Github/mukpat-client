@@ -5,7 +5,7 @@ const login = () => {
   return (
     <LoginContextProvider>
       <>
-        <Header />
+        <Header actionRequired={false}/>
         <LoginWrapper />
       </>
     </LoginContextProvider>
