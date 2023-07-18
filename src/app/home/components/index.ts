@@ -11,3 +11,5 @@ export { default as BoardCard } from './BoardCard/BoardCard';
 export { default as HydratedBoardCardList } from './HydratedBoardCardList/HydratedBoardCardList';
 
 export { default as BoardCardListLoading } from './BoardCardListLoading/BoardCardListLoading';
+
+export { default as FloatingButton } from './FloatingButton/FloatingButton';
