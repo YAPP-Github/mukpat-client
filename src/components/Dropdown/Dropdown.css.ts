@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { themeTokens } from '@/styles/theme.css';
+import { screenMQ, themeTokens } from '@/styles/theme.css';
 import { fontVariant } from '@/styles/variant.css';
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes';
 import { sizeProp } from '@/utils/sizeProp';
@@ -39,19 +39,42 @@ export const buttonVariant = recipe({
         borderRadius: borderRadius.xs,
       },
     },
+    color: {
+      darken: {
+        backgroundColor: color.grey100,
+        borderColor: color.grey200,
+      },
+      transparent: {},
+    },
   },
   defaultVariants: {
     size: 'medium',
     isError: false,
+    color: 'transparent',
   },
 });
 
-export const buttonText = style({
-  ...fontVariant.label2,
-  color: color.primary,
-  selectors: {
-    [`${buttonBase}:disabled  &`]: {
-      color: color.disable,
+export const buttonText = recipe({
+  base: {
+    ...fontVariant.label2,
+    color: color.primary,
+    selectors: {
+      [`${buttonBase}:disabled  &`]: {
+        color: color.disable,
+      },
+    },
+  },
+  variants: {
+    size: {
+      medium: {},
+      small: {
+        ...fontVariant.body2,
+        '@media': {
+          [screenMQ.m]: {
+            ...fontVariant.body3,
+          },
+        },
+      },
     },
   },
 });
@@ -199,5 +222,6 @@ export const modalContent = style({
 
 export type MenuVariant = RecipeVariants<typeof menu>;
 export type ButtonVariant = RecipeVariants<typeof buttonVariant>;
+export type Color = NonNullable<ButtonVariant>['color'];
 export type Size = NonNullable<ButtonVariant>['size'];
 export type Placement = NonNullable<MenuVariant>['placement'];
