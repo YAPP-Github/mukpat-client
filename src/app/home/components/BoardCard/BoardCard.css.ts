@@ -1,6 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-import { themeTokens } from '@/styles/theme.css';
+import { screenMQ, themeTokens } from '@/styles/theme.css';
+import { sizeProp } from '@/utils/sizeProp';
+import { fontVariant } from '@/styles/variant.css';
 
 const { space, borderRadius, color } = themeTokens;
 
@@ -9,8 +11,7 @@ export const wrapper = recipe({
     padding: space['3xl'],
     borderRadius: borderRadius.xl,
     border: `1px solid ${color.grey200}`,
-    width: '364px',
-    height: '324px',
+    width: sizeProp('364px'),
     position: 'relative',
     transitionProperty: 'box-shadow, transform',
     transitionDuration: '0.2s',
@@ -19,6 +20,13 @@ export const wrapper = recipe({
       '&:hover': {
         boxShadow: `0px 10px 15px -3px rgba(0, 0, 0, 0.05)`,
         transform: `translateY(-8px)`,
+      },
+    },
+
+    '@media': {
+      [screenMQ.m]: {
+        width: sizeProp('312px'),
+        padding: space.xl,
       },
     },
   },
@@ -51,11 +59,29 @@ export const chips = style({
   gap: space.sm,
 });
 
+export const timeText = style({
+  ...fontVariant.body2,
+  color: color.sub,
+
+  '@media': {
+    [screenMQ.m]: {
+      ...fontVariant.body3,
+    },
+  },
+});
+
 export const titleStyle = style({
+  ...fontVariant.title1,
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   marginBottom: space.xl,
+
+  '@media': {
+    [screenMQ.m]: {
+      ...fontVariant.title3,
+    },
+  },
 });
 
 export const body = style({
@@ -73,6 +99,13 @@ export const body = style({
       borderBottom: `1px solid ${color.grey200}`,
       position: 'absolute',
       bottom: 0,
+    },
+  },
+
+  '@media': {
+    [screenMQ.m]: {
+      paddingBottom: space.lg,
+      marginBottom: space.lg,
     },
   },
 });
@@ -105,4 +138,10 @@ export const participantsList = style({
   display: 'flex',
   alignItems: 'center',
   gap: space.md,
+
+  '@media': {
+    [screenMQ.m]: {
+      display: 'none',
+    },
+  },
 });

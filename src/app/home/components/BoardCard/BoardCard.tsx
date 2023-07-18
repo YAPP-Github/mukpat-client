@@ -8,6 +8,7 @@ import {
   wrapper,
   header,
   chips,
+  timeText,
   titleStyle,
   body,
   bodyItem,
@@ -50,9 +51,7 @@ const BoardCard = ({ boardListItem }: Props) => {
               <Chip color={getChipColor(status)}>{status}</Chip>
               {todayOrTomorrow && <Chip color={getChipColor(todayOrTomorrow)}>{todayOrTomorrow}</Chip>}
             </div>
-            <Typography variant="label2" color="sub">
-              {elapsedTime}
-            </Typography>
+            <span className={timeText}>{elapsedTime}</span>
           </div>
           <Typography className={titleStyle} variant="title1" color="primary">
             {title}
