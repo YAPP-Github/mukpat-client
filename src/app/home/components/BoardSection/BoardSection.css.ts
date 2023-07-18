@@ -7,18 +7,23 @@ const { color, space } = themeTokens;
 export const section = style({
   background: color.grey50,
   width: '100%',
-  padding: `${sizeProp('56px')} 0`, // 56px
+  padding: `${sizeProp('66px')} 0`,
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+
+  '@media': {
+    [screenMQ.m]: {
+      padding: `${sizeProp('28px')} 0`,
+    },
+  },
 });
 
 export const title = style({
   display: 'flex',
   alignItems: 'center',
-  marginBottom: space['5xl'],
-
+  marginBottom: space['3xl'],
   '@media': {
     [screenMQ.m]: {
       display: 'none',

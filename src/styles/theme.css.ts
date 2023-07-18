@@ -155,6 +155,7 @@ export const themeTokens = createGlobalTheme(':root', {
     hide: '-1',
     auto: 'auto',
     base: '0',
+    above: '1',
     docked: '10',
     dropdown: '1000',
     sticky: '1100',

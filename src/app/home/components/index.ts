@@ -13,3 +13,5 @@ export { default as HydratedBoardCardList } from './HydratedBoardCardList/Hydrat
 export { default as BoardCardListLoading } from './BoardCardListLoading/BoardCardListLoading';
 
 export { default as FloatingButton } from './FloatingButton/FloatingButton';
+
+export { default as LocalFilters } from './LocalFilters/LocalFilters';
