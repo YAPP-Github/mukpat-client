@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { useProfile } from '@/api/user';
-import { Button, Typography } from '@/components';
+import { Button, SvgIcon, Typography } from '@/components';
 import { GradientText } from '@/app/home/components';
-import { section, title, subTitle, button } from './HeroSection.css';
+import * as styles from './HeroSection.css';
 
 const HeroSection = () => {
   const { data: profile } = useProfile();
@@ -13,27 +13,26 @@ const HeroSection = () => {
 
   return (
     <section
-      className={section({
+      className={styles.section({
         isLogin,
       })}
     >
       {isLogin ? null : (
         <>
-          <Typography variant="display2" as="h1" className={title}>
-            <GradientText color="pinkBlue" text="매일 똑같은 " />
-            <GradientText color="blue" text="삼성 생활" />
-            <GradientText color="pink" text="을" />
-            <br />
-            <GradientText color="bluePink" text="더 다채롭게 만들어 줄 " />
-            <GradientText color="blue" text="먹팟" />
+          <div className={styles.samsungLogo}>
+            <SvgIcon id="samsung" width="100%" height="100%" />
+          </div>
+          <Typography variant="display2" as="h1" className={styles.title}>
+            <GradientText color="pinkBlue" text="삼성전자 번개 점심팟 구하기" />
           </Typography>
-          <Typography variant="body1" as="h2" className={subTitle}>
-            우리 회사 동료들과 점심시간 이용해
+          <Typography variant="heading3" as="h1" className={styles.mobileTitle}>
+            <GradientText color="bluePink" text="삼성전자" />
             <br />
-            가볍게 대화해보세요!
+            <GradientText color="bluePink" text="번개 점심팟 구하기" />
           </Typography>
-          <Link href={'/write'}>
-            <Button color="primary" className={button}>
+          <h2 className={styles.subTitle}>다양한 부서의 동료들과 네트워킹해 보세요!</h2>
+          <Link href={'/login'}>
+            <Button color="primary" className={styles.button}>
               <Typography color="white" variant="title2">
                 먹팟 만들기
               </Typography>
