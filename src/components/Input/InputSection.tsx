@@ -8,9 +8,18 @@ interface SectionProps extends ComponentProps<typeof Typography> {
   direction: Direction;
 }
 
-const InputSection = ({ required, variant, children, color = 'primary', as = 'p', label, direction }: SectionProps) => {
+const InputSection = ({
+  required,
+  variant,
+  children,
+  color = 'primary',
+  as = 'p',
+  label,
+  direction,
+  className,
+}: SectionProps) => {
   return (
-    <div className={clsx(section({ direction }))}>
+    <div className={clsx(section({ direction }), className)}>
       <Typography required={required} variant={variant} color={color} as={as}>
         {label}
       </Typography>
