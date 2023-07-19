@@ -47,3 +47,20 @@ export interface BoardDetail {
   views: number;
   participants: Profile[];
 }
+
+export interface BoardProvince {
+  provinceId: number;
+  provinceName: string;
+  sumByProvince: number;
+}
+
+export interface BoardRegion {
+  cityId: number;
+  cityName: string;
+  sumByCity: number;
+  provinces: BoardProvince[];
+}
+
+export interface BoardRegionResponse {
+  list: BoardRegion[];
+}

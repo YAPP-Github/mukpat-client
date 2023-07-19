@@ -1,6 +1,6 @@
 import { request } from '@/utils/ky/request';
 import { BOARDS_PER_PAGE } from '@/app/home/constants';
-import { BoardListPagingData, BoardListResponse, BoardDetail } from './types';
+import { BoardListPagingData, BoardListResponse, BoardDetail, BoardRegionResponse } from './types';
 
 class BoardAPI {
   /**
@@ -15,6 +15,8 @@ class BoardAPI {
         ...(requestlastId && { lastId: requestlastId }),
       },
     }).json<BoardListResponse>();
+
+    await new Promise((r) => setTimeout(r, 3000));
 
     return {
       data: list,
@@ -53,6 +55,14 @@ class BoardAPI {
    */
   async deleteBoard(boardId: number) {
     return request.delete(`v1/boards/${boardId}`).json();
+  }
+
+  /**
+   * 먹팟 게시글들의 지역 카테고리 목록을 조회합니다.
+   */
+  async getBoardRegions() {
+    const { list } = await request.get(`v1/boards/regions`).json<BoardRegionResponse>();
+    return list;
   }
 }
 

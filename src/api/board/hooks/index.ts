@@ -7,3 +7,5 @@ export { default as useJoinBoard } from './useJoinBoard';
 export { default as useCancelJoinBoard } from './useCancelJoinBoard';
 
 export { default as useDeleteBoard } from './useDeleteBoard';
+
+export { default as useBoardRegions } from './useBoardRegions';
