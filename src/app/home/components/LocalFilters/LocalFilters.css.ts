@@ -2,6 +2,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { style } from '@vanilla-extract/css';
 import { screenMQ, themeTokens } from '@/styles/theme.css';
 import { sizeProp } from '@/utils/sizeProp';
+import { FILTER_POS } from '@/app/home/constants';
 
 const { color, space, zIndices } = themeTokens;
 
@@ -10,10 +11,12 @@ export const background = recipe({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: space['4xl'],
+    padding: `${space.xl} 0`,
+    marginBottom: space.xl,
     '@media': {
       [screenMQ.m]: {
-        marginBottom: space['lg'],
+        padding: `${space.sm} 0`,
+        marginBottom: space['sm'],
       },
     },
   },
@@ -21,24 +24,46 @@ export const background = recipe({
     isSticky: {
       true: {
         position: 'sticky',
-        top: sizeProp('81px'),
         width: '100%',
         zIndex: zIndices.above,
-        padding: `${space.sm} 0`,
         backgroundColor: 'rgba(255, 255, 255, 0.7)',
         borderBottom: `1px solid ${color.grey100}`,
         backdropFilter: 'blur(20px)',
-
+        transition: 'top 0.3s ease-in-out, background-color 0.3s ease-in-out',
+      },
+    },
+    isScrollDown: {
+      true: {},
+    },
+  },
+  compoundVariants: [
+    {
+      variants: {
+        isSticky: true,
+        isScrollDown: true,
+      },
+      style: {
+        top: 0,
+      },
+    },
+    {
+      variants: {
+        isSticky: true,
+        isScrollDown: false,
+      },
+      style: {
+        top: sizeProp(FILTER_POS.DESKTOP),
         '@media': {
           [screenMQ.m]: {
-            top: sizeProp('57px'),
+            top: sizeProp(FILTER_POS.MOBILE),
           },
         },
       },
     },
-  },
+  ],
   defaultVariants: {
     isSticky: false,
+    isScrollDown: false,
   },
 });
 

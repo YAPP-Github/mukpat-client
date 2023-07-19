@@ -7,7 +7,8 @@ const { color, space } = themeTokens;
 export const section = style({
   background: color.grey50,
   width: '100%',
-  padding: `${sizeProp('66px')} 0`,
+  padding: `${sizeProp('56px')} 0`,
+
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
@@ -15,7 +16,7 @@ export const section = style({
 
   '@media': {
     [screenMQ.m]: {
-      padding: `${sizeProp('28px')} 0`,
+      padding: `${space.xl} 0`,
     },
   },
 });
@@ -23,7 +24,7 @@ export const section = style({
 export const title = style({
   display: 'flex',
   alignItems: 'center',
-  marginBottom: space['3xl'],
+  marginBottom: space['md'],
   '@media': {
     [screenMQ.m]: {
       display: 'none',
@@ -41,6 +42,7 @@ export const listGrid = style({
       padding: `0 ${space['2xl']}`,
       justifyContent: 'center',
       gridTemplateColumns: '1fr',
+      gap: space['md'],
     },
   },
 });
