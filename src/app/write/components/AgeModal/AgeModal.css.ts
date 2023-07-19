@@ -15,7 +15,7 @@ export const openButton = style({
 
 export const buttonWrapper = style({
   display: 'flex',
-  justifyContent: 'end',
+  justifyContent: 'flex-end',
   alignItems: 'center',
 });
 
