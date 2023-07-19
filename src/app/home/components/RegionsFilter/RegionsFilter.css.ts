@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { screenMQ, themeTokens } from '@/styles/theme.css';
 import { sizeProp } from '@/utils/sizeProp';
 import { FILTER_POS } from '@/app/home/constants';
+import { fontVariant } from '@/styles/variant.css';
 
 const { color, space, zIndices } = themeTokens;
 
@@ -82,4 +83,36 @@ export const wrapper = style({
 
 export const dropdown = style({
   width: '100%',
+});
+
+export const itemText = style({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  ...fontVariant.label2,
+
+  '@media': {
+    [screenMQ.m]: {
+      ...fontVariant.label3,
+    },
+  },
+});
+
+export const itemCountText = recipe({
+  variants: {
+    active: {
+      true: {
+        color: color.primary500,
+      },
+      false: {
+        color: color.hint,
+      },
+    },
+    selected: {
+      true: {
+        display: 'none',
+      },
+    },
+  },
 });

@@ -14,4 +14,4 @@ export { default as BoardCardListLoading } from './BoardCardListLoading/BoardCar
 
 export { default as FloatingButton } from './FloatingButton/FloatingButton';
 
-export { default as LocalFilters } from './LocalFilters/LocalFilters';
+export { default as RegionsFilter } from './RegionsFilter/RegionsFilter';

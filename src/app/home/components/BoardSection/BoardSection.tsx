@@ -1,6 +1,6 @@
 import { SvgIcon, Typography } from '@/components';
 import { Suspense } from '@suspensive/react';
-import { HydratedBoardCardList, BoardCardListLoading, LocalFilters } from '@/app/home/components';
+import { HydratedBoardCardList, BoardCardListLoading, RegionsFilter } from '@/app/home/components';
 import { section, title, listGrid } from './BoardSection.css';
 
 const BoardSection = async () => {
@@ -9,7 +9,9 @@ const BoardSection = async () => {
       <Typography variant="heading2" as="h2" color="navy" className={title}>
         지금 먹팟 <SvgIcon id="lightning" width="24" height="24" />을 찾고 있는 동료
       </Typography>
-      <LocalFilters />
+      <Suspense>
+        <RegionsFilter />
+      </Suspense>
       <ul className={listGrid}>
         <Suspense fallback={<BoardCardListLoading />}>
           <HydratedBoardCardList />

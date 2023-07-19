@@ -16,8 +16,6 @@ class BoardAPI {
       },
     }).json<BoardListResponse>();
 
-    await new Promise((r) => setTimeout(r, 3000));
-
     return {
       data: list,
       lastId,
