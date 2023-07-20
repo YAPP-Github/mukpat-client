@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { shallow } from 'zustand/shallow';
 import { BoardRegion, BoardProvince } from '@/api/types';
+import { useEffect, useReducer } from 'react';
 
 type State = {
   cityId?: BoardRegion['cityId'];
@@ -12,32 +12,36 @@ type Actions = {
   setProvinceId: (provinceId: State['provinceId']) => void;
 };
 
-export const useRegionsFilterStore = create<State & Actions>((set) => ({
+type Selector = (state: State & Actions) => Partial<State & Actions>;
+
+export const regionsFilterStore = create<State & Actions>((set) => ({
   cityId: undefined,
   provinceId: undefined,
   setCityId: (cityId: State['cityId']) =>
     set((state) => {
-      if (cityId) {
-        return { ...state, cityId };
+      if (state.cityId && state.cityId !== cityId) {
+        return { cityId, provinceId: undefined };
       } else {
-        return { cityId: undefined, provinceId: undefined };
+        return { ...state, cityId };
       }
     }),
   setProvinceId: (provinceId: State['provinceId']) => set((state) => ({ ...state, provinceId })),
 }));
 
-// TODO : queryParam 연동으로 새로고침으로 인한 초기화 막기?
+export const useRegionsFilterStore = (selector: Selector) => {
+  const getValue = () => selector(regionsFilterStore.getState());
+  const [value, dispatch] = useReducer(getValue, undefined, getValue);
+  useEffect(() => regionsFilterStore.subscribe(dispatch), [selector]);
+  return value;
+};
 
 export const useRegionsFilter = (regions: BoardRegion[]) => {
-  const { cityId, provinceId, setCityId, setProvinceId } = useRegionsFilterStore(
-    (state) => ({
-      cityId: state.cityId,
-      provinceId: state.provinceId,
-      setCityId: state.setCityId,
-      setProvinceId: state.setProvinceId,
-    }),
-    shallow,
-  );
+  const { cityId, provinceId, setCityId, setProvinceId } = useRegionsFilterStore((state) => ({
+    cityId: state.cityId,
+    provinceId: state.provinceId,
+    setCityId: state.setCityId,
+    setProvinceId: state.setProvinceId,
+  }));
 
   const selectedCity = cityId ? regions.find((region) => region.cityId === cityId) : undefined;
   const selectedProvince = selectedCity?.provinces.find((province) => province.provinceId === provinceId);

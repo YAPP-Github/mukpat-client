@@ -4,9 +4,15 @@ import { useIntersectObserver } from '@/hooks';
 import { useBoardListQuery } from '@/api/hooks';
 import { BoardCard } from '@/app/home/components';
 import { BOARDS_PER_PAGE } from '@/app/home/constants';
+import { useRegionsFilterStore } from '@/app/home/store';
 
 const BoardCardList = () => {
-  const { data: boardList, getNextPage } = useBoardListQuery(BOARDS_PER_PAGE);
+  const { cityId, provinceId } = useRegionsFilterStore((state) => ({
+    cityId: state.cityId,
+    provinceId: state.provinceId,
+  }));
+
+  const { data: boardList, getNextPage } = useBoardListQuery(BOARDS_PER_PAGE, cityId, provinceId);
 
   const [ref] = useIntersectObserver<HTMLDivElement>({
     rootMargin: '100px',

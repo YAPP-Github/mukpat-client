@@ -7,12 +7,21 @@ class BoardAPI {
    * board list를 페이지당 boardsPerPage 개수만큼 가져옵니다.
    * @param requestlastId - 마지막으로 가져온 board의 id
    * @param boardsPerPage - 페이지당 가져올 board 개수
+   * @param cityId - 가져올 board의 cityId
+   * @param provinceId - 가져올 board의 provinceId
    */
-  async getBoardList(requestlastId?: number, boardsPerPage = BOARDS_PER_PAGE): Promise<BoardListPagingData> {
-    const { list, lastId } = await request('v1/boards', {
+  async getBoardList(
+    requestlastId?: number,
+    boardsPerPage = BOARDS_PER_PAGE,
+    cityId?: number,
+    provinceId?: number,
+  ): Promise<BoardListPagingData> {
+    const { list, lastId } = await request('v2/boards', {
       searchParams: {
         countPerScroll: boardsPerPage,
         ...(requestlastId && { lastId: requestlastId }),
+        ...(cityId && { cityId }),
+        ...(provinceId && { provinceId }),
       },
     }).json<BoardListResponse>();
 

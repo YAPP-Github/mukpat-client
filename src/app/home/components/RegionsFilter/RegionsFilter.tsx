@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, startTransition } from 'react';
 import { Dropdown } from '@/components';
 import { useDetectSticky, useScrollDownState } from '@/app/home/hooks';
 import { useBoardRegions } from '@/api/hooks';
@@ -12,8 +12,8 @@ import * as styles from './RegionsFilter.css';
 // [x] 전체 지역 미 선택시 전체 구군은 disabled 처리
 // [x] query로 지역 카테고리 받아오기
 // [x] zustand로 선택 상태 만들어서 연동하기
+// [x] listquery랑 지역 필터 선택 상태 연결하기
 // [ ] queryParam으로 초기화해서 새로고침 대응하기
-// [ ] listquery랑 지역 필터 선택 상태 연결하기
 
 const RegionsFilter = () => {
   const { data: regions } = useBoardRegions();
@@ -24,14 +24,18 @@ const RegionsFilter = () => {
 
   const handleSelectCity = useCallback(
     (cityId: string | null) => {
-      setCityId(Number(cityId));
+      startTransition(() => {
+        setCityId?.(cityId ? Number(cityId) : undefined);
+      });
     },
     [setCityId],
   );
 
   const handleSelectProvince = useCallback(
     (provinceId: string | null) => {
-      setProvinceId(Number(provinceId));
+      startTransition(() => {
+        setProvinceId?.(provinceId ? Number(provinceId) : undefined);
+      });
     },
     [setProvinceId],
   );
