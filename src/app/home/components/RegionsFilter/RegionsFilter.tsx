@@ -13,7 +13,8 @@ import * as styles from './RegionsFilter.css';
 // [x] query로 지역 카테고리 받아오기
 // [x] zustand로 선택 상태 만들어서 연동하기
 // [x] listquery랑 지역 필터 선택 상태 연결하기
-// [ ] queryParam으로 초기화해서 새로고침 대응하기
+// [] RegionsFilter loading 대응
+// [ ] error 페이지, 결과가 없는 경우 대응
 
 const RegionsFilter = () => {
   const { data: regions } = useBoardRegions();

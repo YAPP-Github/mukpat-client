@@ -15,3 +15,5 @@ export { default as BoardCardListLoading } from './BoardCardListLoading/BoardCar
 export { default as FloatingButton } from './FloatingButton/FloatingButton';
 
 export { default as RegionsFilter } from './RegionsFilter/RegionsFilter';
+
+export { default as RegionsFilterLoading } from './RegionsFilter/RegionsFilterLoading';
