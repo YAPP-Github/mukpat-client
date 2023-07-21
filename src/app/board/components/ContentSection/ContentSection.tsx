@@ -36,7 +36,11 @@ const ContentSection = ({ board, children }: Props) => {
     views,
     prevId,
     nextId,
+    x,
+    y,
   } = board;
+
+  console.log(x, y);
 
   return (
     <section>
@@ -72,7 +76,15 @@ const ContentSection = ({ board, children }: Props) => {
             만날 위치
           </Typography>
           <Typography variant="label3" color="primary">
-            {locationName}
+            <a
+              href={`https://map.kakao.com/link/to/${locationName},${y},${x}`}
+              target="_blank"
+              style={{
+                textDecoration: 'underline',
+              }}
+            >
+              {locationName}
+            </a>
           </Typography>
         </li>
         <li className={infoBannerItem}>
