@@ -5,7 +5,7 @@ import { useIsMobile } from '@/hooks';
 import { BottomButton, Button, Content, ErrorMessage } from '@/components';
 import { useRouter } from 'next/navigation';
 
-const Error = ({ reset }: { reset: () => void }) => {
+const ErrorPage = ({ reset }: { reset: () => void }) => {
   const router = useRouter();
   const isMobile = useIsMobile();
 
@@ -31,4 +31,4 @@ const Error = ({ reset }: { reset: () => void }) => {
   );
 };
 
-export default Error;
+export default ErrorPage;
