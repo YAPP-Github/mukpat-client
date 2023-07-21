@@ -1,4 +1,4 @@
-import { createGlobalTheme } from '@vanilla-extract/css';
+import { createGlobalTheme, keyframes, style } from '@vanilla-extract/css';
 
 export const themeTokens = createGlobalTheme(':root', {
   space: {
@@ -209,5 +209,14 @@ export const screenMQ = {
   /** mobile 대응 max-width: 791px*/
   m: `screen and (max-width: ${breakPoints.m}px)`,
 };
+
+const fadeInAnimation = keyframes({
+  '0%': { opacity: '0' },
+  '100%': { opacity: '1' },
+});
+
+export const animate = style({
+  animation: `${fadeInAnimation} 0.5s ease-in-out`,
+});
 
 export type BreakPoints = keyof typeof breakPoints;
