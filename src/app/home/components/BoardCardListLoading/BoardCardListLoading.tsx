@@ -1,4 +1,5 @@
 import { Skeleton } from '@/components';
+import { BOARDS_PER_PAGE } from '@/app/home/constants';
 import {
   wrapper,
   header,
@@ -10,7 +11,7 @@ import {
   footer,
   footerParticipants,
 } from './BoardCardListLoading.css';
-import { BOARDS_PER_PAGE } from '@/app/home/constants';
+import { listGrid } from '../BoardCardList/BoardCardList.css';
 
 const BoardCardSkeleton = () => {
   return (
@@ -46,11 +47,11 @@ const BoardCardSkeleton = () => {
 
 const BoardCardListLoading = () => {
   return (
-    <>
+    <ul className={listGrid}>
       {Array.from({ length: BOARDS_PER_PAGE }).map((_, idx) => (
         <BoardCardSkeleton key={idx} />
       ))}
-    </>
+    </ul>
   );
 };
 

@@ -31,18 +31,3 @@ export const title = style({
     },
   },
 });
-
-export const listGrid = style({
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
-  gap: space['2xl'],
-
-  '@media': {
-    [screenMQ.m]: {
-      padding: `0 ${space['2xl']}`,
-      justifyContent: 'center',
-      gridTemplateColumns: '1fr',
-      gap: space['md'],
-    },
-  },
-});

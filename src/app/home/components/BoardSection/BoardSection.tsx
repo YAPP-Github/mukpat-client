@@ -6,7 +6,7 @@ import {
   RegionsFilter,
   RegionsFilterLoading,
 } from '@/app/home/components';
-import { section, title, listGrid } from './BoardSection.css';
+import { section, title } from './BoardSection.css';
 
 const BoardSection = async () => {
   return (
@@ -17,11 +17,9 @@ const BoardSection = async () => {
       <Suspense fallback={<RegionsFilterLoading />}>
         <RegionsFilter />
       </Suspense>
-      <ul className={listGrid}>
-        <Suspense fallback={<BoardCardListLoading />}>
-          <HydratedBoardCardList />
-        </Suspense>
-      </ul>
+      <Suspense fallback={<BoardCardListLoading />}>
+        <HydratedBoardCardList />
+      </Suspense>
     </section>
   );
 };
