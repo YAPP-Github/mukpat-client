@@ -9,7 +9,7 @@ const AgeClearButton = () => {
     resetField(MIN_AGE);
     resetField(MAX_AGE);
   }, [resetField]);
-  return <IconButton width={36} height={36} iconType="close" onClick={resetValues} />;
+  return <IconButton type="button" width={36} height={36} iconType="close" onClick={resetValues} />;
 };
 
 export default AgeClearButton;

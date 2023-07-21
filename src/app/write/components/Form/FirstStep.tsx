@@ -66,6 +66,9 @@ const FirstStep = ({ nextStep }: stepProps) => {
                   </InputSection>
                 </>
               )}
+              <Typography style={{ margin: '0', textAlign: 'end' }} color="red500" variant="label5" as="p">
+                {stepOneMethod.formState.errors['maxAge']?.message}
+              </Typography>
             </div>
           </div>
           <div className={sectionGap}>
