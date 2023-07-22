@@ -14,10 +14,10 @@ import { writeAPI } from '@/api/write';
 type StepProps = {
   reset: () => void;
   boardId?: number;
-  isFetch?: boolean;
+  isPatch?: boolean;
 };
 
-const SecondStep = ({ reset, boardId, isFetch = false }: StepProps) => {
+const SecondStep = ({ reset, boardId, isPatch = false }: StepProps) => {
   const { mutate: board } = useWriteBoard();
   const { stepTwoMethod } = useWriteForm();
   const [openToast, closeToast] = useOverlay();
@@ -27,7 +27,7 @@ const SecondStep = ({ reset, boardId, isFetch = false }: StepProps) => {
     if (!data) {
       return;
     }
-    if (!isFetch) {
+    if (!isPatch) {
       board(
         { ...parseData(data) },
         {
@@ -45,8 +45,8 @@ const SecondStep = ({ reset, boardId, isFetch = false }: StepProps) => {
         },
       );
     }
-    if (isFetch && boardId) {
-      writeAPI.patchBoard(boardId, data).then(() => {
+    if (isPatch && boardId) {
+      writeAPI.patchBoard(boardId, { ...parseData(data) }).then(() => {
         openToast(<Toast type="success" message="먹팟 수정이 완료되었어요!" onClose={closeToast} />);
         router.push(`/board/${boardId}`);
         reset();

@@ -40,7 +40,7 @@ export default function BoardForm() {
     <div className={wrapper}>
       <WriteTitle prevStep={prevStep} />
       {step === '1' && <FirstStep setData={setData} nextStep={nextStep} />}
-      {step === '2' && <SecondStep boardId={Number(boardId)} reset={reset} />}
+      {step === '2' && <SecondStep boardId={Number(boardId)} reset={reset} isPatch />}
     </div>
   );
 }
