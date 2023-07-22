@@ -1,9 +1,9 @@
 import { Skeleton } from '@/components';
-import { row, section, wrapper } from './InputLoading.css';
+import { loadingForm, row, section, wrapper } from './InputLoading.css';
 
 const InputLoading = () => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className={loadingForm}>
       <div className={section}>
         <Skeleton width="324px" height="42px" />
         <div className={wrapper}>

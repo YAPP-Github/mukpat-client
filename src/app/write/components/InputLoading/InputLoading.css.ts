@@ -1,6 +1,14 @@
 import { screenMQ } from '@/styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
+export const loadingForm = style({
+  position: 'relative',
+  top: '116px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
 export const wrapper = style({
   display: 'flex',
   flexDirection: 'column',
