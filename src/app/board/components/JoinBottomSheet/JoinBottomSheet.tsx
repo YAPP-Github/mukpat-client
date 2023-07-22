@@ -1,11 +1,11 @@
 'use client';
 
 import { useJoinBoard } from '@/api/hooks';
-import { Modal, IconButton, Button } from '@/components';
+import { BottomSheet, Button } from '@/components';
 import { JoinForm } from '@/app/board/components';
 import { useCheckboxGroupState } from '@/app/board/hooks';
 import { JOIN_MODAL_TEXT, TOAST_TEXT } from '@/app/board/constants';
-import { modalHeader, modalContent } from './JoinModal.css';
+import { wrapper, content, footer } from './JoinBottomSheet.css';
 
 const { BUTTON } = JOIN_MODAL_TEXT;
 
@@ -26,7 +26,7 @@ interface Props {
   onClose: () => void;
 }
 
-const JoinModal = ({ boardId, chatLink, onSuccessJoin, onFailureJoin, onClose }: Props) => {
+const JoinBottomSheet = ({ boardId, chatLink, onSuccessJoin, onFailureJoin, onClose }: Props) => {
   const [checkBoxGroupState, validateUnchecked, toggleChecked] = useCheckboxGroupState(2);
 
   const { mutate: joinBoard } = useJoinBoard(boardId);
@@ -48,24 +48,23 @@ const JoinModal = ({ boardId, chatLink, onSuccessJoin, onFailureJoin, onClose }:
   };
 
   return (
-    <Modal onClose={onClose} size="large">
-      <Modal.Header title="참여 신청 안내" type="infoWithClose" className={modalHeader}>
-        <IconButton iconType="close" active={false} hover onClick={onClose} />
-      </Modal.Header>
-      <Modal.Content size="large" className={modalContent}>
-        <JoinForm chatLink={chatLink} checkBoxGroupState={checkBoxGroupState} toggleChecked={toggleChecked} />
-      </Modal.Content>
-      <Modal.Footer type="single">
-        <Button
-          color="primary"
-          onClick={handleClickJoinButton}
-          disabled={checkBoxGroupState.some((state) => !state.checked)}
-        >
-          {BUTTON.JOIN}
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <BottomSheet title="참여 신청 안내" onClose={onClose}>
+      <div className={wrapper}>
+        <div className={content}>
+          <JoinForm chatLink={chatLink} checkBoxGroupState={checkBoxGroupState} toggleChecked={toggleChecked} />
+        </div>
+        <div className={footer}>
+          <Button
+            color="primary"
+            onClick={handleClickJoinButton}
+            disabled={checkBoxGroupState.some((state) => !state.checked)}
+          >
+            {BUTTON.JOIN}
+          </Button>
+        </div>
+      </div>
+    </BottomSheet>
   );
 };
 
-export default JoinModal;
+export default JoinBottomSheet;
