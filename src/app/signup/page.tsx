@@ -5,12 +5,8 @@ import { SignupContextProvider } from './contexts/SignupContext';
 const signup = () => {
   return (
     <>
-      <Header actionRequired={false} />
-      <Content>
-        <SignupContextProvider>
-          <SignUpWrapper />
-        </SignupContextProvider>
-      </Content>
+      <Header />
+      <SignUpWrapper />
     </>
   );
 };

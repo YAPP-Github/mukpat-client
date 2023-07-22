@@ -1,10 +1,10 @@
 'use client';
 import { MouseEvent, useState } from 'react';
-import { Button } from '@/components';
+import { BottomButton, Button } from '@/components';
 import { useRouter } from 'next/navigation';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { signupSchema } from '../../constants/schema';
-import { button, category, requiredFields, inputMargin } from './ProfileSetupSignUp.css';
+import { profile, button, category, requiredFields, inputMargin } from './ProfileSetupSignUp.css';
 import { useSignupContext } from '../../contexts/SignupContext';
 import { SelectedDropDownValue } from '../../types/profile';
 import { postSignup } from '../../api';
@@ -13,6 +13,7 @@ import { jobType, birthType } from '../../constants/dropdown';
 import { GenderSelector, InputField, InputArea, Title, CommonDropDown } from '../../components';
 import { wrapper } from '../../styles/common.css';
 import { SignupRequest, SignupResponse } from '../../types/signup';
+import clsx from 'classnames';
 
 const ProfileSetupSignUp = () => {
   const { userInfo } = useSignupContext();
@@ -33,7 +34,7 @@ const ProfileSetupSignUp = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     postData({
-      email: `${userInfo?.email}@naver.com`,
+      email: `${userInfo?.email}@samsung.com`,
       password: userInfo?.password,
       nickname: data?.nickname,
       jobGroupMain: selectedValue?.job,
@@ -50,7 +51,7 @@ const ProfileSetupSignUp = () => {
   };
 
   return (
-    <div className={wrapper}>
+    <div className={clsx(wrapper, profile)}>
       <Title>프로필 등록</Title>
       <InputField method={method} onSubmit={onSubmit}>
         <InputArea label="닉네임" name="nickname" placeholder="닉네임" required={true} method={method} />
@@ -85,6 +86,9 @@ const ProfileSetupSignUp = () => {
           저장하기
         </Button>
         <div className={requiredFields}>{errorMsg}</div>
+        <BottomButton type="submit" errorMsg={errorMsg}>
+          저장하기
+        </BottomButton>
       </InputField>
     </div>
   );

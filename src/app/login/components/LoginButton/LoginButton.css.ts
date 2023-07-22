@@ -1,6 +1,7 @@
 import { fontVariant } from '@/styles/variant.css';
 import { globalStyle, style } from '@vanilla-extract/css';
 import { themeTokens, screenMQ } from '@/styles/theme.css';
+import { sizeProp } from '@/utils/sizeProp';
 
 const { color, space } = themeTokens;
 export const buttonWrapper = style({
@@ -30,7 +31,7 @@ export const signup = style({
 export const persistentButton = style({
   display: 'flex',
   alignItems: 'center',
-  marginBottom: '36px',
+  marginBottom: sizeProp(36),
   '@media': {
     [screenMQ.m]: {
       marginBottom: space.none,
