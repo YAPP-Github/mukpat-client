@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useMapContext } from '../contexts/MapContextProvider';
 import { Place } from '@/types/map';
-import { removeMarkers, addMarkers } from '../utils/mapMarkerUtils';
+import { removeMarkers, addMarkers, getPlaceInfo } from '../utils/mapMarkerUtils';
 
 interface MapListMarkersProps {
   map: any;
@@ -12,13 +12,18 @@ interface MapListMarkersProps {
 const useMapListMarkers = ({ map, markers }: MapListMarkersProps) => {
   const { searchedPlaces, setSelectedPlace } = useMapContext();
 
-  const handleOnClickListWithMarkers = (placeIndex: number) => {
-    if (!searchedPlaces) return;
-    setSelectedPlace(searchedPlaces[placeIndex]);
-    removeMarkers(markers);
-    const markersTotal = addMarkers([searchedPlaces[placeIndex]], map);
-    markers.current = markersTotal;
-  };
+  const handleOnClickListWithMarkers = useCallback(
+    async (placeIndex: number) => {
+      if (!searchedPlaces) return;
+      const searchPlace = searchedPlaces[placeIndex];
+      const searchResult = await getPlaceInfo(searchPlace.y.toString(), searchPlace.x.toString());
+      setSelectedPlace(searchResult);
+      removeMarkers(markers);
+      const markersTotal = addMarkers([searchedPlaces[placeIndex]], map);
+      markers.current = markersTotal;
+    },
+    [map, markers, searchedPlaces, setSelectedPlace],
+  );
 
   useEffect(() => {
     if (!searchedPlaces || searchedPlaces?.length === 0) return;
