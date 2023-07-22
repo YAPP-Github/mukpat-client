@@ -1,5 +1,5 @@
 import { request } from '@/utils/ky/request';
-import { ParsedData, PostResponse } from '@/app/write/types';
+import { BoardData, ParsedData, PostResponse } from '@/app/write/types';
 class WriteAPI {
   /**
    * 유저가 입력한 데이터로 먹팟을 생성합니다.
@@ -27,6 +27,14 @@ class WriteAPI {
         },
       })
       .json();
+  }
+
+  /**
+   * boardId에 해당하는 먹팟을 수정하기 위해 정보를 가져옵니다.
+   * @param boardId - 가져올 board의 id
+   */
+  async getBoardDetail(boardId: number) {
+    return request.get(`v1/boards/${boardId}/update`).json<BoardData>();
   }
 }
 
