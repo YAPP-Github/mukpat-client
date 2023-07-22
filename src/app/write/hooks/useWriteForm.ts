@@ -9,7 +9,7 @@ export const useWriteForm = () => {
   const stepOneMethod = useForm<StepOneSchema>({
     resolver: zodResolver(stepOneSchema),
     mode: 'onChange',
-    defaultValues: stepOne || {},
+    defaultValues: { ...stepOne },
   });
 
   const stepTwoMethod = useForm<BoardSchema>({
