@@ -7,3 +7,4 @@ export { default as SecondStep } from './Form/SecondStep';
 export { default as MapModal } from './MapModal/MapModal';
 export { default as WriteTitle } from './WriteTitle/WriteTitle';
 export { default as TimeDropDown } from './TimeDropDown/TimeDropDown';
+export { default as InputLoading } from './InputLoading/InputLoading';

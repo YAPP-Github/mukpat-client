@@ -1,9 +1,9 @@
 'use client';
+
 import { useCallback } from 'react';
 import { FormProvider } from 'react-hook-form';
 import { Button, Input, InputSection, Typography } from '@/components';
 import { InputDate, Counter, AgeModal, AgeBottomSheet, MapModal, TimeDropDown } from '@/app/write/components';
-import useFormStore from '@/app/write/store/useFormStore';
 import { StepOneData } from '@/app/write/types';
 import { useWriteForm } from '@/app/write/hooks/useWriteForm';
 import { formWrapper, sectionGap, inputGap, submitButton, flexBetween } from './Form.css';
@@ -11,11 +11,11 @@ import { useIsMobile } from '@/hooks';
 
 type stepProps = {
   nextStep: () => void;
+  setData: ({ step, data }: { step: 1; data: StepOneData }) => void;
 };
 
-const FirstStep = ({ nextStep }: stepProps) => {
+const FirstStep = ({ nextStep, setData }: stepProps) => {
   const { stepOneMethod } = useWriteForm();
-  const { setData } = useFormStore();
   const mobile = useIsMobile();
 
   const onSubmit = useCallback(

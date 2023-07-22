@@ -1,42 +1,57 @@
 'use client';
+
 import { FormProvider, SubmitHandler } from 'react-hook-form';
-import useFormStore from '@/app/write/store/useFormStore';
 import { BoardData, PostResponse } from '@/app/write/types';
 import { Button, Input, InputSection, TextArea, Toast, Typography } from '@/components';
 import { formWrapper, inputGap } from './Form.css';
 import parseData from './util/parseData';
 import useWriteBoard from '@/api/write/hooks/usePostBoard';
 import { useRouter } from 'next/navigation';
-import { useWriteForm } from '../../hooks/useWriteForm';
+import { useWriteForm } from '@/app/write/hooks/useWriteForm';
 import { useOverlay } from '@/hooks';
+import { writeAPI } from '@/api/write';
 
-const SecondStep = () => {
+type StepProps = {
+  reset: () => void;
+  boardId?: number;
+  isPatch?: boolean;
+};
+
+const SecondStep = ({ reset, boardId, isPatch = false }: StepProps) => {
   const { mutate: board } = useWriteBoard();
   const { stepTwoMethod } = useWriteForm();
   const [openToast, closeToast] = useOverlay();
-  const { reset } = useFormStore();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<BoardData> = async (data: BoardData) => {
     if (!data) {
       return;
     }
-    board(
-      { ...parseData(data) },
-      {
-        onSuccess: (response: PostResponse) => {
-          openToast(<Toast type="success" message="먹팟 생성이 완료되었어요!" onClose={closeToast} />);
-          router.push(`/board/${response.boardId}`);
-          reset();
+    if (!isPatch) {
+      board(
+        { ...parseData(data) },
+        {
+          onSuccess: (response: PostResponse) => {
+            openToast(<Toast type="success" message="먹팟 생성이 완료되었어요!" onClose={closeToast} />);
+            router.push(`/board/${response.boardId}`);
+            reset();
+          },
+          onError: (error) => {
+            openToast(<Toast type="warn" message={error.message} onClose={closeToast} />);
+            if (error.response.status === 403) {
+              router.push('/login');
+            }
+          },
         },
-        onError: (error) => {
-          openToast(<Toast type="warn" message={error.message} onClose={closeToast} />);
-          if (error.response.status === 403) {
-            router.push('/login');
-          }
-        },
-      },
-    );
+      );
+    }
+    if (isPatch && boardId) {
+      writeAPI.patchBoard(boardId, { ...parseData(data) }).then(() => {
+        openToast(<Toast type="success" message="먹팟 수정이 완료되었어요!" onClose={closeToast} />);
+        router.push(`/board/${boardId}`);
+        reset();
+      });
+    }
   };
 
   return (
