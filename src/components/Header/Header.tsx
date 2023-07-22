@@ -10,7 +10,7 @@ interface Props {
   actionRequired?: boolean;
 }
 
-const Header = async ({ actionRequired = true }: Props) => {
+const Header = ({ actionRequired = true }: Props) => {
   return (
     <HeaderWrapper>
       <HeaderDataLayer />

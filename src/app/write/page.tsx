@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Write() {
   const [step, { prevStep, nextStep }] = useFunnel(['1', '2']);
-  const { reset, setData } = useFormStore();
+  const { reset } = useFormStore();
   const { data } = useProfile();
   const router = useRouter();
   if (!data) {
@@ -26,16 +26,17 @@ export default function Write() {
   useEffect(() => {
     window.addEventListener('beforeunload', preventClose);
     return () => {
-      window.removeEventListener('beforeunload', preventClose);
       reset();
+      window.removeEventListener('beforeunload', preventClose);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className={wrapper}>
       <WriteTitle prevStep={prevStep} />
-      {step === '1' && <FirstStep setData={setData} nextStep={nextStep} />}
-      {step === '2' && <SecondStep reset={reset} />}
+      {step === '1' && <FirstStep nextStep={nextStep} />}
+      {step === '2' && <SecondStep />}
     </div>
   );
 }

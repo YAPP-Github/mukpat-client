@@ -1,7 +1,7 @@
 import { Content } from '@/components';
 import { Header } from '@/components/server';
 
-import { HeroSection, BoardSection } from '@/app/home/components';
+import { HeroSection, BoardSection, FloatingButton } from '@/app/home/components';
 
 export default async function Home() {
   return (
@@ -11,6 +11,7 @@ export default async function Home() {
         <HeroSection />
         <BoardSection />
       </Content>
+      <FloatingButton />
     </>
   );
 }

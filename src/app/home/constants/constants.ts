@@ -5,3 +5,8 @@ export const RECRUIT_STATUS = {
   RECRUITING: '모집중',
   CLOSED: '모집마감',
 } as const;
+
+export const FILTER_POS = {
+  DESKTOP: 81,
+  MOBILE: 57,
+} as const;

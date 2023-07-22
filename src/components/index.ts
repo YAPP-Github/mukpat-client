@@ -40,4 +40,6 @@ export { default as BottomButton } from './BottomButton/BottomButton';
 
 export { default as BottomSheet } from './BottomSheet/BottomSheet';
 
+export { default as ErrorMessage } from './ErrorMessage/ErrorMessage';
+
 export { default as Media } from './Media/Media';

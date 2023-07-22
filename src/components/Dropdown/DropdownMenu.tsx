@@ -1,6 +1,6 @@
 'use client';
 
-import { HTMLAttributes, useMemo, forwardRef, useImperativeHandle } from 'react';
+import { HTMLAttributes, useMemo, forwardRef, useImperativeHandle, useEffect } from 'react';
 import clsx from 'classnames';
 import { menu, Placement } from './Dropdown.css';
 import { useDropdownContext } from './contexts/DropdownContext';
@@ -47,6 +47,13 @@ const DropdownMenu = forwardRef<DropdownMenuHandle, Props>(
     useImperativeHandle(ref, () => ({
       close: closeDropdown,
     }));
+
+    useEffect(() => {
+      window.addEventListener('scroll', closeDropdown);
+      return () => {
+        window.removeEventListener('scroll', closeDropdown);
+      };
+    }, [closeDropdown]);
 
     return (
       <DropdownMenuContextProvider value={menuContextValue}>
