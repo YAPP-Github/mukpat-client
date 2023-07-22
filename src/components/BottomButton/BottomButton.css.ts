@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { themeTokens, screenMQ } from '@/styles/theme.css';
 import { fontVariant } from '@/styles/variant.css';
+import { sizeProp } from '@/utils/sizeProp';
 
 const { space, zIndices, color } = themeTokens;
 
@@ -10,14 +11,16 @@ export const wrapper = style({
     [screenMQ.m]: {
       display: 'inline-block',
       position: 'fixed',
-      left: space.none,
       bottom: space.none,
       right: space.none,
       zIndex: zIndices.sticky,
+      maxWidth: sizeProp(400),
       width: '100% !important',
       backgroundColor: color.white,
       flexDirection: 'row',
-      padding: `${space.none} ${space.xl} ${space.xl}`,
+      left: '50%',
+      transform: 'translate(-50%, 0)',
+      padding: `${space.sm} ${space.xl} ${space.xl}`,
     },
   },
 });
@@ -29,5 +32,5 @@ export const error = style({
 });
 
 export const button = style({
-  marginTop: space.sm,
+  padding: space.lg,
 });

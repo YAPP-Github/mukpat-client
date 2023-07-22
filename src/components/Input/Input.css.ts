@@ -36,7 +36,7 @@ export const section = recipe({
             gridAutoFlow: 'row',
             gridTemplateColumns: '1fr',
             gridGap: space.sm,
-            alignItems: 'start',
+            alignItems: 'flex-start',
           },
         },
       },

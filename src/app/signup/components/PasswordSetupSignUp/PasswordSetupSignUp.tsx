@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@/components';
+import { BottomButton, Button } from '@/components';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { passwordSchema } from '../../constants/schema';
 import { button } from './PasswordSetupSignUp.css';
@@ -43,6 +43,7 @@ const PasswordSetupSignUp = ({ onNext }: PasswordSetupSignUpProps) => {
         <Button size="large" type="submit" className={button}>
           다음
         </Button>
+        <BottomButton type="submit">다음</BottomButton>
       </InputField>
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 import { Input, InputSection } from '@/components';
 import { FieldValues, UseFormReturn } from 'react-hook-form';
-import { inputWrapper, input } from './InputArea.css';
+import { inputWrapper } from './InputArea.css';
 import { HTMLAttributes } from 'react';
 import cx from 'classnames';
 
@@ -18,14 +18,7 @@ const InputArea = ({ label, name, placeholder, required, method, type, className
   return (
     <div className={cx(inputWrapper, className)}>
       <InputSection label={label} variant="label3" color="sub" direction="column" required={required}>
-        <Input
-          {...method.register(name)}
-          name={name}
-          placeholder={placeholder}
-          showError={true}
-          type={type}
-          className={input}
-        />
+        <Input {...method.register(name)} name={name} placeholder={placeholder} showError={true} type={type} fix />
       </InputSection>
     </div>
   );

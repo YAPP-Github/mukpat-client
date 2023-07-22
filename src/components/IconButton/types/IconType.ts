@@ -19,4 +19,5 @@ export type IconType =
   | 'crown'
   | 'marker'
   | 'info'
-  | 'map';
+  | 'map'
+  | 'goback';

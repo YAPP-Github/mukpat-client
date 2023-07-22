@@ -1,47 +1,59 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { FormProvider, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { FormProvider, SubmitHandler } from 'react-hook-form';
 import useFormStore from '@/app/write/store/useFormStore';
-import { boardSchema, BoardSchema } from '@/app/write/lib/schema';
-import { BoardData } from '@/app/write/types';
-import { Button, Input, InputSection, TextArea, Typography } from '@/components';
-import usePostBoard from '@/app/write/hooks/usePostBoard';
+import { BoardData, PostResponse } from '@/app/write/types';
+import { Button, Input, InputSection, TextArea, Toast, Typography } from '@/components';
 import { formWrapper, inputGap } from './Form.css';
+import parseData from './util/parseData';
+import useWriteBoard from '@/api/write/hooks/usePostBoard';
+import { useRouter } from 'next/navigation';
+import { useWriteForm } from '../../hooks/useWriteForm';
+import { useOverlay } from '@/hooks';
 
 const SecondStep = () => {
-  const { stepOne, reset } = useFormStore();
+  const { mutate: board } = useWriteBoard();
+  const { stepTwoMethod } = useWriteForm();
+  const [openToast, closeToast] = useOverlay();
+  const { reset } = useFormStore();
   const router = useRouter();
-  const { error, handlePostBoard } = usePostBoard(() => {
-    console.log(error);
-  });
 
-  const method = useForm<BoardSchema>({
-    resolver: zodResolver(boardSchema),
-    defaultValues: { ...stepOne },
-  });
-
-  const onSubmit = (data: BoardData) => {
+  const onSubmit: SubmitHandler<BoardData> = async (data: BoardData) => {
     if (!data) {
       return;
     }
-    console.log(data);
-    handlePostBoard(data);
-    reset();
-    router.push('/');
+    board(
+      { ...parseData(data) },
+      {
+        onSuccess: (response: PostResponse) => {
+          openToast(<Toast type="success" message="먹팟 생성이 완료되었어요!" onClose={closeToast} />);
+          router.push(`/board/${response.boardId}`);
+          reset();
+        },
+        onError: (error) => {
+          openToast(<Toast type="warn" message={error.message} onClose={closeToast} />);
+          if (error.response.status === 403) {
+            router.push('/login');
+          }
+        },
+      },
+    );
   };
 
   return (
     <>
-      <FormProvider {...method}>
-        <form className={formWrapper} onSubmit={method.handleSubmit(onSubmit)}>
+      <FormProvider {...stepTwoMethod}>
+        <form className={formWrapper} onSubmit={stepTwoMethod.handleSubmit(onSubmit)}>
           <div className={inputGap}>
-            <Input {...method.register('title')} name={'title'} placeholder="[필수] 제목을 입력해주세요."></Input>
-            <TextArea {...method.register('content')} name="content" maxLength={2000} type="textArea"></TextArea>
+            <Input
+              {...stepTwoMethod.register('title')}
+              name={'title'}
+              placeholder="[필수] 제목을 입력해주세요."
+            ></Input>
+            <TextArea {...stepTwoMethod.register('content')} name="content" maxLength={2000} type="textArea"></TextArea>
           </div>
           <InputSection required={true} aria-required={'true'} label="오픈 채팅방 링크" direction="row">
             <Input
-              {...method.register('chatLink')}
+              {...stepTwoMethod.register('chatLink')}
               name={'chatLink'}
               maxLength={300}
               placeholder="카카오톡 오픈채팅방 링크"
@@ -51,7 +63,7 @@ const SecondStep = () => {
               베타서비스에서는 채팅 기능이 제공되지 않습니다. <br /> 효율적인 소통을 위해 오픈 채팅방을 만들어주세요.
             </Typography>
           </InputSection>
-          <Button style={{ width: '100%' }} type="submit" disabled={!method.formState.isDirty}>
+          <Button style={{ width: '100%' }} type="submit" disabled={!stepTwoMethod.formState.isDirty}>
             먹팟 만들기
           </Button>
         </form>

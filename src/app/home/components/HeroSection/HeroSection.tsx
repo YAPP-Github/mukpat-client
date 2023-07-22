@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useProfile } from '@/api/user';
 import { Button, SvgIcon, Typography } from '@/components';
 import { GradientText } from '@/app/home/components';
+import clsx from 'clsx';
+import { animate } from '@/styles/theme.css';
 import * as styles from './HeroSection.css';
 
 const HeroSection = () => {
@@ -13,9 +15,12 @@ const HeroSection = () => {
 
   return (
     <section
-      className={styles.section({
-        isLogin,
-      })}
+      className={clsx(
+        styles.section({
+          isLogin,
+        }),
+        animate,
+      )}
     >
       {isLogin ? null : (
         <>

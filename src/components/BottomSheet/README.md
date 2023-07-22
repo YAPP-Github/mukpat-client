@@ -9,7 +9,7 @@ const Test = () => {
 
 	const renderBottomSheet = () => {
 		return (
-			<BottomSheet onClose={closeBottomSheet} titie="타이틀 영역 입니다" >
+			<BottomSheet onClose={closeBottomSheet} title="타이틀 영역 입니다" >
                 <div>원하는 내용 적기</div>
 			</BottomSheet>
 		);

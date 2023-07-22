@@ -3,9 +3,9 @@ import { RequestEmailResponse, VerifyEmailRequest, VerifyEmailResponse } from '.
 
 export const postRequestEmail = async ({ email }: { email: string }): Promise<RequestEmailResponse> => {
   return await request
-    .post('v1/emails/request', {
+    .post('v2/emails/request', {
       json: {
-        email: `${email}@naver.com`,
+        email: `${email}@samsung.com`,
       },
     })
     .json<RequestEmailResponse>();
@@ -16,9 +16,9 @@ export const postVerfiyEmail = async ({
   verificationCode,
 }: VerifyEmailRequest): Promise<VerifyEmailResponse> => {
   return await request
-    .post('v1/emails/verify', {
+    .post('v2/emails/verify', {
       json: {
-        email: `${email}@naver.com`,
+        email: `${email}@samsung.com`,
         verificationCode,
       },
     })

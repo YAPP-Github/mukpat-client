@@ -5,10 +5,10 @@ import { sizeProp } from '@/utils/sizeProp';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   /** 스켈레톤 넓이 (css width에서 사용가능한 값) */
-  width: number | string;
+  width?: number | string;
 
   /** 스켈레톤 높이 (css height에서 사용가능한 값) */
-  height: number | string;
+  height?: number | string;
 
   /** 스켈레톤 색상 */
   color?: Color;
@@ -35,10 +35,10 @@ const Skeleton = ({
   color,
   radius,
   className,
-  mt = 0,
-  ml = 0,
-  mr = 0,
-  mb = 0,
+  mt,
+  ml,
+  mr,
+  mb,
 
   ...rest
 }: Props) => {
@@ -52,12 +52,12 @@ const Skeleton = ({
         className,
       )}
       style={{
-        width: sizeProp(width),
-        height: sizeProp(height),
-        marginTop: sizeProp(mt),
-        marginLeft: sizeProp(ml),
-        marginRight: sizeProp(mr),
-        marginBottom: sizeProp(mb),
+        ...(width && { width: sizeProp(width) }),
+        ...(height && { height: sizeProp(height) }),
+        ...(mt && { marginTop: sizeProp(mt) }),
+        ...(mb && { marginBottom: sizeProp(mb) }),
+        ...(ml && { marginLeft: sizeProp(ml) }),
+        ...(mr && { marginRight: sizeProp(mr) }),
       }}
       {...rest}
     />

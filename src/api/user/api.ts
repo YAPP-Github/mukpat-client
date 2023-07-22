@@ -9,7 +9,7 @@ class UserAPI {
 
   async postLogin({ email, password, keep }: { email: string; password: string; keep: string }) {
     return request
-      .post('v1/users/login', {
+      .post('v2/users/login', {
         json: {
           email,
           password,

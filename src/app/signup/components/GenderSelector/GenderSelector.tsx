@@ -1,6 +1,7 @@
 'use client';
 import { Typography } from '@/components';
 import { SegmentedControl } from '@/components';
+import { selectorWrapper, selector } from './GenderSelector.css';
 
 type GenderSelectorProps = {
   genderValue: string;
@@ -13,16 +14,18 @@ const GenderSelector = ({ genderValue, setGenderValue }: GenderSelectorProps) =>
     { value: 'WOMEN', label: '여성' },
   ];
   return (
-    <div style={{ width: '100%', marginRight: '12px' }}>
+    <div className={selectorWrapper}>
       <Typography id="gender-select" color="sub" variant="label3" as="label" required={true}>
         성별
       </Typography>
-      <SegmentedControl
-        ariaLabelledby="gender-select"
-        data={genderType}
-        value={genderValue}
-        onChange={setGenderValue}
-      />
+      <div className={selector}>
+        <SegmentedControl
+          ariaLabelledby="gender-select"
+          data={genderType}
+          value={genderValue}
+          onChange={setGenderValue}
+        />
+      </div>
     </div>
   );
 };
