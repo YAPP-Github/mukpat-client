@@ -1,12 +1,16 @@
 import { useLayoutEffect } from 'react';
 
-const useLockScroll = () => {
+const useLockScroll = (isOpen = true) => {
   useLayoutEffect(() => {
-    document.body.style.overflow = 'hidden';
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, []);
+  }, [isOpen]);
 };
-
 export default useLockScroll;
