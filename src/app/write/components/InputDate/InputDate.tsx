@@ -7,6 +7,7 @@ import { DateInput, DayPicker, BottomSheet } from '@/components';
 import { inputWrapper } from '@/components/Input/Input.css';
 import { useOverlay, useIsMobile } from '@/hooks';
 import { preventClick } from './InputDate.css';
+import InputErrorMessage from '@/components/Input/InputErrorMessage';
 
 type TControl<T extends FieldValues> = {
   /**  Input을 제어하는 컨트롤입니다. */
@@ -50,7 +51,8 @@ const InputDate = ({ ...props }: TControl<any>) => {
             mobile && openBottomSheet(renderBottomSheet({ value, onChange }));
           }}
         >
-          <DateInput className={preventClick} placeholder={now} selected={value} onSelect={onChange}></DateInput>
+          <DateInput className={preventClick} placeholder={now} selected={value} onSelect={onChange} />
+          <InputErrorMessage name={name} showError={true} />
         </div>
       )}
     />
