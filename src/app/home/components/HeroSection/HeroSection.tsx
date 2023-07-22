@@ -5,6 +5,8 @@ import { useProfile } from '@/api/user';
 import { Button, Typography } from '@/components';
 import { GradientText } from '@/app/home/components';
 import { section, title, subTitle, button } from './HeroSection.css';
+import clsx from 'clsx';
+import { animate } from '@/styles/theme.css';
 
 const HeroSection = () => {
   const { data: profile } = useProfile();
@@ -13,9 +15,12 @@ const HeroSection = () => {
 
   return (
     <section
-      className={section({
-        isLogin,
-      })}
+      className={clsx(
+        section({
+          isLogin,
+        }),
+        animate,
+      )}
     >
       {isLogin ? null : (
         <>
