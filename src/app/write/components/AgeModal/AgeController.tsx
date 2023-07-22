@@ -1,15 +1,16 @@
 import { Dropdown, DropdownButton, DropdownItem, DropdownMenu } from '@/components';
 import { Control, Controller, FieldValues } from 'react-hook-form';
-import { agelist as list } from '@/app/write/constants';
+import { AGE_LIST } from '@/app/write/constants';
 
 type ControllerProps<T extends FieldValues> = {
   control: Control<T>;
   name: string;
   placeholder: string;
+  disabled?: boolean;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const AgeController = ({ control, name, placeholder }: ControllerProps<any>) => {
+const AgeController = ({ disabled = false, control, name, placeholder }: ControllerProps<any>) => {
   return (
     <Controller
       defaultValue={null}
@@ -17,9 +18,11 @@ const AgeController = ({ control, name, placeholder }: ControllerProps<any>) => 
       name={name}
       render={({ field: { value, onChange } }) => (
         <Dropdown style={{ width: '100%' }}>
-          <DropdownButton placeholder={placeholder}>{value && `${value}세`}</DropdownButton>
+          <DropdownButton disabled={disabled} placeholder={placeholder}>
+            {value && `${value}세`}
+          </DropdownButton>
           <DropdownMenu selectable selectedItemKey={value} onSelectChange={onChange}>
-            {list.map((v) => (
+            {AGE_LIST.map((v) => (
               <DropdownItem key={v} itemKey={v}>
                 {v}
               </DropdownItem>

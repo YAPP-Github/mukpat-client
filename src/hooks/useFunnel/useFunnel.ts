@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 function assertString(value: unknown): asserts value is string {
@@ -17,10 +18,11 @@ const useFunnel = (
 ] => {
   assertString(steps[0]);
   const [step, setStep] = useState<string>(steps[0]);
-
+  const router = useRouter();
   const prevStep = () => {
     const currentStepIndex = steps.indexOf(step);
     if (currentStepIndex === 0) {
+      router.back();
       return;
     }
     const newStep = steps[currentStepIndex - 1];

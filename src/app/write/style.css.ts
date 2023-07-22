@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { screenMQ, themeTokens } from '@/styles/theme.css';
+import { sizeProp } from '@/utils/sizeProp';
 
 const { space } = themeTokens;
 export const wrapper = style({
@@ -13,6 +14,7 @@ export const wrapper = style({
   '@media': {
     [screenMQ.m]: {
       width: '100%',
+      maxWidth: sizeProp(400),
       marginTop: '7.25rem',
       marginBottom: space.xl,
       padding: `${space.lg} ${space.xl} 0 ${space.xl}`,

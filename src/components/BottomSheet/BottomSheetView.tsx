@@ -17,7 +17,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 const BottomSheetView = forwardRef<HTMLDivElement, Props>(
   ({ title, isOpen, children, onClose, className, ...rest }, ref) => {
-    useLockScroll();
+    useLockScroll(isOpen);
 
     return (
       <>

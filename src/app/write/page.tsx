@@ -1,14 +1,22 @@
 'use client';
 import FirstStep from './components/Form/FirstStep';
 import SecondStep from './components/Form/SecondStep';
-import { Typography } from '@/components';
 import { wrapper } from './style.css';
+import { useFunnel } from '@/hooks';
+import { useProfile } from '@/api/hooks';
+import WriteTitle from './components/WriteTitle/WriteTitle';
+import useFormStore from './store/useFormStore';
 import { useEffect } from 'react';
-import { useIsMobile, useFunnel } from '@/hooks';
+import { useRouter } from 'next/navigation';
 
 export default function Write() {
-  const [step, { nextStep }] = useFunnel(['1', '2']);
-  const mobile = useIsMobile();
+  const [step, { prevStep, nextStep }] = useFunnel(['1', '2']);
+  const { reset, setData } = useFormStore();
+  const { data } = useProfile();
+  const router = useRouter();
+  if (!data) {
+    router.push('/login');
+  }
 
   const preventClose = (e: BeforeUnloadEvent) => {
     e.preventDefault();
@@ -16,21 +24,18 @@ export default function Write() {
   };
 
   useEffect(() => {
-    (() => {
-      window.addEventListener('beforeunload', preventClose);
-    })();
+    window.addEventListener('beforeunload', preventClose);
     return () => {
       window.removeEventListener('beforeunload', preventClose);
+      reset();
     };
   }, []);
 
   return (
     <div className={wrapper}>
-      <Typography variant={mobile ? 'title1' : 'heading1'} as="p" color="primary500">
-        우리 회사 먹팟 만들기
-      </Typography>
-      {step === '1' && <FirstStep nextStep={nextStep} />}
-      {step === '2' && <SecondStep />}
+      <WriteTitle prevStep={prevStep} />
+      {step === '1' && <FirstStep setData={setData} nextStep={nextStep} />}
+      {step === '2' && <SecondStep reset={reset} />}
     </div>
   );
 }
