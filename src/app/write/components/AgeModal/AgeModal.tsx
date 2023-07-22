@@ -1,3 +1,5 @@
+'use client';
+
 import { Control, FieldValues, useFormContext } from 'react-hook-form';
 import { HTMLAttributes, useCallback } from 'react';
 import { Button, Modal, ModalContent, ModalFooter, ModalHeader, SvgIcon } from '@/components';

@@ -1,3 +1,5 @@
+'use client';
+
 import { useFormContext } from 'react-hook-form';
 import { Map, Input } from '@/components';
 import { useOverlay } from '@/hooks';
