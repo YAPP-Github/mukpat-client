@@ -40,8 +40,6 @@ const ContentSection = ({ board, children }: Props) => {
     y,
   } = board;
 
-  console.log(x, y);
-
   return (
     <section>
       <p className={headerText}>
