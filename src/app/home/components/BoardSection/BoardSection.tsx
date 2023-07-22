@@ -1,12 +1,7 @@
 import clsx from 'clsx';
 import { Suspense } from '@suspensive/react';
 import { SvgIcon, Typography } from '@/components';
-import {
-  HydratedBoardCardList,
-  BoardCardListLoading,
-  RegionsFilter,
-  RegionsFilterLoading,
-} from '@/app/home/components';
+import { BoardCardListLoading, RegionsFilter, RegionsFilterLoading, BoardCardList } from '@/app/home/components';
 import { animate } from '@/styles/theme.css';
 import { section, title } from './BoardSection.css';
 
@@ -20,7 +15,7 @@ const BoardSection = async () => {
         <RegionsFilter />
       </Suspense>
       <Suspense fallback={<BoardCardListLoading />}>
-        <HydratedBoardCardList />
+        <BoardCardList />
       </Suspense>
     </section>
   );
