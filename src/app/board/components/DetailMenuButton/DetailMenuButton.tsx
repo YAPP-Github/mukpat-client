@@ -44,6 +44,10 @@ const DetailMenuButton = () => {
     );
   };
 
+  const handleClickEditBoard = () => {
+    router.push(`/write/${boardId}`);
+  };
+
   const handleClickCancelJoinButton = () => {
     openModal(
       <CancelJoinModal
@@ -70,7 +74,7 @@ const DetailMenuButton = () => {
         </Dropdown.Item>
         {isWriter && (
           <>
-            <Dropdown.Item itemKey="change">
+            <Dropdown.Item itemKey="change" onClick={handleClickEditBoard}>
               <Typography variant="label2">수정하기</Typography>
             </Dropdown.Item>
             <Dropdown.Item itemKey="delete" onClick={handleClickDelete}>
