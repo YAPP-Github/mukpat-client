@@ -1,3 +1,5 @@
+'use client';
+
 import { InputDropdown, InputSection } from '@/components';
 import { TIMELIST_AM, TIMELIST_PM, TIME_SELECT } from '../../constants';
 import { useFormContext } from 'react-hook-form';

@@ -1,18 +1,20 @@
 import { writeKeys } from '@/api/write/queryKeys';
-// import { BoardData } from '@/app/write/types';
 import { writeAPI } from '@/api/write/api';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@suspensive/react-query';
+import { BoardData } from '@/app/write/types';
 
 interface Props {
   boardId: number;
-  onSuccess: () => void;
+  onSuccess: (data: BoardData) => void;
 }
 
 const useGetBoard = ({ boardId, onSuccess }: Props) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: writeKeys.board(boardId),
     queryFn: () => writeAPI.getBoardDetail(boardId),
-    onSuccess: onSuccess,
+    onSuccess: (data) => {
+      onSuccess(data);
+    },
   });
 };
 

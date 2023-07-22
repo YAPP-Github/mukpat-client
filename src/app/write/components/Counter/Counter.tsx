@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, HTMLAttributes } from 'react';
 import { FieldValues, FieldPath, Controller, Control, useFormContext } from 'react-hook-form';
 import { IconButton } from '@/components';

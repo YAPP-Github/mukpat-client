@@ -14,9 +14,7 @@ import { useEffect } from 'react';
 export default function BoardForm() {
   const { data } = useProfile();
   const router = useRouter();
-  if (!data) {
-    router.push('/login');
-  }
+
   const { id: boardId } = useParams();
   useSetFormData(boardId);
   const { reset, setData } = useFormStore();
@@ -29,10 +27,14 @@ export default function BoardForm() {
   useEffect(() => {
     window.addEventListener('beforeunload', preventClose);
     return () => {
-      window.removeEventListener('beforeunload', preventClose);
       reset();
+      window.removeEventListener('beforeunload', preventClose);
     };
   }, []);
+
+  if (!data) {
+    router.push('/login');
+  }
 
   return (
     <div className={wrapper}>

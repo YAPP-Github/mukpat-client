@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
-import { HydratedInput, InputLoading } from '../components';
+import { InputLoading } from '../components';
 import { Suspense } from 'react';
+import BoardForm from '../components/Form/BoardForm';
 
 const BoardEditPage = async ({
   params: { id },
@@ -14,7 +15,7 @@ const BoardEditPage = async ({
 
   return (
     <Suspense fallback={<InputLoading />}>
-      <HydratedInput boardId={boardId} />
+      <BoardForm />
     </Suspense>
   );
 };

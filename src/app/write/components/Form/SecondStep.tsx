@@ -1,4 +1,5 @@
 'use client';
+
 import { FormProvider, SubmitHandler } from 'react-hook-form';
 import { BoardData, PostResponse } from '@/app/write/types';
 import { Button, Input, InputSection, TextArea, Toast, Typography } from '@/components';

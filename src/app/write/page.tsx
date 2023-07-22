@@ -26,9 +26,10 @@ export default function Write() {
   useEffect(() => {
     window.addEventListener('beforeunload', preventClose);
     return () => {
-      window.removeEventListener('beforeunload', preventClose);
       reset();
+      window.removeEventListener('beforeunload', preventClose);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
