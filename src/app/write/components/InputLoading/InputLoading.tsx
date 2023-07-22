@@ -1,23 +1,23 @@
 import { Skeleton } from '@/components';
 import { loadingForm, row, section, wrapper } from './InputLoading.css';
 
-const InputLoading = () => {
-  const SkeletonInput = () => {
-    return (
-      <div className={wrapper}>
-        <Skeleton width="140px" height="28px" mb="20px" />
-        {Array(2)
-          .fill(0)
-          .map((_, index) => (
-            <div className={row} key={index}>
-              <Skeleton width="64px" height="24px" />
-              <Skeleton width="505px" height="56px" />
-            </div>
-          ))}
-      </div>
-    );
-  };
+const SkeletonInput = () => {
+  return (
+    <div className={wrapper}>
+      <Skeleton width="140px" height="28px" mb="20px" />
+      {Array(2)
+        .fill(0)
+        .map((_, index) => (
+          <div className={row} key={index}>
+            <Skeleton width="64px" height="24px" />
+            <Skeleton width="505px" height="56px" />
+          </div>
+        ))}
+    </div>
+  );
+};
 
+const InputLoading = () => {
   return (
     <div className={loadingForm}>
       <div className={section}>

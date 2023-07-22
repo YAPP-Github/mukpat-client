@@ -15,8 +15,6 @@ const getParsedData = (board: ParsedData) => {
     timezone: timezone,
     region_1depth_name: board.region_1depth_name,
     region_2depth_name: board.region_2depth_name,
-    // region_1depth_name: '서울시',
-    // region_2depth_name: '마포구',
     locationName: board.locationName,
     x: board.x,
     y: board.y,
@@ -29,8 +27,6 @@ const getParsedData = (board: ParsedData) => {
     chatLink: board.chatLink,
   };
 
-  // setData({ step: 1, data: stepOneData });
-  // setData({ step: 2, data: stepTwoData });
   return {
     stepOneData,
     stepTwoData,
