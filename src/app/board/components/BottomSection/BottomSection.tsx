@@ -5,11 +5,15 @@ import { useProfile } from '@/api/hooks';
 import { BottomButton, Toast } from '@/components';
 import { JoinBottomSheet } from '@/app/board/components';
 import { BOARD_STATUS, TOAST_TEXT } from '@/app/board/constants';
-import { useBoardDetail } from '@/app/board/hooks';
+import { BoardDetail } from '@/api/types';
 
-const BottomSection = () => {
+interface Props {
+  board: BoardDetail;
+}
+
+const BottomSection = ({ board }: Props) => {
   const { data: profile } = useProfile();
-  const { boardId, chatLink, participants, userAge, minAge, maxAge, status } = useBoardDetail();
+  const { boardId, chatLink, participants, userAge, minAge, maxAge, status } = board;
   const [openBottomSheet, closeBottomSheet] = useOverlay();
   const [openToast, closeToast] = useOverlay();
   const { redirectToLogin } = useLoginRedirect();
