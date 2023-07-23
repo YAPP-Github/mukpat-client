@@ -1,4 +1,4 @@
-name: git push into 22nd-Web-Team-1-Web to deploy to vercel
+name: git push into Yangseungchan/mukpat-client to deploy to vercel
 
 on:
   pull_request:
@@ -21,7 +21,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_GIT_TOKEN }}
         with:
           source-directory: 'output'
-          destination-github-username: yangseungchan
+          destination-github-username: Yangseungchan
           destination-repository-name: mukpat-client
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
