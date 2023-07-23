@@ -4,15 +4,17 @@ import cx from 'classnames';
 import { HTMLAttributes } from 'react';
 import { Profile, Typography, Chip, SvgIcon } from '@/components';
 import { useProfile } from '@/api/hooks';
-import { useBoardDetail } from '@/app/board/hooks';
 
 import { list, listItem, participantProfile, participantProfileText, counterText } from './ParticipantsList.css';
+import { BoardDetail } from '@/api/types';
 
-type Props = HTMLAttributes<HTMLUListElement>;
+interface Props extends HTMLAttributes<HTMLUListElement> {
+  board: BoardDetail;
+}
 
-const ParticipantsList = ({ className, ...rest }: Props) => {
+const ParticipantsList = ({ className, board, ...rest }: Props) => {
   const { data: profile } = useProfile();
-  const { participants, currentApply, maxApply } = useBoardDetail();
+  const { participants, currentApply, maxApply } = board;
 
   return (
     <>

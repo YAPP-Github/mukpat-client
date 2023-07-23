@@ -2,17 +2,21 @@
 
 import { useRouter } from 'next/navigation';
 import { Dropdown, SvgIcon, Typography, Toast } from '@/components';
-import { useBoardDetail } from '@/app/board/hooks';
 import { useProfile } from '@/api/hooks';
 import { useOverlay, useClipBoard, useIsMobile } from '@/hooks';
 import { TOAST_TEXT } from '@/app/board/constants';
 import { DeleteModal, CancelJoinModal } from '@/app/board/components';
 import * as styles from './DetailMenuButton.css';
+import { BoardDetail } from '@/api/types';
 
-const DetailMenuButton = () => {
+interface Props {
+  board: BoardDetail;
+}
+
+const DetailMenuButton = ({ board }: Props) => {
   const router = useRouter();
   const { data: profile } = useProfile();
-  const { boardId, participants } = useBoardDetail();
+  const { boardId, participants } = board;
 
   const [openModal, closeModal] = useOverlay();
   const [openToast, closeToast] = useOverlay();
