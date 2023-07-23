@@ -1,5 +1,7 @@
-import { searchList } from './Map.css';
+import { useIsMobile } from '@/hooks';
+import { searchList, showMap } from './Map.css';
 import { Place } from '@/types/map';
+import { useDisplayContext } from './contexts/MapContextProvider';
 
 type SearchListItemProps = {
   place: Place;
@@ -8,8 +10,14 @@ type SearchListItemProps = {
   setListItemRef: (ref: HTMLLIElement, index: number) => void;
 };
 
-const MapSearchListItem = ({ place, index, handleOnClickList, setListItemRef }: SearchListItemProps) => {
-  const { place_name, address_name } = place;
+const MapSearchItem = ({ place, index, handleOnClickList, setListItemRef }: SearchListItemProps) => {
+  const { place_name, address_name, region_1depth_name, region_2depth_name } = place as Place;
+  const { displayDispatch } = useDisplayContext();
+  const mobile = useIsMobile();
+  const handleOnClick = () => {
+    if (!mobile) return;
+    displayDispatch({ type: 'handleClickShowMap', payload: mobile });
+  };
   return (
     <li
       key={index}
@@ -21,8 +29,18 @@ const MapSearchListItem = ({ place, index, handleOnClickList, setListItemRef }: 
       aria-label={`${place_name} 선택`}
     >
       {place_name && <div>{place_name}</div>}
+      {!place_name && !address_name && (
+        <div>
+          {region_1depth_name} {region_2depth_name}
+        </div>
+      )}
       <div>{address_name}</div>
+      {mobile && (
+        <div onClick={handleOnClick} className={showMap}>
+          지도보기
+        </div>
+      )}
     </li>
   );
 };
-export default MapSearchListItem;
+export default MapSearchItem;
