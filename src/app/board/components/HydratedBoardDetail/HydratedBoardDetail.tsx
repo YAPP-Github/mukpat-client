@@ -1,6 +1,5 @@
-import { Suspense } from '@suspensive/react';
 import { dehydrate, Hydrate } from '@tanstack/react-query';
-import { BoardDetail, BoardDetailLoading } from '@/app/board/components';
+import { BoardDetail } from '@/app/board/components';
 import getQueryClient from '@/utils/getQueryClients';
 import { api, queryKeys } from '@/api';
 
@@ -10,11 +9,9 @@ const HydratedBoardDetail = async ({ boardId }: { boardId: number }) => {
   const dehydratedState = dehydrate(queryClient);
 
   return (
-    <Suspense fallback={<BoardDetailLoading />}>
-      <Hydrate state={dehydratedState}>
-        <BoardDetail />
-      </Hydrate>
-    </Suspense>
+    <Hydrate state={dehydratedState}>
+      <BoardDetail />
+    </Hydrate>
   );
 };
 
