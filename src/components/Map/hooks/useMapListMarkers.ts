@@ -16,10 +16,14 @@ const useMapListMarkers = ({ map, markers }: MapListMarkersProps) => {
       const { searchedPlaces } = mapState;
       if (!searchedPlaces) return;
       const searchPlace = searchedPlaces[placeIndex];
-      const searchResult = await getPlaceInfo(searchPlace?.y.toString(), searchPlace?.x.toString());
+      const { region_1depth_name, region_2depth_name } = await getPlaceInfo(
+        searchPlace?.y.toString(),
+        searchPlace?.x.toString(),
+      );
+      const newSearchPlace = { ...searchPlace, ...{ region_1depth_name, region_2depth_name } };
       mapDispatch({
         type: 'handleClickPlaceResult',
-        payload: searchResult,
+        payload: newSearchPlace,
       });
       removeMarkers(markers);
       const markersTotal = addMarkers([searchedPlaces[placeIndex]], map);
