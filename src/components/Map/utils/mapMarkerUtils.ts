@@ -42,8 +42,8 @@ export const getPlaceInfo = async (latitude: string, longitude: string): Promise
       if (status === window.kakao.maps.services.Status.OK) {
         const { road_address, address } = result[0];
         const placeInfo: Place = {
-          place_name: road_address?.address_name && address?.address_name,
-          address_name: road_address?.address_name && address?.address_name,
+          place_name: road_address?.address_name || address?.address_name,
+          address_name: road_address?.address_name || address?.address_name,
           region_1depth_name: address?.region_1depth_name,
           region_2depth_name: address?.region_2depth_name,
           x: Number(latitude),
