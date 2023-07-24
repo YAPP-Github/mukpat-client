@@ -73,3 +73,12 @@ export const wrap = recipe({
     open: false,
   },
 });
+
+export const itemWrapper = style({
+  overflow: 'scroll',
+  selectors: {
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+  },
+});
