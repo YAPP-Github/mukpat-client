@@ -20,7 +20,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_GIT_TOKEN }}
         with:
-          source-directory: 'output'
+          source-directory: .
           destination-github-username: Yangseungchan
           destination-repository-name: mukpat-client
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
