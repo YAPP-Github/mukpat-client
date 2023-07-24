@@ -26,5 +26,5 @@ export const input = style({
 });
 export const inputSection = style({
   marginBottom: space.md,
-  justifyContent: 'normal',
+  justifyContent: 'normal !important',
 });
