@@ -121,6 +121,10 @@ export const fixedError = recipe({
   },
 });
 
+export const bottomSheetContent = style({
+  padding: `0 ${space.sm}`,
+});
+
 globalStyle(`${clearButton} > img`, {
   margin: '0 auto',
   backgroundPosition: 'center',

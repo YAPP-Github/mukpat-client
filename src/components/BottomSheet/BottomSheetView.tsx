@@ -21,13 +21,13 @@ const BottomSheetView = forwardRef<HTMLDivElement, Props>(
 
     return (
       <>
-        <div className={cx(background({ open: isOpen }))} data-testid="outside" onClick={onClose}></div>
-        <div className={cx(wrap({ open: isOpen }), className)} {...rest} ref={ref}>
+        <div className={background({ open: isOpen })} data-testid="outside" onClick={onClose}></div>
+        <div className={wrap({ open: isOpen })} {...rest} ref={ref}>
           <div className={titleWrapper}>
             <div>{title}</div>
             <IconButton iconType="close" width={36} height={36} onClick={onClose}></IconButton>
           </div>
-          <div className={itemWrapper}>{children}</div>
+          <div className={cx(itemWrapper, className)}>{children}</div>
         </div>
       </>
     );
