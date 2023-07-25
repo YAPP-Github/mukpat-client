@@ -8,8 +8,7 @@ interface ModalProps {
 }
 
 const PreventModal = ({ onClose }: ModalProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [openModal, closeModal] = useOverlay();
+  const [, closeModal] = useOverlay();
   const router = useRouter();
 
   const handleClickOut = useCallback(() => {
