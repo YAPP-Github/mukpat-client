@@ -30,18 +30,19 @@ export const modalContent = style({
   flexDirection: 'row',
   justifyContent: 'space-evenly',
   alignItems: 'center',
-  gap: themeTokens.space.sm,
+  gap: space.sm,
   '@media': {
     [screenMQ.m]: {
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
-      margin: space.xl,
+      margin: `${space['4xl']} ${space.xl}`,
     },
   },
 });
 
 export const birthText = style({
   ...fontVariant.body2,
-  color: themeTokens.color.sub,
+  color: color.sub,
+  margin: `${space.xl}`,
 });

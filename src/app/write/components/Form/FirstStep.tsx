@@ -6,7 +6,7 @@ import { Button, Input, InputSection, Typography } from '@/components';
 import { InputDate, Counter, AgeModal, AgeBottomSheet, MapModal, TimeDropDown } from '@/app/write/components';
 import { StepOneData } from '@/app/write/types';
 import { useWriteForm } from '@/app/write/hooks/useWriteForm';
-import { formWrapper, sectionGap, inputGap, submitButton, flexBetween } from './Form.css';
+import { formWrapper, sectionGap, inputGap, submitButton, flexBetween, ageError } from './Form.css';
 import { useIsMobile } from '@/hooks';
 
 type stepProps = {
@@ -66,7 +66,7 @@ const FirstStep = ({ nextStep, setData }: stepProps) => {
                   </InputSection>
                 </>
               )}
-              <Typography style={{ margin: '0', textAlign: 'end' }} color="red500" variant="label5" as="p">
+              <Typography className={ageError} color="red500" variant="label5" as="p">
                 {stepOneMethod.formState.errors['maxAge']?.message}
               </Typography>
             </div>
