@@ -1,5 +1,9 @@
 import { request } from '@/utils/ky/request';
 import { BoardData, ParsedData, PostResponse } from '@/app/write/types';
+interface Props {
+  boardId: number;
+  data: ParsedData;
+}
 class WriteAPI {
   /**
    * 유저가 입력한 데이터로 먹팟을 생성합니다.
@@ -19,7 +23,8 @@ class WriteAPI {
    * @param boardId - 수정할 board의 id
    * @param data - 유저가 입력한 board 데이터
    */
-  async patchBoard(boardId: number, { ...data }: ParsedData): Promise<PostResponse> {
+
+  async patchBoard({ boardId, data }: Props): Promise<PostResponse> {
     return request
       .patch(`v2/boards/${boardId}`, {
         json: {
