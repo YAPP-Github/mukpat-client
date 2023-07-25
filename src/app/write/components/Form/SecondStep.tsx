@@ -78,7 +78,7 @@ const SecondStep = ({ reset, boardId, isPatch = false }: StepProps) => {
               베타서비스에서는 채팅 기능이 제공되지 않습니다. <br /> 효율적인 소통을 위해 오픈 채팅방을 만들어주세요.
             </Typography>
           </InputSection>
-          <Button style={{ width: '100%' }} type="submit" disabled={!stepTwoMethod.formState.isDirty}>
+          <Button style={{ width: '100%' }} type="submit">
             먹팟 만들기
           </Button>
         </form>

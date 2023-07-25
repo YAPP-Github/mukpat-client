@@ -89,12 +89,7 @@ const FirstStep = ({ nextStep, setData }: stepProps) => {
               </InputSection>
             </div>
           </div>
-          <Button
-            size="paddingMedium"
-            className={submitButton}
-            type="submit"
-            disabled={!stepOneMethod.formState.isDirty}
-          >
+          <Button size="paddingMedium" className={submitButton} type="submit">
             다음
           </Button>
         </form>
