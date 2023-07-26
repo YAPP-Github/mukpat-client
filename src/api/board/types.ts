@@ -41,9 +41,10 @@ export interface BoardDetail {
   maxAge: number;
   userAge: number;
   locationName: string;
+  addressName: string;
+  locationDetail: string;
   x: number;
   y: number;
-  locationDetail: string;
   views: number;
   participants: Profile[];
 }
