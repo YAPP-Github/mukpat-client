@@ -2,7 +2,7 @@
 import { FieldValues, FieldPath, Controller, Control } from 'react-hook-form';
 import { Dropdown } from '@/components';
 import InputErrorMessage from './InputErrorMessage';
-import { inputWrapper } from './Input.css';
+import { inputWrapper, bottomSheetContent } from './Input.css';
 import { HTMLAttributes } from 'react';
 import { useIsMobile } from '@/hooks';
 
@@ -40,7 +40,13 @@ const InputDropdown = ({ ...props }: TControl<any>) => {
               {value}
             </Dropdown.Button>
             {mobile ? (
-              <Dropdown.BottomSheet title={title} selectable selectedItemKey={value} onSelectChange={onChange}>
+              <Dropdown.BottomSheet
+                title={title}
+                selectable
+                selectedItemKey={value}
+                onSelectChange={onChange}
+                className={bottomSheetContent}
+              >
                 {selections.map((v) => (
                   <Dropdown.Item key={v} itemKey={v}>
                     {v}

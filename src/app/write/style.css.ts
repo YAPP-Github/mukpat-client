@@ -17,7 +17,7 @@ export const wrapper = style({
       maxWidth: sizeProp(400),
       marginTop: '7.25rem',
       marginBottom: space.xl,
-      padding: `${space.lg} ${space.xl} 0 ${space.xl}`,
+      padding: `0 ${space.xl}`,
     },
   },
 });

@@ -15,6 +15,7 @@ const DateFormatCaption = ({ displayMonth }: CaptionProps) => {
       <div className={captionButtons}>
         <IconButton
           iconType="chevronleft"
+          type="button"
           width={32}
           height={32}
           disabled={!previousMonth}
@@ -23,6 +24,7 @@ const DateFormatCaption = ({ displayMonth }: CaptionProps) => {
         />
         <IconButton
           iconType="chevronright"
+          type="button"
           width={32}
           height={32}
           disabled={!nextMonth}

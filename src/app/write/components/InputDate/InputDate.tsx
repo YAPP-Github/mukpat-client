@@ -3,10 +3,7 @@
 import dayjs from 'dayjs';
 import { HTMLAttributes } from 'react';
 import { FieldValues, FieldPath, Controller, Control } from 'react-hook-form';
-import { DateInput, DayPicker, BottomSheet } from '@/components';
-import { inputWrapper } from '@/components/Input/Input.css';
-import { useOverlay, useIsMobile } from '@/hooks';
-import { preventClick } from './InputDate.css';
+import { DateInput } from '@/components';
 import InputErrorMessage from '@/components/Input/InputErrorMessage';
 
 type TControl<T extends FieldValues> = {
@@ -18,42 +15,20 @@ type TControl<T extends FieldValues> = {
   showError?: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
-interface FieldProps {
-  value: Date;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onChange: (event: any) => void;
-}
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const InputDate = ({ ...props }: TControl<any>) => {
-  const mobile = useIsMobile();
-  const [openBottomSheet, closeBottomSheet] = useOverlay();
-
   const { name, control } = props;
   const now = dayjs().format('YYYY년 MM월 DD일 (오늘)');
-
-  const renderBottomSheet = ({ value, onChange }: FieldProps) => {
-    return (
-      <BottomSheet onClose={closeBottomSheet} title={'날짜 선택'}>
-        <DayPicker selected={value} onSelect={onChange}></DayPicker>
-      </BottomSheet>
-    );
-  };
 
   return (
     <Controller
       control={control}
       name={name}
       render={({ field: { value, onChange } }) => (
-        <div
-          className={inputWrapper}
-          onClick={() => {
-            mobile && openBottomSheet(renderBottomSheet({ value, onChange }));
-          }}
-        >
-          <DateInput className={preventClick} placeholder={now} selected={value} onSelect={onChange} />
+        <>
+          <DateInput placeholder={now} selected={value} onSelect={onChange} />
           <InputErrorMessage name={name} showError={true} />
-        </div>
+        </>
       )}
     />
   );

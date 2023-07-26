@@ -8,13 +8,16 @@ export const useWriteForm = () => {
 
   const stepOneMethod = useForm<StepOneSchema>({
     resolver: zodResolver(stepOneSchema),
-    mode: 'onChange',
-    defaultValues: stepOne || {},
+    mode: 'onSubmit',
+    defaultValues: { ...stepOne },
+    values: { ...stepOne },
   });
 
   const stepTwoMethod = useForm<BoardSchema>({
     resolver: zodResolver(boardSchema),
+    mode: 'onSubmit',
     defaultValues: { ...stepOne, ...stepTwo },
+    values: { ...stepOne, ...stepTwo },
   });
 
   return { stepOneMethod, stepTwoMethod };

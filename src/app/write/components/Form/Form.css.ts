@@ -36,3 +36,13 @@ export const flexBetween = style({
   flexDirection: 'row',
   justifyContent: 'space-between',
 });
+
+export const ageError = style({
+  margin: '0',
+  textAlign: 'end',
+  '@media': {
+    [screenMQ.m]: {
+      textAlign: 'start',
+    },
+  },
+});

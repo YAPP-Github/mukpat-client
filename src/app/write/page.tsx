@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Write() {
   const [step, { prevStep, nextStep }] = useFunnel(['1', '2']);
-  const { reset } = useFormStore();
+  const { reset, setData } = useFormStore();
   const { data } = useProfile();
   const router = useRouter();
   if (!data) {
@@ -35,8 +35,8 @@ export default function Write() {
   return (
     <div className={wrapper}>
       <WriteTitle prevStep={prevStep} />
-      {step === '1' && <FirstStep nextStep={nextStep} />}
-      {step === '2' && <SecondStep />}
+      {step === '1' && <FirstStep setData={setData} nextStep={nextStep} />}
+      {step === '2' && <SecondStep boardId={0} reset={reset} />}
     </div>
   );
 }

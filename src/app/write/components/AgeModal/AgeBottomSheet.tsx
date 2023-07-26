@@ -33,15 +33,19 @@ const AgeBottomSheet = ({ ...props }: TControl<any>) => {
       <BottomSheet onClose={closeBottomSheet} title={'참여 가능 나이를 선택해주세요.'}>
         <div>
           <BirthYear control={control} />
-          <div className={modalContent}>
-            <Typography variant="label3" color="sub">
-              최소 나이 선택
-            </Typography>
-            <AgeController placeholder={'최소 나이 제한'} name={MIN_AGE} control={control} />
-            <Typography variant="label3" color="sub">
-              최대 나이 선택
-            </Typography>
-            <AgeController placeholder={'최대 나이 제한'} name={MAX_AGE} control={control} />
+          <div>
+            <div className={modalContent}>
+              <Typography variant="label3" color="sub">
+                최소 나이 선택
+              </Typography>
+              <AgeController placeholder={'최소 나이 제한'} name={MIN_AGE} control={control} />
+            </div>
+            <div className={modalContent}>
+              <Typography variant="label3" color="sub">
+                최대 나이 선택
+              </Typography>
+              <AgeController placeholder={'최대 나이 제한'} name={MAX_AGE} control={control} />
+            </div>
           </div>
           <BottomButton onClick={handleSave} type="button">
             저장하기

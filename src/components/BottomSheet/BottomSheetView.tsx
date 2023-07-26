@@ -2,7 +2,7 @@ import { HTMLAttributes, forwardRef } from 'react';
 import cx from 'classnames';
 import { IconButton } from '@/components';
 import { useLockScroll } from '@/hooks';
-import { titleWrapper, background, wrap } from './BottomSheet.css';
+import { titleWrapper, background, wrap, itemWrapper } from './BottomSheet.css';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   /** BottomSheet 제목으로 표시할 텍스트 */
@@ -21,13 +21,13 @@ const BottomSheetView = forwardRef<HTMLDivElement, Props>(
 
     return (
       <>
-        <div className={cx(background({ open: isOpen }))} data-testid="outside" onClick={onClose}></div>
-        <div className={cx(wrap({ open: isOpen }), className)} {...rest} ref={ref}>
+        <div className={background({ open: isOpen })} data-testid="outside" onClick={onClose}></div>
+        <div className={wrap({ open: isOpen })} {...rest} ref={ref}>
           <div className={titleWrapper}>
             <div>{title}</div>
             <IconButton iconType="close" width={36} height={36} onClick={onClose}></IconButton>
           </div>
-          {children}
+          <div className={cx(itemWrapper, className)}>{children}</div>
         </div>
       </>
     );
