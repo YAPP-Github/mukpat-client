@@ -65,3 +65,10 @@ export interface BoardRegion {
 export interface BoardRegionResponse {
   list: BoardRegion[];
 }
+
+export const BOARD_STATUS = {
+  IN_PROGRESS: 'IN_PROGRESS',
+  DONE: 'DONE',
+} as const;
+
+export type BoardStatus = (typeof BOARD_STATUS)[keyof typeof BOARD_STATUS];
