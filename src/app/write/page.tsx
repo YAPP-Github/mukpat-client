@@ -36,7 +36,7 @@ export default function Write() {
     <div className={wrapper}>
       <WriteTitle prevStep={prevStep} />
       {step === '1' && <FirstStep setData={setData} nextStep={nextStep} />}
-      {step === '2' && <SecondStep reset={reset} />}
+      {step === '2' && <SecondStep boardId={0} reset={reset} />}
     </div>
   );
 }

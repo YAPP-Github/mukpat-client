@@ -17,7 +17,6 @@ type stepProps = {
 const FirstStep = ({ nextStep, setData }: stepProps) => {
   const { stepOneMethod } = useWriteForm();
   const mobile = useIsMobile();
-
   const onSubmit = useCallback(
     (data: StepOneData) => {
       if (!data) {
@@ -84,7 +83,7 @@ const FirstStep = ({ nextStep, setData }: stepProps) => {
                   {...stepOneMethod.register('locationDetail', { required: false })}
                   name={'locationDetail'}
                   placeholder="ex) 1층 로비, 식당 입구"
-                  maxLength={100}
+                  maxLength={30}
                 ></Input>
               </InputSection>
             </div>

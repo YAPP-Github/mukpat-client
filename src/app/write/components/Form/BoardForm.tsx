@@ -15,7 +15,7 @@ export default function BoardForm() {
   const { data } = useProfile();
   const router = useRouter();
 
-  const { id: boardId } = useParams();
+  const { id: boardId } = useParams() as { id: string };
   useSetFormData(boardId);
   const { reset, setData } = useFormStore();
   const [step, { prevStep, nextStep }] = useFunnel(['1', '2']);

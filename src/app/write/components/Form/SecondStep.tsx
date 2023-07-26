@@ -5,20 +5,20 @@ import { BoardData, PostResponse } from '@/app/write/types';
 import { Button, Input, InputSection, TextArea, Toast, Typography } from '@/components';
 import { formWrapper, inputGap } from './Form.css';
 import parseData from './util/parseData';
-import useWriteBoard from '@/api/write/hooks/usePostBoard';
 import { useRouter } from 'next/navigation';
 import { useWriteForm } from '@/app/write/hooks/useWriteForm';
 import { useOverlay } from '@/hooks';
-import { writeAPI } from '@/api/write';
+import { usePostBoard, usePatchBoard } from '@/api/write';
 
 type StepProps = {
   reset: () => void;
-  boardId?: number;
+  boardId: number;
   isPatch?: boolean;
 };
 
 const SecondStep = ({ reset, boardId, isPatch = false }: StepProps) => {
-  const { mutate: board } = useWriteBoard();
+  const { mutate: board } = usePostBoard();
+  const { mutate: patch } = usePatchBoard(boardId);
   const { stepTwoMethod } = useWriteForm();
   const [openToast, closeToast] = useOverlay();
   const router = useRouter();
@@ -46,11 +46,22 @@ const SecondStep = ({ reset, boardId, isPatch = false }: StepProps) => {
       );
     }
     if (isPatch && boardId) {
-      writeAPI.patchBoard(boardId, { ...parseData(data) }).then(() => {
-        openToast(<Toast type="success" message="먹팟 수정이 완료되었어요!" onClose={closeToast} />);
-        router.push(`/board/${boardId}`);
-        reset();
-      });
+      patch(
+        { boardId: boardId, data: { ...parseData(data) } },
+        {
+          onSuccess: () => {
+            openToast(<Toast type="success" message="먹팟 수정이 완료되었어요!" onClose={closeToast} />);
+            router.push(`/board/${boardId}`);
+            reset();
+          },
+          onError: (error) => {
+            openToast(<Toast type="warn" message={error.message} onClose={closeToast} />);
+            if (error.response.status === 403) {
+              router.push('/login');
+            }
+          },
+        },
+      );
     }
   };
 
