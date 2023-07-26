@@ -60,8 +60,8 @@ const AsideSection = ({ board }: Props) => {
 
   return (
     <aside className={wrapper}>
-      <DetailMenuButton />
-      <ParticipantsList className={listBottomSpace} />
+      <DetailMenuButton board={board} />
+      <ParticipantsList className={listBottomSpace} board={board} />
       <div className={buttonGroup}>
         {!isJoined && (
           <>

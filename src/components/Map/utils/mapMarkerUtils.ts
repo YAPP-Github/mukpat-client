@@ -15,7 +15,7 @@ export const removeMarkers = (markers: React.MutableRefObject<any[]>) => {
 };
 export const displayPlacesMarker = (kakaoMap: { bounds: any; map: any }, place: Place) => {
   const { bounds, map } = kakaoMap;
-  if (!place.x || !place.y) return;
+  if (Object.entries(place).length === 0) return;
   const placePosition = createLatLng({ latitude: String(place?.y), longitude: String(place?.x) });
   bounds.extend(placePosition);
   map.setBounds(bounds);
@@ -42,8 +42,8 @@ export const getPlaceInfo = async (latitude: string, longitude: string): Promise
       if (status === window.kakao.maps.services.Status.OK) {
         const { road_address, address } = result[0];
         const placeInfo: Place = {
-          place_name: road_address?.address_name && address?.address_name,
-          address_name: road_address?.address_name && address?.address_name,
+          place_name: road_address?.address_name || address?.address_name,
+          address_name: road_address?.address_name || address?.address_name,
           region_1depth_name: address?.region_1depth_name,
           region_2depth_name: address?.region_2depth_name,
           x: Number(latitude),

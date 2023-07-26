@@ -22,6 +22,5 @@ export const loadingWrapper = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '0 280px',
   zIndex: zIndices.tooltip,
 });

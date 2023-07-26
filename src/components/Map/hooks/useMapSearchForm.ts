@@ -11,29 +11,33 @@ const useMapSearchForm = () => {
     formState: { errors },
     setValue,
   } = useForm();
+  const { mapState, mapDispatch } = useMapContext();
 
-  const { keyword, setKeyword, setSearchedPlaces, setMarkerPlace, setLoading } = useMapContext();
   const onSubmit = handleSubmit(async (data) => {
-    setMarkerPlace([]);
+    mapDispatch({ type: 'handleClickInitPlace' });
     const keyword = data?.placeKeyword.trim();
-    setKeyword(keyword);
-    setLoading(true);
-    const searchPlaceList: SearchPlace[] = await searchPlaces(keyword);
-    const placeList: PlaceList = searchPlaceList.map((place) => ({
+    const placeList: SearchPlace[] = await searchPlaces(keyword);
+    const searchedPlaces: PlaceList = placeList.map((place) => ({
       x: Number(place.x),
       y: Number(place.y),
       place_name: place.place_name,
-      address_name: place.address_name,
+      address_name: place.road_address_name || place.address_name,
       region_1depth_name: '',
       region_2depth_name: '',
     }));
-    setLoading(false);
-    setSearchedPlaces(placeList);
+    mapDispatch({
+      type: 'handleClickPlaceList',
+      payload: {
+        keyword,
+        searchedPlaces,
+        markerPlace: [],
+      },
+    });
   });
 
   useEffect(() => {
-    setValue('placeKeyword', keyword);
-  }, [keyword, setValue]);
+    setValue('placeKeyword', mapState.keyword);
+  }, [mapState.keyword, setValue]);
 
   return {
     register,

@@ -1,13 +1,23 @@
 'use client';
 import { searchformWrapper, searchButton, inputText } from './Map.css';
 import { IconButton } from '@/components';
+import { useIsMobile } from '@/hooks';
 import useMapSearchForm from './hooks/useMapSearchForm';
-
-const MapSearchForm = () => {
+import { useDisplayContext } from './contexts/MapContextProvider';
+type MapSearchFormProps = {
+  onClose?: () => void;
+};
+const MapSearchForm = ({ onClose }: MapSearchFormProps) => {
   const { register, errors, onSubmit } = useMapSearchForm();
-
+  const mobile = useIsMobile();
+  const { displayDispatch } = useDisplayContext();
+  const handleOnClick = () => {
+    if (!mobile) return;
+    displayDispatch({ type: 'handleInputFocus', payload: mobile });
+  };
   return (
     <div className={searchformWrapper} tabIndex={0}>
+      {mobile && <IconButton iconType="chevronleft" width={36} height={36} onClick={onClose} />}
       <form onSubmit={onSubmit}>
         <input
           type="text"
@@ -17,6 +27,7 @@ const MapSearchForm = () => {
           aria-label="위치 검색"
           aria-required="true"
           aria-invalid={errors.placeKeyword ? 'true' : 'false'}
+          onFocus={handleOnClick}
         />
         <IconButton
           iconType="search"

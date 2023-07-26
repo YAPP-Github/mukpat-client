@@ -1,11 +1,12 @@
 import { style, globalStyle } from '@vanilla-extract/css';
 import { fontVariant } from '@/styles/variant.css';
-import { themeTokens } from '@/styles/theme.css';
+import { themeTokens, screenMQ } from '@/styles/theme.css';
+import { recipe } from '@vanilla-extract/recipes';
 
 const { color, borderRadius, space, zIndices } = themeTokens;
 
 export const mapContainer = style({
-  position: 'absolute',
+  position: 'fixed',
   top: space.none,
   left: space.none,
   width: '100%',
@@ -15,6 +16,11 @@ export const mapContainer = style({
   alignItems: 'center',
   padding: '0 280px',
   zIndex: zIndices.overlay,
+  '@media': {
+    [screenMQ.m]: {
+      padding: '0',
+    },
+  },
 });
 export const backgroundWrapper = style({
   position: 'fixed',
@@ -22,6 +28,11 @@ export const backgroundWrapper = style({
   height: '100%',
   background: color.black,
   opacity: '0.3',
+  '@media': {
+    [screenMQ.m]: {
+      display: 'none',
+    },
+  },
 });
 export const mapSearchContainer = style({
   position: 'relative',
@@ -33,6 +44,13 @@ export const mapSearchContainer = style({
   background: color.white,
   boxShadow: '0px 14px 28px -7px rgba(0, 0, 0, 0.04)',
   borderRadius: borderRadius.xl,
+  '@media': {
+    [screenMQ.m]: {
+      height: '100%',
+      maxWidth: '100%',
+      flexDirection: 'column',
+    },
+  },
 });
 export const searchWrapper = style({
   width: '292px',
@@ -46,15 +64,63 @@ export const buttonWrapper = style({
 globalStyle(`${buttonWrapper} > button`, {
   margin: '16px 0 20px',
 });
-export const mapWrapper = style({
-  width: '67%',
-  height: '100%',
-  borderRadius: '0 20px 20px 0',
-  minWidth: '150px',
+export const mapWrapper = recipe({
+  base: {
+    width: '67%',
+    height: '100%',
+    borderRadius: '0 20px 20px 0',
+    minWidth: '150px',
+    '@media': {
+      [screenMQ.m]: {
+        height: '100%',
+        width: '100%',
+        borderRadius: '0',
+      },
+    },
+  },
+  variants: {
+    display: {
+      true: {
+        '@media': {
+          [screenMQ.m]: {
+            display: 'unset',
+            height: '100%',
+          },
+        },
+      },
+      false: {
+        '@media': {
+          [screenMQ.m]: {
+            display: 'none',
+            height: '100%',
+          },
+        },
+      },
+    },
+  },
 });
+// export const mapWrapper = style({
+//   width: '67%',
+//   height: '100%',
+//   borderRadius: '0 20px 20px 0',
+//   minWidth: '150px',
+//   '@media': {
+//     [screenMQ.m]: {
+//       height: '100%',
+//       width: '100%',
+//       borderRadius: '0',
+//     },
+//   },
+// });
 
 export const searchformWrapper = style({
   position: 'relative',
+  '@media': {
+    [screenMQ.m]: {
+      display: 'flex',
+      margin: '16px 20px 8px',
+    },
+  },
 });
 export const searchButton = style({
   position: 'absolute',
@@ -63,7 +129,7 @@ export const searchButton = style({
 });
 export const inputText = style({
   ...fontVariant.body2,
-  width: '260px',
+  width: '100%',
   minWidth: '100px',
   border: 'none',
   color: color.primary,
@@ -86,29 +152,94 @@ globalStyle(`${searchformWrapper} > form`, {
   position: 'relative',
   margin: '12px 16px',
   display: 'flex',
+  '@media': {
+    [screenMQ.m]: {
+      margin: '0 0 0 8px',
+      width: '100%',
+    },
+  },
 });
 
-export const searchinfoWrapper = style({
-  height: '480px',
-  overflowY: 'auto',
-  borderBottom: '1px solid #E5E8EB',
+export const searchinfoWrapper = recipe({
+  base: {
+    height: '480px',
+    overflowY: 'auto',
+    borderBottom: '1px solid #E5E8EB',
+    '@media': {
+      [screenMQ.m]: {
+        width: '100%',
+        height: '100%',
+      },
+    },
+  },
+  variants: {
+    display: {
+      true: {
+        '@media': {
+          [screenMQ.m]: {
+            display: 'unset',
+            height: '100%',
+          },
+        },
+      },
+      false: {
+        '@media': {
+          [screenMQ.m]: {
+            display: 'none',
+            height: '100%',
+          },
+        },
+      },
+    },
+    marker: {
+      true: {
+        '@media': {
+          [screenMQ.m]: {
+            display: 'unset',
+            height: '90px !important',
+            overflow: 'hidden',
+          },
+        },
+      },
+      false: {},
+    },
+  },
 });
-export const noSearchInfoWrapper = style({
-  ...fontVariant.body2,
-  height: '480px',
-  color: color.hint,
-  display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  alignItems: 'center',
-  borderBottom: '1px solid #E5E8EB',
-  textAlign: 'center',
-});
-globalStyle(`${noSearchInfoWrapper} > div`, {
-  marginTop: '16px',
+export const noSearchInfoWrapper = recipe({
+  base: {
+    ...fontVariant.body2,
+    height: '480px',
+    color: color.hint,
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    borderBottom: '1px solid #E5E8EB',
+    textAlign: 'center',
+    '@media': {
+      [screenMQ.m]: {
+        height: '100%',
+        width: '100%',
+      },
+    },
+  },
+  variants: {
+    display: {
+      true: {},
+      false: {
+        '@media': {
+          [screenMQ.m]: {
+            display: 'none',
+            height: '100%',
+          },
+        },
+      },
+    },
+  },
 });
 
 export const searchList = style({
+  position: 'relative',
   listStyleType: 'none',
   display: 'flex',
   padding: '8px 20px',
@@ -148,4 +279,12 @@ globalStyle(`${searchList} > :nth-child(2)`, {
 globalStyle(`${searchList} > :nth-child(3)`, {
   ...fontVariant.body5,
   color: color.grey400,
+});
+
+export const showMap = style({
+  position: 'absolute',
+  top: '24px',
+  right: '20px',
+  color: color.primary,
+  ...fontVariant.body5,
 });

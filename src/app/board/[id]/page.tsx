@@ -3,7 +3,7 @@ import { Header } from '@/components/server';
 import { Suspense } from '@suspensive/react';
 import { Content, HydratedBoardDetail, BoardDetailLoading } from '@/app/board/components';
 
-const BoardDetailPage = async ({
+const BoardDetailPage = ({
   params: { id },
 }: {
   params: {

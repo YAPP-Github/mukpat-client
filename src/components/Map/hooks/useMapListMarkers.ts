@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useMapContext } from '../contexts/MapContextProvider';
-import { Place } from '@/types/map';
-import { removeMarkers, addMarkers } from '../utils/mapMarkerUtils';
+import { removeMarkers, addMarkers, getPlaceInfo } from '../utils/mapMarkerUtils';
 
 interface MapListMarkersProps {
   map: any;
@@ -10,23 +9,34 @@ interface MapListMarkersProps {
 }
 
 const useMapListMarkers = ({ map, markers }: MapListMarkersProps) => {
-  const { searchedPlaces, setSelectedPlace } = useMapContext();
-
-  const handleOnClickListWithMarkers = (placeIndex: number) => {
-    if (!searchedPlaces) return;
-    setSelectedPlace(searchedPlaces[placeIndex]);
-    removeMarkers(markers);
-    const markersTotal = addMarkers([searchedPlaces[placeIndex]], map);
-    markers.current = markersTotal;
-  };
-
+  const { mapState, mapDispatch } = useMapContext();
+  const { searchedPlaces } = mapState;
+  const handleOnClickListWithMarkers = useCallback(
+    async (placeIndex: number) => {
+      const { searchedPlaces } = mapState;
+      if (!searchedPlaces) return;
+      const searchPlace = searchedPlaces[placeIndex];
+      const { region_1depth_name, region_2depth_name } = await getPlaceInfo(
+        searchPlace?.y.toString(),
+        searchPlace?.x.toString(),
+      );
+      const newSearchPlace = { ...searchPlace, ...{ region_1depth_name, region_2depth_name } };
+      mapDispatch({
+        type: 'handleClickPlaceResult',
+        payload: newSearchPlace,
+      });
+      removeMarkers(markers);
+      const markersTotal = addMarkers([searchedPlaces[placeIndex]], map);
+      markers.current = markersTotal;
+    },
+    [mapState, mapDispatch, markers, map],
+  );
   useEffect(() => {
     if (!searchedPlaces || searchedPlaces?.length === 0) return;
     removeMarkers(markers);
-    setSelectedPlace({} as Place);
     const markersTotal = addMarkers(searchedPlaces, map);
     markers.current = markersTotal;
-  }, [searchedPlaces, markers, map, setSelectedPlace]);
+  }, [searchedPlaces, markers, map]);
 
   return { handleOnClickListWithMarkers };
 };

@@ -19,11 +19,11 @@ const BoardDetail = () => {
     <Media breakpoint="m" fallback={<BoardDetailLoading />}>
       <Media.Less>
         <div className={wrapper}>
-          <DetailMenuButton />
+          <DetailMenuButton board={board} />
           <ContentSection board={board}>
-            <ParticipantsList />
+            <ParticipantsList board={board} />
           </ContentSection>
-          <BottomSection />
+          <BottomSection board={board} />
         </div>
       </Media.Less>
       <Media.Greater>

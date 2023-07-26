@@ -2,12 +2,8 @@ const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin')
 
 const withVanillaExtract = createVanillaExtractPlugin()
 
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   // 프록시 설정
   async rewrites(){
     const rewriteTargets = [];

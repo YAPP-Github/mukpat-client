@@ -2,15 +2,15 @@ import clsx from 'clsx';
 import { Suspense } from '@suspensive/react';
 import { SvgIcon, Typography } from '@/components';
 import {
-  HydratedBoardCardList,
   BoardCardListLoading,
   RegionsFilter,
   RegionsFilterLoading,
+  HydratedBoardCardList,
 } from '@/app/home/components';
 import { animate } from '@/styles/theme.css';
 import { section, title } from './BoardSection.css';
 
-const BoardSection = async () => {
+const BoardSection = () => {
   return (
     <section className={clsx(section, animate)}>
       <Typography variant="heading2" as="h2" color="navy" className={title}>

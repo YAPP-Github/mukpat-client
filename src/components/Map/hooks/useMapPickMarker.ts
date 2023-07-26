@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from 'react';
-import { useMapContext } from '../contexts/MapContextProvider';
+import { useEffect, useCallback } from 'react';
+import { useMapContext, useDisplayContext } from '../contexts/MapContextProvider';
 import { removeMarkers, getPlaceInfo } from '../utils/mapMarkerUtils';
-import { Place } from '@/types/map';
+import { useIsMobile } from '@/hooks';
+import { PlaceList } from '@/types/map';
 
 interface MapPickMarkerProps {
   map: any;
@@ -10,32 +11,42 @@ interface MapPickMarkerProps {
   markers: React.MutableRefObject<any[]>;
 }
 const useMapPickMarker = ({ map, marker, markers }: MapPickMarkerProps) => {
-  const { setKeyword, setSearchedPlaces, markerPlace, setMarkerPlace, setSelectedPlace } = useMapContext();
-  const handleOnClickOnlyList = (placeIndex: number) => {
-    setSelectedPlace(markerPlace[placeIndex]);
-    removeMarkers(markers);
-  };
+  const mobile = useIsMobile();
+  const { displayDispatch } = useDisplayContext();
+  const { mapState, mapDispatch } = useMapContext();
 
-  useEffect(() => {
-    if (markerPlace?.length === 0) return;
-    removeMarkers(markers);
-    setSelectedPlace({} as Place);
-  }, [markerPlace, markers, setSelectedPlace]);
+  const handleOnClickOnlyList = useCallback(
+    (placeIndex: number) => {
+      const markerPlace = mapState.markerPlace as PlaceList;
+      mapDispatch({
+        type: 'handleClickPlaceResult',
+        payload: markerPlace[placeIndex],
+      });
+      removeMarkers(markers);
+    },
+    [mapDispatch, mapState.markerPlace, markers],
+  );
 
   useEffect(() => {
     const pickMarker = () => {
       window.kakao.maps.event.addListener(map, 'click', async (mouseEvent: any) => {
-        setSearchedPlaces([]);
-        setKeyword('직접입력');
+        mobile && displayDispatch({ type: 'handleClickMarker', payload: mobile });
         const latlng = mouseEvent.latLng;
         marker.current.setPosition(latlng);
         const markerPlace = await getPlaceInfo(latlng.getLat(), latlng.getLng());
-        const markerPlaceList = [markerPlace];
-        setMarkerPlace(markerPlaceList);
+        mapDispatch({
+          type: 'handleClickPlaceList',
+          payload: {
+            keyword: '직접입력',
+            searchedPlaces: [],
+            markerPlace: [markerPlace],
+          },
+        });
+        removeMarkers(markers);
       });
     };
     map && pickMarker();
-  }, [map, marker, setKeyword, setMarkerPlace, setSearchedPlaces]);
+  }, [displayDispatch, map, mapDispatch, marker, markers, mobile]);
 
   return { handleOnClickOnlyList };
 };
