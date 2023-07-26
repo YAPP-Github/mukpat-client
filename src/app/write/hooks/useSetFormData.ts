@@ -16,6 +16,7 @@ const getParsedData = (board: ParsedData) => {
     region_1depth_name: board.region_1depth_name,
     region_2depth_name: board.region_2depth_name,
     locationName: board.locationName,
+    addressName: board.addressName,
     x: board.x,
     y: board.y,
     locationDetail: board.locationDetail,

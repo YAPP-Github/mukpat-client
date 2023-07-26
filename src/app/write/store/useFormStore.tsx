@@ -19,6 +19,7 @@ const INIT_STEPONE = {
   minAge: null,
   maxAge: null,
   locationName: '',
+  addressName: '',
   x: 0,
   y: 0,
   region_1depth_name: '',

@@ -13,11 +13,13 @@ export const stepOneSchema = z
     maxApply: z.coerce.number().min(2, { message: '최소 인원은 2명 이상 가능합니다.' }).default(2),
     minAge: z.coerce.number().min(20).max(100).optional().nullable().default(null),
     maxAge: z.coerce.number().min(20).max(100).optional().nullable().default(null),
-    locationName: z
-      .string({ invalid_type_error: '필수 항목을 입력해주세요.', required_error: '필수 항목을 입력해주세요.' })
-      .min(5, { message: '필수 항목을 입력해주세요.' }),
+    locationName: z.string({
+      invalid_type_error: '필수 항목을 입력해주세요.',
+      required_error: '필수 항목을 입력해주세요.',
+    }),
     x: z.number(),
     y: z.number(),
+    addressName: z.coerce.string(),
     region_1depth_name: z.coerce.string(),
     region_2depth_name: z.coerce.string(),
     locationDetail: z.string().optional().nullable().default(null),

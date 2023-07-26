@@ -6,6 +6,7 @@ export type StepOneData = {
   minAge: number | null;
   maxAge: number | null;
   locationName: string;
+  addressName: string;
   x: number;
   y: number;
   region_1depth_name: string;
