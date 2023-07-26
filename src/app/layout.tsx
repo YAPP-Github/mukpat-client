@@ -6,8 +6,25 @@ import { ProfileProvider } from '@/providers/server';
 import Head from 'next/head';
 
 const pretendardFont = localFont({
-  src: '../../public/PretendardVariable.woff2',
+  src: [
+    {
+      path: '../../public/fonts/Pretendard-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-Semibold.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
+  preload: true,
 });
 
 export const metadata = {
