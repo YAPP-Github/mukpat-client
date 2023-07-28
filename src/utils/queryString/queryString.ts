@@ -12,9 +12,7 @@ export const getQueryString = (obj?: object) => {
     return EMPTY;
   }
 
-  const parsed = queryString.stringify(obj);
+  const stringified = queryString.stringify(obj);
 
-  if (parsed === EMPTY) return EMPTY;
-
-  return `?${parsed}`;
+  return stringified === EMPTY ? EMPTY : `?${stringified}`;
 };
