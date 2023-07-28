@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import { Chip, Profile, SvgIcon, Typography } from '@/components';
 import { BoardListItem } from '@/api/types';
 import { RECRUIT_STATUS } from '@/app/home/constants';
 import { getChipColor } from '@/app/home/utils/chipColor';
+import BoardCardLink from './BoardCardLink';
 
 import {
   wrapper,
@@ -40,7 +40,7 @@ const BoardCard = ({ boardListItem }: Props) => {
 
   return (
     <li>
-      <Link href={`/board/${boardId}`}>
+      <BoardCardLink boardId={boardId}>
         <div
           className={wrapper({
             isRecruiting,
@@ -93,7 +93,7 @@ const BoardCard = ({ boardListItem }: Props) => {
             </div>
           </div>
         </div>
-      </Link>
+      </BoardCardLink>
     </li>
   );
 };

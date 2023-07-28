@@ -1,9 +1,17 @@
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useBoardDetail as useBoardDetailQuery } from '@/api/hooks';
 
 const useBoardDetail = () => {
   const { id: boardId } = useParams();
-  const { data: board } = useBoardDetailQuery(Number(boardId));
+  const searchParams = useSearchParams();
+
+  const cityIdParam = searchParams.get('cityId');
+  const provinceIdParam = searchParams.get('provinceId');
+
+  const cityId = cityIdParam && !Number.isNaN(cityIdParam) ? Number(cityIdParam) : undefined;
+  const provinceId = provinceIdParam && !Number.isNaN(provinceIdParam) ? Number(provinceIdParam) : undefined;
+
+  const { data: board } = useBoardDetailQuery(Number(boardId), cityId, provinceId);
 
   return board;
 };

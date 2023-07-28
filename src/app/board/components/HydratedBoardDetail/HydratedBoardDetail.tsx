@@ -3,9 +3,17 @@ import { BoardDetail } from '@/app/board/components';
 import getQueryClient from '@/utils/getQueryClients';
 import { api, queryKeys } from '@/api';
 
-const HydratedBoardDetail = async ({ boardId }: { boardId: number }) => {
+interface Props {
+  boardId: number;
+  cityId?: number;
+  provinceId?: number;
+}
+
+const HydratedBoardDetail = async ({ boardId, cityId, provinceId }: Props) => {
   const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(queryKeys.board.detail(boardId), () => api.board.getBoardDetail(boardId));
+  await queryClient.prefetchQuery(queryKeys.board.detail(boardId, cityId, provinceId), () =>
+    api.board.getBoardDetail(boardId, cityId, provinceId),
+  );
   const dehydratedState = dehydrate(queryClient);
 
   return (

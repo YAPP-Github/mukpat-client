@@ -1,6 +1,7 @@
 import { request } from '@/utils/ky/request';
 import { BOARDS_PER_PAGE } from '@/app/home/constants';
 import { BoardListPagingData, BoardListResponse, BoardDetail, BoardRegionResponse } from './types';
+import { getQueryString } from '@/utils/queryString';
 
 class BoardAPI {
   /**
@@ -36,8 +37,15 @@ class BoardAPI {
    * boardId에 해당하는 먹팟의 정보를 가져옵니다.
    * @param boardId - 가져올 board의 id
    */
-  async getBoardDetail(boardId: number) {
-    return request.get(`v1/boards/${boardId}`).json<BoardDetail>();
+  async getBoardDetail(boardId: number, cityId?: number, provinceId?: number) {
+    return request
+      .get(
+        `v1/boards/${boardId}${getQueryString({
+          cityId,
+          provinceId,
+        })}`,
+      )
+      .json<BoardDetail>();
   }
 
   /**
