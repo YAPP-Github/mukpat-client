@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import { PropsWithChildren } from 'react';
-import { IconButton, Typography } from '@/components';
+import { Typography } from '@/components';
 import { getBoardStatusText } from '@/app/board/utils';
 import { BoardDetail } from '@/api/types';
 
@@ -12,10 +11,9 @@ import {
   contentWrapper,
   footer,
   footerText,
-  footerButtons,
-  disabledLink,
   childrenWrapper,
 } from './ContentSection.css';
+import FooterButtons from './FooterLinkButtons';
 
 interface Props extends PropsWithChildren {
   board: BoardDetail;
@@ -115,24 +113,7 @@ const ContentSection = ({ board, children }: Props) => {
             조회수 {views}
           </Typography>
         </div>
-        <div className={footerButtons}>
-          <Link
-            href={`/board/${prevId}`}
-            className={disabledLink({
-              disabled: !prevId,
-            })}
-          >
-            <IconButton iconType="chevronleft" hover disabled={!prevId} />
-          </Link>
-          <Link
-            href={`/board/${nextId}`}
-            className={disabledLink({
-              disabled: !nextId,
-            })}
-          >
-            <IconButton iconType="chevronright" hover disabled={!nextId} />
-          </Link>
-        </div>
+        <FooterButtons nextId={nextId} prevId={prevId} />
       </div>
     </section>
   );
