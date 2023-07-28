@@ -4,7 +4,7 @@ import { useCallback, startTransition } from 'react';
 import { Dropdown } from '@/components';
 import { useDetectSticky, useScrollDownState } from '@/app/home/hooks';
 import { useBoardRegions } from '@/api/hooks';
-import { useRegionsFilter } from '@/app/home/store';
+import { useRegionsFilter } from '@/store';
 import * as styles from './RegionsFilter.css';
 
 const RegionsFilter = () => {
