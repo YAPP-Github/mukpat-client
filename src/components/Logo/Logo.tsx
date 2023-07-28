@@ -1,9 +1,9 @@
-import Link from 'next/link';
+import LogoLink from './LogoLink';
 import { logo } from './Logo.css';
 
 const Logo = () => {
   return (
-    <Link href="/">
+    <LogoLink>
       <div className={logo}>
         <svg width="100%" height="100%" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -33,7 +33,7 @@ const Logo = () => {
           </defs>
         </svg>
       </div>
-    </Link>
+    </LogoLink>
   );
 };
 
