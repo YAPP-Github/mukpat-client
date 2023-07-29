@@ -43,30 +43,54 @@ const IconButton = ({
   const [iconSvgId, setIconSvgId] = useState<string>(iconType);
 
   useEffect(() => {
-    if (!error) return;
-    setStatus(error ? ICON_STATUS.ERROR : ICON_STATUS.DEFAULT);
+    switch (true) {
+      case error:
+        setStatus(ICON_STATUS.ERROR);
+        break;
+      case disabled:
+        setStatus(ICON_STATUS.DISABLE);
+        break;
+      case active:
+        initActive && setStatus(ICON_STATUS.ACTIVE);
+        break;
+      default:
+        setStatus(ICON_STATUS.DEFAULT);
+        break;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, disabled]);
 
-  useEffect(() => {
-    setStatus(disabled ? ICON_STATUS.DISABLE : ICON_STATUS.DEFAULT);
-  }, [disabled]);
+  const updateClickStatus = () => {
+    switch (true) {
+      case error:
+        setStatus(ICON_STATUS.ACTIVE);
+        setIsActive(true);
+        break;
+      case active:
+        setStatus(isActive ? ICON_STATUS.DEFAULT : ICON_STATUS.ACTIVE);
+        setIsActive(!isActive);
+        break;
+      default:
+        setStatus(ICON_STATUS.DEFAULT);
+        break;
+    }
+  };
+  const isPossibleHover = () => !error && !disabled && status !== ICON_STATUS.ACTIVE && hover;
 
   const handleMouseEnter = () => {
-    if (error || disabled || status === ICON_STATUS.ACTIVE) return;
-    hover && setStatus(ICON_STATUS.HOVER);
+    if (isPossibleHover()) {
+      setStatus(ICON_STATUS.HOVER);
+    }
   };
 
   const handleMouseLeave = () => {
-    if (error || disabled || status === ICON_STATUS.ACTIVE) return;
-    hover && setStatus(ICON_STATUS.DEFAULT);
+    if (isPossibleHover()) {
+      setStatus(ICON_STATUS.DEFAULT);
+    }
   };
 
   const handleOnClick = (e: MouseEvent<HTMLButtonElement>): void => {
-    if (disabled) return;
-    if (active || error) {
-      setStatus(isActive ? ICON_STATUS.DEFAULT : ICON_STATUS.ACTIVE);
-      setIsActive(!isActive);
-    }
+    updateClickStatus();
     onClick?.(e);
   };
   useEffect(() => {
