@@ -13,6 +13,7 @@ type IconButtonProps = {
   hover?: boolean;
   active?: boolean;
   error?: boolean;
+  initActive?: boolean;
 } & Image &
   ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -30,13 +31,14 @@ const IconButton = ({
   active = false,
   error = false,
   disabled = false,
+  initActive = false,
   width = '36',
   height = '36',
   onClick,
   className,
   ...rest
 }: IconButtonProps) => {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(initActive);
   const [status, setStatus] = useState(ICON_STATUS.DEFAULT);
   const [iconSvgId, setIconSvgId] = useState<string>(iconType);
 

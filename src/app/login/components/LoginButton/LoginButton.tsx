@@ -30,6 +30,7 @@ const LoginButton = ({ submitErrorMsg }: LoginButtonProps) => {
           active={true}
           onClick={onClickPersistentButton}
           type="button"
+          initActive={keep === 'Y'}
         />
         <Typography variant="label2" as="p" color="sub">
           로그인 유지
