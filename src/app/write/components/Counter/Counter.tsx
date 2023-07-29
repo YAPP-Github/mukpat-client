@@ -26,7 +26,7 @@ const Counter = ({ control, name, min = 2, max = 100, ...rest }: CounterProps<an
         render={({ field: { value, onChange } }) => (
           <>
             <IconButton type="button" iconType="minus" onClick={handleClickSubtract} disabled={value <= 2} hover />
-            <input type="number" min={min} max={max} value={value} onChange={onChange} />
+            <input type="number" readOnly min={min} max={max} value={value} onChange={onChange} />
             <IconButton type="button" iconType="plus" onClick={handleClickAdd} disabled={value >= 100} hover />
           </>
         )}
