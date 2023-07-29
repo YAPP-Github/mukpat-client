@@ -67,7 +67,7 @@ const ProfileSetupSignUp = () => {
             label="직군 소분류"
             name="job"
             placeholder="ex) uiux디자이너"
-            required={true}
+            required={false}
             method={method}
             className={inputMargin}
           />
