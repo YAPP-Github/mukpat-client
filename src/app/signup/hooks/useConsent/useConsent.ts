@@ -5,6 +5,7 @@ export const useConsent = (): [boolean, boolean, () => void, () => void] => {
   const [error, setError] = useState(false);
 
   const onClickConsent = useCallback(() => {
+    setError(false);
     setAgree((prev: boolean) => !prev);
   }, []);
 
