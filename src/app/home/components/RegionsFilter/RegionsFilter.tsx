@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, startTransition } from 'react';
+import { useCallback } from 'react';
 import { Dropdown } from '@/components';
 import { useDetectSticky, useScrollDownState } from '@/app/home/hooks';
 import { useBoardRegions } from '@/api/hooks';
@@ -16,18 +16,14 @@ const RegionsFilter = () => {
 
   const handleSelectCity = useCallback(
     (cityId: string | null) => {
-      startTransition(() => {
-        setCityId?.(cityId ? Number(cityId) : undefined);
-      });
+      setCityId?.(cityId ? Number(cityId) : undefined);
     },
     [setCityId],
   );
 
   const handleSelectProvince = useCallback(
     (provinceId: string | null) => {
-      startTransition(() => {
-        setProvinceId?.(provinceId ? Number(provinceId) : undefined);
-      });
+      setProvinceId?.(provinceId ? Number(provinceId) : undefined);
     },
     [setProvinceId],
   );

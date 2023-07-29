@@ -18,6 +18,7 @@ const useBoardListQuery = (boardsPerPage = BOARDS_PER_PAGE, cityId?: number, pro
       ({ pageParam = undefined }) => boardAPI.getBoardList(pageParam, boardsPerPage, cityId, provinceId),
       {
         getNextPageParam: (lastPage) => (lastPage.isLastPage ? undefined : lastPage.lastId),
+        keepPreviousData: true,
       },
     );
 
