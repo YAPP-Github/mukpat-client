@@ -18,6 +18,7 @@ globalStyle('html, body', {
 globalStyle(`img, picture, video, canvas, svg`, {
   display: `block`,
   maxWidth: `100%`,
+  flexShrink: 0,
 });
 
 globalStyle('body', {
