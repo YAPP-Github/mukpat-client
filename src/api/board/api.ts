@@ -1,6 +1,6 @@
 import { request } from '@/utils/ky/request';
 import { BOARDS_PER_PAGE } from '@/app/home/constants';
-import { BoardListPagingData, BoardListResponse, BoardDetail, BoardRegionResponse } from './types';
+import { BoardListPagingData, BoardListResponse, BoardDetail, BoardRegionResponse, BoardStatus } from './types';
 import { getQueryString } from '@/utils/queryString';
 
 class BoardAPI {
@@ -78,6 +78,17 @@ class BoardAPI {
   async getBoardRegions() {
     const { list } = await request.get(`v1/boards/regions`).json<BoardRegionResponse>();
     return list;
+  }
+
+  /**
+   * boardId에 해당하는 먹팟의 모집 상태를 변경합니다.
+   */
+  async patchBoardStatus(boardId: number, status: BoardStatus) {
+    return request.patch(`v1/boards/${boardId}/status`, {
+      searchParams: {
+        status,
+      },
+    });
   }
 }
 

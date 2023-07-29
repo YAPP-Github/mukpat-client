@@ -5,7 +5,7 @@ import { BottomSheet, Button } from '@/components';
 import { JoinForm } from '@/app/board/components';
 import { useCheckboxGroupState } from '@/app/board/hooks';
 import { JOIN_MODAL_TEXT, TOAST_TEXT } from '@/app/board/constants';
-import { wrapper, content, footer } from './JoinBottomSheet.css';
+import { wrapper, content, footer, footerButton } from './JoinBottomSheet.css';
 
 const { BUTTON } = JOIN_MODAL_TEXT;
 
@@ -55,6 +55,7 @@ const JoinBottomSheet = ({ boardId, chatLink, onSuccessJoin, onFailureJoin, onCl
         </div>
         <div className={footer}>
           <Button
+            className={footerButton}
             color="primary"
             onClick={handleClickJoinButton}
             disabled={checkBoxGroupState.some((state) => !state.checked)}

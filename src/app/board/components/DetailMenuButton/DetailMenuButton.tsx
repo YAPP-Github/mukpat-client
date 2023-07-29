@@ -2,21 +2,23 @@
 
 import { useRouter } from 'next/navigation';
 import { Dropdown, SvgIcon, Typography, Toast } from '@/components';
-import { useProfile } from '@/api/hooks';
+import { useProfile, useChangeBoardStatus } from '@/api/hooks';
 import { useOverlay, useClipBoard, useIsMobile } from '@/hooks';
 import { TOAST_TEXT } from '@/app/board/constants';
 import { DeleteModal, CancelJoinModal } from '@/app/board/components';
 import * as styles from './DetailMenuButton.css';
-import { BoardDetail } from '@/api/types';
+import { BOARD_STATUS, BoardDetail } from '@/api/types';
 
 interface Props {
   board: BoardDetail;
 }
 
 const DetailMenuButton = ({ board }: Props) => {
+  const { boardId, participants, status, currentApply, maxApply } = board;
+
   const router = useRouter();
   const { data: profile } = useProfile();
-  const { boardId, participants } = board;
+  const { mutate: changeBoardStatus } = useChangeBoardStatus(boardId);
 
   const [openModal, closeModal] = useOverlay();
   const [openToast, closeToast] = useOverlay();
@@ -67,6 +69,28 @@ const DetailMenuButton = ({ board }: Props) => {
     );
   };
 
+  const handleClickMakeDone = () => {
+    changeBoardStatus(BOARD_STATUS.DONE, {
+      onSuccess: () => {
+        openToast(<Toast type="success" message={TOAST_TEXT.SUCCESS_MAKE_DONE} onClose={closeToast} />);
+      },
+      onError: (err) => {
+        openToast(<Toast type="warn" message={err.message} onClose={closeToast} />);
+      },
+    });
+  };
+
+  const handleClickMakeInProgress = () => {
+    changeBoardStatus(BOARD_STATUS.IN_PROGRESS, {
+      onSuccess: () => {
+        openToast(<Toast type="success" message={TOAST_TEXT.SUCCESS_MAKE_INPROGRESS} onClose={closeToast} />);
+      },
+      onError: (err) => {
+        openToast(<Toast type="warn" message={err.message} onClose={closeToast} />);
+      },
+    });
+  };
+
   return (
     <Dropdown className={styles.dropdown}>
       <Dropdown.Toggle>
@@ -86,6 +110,16 @@ const DetailMenuButton = ({ board }: Props) => {
                 삭제하기
               </Typography>
             </Dropdown.Item>
+            {status === '모집중' && (
+              <Dropdown.Item itemKey="done" onClick={handleClickMakeDone}>
+                <Typography variant="label2">모임 마감하기</Typography>
+              </Dropdown.Item>
+            )}
+            {status !== '모집중' && currentApply < maxApply && (
+              <Dropdown.Item itemKey="in_progress" onClick={handleClickMakeInProgress}>
+                <Typography variant="label2">다시 모집하기</Typography>
+              </Dropdown.Item>
+            )}
           </>
         )}
         {isMobile && !isWriter && isJoined && (
