@@ -18,6 +18,7 @@ import clsx from 'classnames';
 const ProfileSetupSignUp = () => {
   const { userInfo } = useSignupContext();
   const router = useRouter();
+  const [disabled, setDisabled] = useState<boolean>(false);
   const [selectedValue, setSelectedValue] = useState<SelectedDropDownValue>({
     job: null,
     birth: null,
@@ -26,13 +27,18 @@ const ProfileSetupSignUp = () => {
   const successSignup = () => {
     router.replace('/welcome');
   };
+  const onError = () => {
+    setDisabled(false);
+  };
   const { postData, errorMsg } = usePostApi<SignupRequest, SignupResponse>({
     apiFunction: postSignup,
     onSuccess: successSignup,
+    onError,
   });
   const { method } = useCommonForm({ schema: signupSchema, checkMode: 'onSubmit' });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
+    setDisabled(true);
     postData({
       email: `${userInfo?.email}@samsung.com`,
       password: userInfo?.password,
@@ -82,11 +88,11 @@ const ProfileSetupSignUp = () => {
             selections={birthType}
           />
         </div>
-        <Button size="large" type="submit" className={button}>
+        <Button size="large" type="submit" className={button} disabled={disabled}>
           저장하기
         </Button>
         <div className={requiredFields}>{errorMsg}</div>
-        <BottomButton type="submit" errorMsg={errorMsg}>
+        <BottomButton type="submit" errorMsg={errorMsg} disabled={disabled}>
           저장하기
         </BottomButton>
       </InputField>
