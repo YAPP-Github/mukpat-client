@@ -31,6 +31,7 @@ const useMapSearchForm = () => {
         keyword,
         searchedPlaces,
         markerPlace: [],
+        place: {},
       },
     });
   });
