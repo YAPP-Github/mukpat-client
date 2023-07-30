@@ -1,6 +1,7 @@
 import { request } from '@/utils/ky/request';
 import { BOARDS_PER_PAGE } from '@/app/home/constants';
 import { BoardListPagingData, BoardListResponse, BoardDetail, BoardRegionResponse, BoardStatus } from './types';
+import { SAMPLE_BOARD_IDS, SAMPLE_BOARDDETAILS } from '@/app/board/constants/sample';
 
 class BoardAPI {
   /**
@@ -37,6 +38,9 @@ class BoardAPI {
    * @param boardId - 가져올 board의 id
    */
   async getBoardDetail(boardId: number) {
+    if (SAMPLE_BOARD_IDS.includes(boardId)) {
+      return SAMPLE_BOARDDETAILS.find((board) => board.boardId === boardId) as BoardDetail;
+    }
     return request.get(`v1/boards/${boardId}`).json<BoardDetail>();
   }
 

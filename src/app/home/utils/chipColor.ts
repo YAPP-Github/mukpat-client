@@ -8,4 +8,9 @@ const chipColorMap = new Map<string, Color>([
   ['내일', 'yellow'],
 ]);
 
-export const getChipColor = (text: string): Color => chipColorMap.get(text) ?? 'primary';
+export const getChipColor = (text: string | null): Color => {
+  if (text) {
+    return chipColorMap.get(text) ?? 'primary';
+  }
+  return 'primary';
+};

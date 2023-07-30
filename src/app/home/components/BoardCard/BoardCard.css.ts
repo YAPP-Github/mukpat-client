@@ -27,6 +27,12 @@ export const wrapper = recipe({
       [screenMQ.m]: {
         width: sizeProp('312px'),
         padding: space.xl,
+        selectors: {
+          '&:hover': {
+            boxShadow: 'none',
+            transform: 'none',
+          },
+        },
       },
     },
   },

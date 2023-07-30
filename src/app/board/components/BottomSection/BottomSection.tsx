@@ -14,7 +14,7 @@ interface Props {
 
 const BottomSection = ({ board }: Props) => {
   const { data: profile } = useProfile();
-  const { boardId, chatLink } = board;
+  const { boardId, chatLink, isSample } = board;
   const { isJoined, isNotPossibleAge, isJoinable } = useBoardStates(board);
   const [openBottomSheet, closeBottomSheet] = useOverlay();
   const [openToast, closeToast] = useOverlay();
@@ -22,6 +22,9 @@ const BottomSection = ({ board }: Props) => {
 
   const handleClickJoinButton = () => {
     if (!profile) return redirectToLogin();
+    if (isSample) {
+      return openToast(<Toast type="info" message={TOAST_TEXT.SAMPLE_BOARD} onClose={closeToast} />);
+    }
     openBottomSheet(
       <JoinBottomSheet
         boardId={boardId}

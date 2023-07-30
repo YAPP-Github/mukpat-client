@@ -14,7 +14,7 @@ interface Props {
 }
 
 const AsideSection = ({ board }: Props) => {
-  const { boardId, chatLink } = board;
+  const { boardId, chatLink, isSample } = board;
 
   const { data: profile } = useProfile();
   const { redirectToLogin } = useLoginRedirect();
@@ -26,6 +26,9 @@ const AsideSection = ({ board }: Props) => {
 
   const handleClickJoinButton = () => {
     if (!profile) return redirectToLogin();
+    if (isSample) {
+      return openToast(<Toast type="info" message={TOAST_TEXT.SAMPLE_BOARD} onClose={closeToast} />);
+    }
     openModal(
       <JoinModal
         boardId={boardId}
