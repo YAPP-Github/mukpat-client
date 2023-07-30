@@ -37,9 +37,9 @@ export interface BoardDetail {
   createDate: string;
   maxApply: number;
   currentApply: number;
-  minAge: number;
-  maxAge: number;
-  userAge: number;
+  minAge: number | null;
+  maxAge: number | null;
+  userAge: number | null;
   locationName: string;
   addressName: string;
   locationDetail: string;
@@ -47,6 +47,7 @@ export interface BoardDetail {
   y: number;
   views: number;
   participants: Profile[];
+  isOutOfDate: boolean;
 }
 
 export interface BoardProvince {
