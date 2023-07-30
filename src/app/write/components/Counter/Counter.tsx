@@ -12,7 +12,7 @@ type CounterProps<T extends FieldValues> = {
 } & HTMLAttributes<HTMLDivElement>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Counter = ({ control, name, min = 2, max = 20, ...rest }: CounterProps<any>) => {
+const Counter = ({ control, name, min = 2, max = 100, ...rest }: CounterProps<any>) => {
   const { setValue, getValues } = useFormContext();
   const handleClickAdd = useCallback(() => setValue(name, getValues(name) + 1), [getValues, name, setValue]);
   const handleClickSubtract = useCallback(() => setValue(name, getValues(name) - 1), [getValues, name, setValue]);
@@ -25,9 +25,9 @@ const Counter = ({ control, name, min = 2, max = 20, ...rest }: CounterProps<any
         name={name}
         render={({ field: { value, onChange } }) => (
           <>
-            <IconButton type="button" iconType="minus" onClick={handleClickSubtract} disabled={value <= 2} hover />
-            <input type="number" min={min} max={max} value={value} onChange={onChange} />
-            <IconButton type="button" iconType="plus" onClick={handleClickAdd} hover />
+            <IconButton type="button" iconType="minus" onClick={handleClickSubtract} disabled={value <= min} hover />
+            <input type="number" readOnly min={min} max={max} value={value} onChange={onChange} />
+            <IconButton type="button" iconType="plus" onClick={handleClickAdd} disabled={value >= max} hover />
           </>
         )}
       />
