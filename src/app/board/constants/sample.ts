@@ -133,8 +133,8 @@ export const SAMPLE_BOARDDETAIL_4: BoardDetail = {
 더 자세한 내용은 오픈채팅방에서 알려드릴게요 😆 
 * 샘플 먹팟입니다.`,
   chatLink: 'https://open.kakao.com/o/g8Q4XqKc',
-  meetingDate: '2023년 07월 20일',
-  meetingTime: '오후 07시 00분',
+  meetingDate: format(addDays(new Date(), 3), 'yyyy년 MM월 dd일', { locale: ko }),
+  meetingTime: '오후 09:00',
   createDate: '2023년 07월 30일',
   maxApply: 10,
   currentApply: SAMPLE_PARTICIPANTS.length,
