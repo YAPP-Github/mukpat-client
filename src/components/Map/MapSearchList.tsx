@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { searchinfoWrapper, noSearchInfoWrapper } from './Map.css';
-import { useCallback, useRef } from 'react';
 import { Place } from '@/types/map';
-import { useMapPickMarker, useMapListMarkers } from './hooks';
+import { useSearchList } from './hooks';
 import MapSearchItem from './MapSearchItem';
 import IconButton from '../IconButton/IconButton';
-import { useDisplayContext, useMapContext } from './contexts/MapContextProvider';
+import { useDisplayContext } from './contexts/MapContextProvider';
 
 type MapSearchListProps = {
   map: any;
@@ -36,17 +35,9 @@ const SearchInfo = () => {
   );
 };
 const MapSearchList = ({ map, marker }: MapSearchListProps) => {
-  const markers = useRef<any[]>([]);
-  const listRefs = useRef<Record<number, HTMLLIElement | null>>({});
-  const setListItemRef = useCallback((ref: HTMLLIElement | null, index: number) => {
-    listRefs.current[index] = ref;
-  }, []);
-  const { mapState } = useMapContext();
   const { displayState } = useDisplayContext();
-  const placeList = mapState.markerPlace?.length != 0 ? mapState.markerPlace : mapState.searchedPlaces;
+  const { handleOnClickList, placeList, setListItemRef } = useSearchList({ map, marker });
 
-  const { handleOnClickListWithMarkers } = useMapListMarkers({ map, markers });
-  const { handleOnClickOnlyList } = useMapPickMarker({ map, marker, markers });
   if (!placeList) {
     return <SearchInfo />;
   }
@@ -56,12 +47,12 @@ const MapSearchList = ({ map, marker }: MapSearchListProps) => {
   return (
     <div className={searchinfoWrapper({ display: displayState?.searchList, marker: displayState?.marker })} role="list">
       <ul>
-        {placeList?.map((place: Place, index) => (
+        {placeList?.map((place: Place, index: number) => (
           <MapSearchItem
             key={index}
             place={place}
             index={index}
-            handleOnClickList={mapState.markerPlace?.length != 0 ? handleOnClickOnlyList : handleOnClickListWithMarkers}
+            handleOnClickList={handleOnClickList}
             setListItemRef={setListItemRef}
             aria-label={`장소 ${index + 1}`}
           />

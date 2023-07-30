@@ -30,10 +30,10 @@ const AgreeButton = ({ onClick, error, text, name }: AgreeButtonProps) => {
         type="button"
       />
       <Typography variant="label2" as="p" color="sub">
-        (필수){' '}
+        (필수)
         <span className={agreeText} onClick={() => onClickAgreeText()}>
           {text}
-        </span>{' '}
+        </span>
         동의
       </Typography>
     </div>

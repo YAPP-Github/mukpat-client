@@ -20,10 +20,7 @@ type DisplayAction =
   | { type: 'handleClickMarker'; payload: boolean };
 type DisplayDispatch = (action: DisplayAction) => void;
 
-type MapAction =
-  | { type: 'handleClickPlaceList'; payload: MapState }
-  | { type: 'handleClickPlaceResult'; payload: Place }
-  | { type: 'handleClickInitPlace' };
+type MapAction = { type: 'handleClickPlaceList'; payload: MapState } | { type: 'handleClickInitPlace' };
 type MapDispatch = (action: MapAction) => void;
 
 const MapContext = createContext<{ mapState: MapState; mapDispatch: MapDispatch }>({
@@ -43,12 +40,7 @@ const MapContextProvider = ({ children }: { children: ReactNode }) => {
           keyword: action.payload.keyword,
           searchedPlaces: action.payload.searchedPlaces,
           markerPlace: action.payload.markerPlace,
-          place: {},
-        };
-      case 'handleClickPlaceResult':
-        return {
-          ...state,
-          ...{ place: action.payload },
+          place: action.payload.place,
         };
       case 'handleClickInitPlace':
         return {

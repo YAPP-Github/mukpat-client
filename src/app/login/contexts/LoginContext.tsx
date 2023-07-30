@@ -10,7 +10,7 @@ interface LoginContextValue {
 const LoginContext = createContext<LoginContextValue | null>(null);
 
 const LoginContextProvider = ({ children }: { children: ReactNode }) => {
-  const [keep, setKeep] = useState('N');
+  const [keep, setKeep] = useState('Y');
 
   const contextValue = useMemo(() => ({ keep, setKeep }), [keep, setKeep]);
 

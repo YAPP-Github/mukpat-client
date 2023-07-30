@@ -3,7 +3,7 @@ export const birthType = getBirthList();
 export const jobType = [
   '개발',
   '교육',
-  '금융재무',
+  '금융/재무',
   '기획/경영',
   '데이터',
   '디자인',

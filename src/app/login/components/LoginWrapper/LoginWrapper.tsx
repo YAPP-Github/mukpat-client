@@ -1,18 +1,25 @@
 'use client';
 import { LoginForm, LoginTitle } from '../../components';
 import { Content } from '@/components';
-import { useIsMobile } from '@/hooks';
 import { animate } from '@/styles/theme.css';
-
+import { Media } from '@/components';
 const LoginWrapper = () => {
-  const mobile = useIsMobile();
-
   return (
     <div className={animate}>
-      <Content verticalCenter={mobile ? false : true}>
-        <LoginTitle />
-        <LoginForm />
-      </Content>
+      <Media breakpoint="m" fallback={<></>}>
+        <Media.Less>
+          <Content verticalCenter={false}>
+            <LoginTitle />
+            <LoginForm />
+          </Content>
+        </Media.Less>
+        <Media.Greater>
+          <Content verticalCenter={true}>
+            <LoginTitle />
+            <LoginForm />
+          </Content>
+        </Media.Greater>
+      </Media>
     </div>
   );
 };
