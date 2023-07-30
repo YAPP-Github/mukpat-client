@@ -20,7 +20,7 @@ const AsideSection = ({ board }: Props) => {
   const { redirectToLogin } = useLoginRedirect();
   const [openModal, closeModal] = useOverlay();
   const [openToast, closeToast] = useOverlay();
-  const { isJoined, isJoinCancellable, isJoinable, isPossibleAge, isClosable, isAgainRecruitable } =
+  const { isJoined, isJoinCancellable, isJoinable, isNotPossibleAge, isClosable, isAgainRecruitable } =
     useBoardStates(board);
   const { mutate: changeBoardStatus } = useChangeBoardStatus(boardId);
 
@@ -90,7 +90,7 @@ const AsideSection = ({ board }: Props) => {
             <Button size="medium" disabled={!isJoinable} onClick={handleClickJoinButton}>
               참여하기
             </Button>
-            {!isPossibleAge && (
+            {isNotPossibleAge && (
               <Typography variant="label3" as="p" color="red500">
                 나이 제한이 있는 먹팟이에요.
               </Typography>
