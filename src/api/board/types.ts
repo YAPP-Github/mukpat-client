@@ -4,8 +4,8 @@ export interface BoardListItem {
   boardId: number;
   title: string;
   status: string;
-  todayOrTomorrow: string;
-  elapsedTime: string;
+  todayOrTomorrow: string | null;
+  elapsedTime?: string;
   meetingDateTime: string;
   meetingPlace: string;
   maxApply: number;
@@ -46,6 +46,7 @@ export interface BoardDetail {
   locationDetail: string;
   views: number;
   participants: Profile[];
+  isSample?: boolean;
 }
 
 export interface BoardProvince {

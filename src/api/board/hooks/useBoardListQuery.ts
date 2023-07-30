@@ -4,6 +4,7 @@ import { BOARDS_PER_PAGE } from '@/app/home/constants';
 import { BoardListPagingData } from '@/api/board/types';
 import { boardKeys } from '@/api/board/queryKeys';
 import { boardAPI } from '@/api/board/api';
+import { SAMPLE_BOARD_LISTITEMS } from '@/app/home/constants/sample';
 
 /**
  * board list를 페이지당 boardsPerPage 개수만큼 가져옵니다.
@@ -31,7 +32,7 @@ const useBoardListQuery = (boardsPerPage = BOARDS_PER_PAGE, cityId?: number, pro
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   return {
-    data: boardList,
+    data: hasNextPage ? boardList : [...boardList, ...SAMPLE_BOARD_LISTITEMS],
     getNextPage,
     ...rest,
   };
