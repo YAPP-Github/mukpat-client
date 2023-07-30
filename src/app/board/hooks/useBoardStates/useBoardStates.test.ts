@@ -14,7 +14,6 @@ const 비작성자_프로필 = {
   userId: 127,
 } as Profile;
 
-// 케이스에 해당하는 키워드 별 object 정의하기
 const 모집_중 = {
   status: '모집중',
 };
