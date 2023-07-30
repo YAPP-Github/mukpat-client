@@ -105,6 +105,7 @@ export const listItem = style([
 ]);
 
 export const asideSection = style({
+  marginTop: sizeProp('78px'),
   '@media': {
     [screenMQ.m]: {
       display: 'none',
