@@ -22,3 +22,7 @@ export const content = style({
 export const footer = style({
   paddingBottom: space.xl,
 });
+
+export const footerButton = style({
+  width: '100%',
+});
