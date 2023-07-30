@@ -131,29 +131,6 @@ describe('useRecruitStates 테스팅 1 - 작성자가 조회중인 경우', () =
     expect(current.isAgainRecruitable).toBe(false);
     expect(current.isJoined).toBe(true);
   });
-
-  test('모집마감, 나이 제한 없음, 인원이 꽉차 있음, 마감날짜가 지나지 않음', () => {
-    const {
-      result: { current },
-    } = renderHook(() =>
-      useRecruitStates({
-        ...참가자(작성자_프로필),
-        ...모집_마감,
-        ...나이제한_없음,
-        ...인원_가득참,
-        ...마감날짜_지나지않음,
-      } as BoardDetail),
-    );
-
-    expect(current.isWriter).toBe(true);
-    expect(current.isEditable).toBe(false);
-    expect(current.isJoinable).toBe(false);
-    expect(current.isClosable).toBe(false);
-    expect(current.isJoinCancellable).toBe(false);
-    expect(current.isNotPossibleAge).toBe(false);
-    expect(current.isAgainRecruitable).toBe(false);
-    expect(current.isJoined).toBe(true);
-  });
 });
 
 describe('useRecruitStates 테스팅 2 - 작성자가 아닌 사람이 조회중인 경우', () => {
