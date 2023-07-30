@@ -18,7 +18,7 @@ const AsideSection = ({ board }: Props) => {
   const [openModal, closeModal] = useOverlay();
   const [openToast, closeToast] = useOverlay();
 
-  const { boardId, chatLink, participants, status, minAge, maxAge, userAge } = board;
+  const { boardId, chatLink, participants, status, minAge, maxAge, userAge, isSample } = board;
 
   const isJoined = participants.find(({ userId }) => userId === profile?.userId);
 
@@ -26,6 +26,9 @@ const AsideSection = ({ board }: Props) => {
 
   const handleClickJoinButton = () => {
     if (!profile) return redirectToLogin();
+    if (isSample) {
+      return openToast(<Toast type="info" message={TOAST_TEXT.SAMPLE_BOARD} onClose={closeToast} />);
+    }
     openModal(
       <JoinModal
         boardId={boardId}
