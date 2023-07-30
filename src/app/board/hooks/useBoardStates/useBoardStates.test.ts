@@ -82,7 +82,7 @@ describe('useRecruitStates 테스팅 1 - 작성자가 조회중인 경우', () =
     expect(current.isJoinable).toBe(false);
     expect(current.isClosable).toBe(true);
     expect(current.isJoinCancellable).toBe(false);
-    expect(current.isPossibleAge).toBe(true);
+    expect(current.isNotPossibleAge).toBe(false);
     expect(current.isAgainRecruitable).toBe(false);
     expect(current.isJoined).toBe(true);
   });
@@ -105,7 +105,7 @@ describe('useRecruitStates 테스팅 1 - 작성자가 조회중인 경우', () =
     expect(current.isJoinable).toBe(false);
     expect(current.isClosable).toBe(false);
     expect(current.isJoinCancellable).toBe(false);
-    expect(current.isPossibleAge).toBe(true);
+    expect(current.isNotPossibleAge).toBe(false);
     expect(current.isAgainRecruitable).toBe(true);
     expect(current.isJoined).toBe(true);
   });
@@ -128,7 +128,7 @@ describe('useRecruitStates 테스팅 1 - 작성자가 조회중인 경우', () =
     expect(current.isJoinable).toBe(false);
     expect(current.isClosable).toBe(false);
     expect(current.isJoinCancellable).toBe(false);
-    expect(current.isPossibleAge).toBe(true);
+    expect(current.isNotPossibleAge).toBe(false);
     expect(current.isAgainRecruitable).toBe(false);
     expect(current.isJoined).toBe(true);
   });
@@ -151,7 +151,7 @@ describe('useRecruitStates 테스팅 1 - 작성자가 조회중인 경우', () =
     expect(current.isJoinable).toBe(false);
     expect(current.isClosable).toBe(false);
     expect(current.isJoinCancellable).toBe(false);
-    expect(current.isPossibleAge).toBe(true);
+    expect(current.isNotPossibleAge).toBe(false);
     expect(current.isAgainRecruitable).toBe(false);
     expect(current.isJoined).toBe(true);
   });
@@ -181,7 +181,7 @@ describe('useRecruitStates 테스팅 2 - 작성자가 아닌 사람이 조회중
     expect(current.isJoinable).toBe(false);
     expect(current.isClosable).toBe(false);
     expect(current.isJoinCancellable).toBe(true);
-    expect(current.isPossibleAge).toBe(true);
+    expect(current.isNotPossibleAge).toBe(false);
     expect(current.isAgainRecruitable).toBe(false);
     expect(current.isJoined).toBe(true);
   });
@@ -203,7 +203,7 @@ describe('useRecruitStates 테스팅 2 - 작성자가 아닌 사람이 조회중
     expect(current.isJoinable).toBe(true);
     expect(current.isClosable).toBe(false);
     expect(current.isJoinCancellable).toBe(false);
-    expect(current.isPossibleAge).toBe(true);
+    expect(current.isNotPossibleAge).toBe(false);
     expect(current.isAgainRecruitable).toBe(false);
     expect(current.isJoined).toBe(false);
   });
@@ -222,10 +222,10 @@ describe('useRecruitStates 테스팅 2 - 작성자가 아닌 사람이 조회중
 
     expect(current.isWriter).toBe(false);
     expect(current.isEditable).toBe(false);
-    expect(current.isJoinable).toBe(true);
+    expect(current.isJoinable).toBe(false);
     expect(current.isClosable).toBe(false);
     expect(current.isJoinCancellable).toBe(false);
-    expect(current.isPossibleAge).toBe(false);
+    expect(current.isNotPossibleAge).toBe(true);
     expect(current.isAgainRecruitable).toBe(false);
     expect(current.isJoined).toBe(false);
   });
@@ -248,7 +248,7 @@ describe('useRecruitStates 테스팅 2 - 작성자가 아닌 사람이 조회중
     expect(current.isJoinable).toBe(false);
     expect(current.isClosable).toBe(false);
     expect(current.isJoinCancellable).toBe(false);
-    expect(current.isPossibleAge).toBe(true);
+    expect(current.isNotPossibleAge).toBe(false);
     expect(current.isAgainRecruitable).toBe(false);
     expect(current.isJoined).toBe(true);
   });

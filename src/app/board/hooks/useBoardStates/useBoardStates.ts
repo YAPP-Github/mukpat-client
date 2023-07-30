@@ -30,20 +30,15 @@ const useBoardStates = (board: BoardDetail) => {
   /** 참가 취소 가능 여부 */
   const isJoinCancellable = !isWriter && isJoined && !isOutOfDate;
 
+  /** 나이 제한 통과 여부 */
+  const isNotPossibleAge =
+    isRecruiting && !isWriter && Boolean(userAge && minAge && maxAge && !(minAge <= userAge && userAge <= maxAge));
+
   /** 참여 가능 여부 */
-  const isJoinable = !isWriter && !isJoined && isRecruiting;
+  const isJoinable = !isWriter && !isNotPossibleAge && !isJoined && isRecruiting;
 
   /** 다시 모집하기 가능 여부 */
   const isAgainRecruitable = isWriter && !isRecruiting && !isFull && !isOutOfDate;
-
-  /** 나이 제한 통과 여부 */
-  // 모집중이아니면 참
-  // 작성자면 참
-  const isPossibleAge =
-    !isRecruiting ||
-    isWriter ||
-    Boolean(userAge === null) ||
-    Boolean(userAge && minAge && maxAge && minAge <= userAge && userAge <= maxAge);
 
   return {
     /** 작성자 여부 */
@@ -65,7 +60,7 @@ const useBoardStates = (board: BoardDetail) => {
     isAgainRecruitable,
 
     /** 나이 제한 통과 여부 */
-    isPossibleAge,
+    isNotPossibleAge,
 
     /** 참여 중인지 여부 */
     isJoined,
