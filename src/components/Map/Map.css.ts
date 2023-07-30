@@ -257,6 +257,9 @@ export const searchList = style({
     '&:focus': {
       background: 'rgba(28, 26, 66, 0.1)',
     },
+    '&:hover': {
+      background: 'rgba(28, 26, 66, 0.04)',
+    },
   },
 });
 
