@@ -5,7 +5,7 @@ import { useIntersectObserver } from '@/hooks';
 import { useBoardListQuery } from '@/api/hooks';
 import { BoardCard } from '@/app/home/components';
 import { BOARDS_PER_PAGE } from '@/app/home/constants';
-import { useRegionsFilterStore } from '@/app/home/store';
+import { useRegionsFilterStore } from '@/store';
 import { listGrid, noBoard } from './BoardCardList.css';
 
 const BoardCardList = () => {

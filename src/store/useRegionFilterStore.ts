@@ -10,6 +10,7 @@ type State = {
 type Actions = {
   setCityId: (cityId: State['cityId']) => void;
   setProvinceId: (provinceId: State['provinceId']) => void;
+  initialize: () => void;
 };
 
 type Selector = (state: State & Actions) => Partial<State & Actions>;
@@ -26,6 +27,7 @@ export const regionsFilterStore = create<State & Actions>((set) => ({
       }
     }),
   setProvinceId: (provinceId: State['provinceId']) => set((state) => ({ ...state, provinceId })),
+  initialize: () => set({ cityId: undefined, provinceId: undefined }),
 }));
 
 export const useRegionsFilterStore = (selector: Selector) => {
