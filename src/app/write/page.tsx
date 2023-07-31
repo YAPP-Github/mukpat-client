@@ -2,12 +2,30 @@
 import FirstStep from './components/Form/FirstStep';
 import SecondStep from './components/Form/SecondStep';
 import { wrapper } from './style.css';
-import { useFunnel } from '@/hooks';
+import { useFunnel, useOverlay } from '@/hooks';
 import { useProfile } from '@/api/hooks';
 import WriteTitle from './components/WriteTitle/WriteTitle';
 import useFormStore from './store/useFormStore';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import PreventModal from '@/app/write/components/PreventModal/PreventModal';
+import useRouteChangeEvents from '@/app/write/hooks/useRouteChangeEvents';
+
+const useLeaveConfirmation = (shouldPreventRouteChange: boolean) => {
+  const [openModal, closeModal] = useOverlay();
+  console.log('useLeaveConfirmation');
+  // const router = useRouter();
+  const onBeforeRouteChange = useCallback(() => {
+    console.log('onBeforeRouteChange');
+    if (shouldPreventRouteChange) {
+      openModal(<PreventModal onClose={closeModal} onClick={() => allowRouteChange} />);
+      return false;
+    }
+    return true;
+  }, [shouldPreventRouteChange]);
+
+  const { allowRouteChange } = useRouteChangeEvents({ onBeforeRouteChange });
+};
 
 export default function Write() {
   const [step, { prevStep, nextStep }] = useFunnel(['1', '2']);
@@ -31,6 +49,8 @@ export default function Write() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useLeaveConfirmation(true);
 
   return (
     <div className={wrapper}>
