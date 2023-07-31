@@ -12,6 +12,6 @@ export const TOAST_TEXT = {
   FAILURE_DELETE: '먹팟 삭제에 실패했어요.',
 
   SAMPLE_BOARD: '샘플 먹팟입니다.',
-  SUCCESS_MAKE_DONE: '모집 완료 상태로 변경됐어요!',
+  SUCCESS_MAKE_DONE: '모집 마감 상태로 변경됐어요!',
   SUCCESS_MAKE_INPROGRESS: '모집 중 상태로 변경됐어요!',
 } as const;

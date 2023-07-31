@@ -7,7 +7,7 @@ export const SAMPLE_BOARD_IDS = [1000000000, 1000000001, 1000000002, 1000000003]
 const SAMPLE_PARTICIPANTS: Profile[] = [
   { userId: 1000000000, nickName: 'MOUNTAIN', jobGroupMain: '개발', writer: true },
   { userId: 1000000001, nickName: '퇴근하고싶어', jobGroupMain: '디자인', writer: false },
-  { userId: 1000000002, nickName: '아빠', jobGroupMain: '아빠', writer: false },
+  { userId: 1000000002, nickName: '아빠', jobGroupMain: '법률/법무', writer: false },
   { userId: 1000000003, nickName: 'rachel', jobGroupMain: '개발', writer: false },
   { userId: 1000000003, nickName: '조정디디', jobGroupMain: '교육', writer: false },
 ];
@@ -37,9 +37,9 @@ export const SAMPLE_BOARDDETAIL_1: BoardDetail = {
   createDate: '2023년 07월 30일',
   maxApply: 4,
   currentApply: 3,
-  minAge: 23,
-  maxAge: 30,
-  userAge: 25,
+  minAge: null,
+  maxAge: null,
+  userAge: null,
   locationName: '삼성전자 R&D 캠퍼스',
   addressName: '서울특별시 서초구 성촌길 67',
   x: 127.022,
@@ -48,6 +48,7 @@ export const SAMPLE_BOARDDETAIL_1: BoardDetail = {
   views: 100,
   participants: SAMPLE_PARTICIPANTS.slice(0, 3),
   isSample: true,
+  isOutOfDate: false,
 };
 
 export const SAMPLE_BOARDDETAIL_2: BoardDetail = {
@@ -67,9 +68,9 @@ export const SAMPLE_BOARDDETAIL_2: BoardDetail = {
   createDate: '2023년 07월 30일',
   maxApply: 3,
   currentApply: 2,
-  minAge: 23,
-  maxAge: 30,
-  userAge: 25,
+  minAge: null,
+  maxAge: null,
+  userAge: null,
   locationName: '봉평 메밀 막국수',
   addressName: '서울특별시 서초구 서초동 1307-4',
   x: 127.025,
@@ -78,6 +79,7 @@ export const SAMPLE_BOARDDETAIL_2: BoardDetail = {
   views: 100,
   participants: SAMPLE_PARTICIPANTS.slice(0, 2),
   isSample: true,
+  isOutOfDate: false,
 };
 
 export const SAMPLE_BOARDDETAIL_3: BoardDetail = {
@@ -100,9 +102,9 @@ export const SAMPLE_BOARDDETAIL_3: BoardDetail = {
   createDate: '2023년 07월 30일',
   maxApply: 5,
   currentApply: 4,
-  minAge: 23,
-  maxAge: 30,
-  userAge: 25,
+  minAge: null,
+  maxAge: null,
+  userAge: null,
   locationName: '닭볶음탕집',
   addressName: '서울 서초구 우면동 740',
   x: 127.039,
@@ -111,6 +113,7 @@ export const SAMPLE_BOARDDETAIL_3: BoardDetail = {
   views: 100,
   participants: SAMPLE_PARTICIPANTS.slice(0, 4),
   isSample: true,
+  isOutOfDate: false,
 };
 
 export const SAMPLE_BOARDDETAIL_4: BoardDetail = {
@@ -130,8 +133,8 @@ export const SAMPLE_BOARDDETAIL_4: BoardDetail = {
 더 자세한 내용은 오픈채팅방에서 알려드릴게요 😆 
 * 샘플 먹팟입니다.`,
   chatLink: 'https://open.kakao.com/o/g8Q4XqKc',
-  meetingDate: '2023년 07월 20일',
-  meetingTime: '오후 07시 00분',
+  meetingDate: format(addDays(new Date(), 3), 'yyyy년 MM월 dd일', { locale: ko }),
+  meetingTime: '오후 09:00',
   createDate: '2023년 07월 30일',
   maxApply: 10,
   currentApply: SAMPLE_PARTICIPANTS.length,
@@ -146,6 +149,7 @@ export const SAMPLE_BOARDDETAIL_4: BoardDetail = {
   views: 100,
   participants: SAMPLE_PARTICIPANTS,
   isSample: true,
+  isOutOfDate: false,
 };
 
 export const SAMPLE_BOARDDETAILS: BoardDetail[] = [

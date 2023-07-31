@@ -2,10 +2,11 @@
 
 import { useOverlay, useLoginRedirect } from '@/hooks';
 import { useProfile } from '@/api/hooks';
+import { BoardDetail } from '@/api/types';
 import { BottomButton, Toast } from '@/components';
 import { JoinBottomSheet } from '@/app/board/components';
-import { BOARD_STATUS, TOAST_TEXT } from '@/app/board/constants';
-import { BoardDetail } from '@/api/types';
+import { TOAST_TEXT } from '@/app/board/constants';
+import { useBoardStates } from '@/app/board/hooks';
 
 interface Props {
   board: BoardDetail;
@@ -13,14 +14,11 @@ interface Props {
 
 const BottomSection = ({ board }: Props) => {
   const { data: profile } = useProfile();
-  const { boardId, chatLink, participants, userAge, minAge, maxAge, status, isSample } = board;
+  const { boardId, chatLink, isSample } = board;
+  const { isJoined, isNotPossibleAge, isJoinable } = useBoardStates(board);
   const [openBottomSheet, closeBottomSheet] = useOverlay();
   const [openToast, closeToast] = useOverlay();
   const { redirectToLogin } = useLoginRedirect();
-
-  const isJoined = participants.find(({ userId }) => userId === profile?.userId);
-
-  const isNotPossibleAge = Boolean(userAge && minAge && maxAge) && !(minAge <= userAge && userAge <= maxAge);
 
   const handleClickJoinButton = () => {
     if (!profile) return redirectToLogin();
@@ -52,7 +50,7 @@ const BottomSection = ({ board }: Props) => {
         <BottomButton
           onClick={handleClickJoinButton}
           errorMsg={isNotPossibleAge ? '나이 제한이 있는 먹팟이에요.' : undefined}
-          disabled={status === BOARD_STATUS.DONE || isNotPossibleAge}
+          disabled={!isJoinable}
         >
           참여하기
         </BottomButton>
