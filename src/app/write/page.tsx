@@ -1,14 +1,13 @@
 'use client';
-import FirstStep from './components/Form/FirstStep';
-import SecondStep from './components/Form/SecondStep';
-import { wrapper } from './style.css';
-import { useFunnel } from '@/hooks';
-import { useProfile } from '@/api/hooks';
-import WriteTitle from './components/WriteTitle/WriteTitle';
-import useFormStore from '@/app/write/store/useFormStore';
+
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import useLeaveModal from '@/app/write/hooks/useLeaveModal';
+import { FirstStep, SecondStep, WriteTitle } from '@/app/write/components';
+import { useFunnel } from '@/hooks';
+import { useProfile } from '@/api/hooks';
+import useFormStore from '@/app/write/store/useFormStore';
+import { useLeaveModal } from '@/app/write/hooks';
+import { wrapper } from './style.css';
 
 export default function Write() {
   const [step, { prevStep, nextStep }] = useFunnel(['1', '2']);
