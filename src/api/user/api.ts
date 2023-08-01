@@ -22,6 +22,9 @@ class UserAPI {
   async postLogout() {
     return request.post('v1/users/logout').json();
   }
+  async postRefresh() {
+    return request.post('v1/users/refresh').json();
+  }
 }
 
 export const userAPI = new UserAPI();
