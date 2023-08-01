@@ -37,11 +37,9 @@ export const useFreezeRequestsContext = () => {
   return {
     freezeRequests,
     request: (sourceId: string) => {
-      // console.log('route change freeze requested by: ', sourceId)
       setFreezeRequests([...freezeRequests, sourceId]);
     },
     revoke: (sourceId: string) => {
-      // console.log('route change freeze revoked by: ', sourceId)
       setFreezeRequests(freezeRequests.filter((x) => x !== sourceId));
     },
   };
@@ -50,25 +48,21 @@ export const useFreezeRequestsContext = () => {
 type PushStateInput = [data: unknown, unused: string, url: HistoryURL];
 
 export const triggerRouteChangeStartEvent = (targetUrl: string): void => {
-  // console.log("registered route change start: ", targetUrl)
   const ev = new CustomEvent('routeChangeStartEvent', { detail: { targetUrl } });
   if (!isServer) window.dispatchEvent(ev);
 };
 
 export const triggerRouteChangeEndEvent = (targetUrl: HistoryURL): void => {
-  // console.log("registered route change end: ", targetUrl)
   const ev = new CustomEvent('routeChangeEndEvent', { detail: { targetUrl } });
   if (!isServer) window.dispatchEvent(ev);
 };
 
 export const triggerBeforeRouteChangeEvent = (targetUrl: string): void => {
-  // console.log("registered before route change event: ", targetUrl)
   const ev = new CustomEvent('beforeRouteChangeEvent', { detail: { targetUrl } });
   if (!isServer) window.dispatchEvent(ev);
 };
 
 export const triggerRouteChangeConfirmationEvent = (targetUrl: string): void => {
-  // console.log("registered route change confirmation event: ", targetUrl)
   const ev = new CustomEvent('routeChangeConfirmationEvent', { detail: { targetUrl } });
   if (!isServer) window.dispatchEvent(ev);
 };
@@ -87,18 +81,16 @@ export const RouteChangesProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
     const handleAnchorClick = (event: MouseEvent | ForceAnchorClickEvent) => {
       const target = event.currentTarget as HTMLAnchorElement;
-
       const isFrozen = freezeRequests.length !== 0;
       if (isFrozen && !(event as ForceAnchorClickEvent).isForceAnchorClickEvent) {
         event.preventDefault();
         event.stopPropagation();
-
         window.addEventListener(
           'routeChangeConfirmationEvent',
           (ev) => {
             if (ev.detail.targetUrl === target.href) {
               const forceClickEvent = createForceClickEvent(event);
-              target.dispatchEvent(forceClickEvent); // NOTE: may want to use a timeout here
+              target.dispatchEvent(forceClickEvent);
             }
           },
           { signal: abortController.signal },
@@ -183,7 +175,7 @@ const useRouteChangeEvents = (callbacks: RouteChangeCallbacks) => {
       (ev) => {
         const { targetUrl } = ev.detail;
         const shouldProceed = callbacks.onBeforeRouteChange && callbacks.onBeforeRouteChange(targetUrl);
-        if (shouldProceed ?? true) {
+        if (shouldProceed) {
           triggerRouteChangeConfirmationEvent(targetUrl);
         } else {
           setConfirmationTarget(targetUrl);
@@ -208,7 +200,9 @@ const useRouteChangeEvents = (callbacks: RouteChangeCallbacks) => {
       { signal: abortController.signal },
     );
 
-    return () => abortController.abort();
+    return () => {
+      abortController.abort();
+    };
   }, [callbacks]);
 
   return {
