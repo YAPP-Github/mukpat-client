@@ -70,7 +70,7 @@ const SecondStep = ({ reset, boardId, isPatch = false }: StepProps) => {
       };
       openModal(
         <FreezeModal
-          content={'게시글 수정 시 참여 멤버들에게 알림 메일이 전송됩니다.'}
+          content={`게시글 수정 시 참여 멤버들에게 \n 알림 메일이 전송됩니다.`}
           footer={['취소', '수정하기']}
           onClick={closeModal}
           onClose={freezeSubmit}

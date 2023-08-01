@@ -1,4 +1,4 @@
-import { Button, Modal } from '@/components';
+import { Button, Modal, Typography } from '@/components';
 
 interface Props {
   onClose: () => void;
@@ -16,7 +16,11 @@ const FreezeModal = ({
   return (
     <Modal onClose={onClose} size="small">
       <Modal.Header type="info" title="안내" />
-      <Modal.Content size="small">{content}</Modal.Content>
+      <Modal.Content size="small">
+        <Typography style={{ whiteSpace: 'pre-line' }} variant="body3" color="secondary">
+          {content}
+        </Typography>
+      </Modal.Content>
       <Modal.Footer type="horizontal">
         <Button onClick={onClick} color="text" size="micro">
           {footer[0]}
