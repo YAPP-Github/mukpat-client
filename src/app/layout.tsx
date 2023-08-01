@@ -4,7 +4,7 @@ import Script from 'next/script';
 import { OverlayProvider, QueryProvider } from '@/providers';
 import { ProfileProvider } from '@/providers/server';
 import Head from 'next/head';
-import { RouteChangesProvider } from './write/hooks/useRouteChangeEvents';
+import { RouteChangesProvider } from '@/app/write/contexts/RouteChangeProvider';
 
 const pretendardFont = localFont({
   src: [

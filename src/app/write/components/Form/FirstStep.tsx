@@ -5,7 +5,7 @@ import { FormProvider } from 'react-hook-form';
 import { Button, Input, InputSection, Typography } from '@/components';
 import { InputDate, Counter, AgeModal, AgeBottomSheet, MapModal, TimeDropDown } from '@/app/write/components';
 import { StepOneData } from '@/app/write/types';
-import { useWriteForm } from '@/app/write/hooks/useWriteForm';
+import { useWriteForm } from '@/app/write/hooks';
 import { formWrapper, sectionGap, inputGap, submitButton, flexBetween, ageError } from './Form.css';
 import { useIsMobile } from '@/hooks';
 

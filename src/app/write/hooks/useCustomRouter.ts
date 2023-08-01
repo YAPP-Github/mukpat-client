@@ -4,7 +4,7 @@ import {
   triggerBeforeRouteChangeEvent,
   triggerRouteChangeStartEvent,
   useFreezeRequestsContext,
-} from './useRouteChangeEvents';
+} from '@/app/write/contexts/RouteChangeProvider';
 
 interface NavigateOptions {
   scroll?: boolean;
@@ -31,8 +31,7 @@ const createRouterProxy = (router: AppRouterInstance, isFrozen: boolean, signal?
               { signal },
             );
 
-            triggerBeforeRouteChangeEvent(href); // NOTE: may wanna use a timeout here
-
+            triggerBeforeRouteChangeEvent(href);
             return;
           }
           resolvePush();
@@ -52,6 +51,7 @@ const useCustomRouter = (): AppRouterInstance => {
   );
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     return () => abortControllerRef.current.abort();
   }, []);
 
