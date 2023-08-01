@@ -6,9 +6,10 @@ import { Button, Input, InputSection, TextArea, Toast, Typography } from '@/comp
 import { formWrapper, inputGap } from './Form.css';
 import parseData from './util/parseData';
 import { useRouter } from 'next/navigation';
-import { useWriteForm } from '@/app/write/hooks/useWriteForm';
+import { useWriteForm } from '@/app/write/hooks/';
 import { useOverlay } from '@/hooks';
 import { usePostBoard, usePatchBoard } from '@/api/write';
+import { FreezeModal } from '@/app/write/components';
 
 type StepProps = {
   reset: () => void;
@@ -21,6 +22,7 @@ const SecondStep = ({ reset, boardId, isPatch = false }: StepProps) => {
   const { mutate: patch } = usePatchBoard(boardId);
   const { stepTwoMethod } = useWriteForm();
   const [openToast, closeToast] = useOverlay();
+  const [openModal, closeModal] = useOverlay();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<BoardData> = async (data: BoardData) => {
@@ -46,21 +48,33 @@ const SecondStep = ({ reset, boardId, isPatch = false }: StepProps) => {
       );
     }
     if (isPatch && boardId) {
-      patch(
-        { boardId: boardId, data: { ...parseData(data) } },
-        {
-          onSuccess: () => {
-            openToast(<Toast type="success" message="먹팟 수정이 완료되었어요!" onClose={closeToast} />);
-            router.push(`/board/${boardId}`);
-            reset();
+      const freezeSubmit = () => {
+        closeModal();
+        patch(
+          { boardId: boardId, data: { ...parseData(data) } },
+          {
+            onSuccess: () => {
+              openToast(<Toast type="success" message="먹팟 수정이 완료되었어요!" onClose={closeToast} />);
+              router.push(`/board/${boardId}`);
+              reset();
+            },
+            onError: (error) => {
+              openToast(<Toast type="warn" message={error.message} onClose={closeToast} />);
+              if (error.response.status === 403) {
+                router.push('/login');
+              }
+            },
           },
-          onError: (error) => {
-            openToast(<Toast type="warn" message={error.message} onClose={closeToast} />);
-            if (error.response.status === 403) {
-              router.push('/login');
-            }
-          },
-        },
+        );
+        return;
+      };
+      openModal(
+        <FreezeModal
+          content={'게시글 수정 시 참여 멤버들에게 알림 메일이 전송됩니다.'}
+          footer={['취소', '수정하기']}
+          onClick={closeModal}
+          onClose={freezeSubmit}
+        />,
       );
     }
   };
