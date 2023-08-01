@@ -3,8 +3,8 @@ import { wrapper, footer } from './ErrorMessage.css';
 import { ReactNode } from 'react';
 
 interface Props {
-  title?: string;
-  subTitle?: string;
+  title?: ReactNode;
+  subTitle?: ReactNode;
   children: ReactNode;
 }
 

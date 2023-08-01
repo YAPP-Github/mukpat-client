@@ -1,11 +1,11 @@
 'use client';
 
 import { useIsMobile } from '@/hooks';
-import { Typography, BottomButton, Button, Content, ErrorMessage, ErrorHeader } from '@/components';
-import { useRouter } from 'next/navigation';
+import { BottomButton, Button, Content, ErrorHeader, ErrorMessage, Typography } from '@/components';
+import { useRouter, notFound } from 'next/navigation';
 import { HTTPError } from 'ky';
 
-const ErrorPage = ({ reset }: { reset: () => void; error: HTTPError }) => {
+const ErrorPage = ({ reset, error }: { reset: () => void; error: HTTPError }) => {
   const router = useRouter();
   const isMobile = useIsMobile();
 
@@ -13,6 +13,10 @@ const ErrorPage = ({ reset }: { reset: () => void; error: HTTPError }) => {
     reset();
     router.push('/');
   };
+
+  if (error.response.status === 400) {
+    notFound();
+  }
 
   return (
     <>

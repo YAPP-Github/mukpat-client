@@ -22,6 +22,8 @@ const BoardDetailPage = ({
   const provinceId = provinceIdParam && !Number.isNaN(provinceIdParam) ? Number(provinceIdParam) : undefined;
   if (Number.isNaN(boardId)) notFound();
 
+  throw new Error('die');
+
   return (
     <>
       <Header />

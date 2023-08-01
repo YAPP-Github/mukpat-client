@@ -43,3 +43,5 @@ export { default as BottomSheet } from './BottomSheet/BottomSheet';
 export { default as ErrorMessage } from './ErrorMessage/ErrorMessage';
 
 export { default as Media } from './Media/Media';
+
+export { default as ErrorHeader } from './ErrorHeader/ErrorHeader';
