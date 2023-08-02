@@ -3,9 +3,11 @@ import useRouteChangeEvents from '../contexts/RouteChangeProvider';
 import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { FreezeModal } from '@/app/write/components';
+import useFormStore from '../store/useFormStore';
 
 const useLeaveModal = (shouldPreventRouteChange: boolean) => {
   const [openModal, closeModal] = useOverlay();
+  const { reset } = useFormStore();
   const router = useRouter();
   useRouteChangeEvents({
     onBeforeRouteChange: useCallback(
@@ -15,6 +17,7 @@ const useLeaveModal = (shouldPreventRouteChange: boolean) => {
             <FreezeModal
               onClose={closeModal}
               onClick={() => {
+                if (reset) reset();
                 router.push(targetUrl);
                 closeModal();
               }}
@@ -25,7 +28,7 @@ const useLeaveModal = (shouldPreventRouteChange: boolean) => {
         }
         return true;
       },
-      [closeModal, openModal, router, shouldPreventRouteChange],
+      [closeModal, openModal, reset, router, shouldPreventRouteChange],
     ),
   });
 };
