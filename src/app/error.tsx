@@ -1,7 +1,7 @@
 'use client';
 
 import { useIsMobile } from '@/hooks';
-import { Typography, BottomButton, Button, Content, ErrorMessage, ErrorHeader } from '@/components';
+import { BottomButton, Button, Content, ErrorMessage, ErrorHeader, ErrorSubTitle } from '@/components';
 import { useRouter } from 'next/navigation';
 import { HTTPError } from 'ky';
 
@@ -18,19 +18,7 @@ const ErrorPage = ({ reset }: { reset: () => void; error: HTTPError }) => {
     <>
       <ErrorHeader />
       <Content>
-        <ErrorMessage
-          title="에러가 발생했습니다."
-          subTitle={
-            <Typography as="p" variant="body2" color="primary" style={{ textAlign: 'center' }}>
-              사내 네트워크를 사용하시는 경우
-              <br />
-              <Typography as="span" variant="title3" color="primary500">
-                개인 네트워크
-              </Typography>
-              를 이용해주세요.
-            </Typography>
-          }
-        >
+        <ErrorMessage title="에러가 발생했습니다." subTitle={<ErrorSubTitle />}>
           {!isMobile && (
             <Button size="large" onClick={handleClickRetry}>
               홈으로 돌아가기

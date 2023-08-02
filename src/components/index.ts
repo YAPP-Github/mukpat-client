@@ -45,3 +45,5 @@ export { default as ErrorMessage } from './ErrorMessage/ErrorMessage';
 export { default as Media } from './Media/Media';
 
 export { default as ErrorHeader } from './ErrorHeader/ErrorHeader';
+
+export { default as ErrorSubTitle } from './ErrorSubTitle/ErrorSubTitle';
