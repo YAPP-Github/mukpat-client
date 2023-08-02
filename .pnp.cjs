@@ -80,6 +80,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lodash", "npm:4.17.21"],\
             ["lottie-web", "npm:5.12.2"],\
             ["msw", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:1.2.2"],\
+            ["nanoid", "npm:4.0.2"],\
             ["next", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:13.4.12"],\
             ["postcss", "npm:8.4.25"],\
             ["prettier", "npm:2.8.8"],\
@@ -94,6 +95,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
             ["vite", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:4.4.2"],\
             ["vitest", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:0.31.4"],\
+            ["vitest-canvas-mock", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:0.3.2"],\
             ["zod", "npm:3.21.4"],\
             ["zustand", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:4.3.9"]\
           ],\
@@ -5876,6 +5878,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["cssfontparser", [\
+        ["npm:1.2.1", {\
+          "packageLocation": "./.yarn/cache/cssfontparser-npm-1.2.1-f48947509b-952d487cdd.zip/node_modules/cssfontparser/",\
+          "packageDependencies": [\
+            ["cssfontparser", "npm:1.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["cssstyle", [\
         ["npm:3.0.0", {\
           "packageLocation": "./.yarn/cache/cssstyle-npm-3.0.0-3947bec0b5-31f694dfed.zip/node_modules/cssstyle/",\
@@ -9006,6 +9017,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["jest-canvas-mock", [\
+        ["npm:2.4.0", {\
+          "packageLocation": "./.yarn/cache/jest-canvas-mock-npm-2.4.0-f993bb2728-feda3c9a33.zip/node_modules/jest-canvas-mock/",\
+          "packageDependencies": [\
+            ["jest-canvas-mock", "npm:2.4.0"],\
+            ["cssfontparser", "npm:1.2.1"],\
+            ["moo-color", "npm:1.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["jest-diff", [\
         ["npm:29.6.1", {\
           "packageLocation": "./.yarn/cache/jest-diff-npm-29.6.1-5db9e52cf2-c6350178ca.zip/node_modules/jest-diff/",\
@@ -9981,6 +10003,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["moo-color", [\
+        ["npm:1.0.3", {\
+          "packageLocation": "./.yarn/cache/moo-color-npm-1.0.3-50b8650764-02bf59b6bb.zip/node_modules/moo-color/",\
+          "packageDependencies": [\
+            ["moo-color", "npm:1.0.3"],\
+            ["color-name", "npm:1.1.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["morgan", [\
         ["npm:1.10.0", {\
           "packageLocation": "./.yarn/cache/morgan-npm-1.10.0-a0da109b6b-fb41e226ab.zip/node_modules/morgan/",\
@@ -10073,6 +10105,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/nanoid-npm-3.3.6-e6d6ae7e71-7d0eda6570.zip/node_modules/nanoid/",\
           "packageDependencies": [\
             ["nanoid", "npm:3.3.6"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:4.0.2", {\
+          "packageLocation": "./.yarn/cache/nanoid-npm-4.0.2-ae010cad86-747c399cea.zip/node_modules/nanoid/",\
+          "packageDependencies": [\
+            ["nanoid", "npm:4.0.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -13117,6 +13156,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["vitest-canvas-mock", [\
+        ["npm:0.3.2", {\
+          "packageLocation": "./.yarn/cache/vitest-canvas-mock-npm-0.3.2-647983e4de-ed564f94f4.zip/node_modules/vitest-canvas-mock/",\
+          "packageDependencies": [\
+            ["vitest-canvas-mock", "npm:0.3.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:0.3.2", {\
+          "packageLocation": "./.yarn/__virtual__/vitest-canvas-mock-virtual-c8cad770e1/0/cache/vitest-canvas-mock-npm-0.3.2-647983e4de-ed564f94f4.zip/node_modules/vitest-canvas-mock/",\
+          "packageDependencies": [\
+            ["vitest-canvas-mock", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:0.3.2"],\
+            ["@types/vitest", null],\
+            ["jest-canvas-mock", "npm:2.4.0"],\
+            ["vitest", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:0.31.4"]\
+          ],\
+          "packagePeers": [\
+            "@types/vitest",\
+            "vitest"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["w3c-xmlserializer", [\
         ["npm:4.0.0", {\
           "packageLocation": "./.yarn/cache/w3c-xmlserializer-npm-4.0.0-f09d0ec3fc-eba070e78d.zip/node_modules/w3c-xmlserializer/",\
@@ -13488,6 +13550,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lodash", "npm:4.17.21"],\
             ["lottie-web", "npm:5.12.2"],\
             ["msw", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:1.2.2"],\
+            ["nanoid", "npm:4.0.2"],\
             ["next", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:13.4.12"],\
             ["postcss", "npm:8.4.25"],\
             ["prettier", "npm:2.8.8"],\
@@ -13502,6 +13565,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
             ["vite", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:4.4.2"],\
             ["vitest", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:0.31.4"],\
+            ["vitest-canvas-mock", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:0.3.2"],\
             ["zod", "npm:3.21.4"],\
             ["zustand", "virtual:d08515d9e4b27cdfeb9b2dde224a8841bd05f954e612ea2dd8b5b9cd65297eea34fcb753f3a56527367eedd956e930ca8b2ba53a7468cc42d099c8cdf5472f02#npm:4.3.9"]\
           ],\

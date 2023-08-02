@@ -11,6 +11,15 @@ export default defineConfig({
     setupFiles: ['./src/tests/setupTests.ts'],
     maxThreads: 15,
     minThreads: 8,
+    deps: {
+      inline: ['vitest-canvas-mock'],
+    },
+    threads: false,
+    environmentOptions: {
+      jsdom: {
+        resources: 'usable',
+      },
+    },
   },
   plugins: [react(), vanillaExtractPlugin()],
   resolve: {

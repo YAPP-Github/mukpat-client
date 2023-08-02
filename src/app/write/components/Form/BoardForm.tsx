@@ -1,15 +1,13 @@
 'use client';
 
-import FirstStep from './FirstStep';
-import SecondStep from './SecondStep';
-import { wrapper } from '../../style.css';
+import { useEffect } from 'react';
+import { useParams, useRouter } from 'next/navigation';
 import { useFunnel } from '@/hooks';
 import { useProfile } from '@/api/hooks';
-import { useParams, useRouter } from 'next/navigation';
-import WriteTitle from '../WriteTitle/WriteTitle';
-import useSetFormData from '../../hooks/useSetFormData';
-import useFormStore from '../../store/useFormStore';
-import { useEffect } from 'react';
+import { FirstStep, SecondStep, WriteTitle } from '@/app/write/components';
+import { useSetFormData, useLeaveModal } from '@/app/write/hooks';
+import { wrapper } from '../../style.css';
+import useFormStore from '@/app/write/store/useFormStore';
 
 export default function BoardForm() {
   const { data } = useProfile();
@@ -35,6 +33,7 @@ export default function BoardForm() {
   if (!data) {
     router.push('/login');
   }
+  useLeaveModal(true);
 
   return (
     <div className={wrapper}>

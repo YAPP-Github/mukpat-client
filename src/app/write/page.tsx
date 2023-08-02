@@ -1,13 +1,13 @@
 'use client';
-import FirstStep from './components/Form/FirstStep';
-import SecondStep from './components/Form/SecondStep';
-import { wrapper } from './style.css';
-import { useFunnel } from '@/hooks';
-import { useProfile } from '@/api/hooks';
-import WriteTitle from './components/WriteTitle/WriteTitle';
-import useFormStore from './store/useFormStore';
+
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { FirstStep, SecondStep, WriteTitle } from '@/app/write/components';
+import { useFunnel } from '@/hooks';
+import { useProfile } from '@/api/hooks';
+import useFormStore from '@/app/write/store/useFormStore';
+import { useLeaveModal } from '@/app/write/hooks';
+import { wrapper } from './style.css';
 
 export default function Write() {
   const [step, { prevStep, nextStep }] = useFunnel(['1', '2']);
@@ -31,6 +31,8 @@ export default function Write() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useLeaveModal(true);
 
   return (
     <div className={wrapper}>

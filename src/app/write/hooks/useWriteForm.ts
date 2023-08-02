@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import useFormStore from '@/app/write/store/useFormStore';
 import { boardSchema, BoardSchema, StepOneSchema, stepOneSchema } from '@/app/write/lib/schema';
 
-export const useWriteForm = () => {
+const useWriteForm = () => {
   const { stepOne, stepTwo } = useFormStore();
 
   const stepOneMethod = useForm<StepOneSchema>({
@@ -22,3 +22,5 @@ export const useWriteForm = () => {
 
   return { stepOneMethod, stepTwoMethod };
 };
+
+export default useWriteForm;

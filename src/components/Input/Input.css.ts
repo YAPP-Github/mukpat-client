@@ -125,6 +125,10 @@ export const bottomSheetContent = style({
   padding: `0 ${space.sm}`,
 });
 
+globalStyle(`::-webkit-input-placeholder`, {
+  color: color.hint,
+});
+
 globalStyle(`${clearButton} > img`, {
   margin: '0 auto',
   backgroundPosition: 'center',

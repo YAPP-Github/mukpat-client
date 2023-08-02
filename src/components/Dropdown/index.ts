@@ -8,7 +8,7 @@ import DropdownMenu from './DropdownMenu';
 import DropdownModal from './DropdownModal';
 import DropdownBottomSheet from './DropdownBottomSheet';
 
-const DropdownRoot = Object.assign(Dropdown, {
+const DropdownRoot = Object.assign(Dropdown || {}, {
   Button: DropdownButton,
   Toggle: DropdownToggle,
   Item: DropdownItem,
