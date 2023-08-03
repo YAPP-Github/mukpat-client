@@ -1,9 +1,9 @@
 import { vi } from 'vitest';
 import { BoardDetail, Profile } from '@/api/types';
 import { renderHook } from '@/tests/test-utils';
-import { UseSuspenseQueryResultOnSuccess } from '@suspensive/react-query';
 import useRecruitStates from './useBoardStates';
 import * as apiHooksModule from '@/api/hooks';
+import { UseQueryResult } from '@tanstack/react-query';
 
 const 작성자_프로필 = {
   userId: 128,
@@ -63,7 +63,7 @@ describe('useRecruitStates 테스팅 1 - 작성자가 조회중인 경우', () =
     const spy = vi.spyOn(apiHooksModule, 'useProfile');
     spy.mockReturnValue({
       data: 작성자_프로필,
-    } as UseSuspenseQueryResultOnSuccess<Profile | undefined>);
+    } as UseQueryResult<Profile | undefined>);
   });
 
   test('모집중이고 인원이 꽉차지 않은 먹팟', () => {
@@ -138,7 +138,7 @@ describe('useRecruitStates 테스팅 2 - 작성자가 아닌 사람이 조회중
     const spy = vi.spyOn(apiHooksModule, 'useProfile');
     spy.mockReturnValue({
       data: 비작성자_프로필,
-    } as UseSuspenseQueryResultOnSuccess<Profile | undefined>);
+    } as UseQueryResult<Profile | undefined>);
   });
 
   test('모집중, 참여중, 나이 제한 없음, 인원이 꽉차지 않음', () => {

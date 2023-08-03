@@ -13,6 +13,9 @@ const PREFIX_URL = (() => {
 
 export const request = ky.create({
   prefixUrl: PREFIX_URL,
+  retry: {
+    limit: 0,
+  },
   hooks: {
     beforeRequest: [setupCookies],
     beforeError: [processError],

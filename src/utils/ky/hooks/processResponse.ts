@@ -8,6 +8,8 @@ const processResponse: AfterResponseHook = async (request, options, response) =>
   } else if (response.status === 498) {
     await userAPI.postRefresh();
     return ky(request);
+  } else if (response.status === 400) {
+    return new Response(undefined, { status: 400 });
   }
   const data: ResponseData = await response?.json();
   return new Response(JSON.stringify(data?.result ?? data?.message), {
