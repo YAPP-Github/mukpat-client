@@ -1,14 +1,15 @@
 'use client';
-import { Button, IconButton, Typography } from '@/components';
-import { buttonWrapper, persistentButton, loginButton, requiredFields } from './LoginButton.css';
+import { BottomButton, Button, IconButton, Typography } from '@/components';
+import { buttonWrapper, persistentButton, buttonList, requiredFields, signup, login } from './LoginButton.css';
 import { useRouter } from 'next/navigation';
 import { useLoginContext } from '../../contexts/LoginContext';
-
+import { useIsMobile } from '@/hooks';
 interface LoginButtonProps {
-  fieldErrorMsg: string;
+  submitErrorMsg?: string;
 }
-const LoginButton = ({ fieldErrorMsg }: LoginButtonProps) => {
+const LoginButton = ({ submitErrorMsg }: LoginButtonProps) => {
   const { keep, setKeep } = useLoginContext();
+  const mobile = useIsMobile();
   const router = useRouter();
 
   const onClickPersistentButton = () => {
@@ -29,19 +30,29 @@ const LoginButton = ({ fieldErrorMsg }: LoginButtonProps) => {
           active={true}
           onClick={onClickPersistentButton}
           type="button"
+          initActive={keep === 'Y'}
         />
         <Typography variant="label2" as="p" color="sub">
           로그인 유지
         </Typography>
       </div>
-      <div className={loginButton}>
-        <Button size="large" color="primary" type="submit">
+      <div className={buttonList}>
+        <Button size="large" color="primary" type="submit" className={login}>
           로그인
         </Button>
-        <div className={requiredFields}>{fieldErrorMsg}</div>
-        <Button size="large" color="text" onClick={onClickSignup} type="button">
+        <div className={requiredFields}>{submitErrorMsg}</div>
+        <Button
+          color="text"
+          size={mobile ? 'paddingSmall' : 'large'}
+          onClick={onClickSignup}
+          className={signup}
+          type="button"
+        >
           회원가입
         </Button>
+        <BottomButton type="submit" errorMsg={submitErrorMsg}>
+          로그인
+        </BottomButton>
       </div>
     </div>
   );

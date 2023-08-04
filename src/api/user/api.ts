@@ -6,9 +6,30 @@ class UserAPI {
   async getProfile() {
     return request
       .get('v1/users/profile', {
-        cache: 'no-store',
+        retry: {
+          limit: 0,
+        },
       })
       .json<Profile | undefined>();
+  }
+
+  async postLogin({ email, password, keep }: { email: string; password: string; keep: string }) {
+    return request
+      .post('v2/users/login', {
+        json: {
+          email,
+          password,
+          keep,
+        },
+      })
+      .json<Profile | undefined>();
+  }
+
+  async postLogout() {
+    return request.post('v1/users/logout').json();
+  }
+  async postRefresh() {
+    return request.post('v1/users/refresh').json();
   }
 }
 

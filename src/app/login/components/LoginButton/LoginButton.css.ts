@@ -1,32 +1,68 @@
 import { fontVariant } from '@/styles/variant.css';
 import { globalStyle, style } from '@vanilla-extract/css';
-import { themeTokens } from '@/styles/theme.css';
-const { color } = themeTokens;
+import { themeTokens, screenMQ } from '@/styles/theme.css';
+import { sizeProp } from '@/utils/sizeProp';
+
+const { color, space } = themeTokens;
 export const buttonWrapper = style({
-  width: '400px',
+  width: 'inherit',
+  marginTop: space.xl,
+  '@media': {
+    [screenMQ.m]: {
+      width: 'inherit',
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+  },
+});
+export const signup = style({
+  '@media': {
+    [screenMQ.m]: {
+      ...fontVariant.label3,
+      padding: `${space.md} ${space.lg}`,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  },
 });
 export const persistentButton = style({
   display: 'flex',
   alignItems: 'center',
-  marginBottom: '36px',
+  marginBottom: sizeProp(36),
+  '@media': {
+    [screenMQ.m]: {
+      marginBottom: space.none,
+      flexDirection: 'row',
+    },
+  },
 });
-export const loginButton = style({
+export const buttonList = style({
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'column',
+});
+export const login = style({
+  marginBottom: space.md,
+  '@media': {
+    [screenMQ.m]: {
+      display: 'none',
+    },
+  },
 });
 export const requiredFields = style({
   ...fontVariant.label5,
   color: color.red500,
   height: '16px',
-  width: '400px',
+  '@media': {
+    [screenMQ.m]: {
+      display: 'none',
+    },
+  },
 });
-
 globalStyle(`${persistentButton} > button`, {
-  padding: '6px',
-  marginRight: '4px',
-});
-globalStyle(`${loginButton} > button`, {
-  marginBottom: '12px',
-  alignItems: 'center',
+  padding: space.xs,
+  marginRight: space['2xs'],
 });

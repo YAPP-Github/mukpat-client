@@ -20,6 +20,7 @@ const Button = ({
   className,
   ...rest
 }: ButtonProps) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleClick = useCallback(
     debounce((event: React.MouseEvent<HTMLButtonElement>) => {
       if (onClick) {

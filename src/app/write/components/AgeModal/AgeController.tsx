@@ -1,31 +1,38 @@
-import { useMemo } from 'react';
-import getAgeList from '@/app/write/components/AgeModal/getAgeList';
 import { Dropdown, DropdownButton, DropdownItem, DropdownMenu } from '@/components';
 import { Control, Controller, FieldValues } from 'react-hook-form';
+import { AGE_LIST } from '@/app/write/constants';
+import DropdownModal from '@/components/Dropdown/DropdownModal';
+import { useIsMobile } from '@/hooks';
 
 type ControllerProps<T extends FieldValues> = {
   control: Control<T>;
   name: string;
-  defaultValue: number;
+  placeholder: string;
+  disabled?: boolean;
 };
 
-const AgeController = ({ control, name, defaultValue }: ControllerProps<any>) => {
-  const list = useMemo(() => getAgeList(20, 100), []);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const AgeController = ({ disabled = false, control, name, placeholder }: ControllerProps<any>) => {
+  const isMobile = useIsMobile();
+  const DropdownItemWrapper = isMobile ? DropdownModal : DropdownMenu;
+
   return (
     <Controller
-      defaultValue={defaultValue}
+      defaultValue={null}
       control={control}
       name={name}
       render={({ field: { value, onChange } }) => (
-        <Dropdown style={{ width: '100%' }}>
-          <DropdownButton placeholder={'20세'}>{value}세</DropdownButton>
-          <DropdownMenu selectable selectedItemKey={value} onSelectChange={onChange}>
-            {list.map((v) => (
+        <Dropdown style={{ width: '100%' }} disableClickOutside={isMobile}>
+          <DropdownButton disabled={disabled} placeholder={placeholder}>
+            {value && `${value}세`}
+          </DropdownButton>
+          <DropdownItemWrapper selectable selectedItemKey={value} onSelectChange={onChange}>
+            {AGE_LIST.map((v) => (
               <DropdownItem key={v} itemKey={v}>
                 {v}
               </DropdownItem>
             ))}
-          </DropdownMenu>
+          </DropdownItemWrapper>
         </Dropdown>
       )}
     />

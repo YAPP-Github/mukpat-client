@@ -1,22 +1,49 @@
-import { Skeleton } from '@/components';
+import { Skeleton, SvgIcon } from '@/components';
 
 import {
+  menuButton,
   wrapper,
+  title,
   infoBanner,
   footer,
   footerText,
   footerButtons,
   flexAlignCenter,
   flexColumn,
+  mobileListSection,
   list,
   listItem,
+  asideSection,
+  mobileBottomButton,
 } from './BoardDetailLoading.css';
+
+const ParticipantsSkeleton = () => {
+  return (
+    <>
+      <Skeleton width="77px" height="20px" />
+      <div className={list}>
+        {Array(4)
+          .fill(0)
+          .map((_, idx) => (
+            <div className={listItem} key={idx}>
+              <Skeleton width="40px" height="40px" radius="circle" />
+              <div className={flexColumn}>
+                <Skeleton width="120px" height="18px" mb="2px" />
+                <Skeleton width="32px" height="18px" />
+              </div>
+            </div>
+          ))}
+      </div>
+    </>
+  );
+};
 
 const BoardDetailLoading = () => {
   return (
     <div className={wrapper}>
+      <SvgIcon id="dot" width={36} height={36} className={menuButton} />
       <div>
-        <Skeleton width="396px" height="42px" mb="36px" />
+        <Skeleton className={title} />
         <div className={infoBanner}>
           {Array(5)
             .fill(0)
@@ -26,6 +53,9 @@ const BoardDetailLoading = () => {
                 <Skeleton width={index % 2 === 0 ? '305px' : '240px'} height="20px" />
               </div>
             ))}
+        </div>
+        <div className={mobileListSection}>
+          <ParticipantsSkeleton />
         </div>
         <div className={footer}>
           <div className={footerText}>
@@ -38,22 +68,12 @@ const BoardDetailLoading = () => {
           </div>
         </div>
       </div>
-      <div>
-        <Skeleton width="77px" height="20px" mt="78px" />
-        <div className={list}>
-          {Array(4)
-            .fill(0)
-            .map((_, idx) => (
-              <div className={listItem} key={idx}>
-                <Skeleton width="40px" height="40px" radius="circle" />
-                <div className={flexColumn}>
-                  <Skeleton width="120px" height="18px" mb="2px" />
-                  <Skeleton width="32px" height="18px" />
-                </div>
-              </div>
-            ))}
-        </div>
+      <div className={asideSection}>
+        <ParticipantsSkeleton />
         <Skeleton width="274px" height="54px" radius="md" />
+      </div>
+      <div className={mobileBottomButton}>
+        <Skeleton width="100%" height="54px" />
       </div>
     </div>
   );

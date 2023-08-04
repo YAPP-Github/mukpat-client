@@ -1,19 +1,27 @@
-import { Typography } from '@/components';
+import clsx from 'clsx';
 import { Suspense } from '@suspensive/react';
-import { HydratedBoardCardList, BoardCardListLoading } from '@/app/home/components';
-import { section, title, listGrid } from './BoardSection.css';
+import { SvgIcon, Typography } from '@/components';
+import {
+  BoardCardListLoading,
+  RegionsFilter,
+  RegionsFilterLoading,
+  HydratedBoardCardList,
+} from '@/app/home/components';
+import { animate } from '@/styles/theme.css';
+import { section, title } from './BoardSection.css';
 
-const BoardSection = async () => {
+const BoardSection = () => {
   return (
-    <section className={section}>
+    <section className={clsx(section, animate)}>
       <Typography variant="heading2" as="h2" color="navy" className={title}>
-        지금 먹팟을 찾고 있는 동료
+        지금 먹팟 <SvgIcon id="lightning" width="24" height="24" />을 찾고 있는 동료
       </Typography>
-      <ul className={listGrid}>
-        <Suspense fallback={<BoardCardListLoading />}>
-          <HydratedBoardCardList />
-        </Suspense>
-      </ul>
+      <Suspense fallback={<RegionsFilterLoading />}>
+        <RegionsFilter />
+      </Suspense>
+      <Suspense fallback={<BoardCardListLoading />}>
+        <HydratedBoardCardList />
+      </Suspense>
     </section>
   );
 };

@@ -1,17 +1,14 @@
 import { style } from '@vanilla-extract/css';
-import { themeTokens } from '@/styles/theme.css';
-import { fontVariant } from '@/styles/variant.css';
-
-const { color, space } = themeTokens;
+import { screenMQ } from '@/styles/theme.css';
 
 export const logo = style({
-	...fontVariant.title3,
-	backgroundColor: color.grey100,
-	width: space['7xl'],
-	height: space['7xl'],
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center',
-	color: color.grey400,
-	flexShrink: 0,
+  width: '5rem',
+  height: '5rem',
+
+  '@media': {
+    [screenMQ.m]: {
+      width: '3rem',
+      height: '3rem',
+    },
+  },
 });

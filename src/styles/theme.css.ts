@@ -1,4 +1,4 @@
-import { createGlobalTheme } from '@vanilla-extract/css';
+import { createGlobalTheme, keyframes, style } from '@vanilla-extract/css';
 
 export const themeTokens = createGlobalTheme(':root', {
   space: {
@@ -103,7 +103,7 @@ export const themeTokens = createGlobalTheme(':root', {
     // gray scale
     white: '#FFFFFF',
     black: '#0F172A',
-    grey50: '#F8FAFC',
+    grey50: '#FAFAFB',
     grey100: '#F1F5F9',
     grey200: '#E2E8F0',
     grey250: '#D1D6DC',
@@ -155,6 +155,7 @@ export const themeTokens = createGlobalTheme(':root', {
     hide: '-1',
     auto: 'auto',
     base: '0',
+    above: '1',
     docked: '10',
     dropdown: '1000',
     sticky: '1100',
@@ -197,3 +198,26 @@ export const themeTokens = createGlobalTheme(':root', {
     '7xl': '4rem',
   },
 });
+
+export const breakPoints = {
+  /** mobile */
+  s: 360,
+  /** tablet */
+  m: 791,
+};
+
+export const screenMQ = {
+  /** mobile 대응 max-width: 791px*/
+  m: `screen and (max-width: ${breakPoints.m}px)`,
+};
+
+const fadeInAnimation = keyframes({
+  '0%': { opacity: '0' },
+  '100%': { opacity: '1' },
+});
+
+export const animate = style({
+  animation: `${fadeInAnimation} 0.5s ease-in-out`,
+});
+
+export type BreakPoints = keyof typeof breakPoints;

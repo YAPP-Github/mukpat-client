@@ -3,7 +3,7 @@ import { SignupRequest, SignupResponse } from '../types/signup';
 
 export const postSignup = async (params: SignupRequest): Promise<SignupResponse> => {
   return await request
-    .post('v1/users', {
+    .post('v2/users', {
       json: params,
     })
     .json<SignupResponse>();

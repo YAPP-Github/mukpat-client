@@ -10,6 +10,7 @@ const HydratedBoardCardList = async () => {
     api.board.getBoardList(undefined, BOARDS_PER_PAGE),
   );
   const dehydratedState = dehydrate(queryClient);
+
   return (
     <Hydrate state={dehydratedState}>
       <BoardCardList />

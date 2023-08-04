@@ -1,12 +1,21 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-import { themeTokens } from '@/styles/theme.css';
+import { screenMQ, themeTokens } from '@/styles/theme.css';
 import { fontVariant } from '@/styles/variant.css';
+import { sizeProp } from '@/utils/sizeProp';
 
 const { space, color, borderRadius } = themeTokens;
 
 export const headerText = style({
-  marginBottom: '2.25rem',
+  marginBottom: sizeProp('36px'),
+  ...fontVariant.heading1,
+
+  '@media': {
+    [screenMQ.m]: {
+      ...fontVariant.title1,
+      marginBottom: space['3xl'],
+    },
+  },
 });
 
 export const statusText = recipe({
@@ -44,9 +53,18 @@ export const infoBannerItem = style({
 
 export const contentWrapper = style({
   ...fontVariant.body2,
-  marginTop: space['3xl'],
   wordBreak: 'break-all',
   whiteSpace: 'break-spaces',
+  marginTop: space['3xl'],
+});
+
+export const childrenWrapper = style({
+  '@media': {
+    [screenMQ.m]: {
+      marginTop: space['3xl'],
+      marginBottom: space['3xl'],
+    },
+  },
 });
 
 export const footer = style({

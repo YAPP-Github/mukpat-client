@@ -4,8 +4,8 @@ export interface BoardListItem {
   boardId: number;
   title: string;
   status: string;
-  todayOrTomorrow: string;
-  elapsedTime: string;
+  todayOrTomorrow: string | null;
+  elapsedTime?: string;
   meetingDateTime: string;
   meetingPlace: string;
   maxApply: number;
@@ -37,13 +37,40 @@ export interface BoardDetail {
   createDate: string;
   maxApply: number;
   currentApply: number;
-  minAge: number;
-  maxAge: number;
-  userAge: number;
+  minAge: number | null;
+  maxAge: number | null;
+  userAge: number | null;
   locationName: string;
+  addressName: string;
+  locationDetail: string;
   x: number;
   y: number;
-  locationDetail: string;
   views: number;
   participants: Profile[];
+  isOutOfDate: boolean;
+  isSample?: boolean;
 }
+
+export interface BoardProvince {
+  provinceId: number;
+  provinceName: string;
+  sumByProvince: number;
+}
+
+export interface BoardRegion {
+  cityId: number;
+  cityName: string;
+  sumByCity: number;
+  provinces: BoardProvince[];
+}
+
+export interface BoardRegionResponse {
+  list: BoardRegion[];
+}
+
+export const BOARD_STATUS = {
+  IN_PROGRESS: 'IN_PROGRESS',
+  DONE: 'DONE',
+} as const;
+
+export type BoardStatus = (typeof BOARD_STATUS)[keyof typeof BOARD_STATUS];

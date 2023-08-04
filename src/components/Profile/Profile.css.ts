@@ -16,6 +16,7 @@ export const colorVariant = {
 export const sizeVariant = {
   small: { width: 40, height: 40 },
   medium: { width: 48, height: 48 },
+  full: { width: '100%', height: '100%' },
 };
 
 export const fontSizeVariant = {

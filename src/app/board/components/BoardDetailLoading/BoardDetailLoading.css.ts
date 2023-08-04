@@ -1,3 +1,4 @@
+import { sizeProp } from '@/utils/sizeProp';
 import { style } from '@vanilla-extract/css';
 import { wrapper as wrapperStyle } from '@/app/board/components/BoardDetail/BoardDetail.css';
 import {
@@ -6,9 +7,22 @@ import {
   footerText as footerTextStyle,
   footerButtons as footerButtonsStyle,
 } from '@/app/board/components/ContentSection/ContentSection.css';
-import { themeTokens } from '@/styles/theme.css';
+import { screenMQ, themeTokens } from '@/styles/theme.css';
 
-const { space } = themeTokens;
+const { space, borderRadius } = themeTokens;
+
+export const menuButton = style({
+  display: 'none',
+
+  '@media': {
+    [screenMQ.m]: {
+      display: 'block',
+      width: 'max-content',
+      marginLeft: 'auto',
+      marginBottom: space.sm,
+    },
+  },
+});
 
 export const flexAlignCenter = style({
   display: 'flex',
@@ -27,10 +41,29 @@ export const wrapper = style([
   },
 ]);
 
+export const title = style({
+  position: 'relative',
+  width: sizeProp('396px'),
+  height: sizeProp('42px'),
+  marginBottom: sizeProp('36px'),
+  '@media': {
+    [screenMQ.m]: {
+      width: sizeProp('200px'),
+      height: sizeProp('28px'),
+      marginBottom: space['3xl'],
+    },
+  },
+});
+
 export const infoBanner = style([
   infoBannerStyle,
   {
     marginBottom: '14rem',
+    '@media': {
+      [screenMQ.m]: {
+        marginBottom: space['3xl'],
+      },
+    },
   },
 ]);
 
@@ -54,9 +87,47 @@ export const list = style([
   },
 ]);
 
+export const mobileListSection = style({
+  display: 'none',
+  '@media': {
+    [screenMQ.m]: {
+      paddingLeft: space.sm,
+      display: 'block',
+    },
+  },
+});
+
 export const listItem = style([
   flexAlignCenter,
   {
     gap: space.md,
   },
 ]);
+
+export const asideSection = style({
+  marginTop: sizeProp('78px'),
+  '@media': {
+    [screenMQ.m]: {
+      display: 'none',
+    },
+  },
+});
+
+export const mobileBottomButton = style({
+  display: 'none',
+  '@media': {
+    [screenMQ.m]: {
+      width: '100%',
+      height: '54px',
+      borderRadius: borderRadius.lg,
+      overflow: 'hidden',
+      marginTop: 'auto',
+      display: 'block',
+      position: 'fixed',
+      left: space.none,
+      bottom: space.xl,
+      right: space.none,
+      padding: `${space.none} ${space.xl} ${space.xl}`,
+    },
+  },
+});

@@ -1,4 +1,4 @@
-name: git push into mukpat-client to deploy to vercel
+name: git push into Yangseungchan/mukpat-client to deploy to vercel
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     container: pandoc/latex
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install mustache (to update the date)
         run: apk add ruby && gem install mustache
       - name: creates output
@@ -20,11 +20,11 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_GIT_TOKEN }}
         with:
-          source-directory: 'output'
-          destination-github-username: jieunpark247
+          source-directory: .
+          destination-github-username: Yangseungchan
           destination-repository-name: mukpat-client
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
-          target-branch: master
+          target-branch: main
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY

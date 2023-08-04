@@ -1,14 +1,16 @@
 import { style, globalStyle } from '@vanilla-extract/css';
+import { themeTokens } from '@/styles/theme.css';
+const { space } = themeTokens;
 
 export const agreeWrapper = style({
   display: 'flex',
   alignItems: 'center',
-  margin: '0',
+  margin: space.none,
 });
 export const agreeText = style({
   textDecoration: 'underline',
 });
 globalStyle(`${agreeWrapper} > button`, {
-  padding: '6px',
-  marginRight: '4px',
+  padding: space['xs'],
+  marginRight: space['2xs'],
 });

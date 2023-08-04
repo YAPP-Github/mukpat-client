@@ -1,3 +1,5 @@
+'use client';
+
 import { useFormContext } from 'react-hook-form';
 import { Map, Input } from '@/components';
 import { useOverlay } from '@/hooks';
@@ -9,10 +11,18 @@ const MapModal = () => {
     return <Map onClick={onClick} onClose={closeModal} />;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onClick = (data: any) => {
-    method.setValue('locationName', `${data.road_address_name} ${data.place_name}`);
-    method.setValue('x', parseFloat(data.x));
-    method.setValue('y', parseFloat(data.y));
+    if (data) {
+      method.setValue('locationName', `${data.place_name}` || `${data.address_name}`);
+      method.setValue('addressName ', `${data.address_name}`);
+      if (data.x && data.y) {
+        method.setValue('x', parseFloat(data.x));
+        method.setValue('y', parseFloat(data.y));
+        method.setValue('region_1depth_name', data.region_1depth_name);
+        method.setValue('region_2depth_name', data.region_2depth_name);
+      }
+    }
     closeModal();
   };
   return (

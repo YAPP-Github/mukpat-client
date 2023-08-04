@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { IconButton, Typography } from '@/components';
+import { PropsWithChildren } from 'react';
+import { Typography } from '@/components';
 import { getBoardStatusText } from '@/app/board/utils';
 import { BoardDetail } from '@/api/types';
 
@@ -11,15 +11,15 @@ import {
   contentWrapper,
   footer,
   footerText,
-  footerButtons,
-  disabledLink,
+  childrenWrapper,
 } from './ContentSection.css';
+import FooterButtons from './FooterLinkButtons';
 
-interface Props {
+interface Props extends PropsWithChildren {
   board: BoardDetail;
 }
 
-const ContentSection = ({ board }: Props) => {
+const ContentSection = ({ board, children }: Props) => {
   const {
     status,
     title,
@@ -34,11 +34,13 @@ const ContentSection = ({ board }: Props) => {
     views,
     prevId,
     nextId,
+    x,
+    y,
   } = board;
 
   return (
     <section>
-      <Typography variant="heading1" as="p" className={headerText}>
+      <p className={headerText}>
         <span
           className={statusText({
             active: status === '모집중',
@@ -47,7 +49,7 @@ const ContentSection = ({ board }: Props) => {
           {getBoardStatusText(status)}
         </span>
         {title}
-      </Typography>
+      </p>
       <ul className={infoBanner}>
         <li className={infoBannerItem}>
           <Typography variant="label3" color="hint">
@@ -70,7 +72,15 @@ const ContentSection = ({ board }: Props) => {
             만날 위치
           </Typography>
           <Typography variant="label3" color="primary">
-            {locationName}
+            <a
+              href={`https://map.kakao.com/link/to/${locationName},${y},${x}`}
+              target="_blank"
+              style={{
+                textDecoration: 'underline',
+              }}
+            >
+              {locationName}
+            </a>
           </Typography>
         </li>
         <li className={infoBannerItem}>
@@ -93,6 +103,7 @@ const ContentSection = ({ board }: Props) => {
         )}
       </ul>
       <div className={contentWrapper}>{content}</div>
+      <div className={childrenWrapper}>{children}</div>
       <div className={footer}>
         <div className={footerText}>
           <Typography variant="label3" color="hint">
@@ -102,24 +113,7 @@ const ContentSection = ({ board }: Props) => {
             조회수 {views}
           </Typography>
         </div>
-        <div className={footerButtons}>
-          <Link
-            href={`/board/${prevId}`}
-            className={disabledLink({
-              disabled: !prevId,
-            })}
-          >
-            <IconButton iconType="chevronleft" hover disabled={!prevId} />
-          </Link>
-          <Link
-            href={`/board/${nextId}`}
-            className={disabledLink({
-              disabled: !nextId,
-            })}
-          >
-            <IconButton iconType="chevronright" hover disabled={!nextId} />
-          </Link>
-        </div>
+        <FooterButtons nextId={nextId} prevId={prevId} />
       </div>
     </section>
   );
