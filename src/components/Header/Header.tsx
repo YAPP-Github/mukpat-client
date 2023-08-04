@@ -20,7 +20,7 @@ const Header = ({ actionRequired = true }: Props) => {
       <Logo />
       <div className={actions}>
         <FeedbackAction />
-        {actionRequired && <HeaderActions />}
+        <Suspense>{actionRequired && <HeaderActions />}</Suspense>
       </div>
     </HeaderWrapper>
   );
