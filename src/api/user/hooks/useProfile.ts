@@ -8,6 +8,7 @@ const useProfile = () => {
   return useSuspenseQuery<Profile | undefined>({
     queryKey: userKeys.profile(),
     queryFn: () => userAPI.getProfile(),
+    retry: 1,
   });
 };
 export default useProfile;
