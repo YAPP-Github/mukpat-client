@@ -2,7 +2,7 @@ name: git push into Yangseungchan/mukpat-client to deploy to vercel
 
 on:
   push:
-    branches: [dev]
+    branches: [master]
 
 jobs:
   build:
