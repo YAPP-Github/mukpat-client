@@ -14,7 +14,9 @@ export default function Home() {
         </Suspense>
         <BoardSection />
       </Content>
-      <FloatingButton />
+      <Suspense>
+        <FloatingButton />
+      </Suspense>
     </>
   );
 }

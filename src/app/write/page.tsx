@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { FirstStep, SecondStep, WriteTitle } from '@/app/write/components';
-import { useFunnel } from '@/hooks';
+import { useFunnel, useLoginRedirect } from '@/hooks';
 import { useProfile } from '@/api/hooks';
 import useFormStore from '@/app/write/store/useFormStore';
 import { useLeaveModal } from '@/app/write/hooks';
@@ -12,11 +11,9 @@ import { wrapper } from './style.css';
 export default function Write() {
   const [step, { prevStep, nextStep }] = useFunnel(['1', '2']);
   const { reset, setData } = useFormStore();
-  const { data } = useProfile();
-  const router = useRouter();
-  if (!data) {
-    router.push('/login');
-  }
+  const { data: profile } = useProfile();
+
+  const { redirectToLogin } = useLoginRedirect();
 
   const preventClose = (e: BeforeUnloadEvent) => {
     e.preventDefault();
@@ -31,6 +28,12 @@ export default function Write() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!profile) {
+      redirectToLogin();
+    }
+  }, [redirectToLogin, profile]);
 
   useLeaveModal(true);
 

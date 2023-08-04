@@ -1,9 +1,9 @@
 import { vi } from 'vitest';
 import { BoardDetail, Profile } from '@/api/types';
 import { renderHook } from '@/tests/test-utils';
-import { UseSuspenseQueryResultOnSuccess } from '@suspensive/react-query';
 import useRecruitStates from './useBoardStates';
 import * as apiHooksModule from '@/api/hooks';
+import { UseSuspenseQueryResultOnSuccess } from '@suspensive/react-query';
 
 const 작성자_프로필 = {
   userId: 128,
